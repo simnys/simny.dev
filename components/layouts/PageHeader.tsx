@@ -38,7 +38,11 @@ export default function PageHeader({
 				{backlink && (
 					<Link
 						href={backlink}
-						className="absolute top-20 left-6 w-fit p-2 rounded-full bg-foreground-secondary/5 text-foreground-secondary ring-1 ring-transparent ring-offset-background transition-all hover:bg-foreground-secondary/10 hover:text-foreground hover:ring-brand hover:ring-offset-2"
+						className={cn(
+							'absolute top-20 left-6 w-fit p-2 rounded-full',
+							'bg-foreground-secondary/5 text-foreground-secondary ring-1 ring-transparent ring-offset-background',
+							'transition-all hover:bg-foreground-secondary/10 hover:text-foreground hover:ring-brand hover:ring-offset-2'
+						)}
 					>
 						<IconBack className="w-5 h-5 rotate-180" />
 					</Link>

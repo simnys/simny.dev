@@ -3,38 +3,54 @@
 import { useFocusTrap } from '@/lib/hooks';
 import { cn } from '@/lib/utils';
 
+import { dropdownLinks } from '@/data/data';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import React, { ComponentType, SVGProps } from 'react';
+import { ComponentType, SVGProps } from 'react';
 import CardOverlay from '../ui/CardOverlay';
 
 interface NavDropdown {
 	isOpen: boolean;
 	onClose: () => void;
-	children: React.ReactNode;
 	className?: string;
 }
 
-function NavDropdown({ isOpen, onClose, children, className }: NavDropdown) {
+function NavDropdown({ isOpen, onClose, className }: NavDropdown) {
 	const { focusRef } = useFocusTrap(isOpen, onClose, true);
 
 	return (
 		<motion.div
-			initial={{ height: 0 }}
-			animate={{ height: 'auto' }}
-			exit={{ height: 0 }}
-			transition={{ duration: 0.2, ease: 'easeInOut' }}
+			initial={{ opacity: 0, scale: 0.95 }}
+			animate={{ opacity: 1, scale: 1 }}
+			exit={{ opacity: 0, scale: 0.95 }}
+			transition={{ duration: 0.2 }}
 			aria-expanded={isOpen}
 			aria-label="Dropdown"
-			className="overflow-hidden w-full border-t shadow-sm"
-			onMouseLeave={onClose}
+			className="absolute top-15 w-screen md:w-full rounded-2xl p-2 bg-background border shadow-sm will-change-transform"
 		>
 			<div
 				ref={focusRef}
 				tabIndex={-1}
-				className="w-full max-w-[1088px] mx-auto grid grid-cols-12 auto-rows-fr border-x outline-none bg-background/95 divide-x divide-y"
+				onMouseLeave={onClose}
+				className="w-full grid grid-cols-12 auto-rows-fr border rounded-xl shadow-xs outline-none bg-background-secondary divide-x divide-y overflow-hidden"
 			>
-				{children}
+				{dropdownLinks.map((item, idx) => (
+					<NavDropDownCard
+						key={item.name}
+						title={item.name}
+						description={item.description}
+						href={item.path}
+						icon={item.icon}
+						colSpan={item.colSpan}
+						rowSpan={item.rowSpan}
+						onClose={onClose}
+						className={cn(
+							idx === 0
+								? 'border-b-0'
+								: (idx !== 0 || idx !== dropdownLinks.length - 1) && 'border-r-0'
+						)}
+					/>
+				))}
 			</div>
 		</motion.div>
 	);
@@ -66,7 +82,7 @@ function NavDropDownCard({
 			href={href || ''}
 			onClick={!href ? undefined : onClose}
 			className={cn(
-				'relative overflow-hidden text-sm font-medium text-foreground p-4',
+				'relative text-sm font-medium text-foreground p-4 overflow-hidden',
 				'hover:bg-background-secondary transition-colors group',
 				!href && 'cursor-default',
 				className
@@ -93,7 +109,7 @@ function NavDropDownCard({
 					</span>
 				)}
 				{!href && (
-					<div className="absolute top-0 right-0 text-xs rounded-bl-md px-4 py-1 backdrop-blur-lg border-l border-b border-brand/20 text-brand/80 bg-brand/10 z-10 w-fit">
+					<div className="absolute top-2 right-2 text-xs rounded-md px-4 py-0.5 backdrop-blur-lg border border-brand/20 text-brand/80 bg-brand/10 z-10 w-fit">
 						Upcoming
 					</div>
 				)}
@@ -106,7 +122,7 @@ function NavDropDownCard({
 					)}
 				/>
 			)}
-			<CardOverlay withIcon />
+			<CardOverlay withIcon={!!href} />
 		</Link>
 	);
 }

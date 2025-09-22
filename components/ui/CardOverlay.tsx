@@ -28,7 +28,7 @@ export default function CardOverlay({
 				<div
 					className={cn(
 						'absolute right-4 -bottom-2 z-20 w-fit h-fit rounded-full p-2',
-						'bg-foreground/80 text-background dark:bg-background/80 dark:text-foreground-secondary backdrop-blur-md',
+						'bg-background/80 text-foreground-secondary backdrop-blur-md',
 						'opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:-translate-y-5 user-select-none pointer-events-none '
 					)}
 				>
