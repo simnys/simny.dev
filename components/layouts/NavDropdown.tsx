@@ -26,7 +26,7 @@ function NavDropdown({ isOpen, onClose, className }: NavDropdown) {
 			transition={{ duration: 0.2 }}
 			aria-expanded={isOpen}
 			aria-label="Dropdown"
-			className="absolute top-15 w-screen md:w-full rounded-2xl p-2 bg-background border shadow-sm will-change-transform"
+			className="hidden sm:block absolute top-15 w-screen md:w-full rounded-2xl p-2 bg-background border shadow-sm will-change-transform"
 		>
 			<div
 				ref={focusRef}

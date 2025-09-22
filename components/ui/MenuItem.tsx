@@ -26,9 +26,9 @@ const MenuItem: React.FC<MenuItemProps> = ({
 			target={isExternalLink ? '_blank' : ''}
 			rel={isExternalLink ? 'noopener noreferrer' : ''}
 			className={cn(
-				'w-fit text-xl tracking-normal px-2 py-1 font-medium dark:font-[450] text-foreground-secondary',
+				'text-xl tracking-normal px-4 py-1 font-medium text-foreground-secondary',
 				isCurrentPath &&
-					'text-black dark:text-white dark:font-medium underline underline-offset-4 decoration-2 decoration-foreground/30'
+					'text-foreground underline underline-offset-4 decoration-2 decoration-brand/80'
 			)}
 			onClick={() => Component === Link && setIsOpen(false)}
 		>

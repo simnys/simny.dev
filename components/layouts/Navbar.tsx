@@ -2,7 +2,6 @@
 
 import { navItems } from '@/data/data';
 import { IconAt, IconMenu, Logo } from '@/data/icons';
-import { useScrollLock } from '@/lib/hooks';
 import { cn } from '@/lib/utils';
 
 import { AnimatePresence } from 'framer-motion';
@@ -21,7 +20,6 @@ export default function Navbar({ className }: { className?: string }) {
 	const [openMobile, setOpenMobile] = useState(false);
 	const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 	const currentPath = usePathname();
-	useScrollLock(openMobile, true);
 
 	const handleDropdownToggle = (dropdownId: string) => {
 		setOpenDropdown(openDropdown === dropdownId ? null : dropdownId);
