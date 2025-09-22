@@ -22,14 +22,14 @@ export default function PageHeader({
 		<>
 			<div
 				className={cn(
-					'relative max-w-5xl mx-auto px-6 pt-40 pb-6 border-b bg-background text-xl text-balance',
+					'relative max-w-5xl mx-auto px-4 sm:px-6 pt-24 sm:pt-40 pb-6 border-b bg-background text-xl text-balance',
 					className
 				)}
 			>
 				<h1 className="mb-1">{title}</h1>
 				{content && <p className="text-base max-w-4xl text-foreground-secondary">{content}</p>}
 				{subtitle && (
-					<div className="flex items-center gap-x-1 absolute top-34 left-6 text-brand text-sm font-medium">
+					<div className="flex items-center gap-x-1 absolute top-18 left-4 sm:top-34 sm:left-6 text-brand text-sm font-medium">
 						<subtitle.Icon />
 						<span className="">{subtitle.text}</span>
 					</div>
@@ -39,7 +39,7 @@ export default function PageHeader({
 					<Link
 						href={backlink}
 						className={cn(
-							'absolute top-20 left-6 w-fit p-2 rounded-full',
+							'absolute top-4 left-4 sm:top-20 sm:left-6 w-fit p-2 rounded-full',
 							'bg-foreground-secondary/5 text-foreground-secondary ring-1 ring-transparent ring-offset-background',
 							'transition-all hover:bg-foreground-secondary/10 hover:text-foreground hover:ring-brand hover:ring-offset-2'
 						)}

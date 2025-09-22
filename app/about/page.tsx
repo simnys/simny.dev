@@ -73,23 +73,23 @@ export default async function About() {
 
 			<PageHeader title="About Me" subtitle={{ text: 'Bio', Icon: IconUser }} />
 
-			<Section className="pb-0 border-b">
-				<div className="grid md:grid-cols-12 gap-y-4 divide-x">
-					<div className="relative col-span-12 md:col-span-4">
+			<Section className="pb-0 sm:pb-0 border-b">
+				<div className="grid md:grid-cols-12 md:divide-x">
+					<div className="relative col-span-12 md:col-span-4 px-2 md:px-0">
 						<Image
 							src={HeroImage}
 							alt=""
 							priority
 							placeholder="blur"
-							className="rounded-3xl ring-1 ring-border aspect-square sm:aspect-video md:aspect-auto w-full h-full object-cover object-center grayscale"
+							className="rounded-2xl md:rounded-3xl ring-1 ring-border aspect-square sm:aspect-video md:aspect-auto w-full h-full object-cover object-center grayscale"
 						/>
 						<div className="absolute inset-0 z-10 rounded-3xl bg-linear-to-tr from-brand/20 to-brand/10 mix-blend-soft-light" />
-						<IconDoodleArrow className="text-brand w-28 h-28 absolute z-10 -top-6 left-6 rotate-8" />
-						<IconDoodleCompass className="text-brand w-16 h-16 absolute z-10 -right-4 -top-4 -rotate-3" />
-						<IconDoodleMountains className="text-brand w-16 h-16 absolute z-10 bottom-48 -left-6 rotate-12" />
+						<IconDoodleArrow className="text-brand w-24 h-24 md:w-28 md:h-28 absolute z-10 -top-6 left-6 rotate-8" />
+						<IconDoodleCompass className="text-brand w-16 h-16 absolute z-10 -right-2 -top-4 md:-right-4 md:-top-4 -rotate-3" />
+						<IconDoodleMountains className="text-brand w-16 h-16 absolute z-10 bottom-32 -left-1 md:bottom-48 md:-left-6 rotate-12" />
 					</div>
 
-					<div className="col-span-12 md:col-span-8 prose max-w-none prose-p:leading-7 first:prose-p:text-foreground px-6 py-8">
+					<div className="col-span-12 md:col-span-8 prose max-w-none prose-p:leading-7 first:prose-p:text-foreground px-4 py-6 md:px-6 md:py-8">
 						<p className="text-lg">
 							Hey, I&apos;m Simon Nyström, a front-end engineer and photographer from Sweden. I got
 							into coding out of curiosity and a love for making things work online, and it&apos;s
@@ -118,8 +118,8 @@ export default async function About() {
 				</div>
 			</Section>
 
-			<Section className="py-4 bg-background-secondary border-b">
-				<div className="max-w-5xl mx-auto space-y-2">
+			<Section className="py-4 bg-background-secondary border-b sm:py-4">
+				<div className="lg:max-w-5xl lg:mx-auto space-y-2">
 					<HorizontalScroller
 						items={skills.slice(0, skills.length / 2)}
 						speed="slow"

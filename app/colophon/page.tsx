@@ -20,7 +20,7 @@ export default function Colophon() {
 				subtitle={{ text: 'Design', Icon: IconDesign }}
 			/>
 
-			<Section className="px-6 py-10 space-y-8 max-w-3xl mx-auto">
+			<Section className="px-4 py-10 space-y-8 max-w-3xl mx-auto">
 				{content.map((c) => (
 					<div key={c.heading} className="sm:grid grid-cols-12 gap-2">
 						<h2 className="col-span-3 pb-2">{c.heading}</h2>
@@ -30,7 +30,7 @@ export default function Colophon() {
 			</Section>
 
 			<Section className="pt-10 overflow-y-visible space-y-8 border-t">
-				<div className="flex gap-2 px-6 max-w-3xl mx-auto w-full">
+				<div className="flex flex-col sm:flex-row gap-2 px-4 max-w-3xl mx-auto w-full">
 					<p className="flex-1 text-lg tracking-normal sm:tracking-wide font-medium">
 						ABCDEFGHIJKLMNOPQRSTUVWXYZ
 						<br />
@@ -40,13 +40,13 @@ export default function Colophon() {
 					</p>
 					<CustomLink
 						href="https://www.fontshare.com/?q=General%20Sans"
-						className="text-pretty self-end justify-self-end text-sm font-medium text-foreground-secondary text-right"
+						className="text-pretty self-end justify-self-end text-sm font-medium text-foreground-secondary"
 					>
 						General Sans
 					</CustomLink>
 				</div>
 
-				<div className="flex gap-2 px-6 font-mono max-w-3xl mx-auto w-full">
+				<div className="flex flex-col sm:flex-row gap-2 px-4 font-mono max-w-3xl mx-auto w-full">
 					<p className="flex-1 text-lg tracking-normal sm:tracking-wide font-medium">
 						ABCDEFGHIJKLMNOPQRSTUVWXYZ
 						<br />
@@ -56,7 +56,7 @@ export default function Colophon() {
 					</p>
 					<CustomLink
 						href={'https://vercel.com/font'}
-						className="text-pretty text-foreground-secondary self-end justify-self-end text-sm font-medium text-right"
+						className="text-pretty text-foreground-secondary self-end justify-self-end text-sm font-medium"
 					>
 						Geist Mono
 					</CustomLink>
@@ -74,7 +74,7 @@ export default function Colophon() {
 						>
 							<div
 								className={cn(
-									'w-full h-3/4 text-sm font-medium flex items-center justify-center rounded-2xl ring-1 ring-border',
+									'my-2 mx-4 sm:m-0 sm:w-full h-3/4 text-sm font-medium flex items-center justify-center rounded-2xl ring-1 ring-border',
 									swatch.bgClass
 								)}
 							>
@@ -83,7 +83,7 @@ export default function Colophon() {
 									{swatch.light.name}
 								</span>
 							</div>
-							<div className="mt-auto w-full h-1/4 px-3 flex justify-between items-center text-sm text-foreground-secondary border-t">
+							<div className="mt-auto w-full h-1/4 px-4 sm:px-3 flex justify-between items-center text-sm text-foreground-secondary sm:border-t">
 								<span>{swatch.label}</span>
 								<span className="hidden dark:block">{swatch.dark.color}</span>
 								<span className="block dark:hidden">{swatch.light.color}</span>

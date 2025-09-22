@@ -131,7 +131,7 @@ export default function RootLayout({
 					<Navbar />
 					<div className="relative grid flex-1 grid-cols-1 lg:grid-cols-[32px_1fr_32px]">
 						<div className="hidden lg:block w-full border-x opacity-75 bg-[linear-gradient(-45deg,var(--color-border)_12.50%,transparent_12.50%,transparent_50%,var(--color-border)_50%,var(--color-border)_62.50%,transparent_62.50%,transparent_100%)] bg-size-[5px_5px]" />
-						<div className="px-3 lg:px-0">{children}</div>
+						<div className="">{children}</div>
 						<div className="hidden lg:block w-full border-x opacity-75 bg-[linear-gradient(-45deg,var(--color-border)_12.50%,transparent_12.50%,transparent_50%,var(--color-border)_50%,var(--color-border)_62.50%,transparent_62.50%,transparent_100%)] bg-size-[5px_5px]" />
 					</div>
 					<Footer />

@@ -39,12 +39,13 @@ export default function Hero() {
 					</span>
 				</div>
 			</div>
-			<div className="max-w-2xl mx-auto text-balance ">
-				<h1 className="text-xl mb-2">Hey, I&apos;m Simon</h1>
+			<div className="max-w-2xl mx-auto text-balance px-4 space-y-2">
+				<h1 className="text-xl">Hey, I&apos;m Simon</h1>
 				<p className="text-foreground-secondary">
 					I&apos;m a software engineer specializing in building exceptional digital experiences.
-					Currently, I&apos;m focused on building accessible, human-centered products at{' '}
+					Currently, I&apos;m focused on building accessible, human-centered products
 				</p>
+
 				<div className="hidden sm:flex mt-10 items-center justify-center gap-4 text-sm font-medium">
 					{navItems.socialLinks.map((item) => (
 						<CustomLink

@@ -8,7 +8,7 @@ interface TagSelectorProps {
 
 export function TagSelector({ tags, activeTag }: TagSelectorProps) {
 	return (
-		<div className="container pt-4 border-b">
+		<div className="px-2 sm:px-4 pt-4 border-b">
 			<nav
 				className="flex gap-x-1 font-medium text-sm tracking-normal overflow-x-auto no-scrollbar mask-[linear-gradient(to_right,white_90%,transparent)]"
 				id="blog-tags"

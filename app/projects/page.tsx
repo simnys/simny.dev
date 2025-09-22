@@ -48,7 +48,7 @@ export default function Projects() {
 				subtitle={{ text: 'Dev', Icon: IconCode }}
 			/>
 
-			<Section className="grid md:grid-cols-2 gap-4 p-4">
+			<Section className="grid md:grid-cols-2 gap-4 px-2 pt-2">
 				{projectsData.map((project, idx) => (
 					<Card
 						key={project.title}

@@ -49,15 +49,15 @@ export default function Callout({ variant = 'info', title, children }: CalloutPr
 	const styles = variantStyles[variant];
 
 	return (
-		<div className="relative w-screen -mx-3 px-4 py-8 my-5 lg:w-full lg:mx-0 lg:px-0 border-y col-span-3 overflow-x-clip">
+		<div className="relative w-screen -mx-4 px-2 py-8 my-5 lg:w-full lg:mx-0 lg:px-0 border-y col-span-3 overflow-x-clip">
 			<blockquote
 				className={cn(
-					'not-prose relative z-10 p-4 rounded-xl border shadow-sm max-w-3xl mx-auto w-full bg-background',
+					'not-prose relative z-10 p-4 py-6 rounded-xl border shadow-sm max-w-3xl mx-auto w-full bg-background',
 					styles.text
 				)}
 			>
 				{variant !== 'ignore' && Icon && (
-					<div className="my-2 flex gap-x-3 items-center font-medium">
+					<div className="mb-2 flex gap-x-3 items-center font-medium">
 						<div className={cn('p-2 rounded-lg', styles.bg)}>
 							<Icon width={20} height={20} className={cn('shrink-0', styles.text)} />
 						</div>
@@ -74,7 +74,7 @@ export default function Callout({ variant = 'info', title, children }: CalloutPr
 					'absolute inset-0 pointer-events-none bg-background-secondary/60',
 					'bg-[linear-gradient(to_right,rgba(0,0,0,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.04)_1px,transparent_1px)] bg-[size:38px_38px]',
 					'dark:bg-[linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.04)_1px,transparent_1px)]',
-					'mask-[linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]'
+					'sm:mask-[linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]'
 				)}
 			/>
 		</div>

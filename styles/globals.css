@@ -145,7 +145,7 @@ h6 {
 	-----------	*/
 .prose {
 	@apply dark:prose-invert text-foreground-secondary prose-headings:text-foreground prose-headings:relative marker:text-foreground-secondary prose-hr:border-border;
-	@apply prose-h2:text-3xl prose-h3:text-2xl prose-h4:text-xl;
+	@apply prose-h4:text-lg;
 }
 .prose strong {
 	@apply font-medium text-foreground;

@@ -2,7 +2,6 @@ import Callout from '@/components/blog/Callout';
 import CustomLink from '@/components/blog/Link';
 import MDXComponents from '@/components/blog/MDXcomponents';
 import Tag from '@/components/blog/Tag';
-import PageHeader from '@/components/layouts/PageHeader';
 import { Section, SectionHeader } from '@/components/layouts/Section';
 import PostList from '@/components/ui/PostList';
 
@@ -133,7 +132,7 @@ export default async function BlogPost(props: Props) {
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
 
-			<div className="max-w-5xl mx-auto pt-24">
+			<div className="hidden sm:block max-w-5xl mx-auto pt-8">
 				<Link
 					href="/blog"
 					className="block w-fit p-2 ml-4 mb-4 rounded-full bg-foreground-secondary/5 text-foreground-secondary ring-1 ring-transparent ring-offset-background transition-all hover:bg-foreground-secondary/10 hover:text-foreground hover:ring-brand hover:ring-offset-2"
@@ -142,7 +141,7 @@ export default async function BlogPost(props: Props) {
 				</Link>
 			</div>
 
-			<Section className="max-w-5xl mx-auto pb-0 border-y">
+			<Section className="max-w-5xl mx-auto pb-0 pt-2 px-2 lg:px-0 sm:pt-0 sm:pb-0 border-b sm:border-y">
 				<div className="relative">
 					{/* LINES */}
 					<span className="absolute top-6 z-10 h-px w-full bg-zinc-500/75 mix-blend-screen md:top-12" />
@@ -151,27 +150,27 @@ export default async function BlogPost(props: Props) {
 					<span className="absolute right-6 z-10 h-full w-px bg-zinc-500/75 mix-blend-screen md:right-12" />
 
 					{/* CROSSES */}
-					<span className="absolute left-[40.5px] top-12 z-20 hidden h-px w-4 bg-white md:block" />
-					<span className="absolute left-[48px] top-[40.5px] z-20 hidden h-4 w-px bg-white md:block" />
+					<span className="absolute left-4 md:left-[40.5px] top-6 md:top-12 z-20 h-px w-4 bg-white md:block" />
+					<span className="absolute left-6 md:left-[48px] top-4 md:top-[40.5px] z-20 h-4 w-px bg-white md:block" />
 
-					<span className="absolute right-[40.5px] top-12 z-20 hidden h-px w-4 bg-white md:block" />
-					<span className="absolute right-[48px] top-[40.5px] z-20 hidden h-4 w-px bg-white md:block" />
+					<span className="absolute right-4 md:right-[40.5px] top-6 md:top-12 z-20 h-px w-4 bg-white md:block" />
+					<span className="absolute right-6 md:right-[48px] top-4 md:top-[40.5px] z-20 h-4 w-px bg-white md:block" />
 
-					<span className="absolute bottom-12 left-[40.5px] z-20 hidden h-px w-4 bg-white md:block" />
-					<span className="absolute bottom-[40.5px] left-[48px] z-20 hidden h-4 w-px bg-white md:block" />
+					<span className="absolute bottom-6 md:bottom-12 left-4 md:left-[40.5px] z-20 h-px w-4 bg-white md:block" />
+					<span className="absolute bottom-4 md:bottom-[40.5px] left-6 md:left-[48px] z-20 h-4 w-px bg-white md:block" />
 
-					<span className="absolute bottom-12 right-[40.5px] z-20 hidden h-px w-4 bg-white md:block" />
-					<span className="absolute bottom-[40.5px] right-[48px] z-20 hidden h-4 w-px bg-white md:block" />
+					<span className="absolute bottom-6 md:bottom-12 right-4 md:right-[40.5px] z-20 h-px w-4 bg-white md:block" />
+					<span className="absolute bottom-4 md:bottom-[40.5px] right-6 md:right-[48px] z-20 h-4 w-px bg-white md:block" />
 
 					<div
-						className="h-[520px] bg-[#7d9ff0] dark:bg-[#102e73] flex flex-col gap-2 justify-end p-16 rounded-3xl bg-no-repeat bg-cover bg-center ring-1 ring-border text-background dark:text-foreground"
+						className="h-[420px] sm:h-[520px] bg-[#7d9ff0] dark:bg-[#102e73] flex flex-col gap-4 sm:gap-2 justify-end p-8 pb-10 md:p-16 rounded-2xl md:rounded-3xl bg-no-repeat bg-cover bg-center ring-1 ring-border text-background dark:text-foreground"
 						style={{
 							backgroundImage: `linear-gradient(to top, #2663f2 0%, transparent 90%), url(${
 								post.image ?? ''
 							})`,
 						}}
 					>
-						<ul className="w-fit flex items-center gap-4 flex-wrap pb-2">
+						<ul className="hidden w-fit sm:flex items-center gap-4 flex-wrap pb-2">
 							{post.tags?.map((tag, idx) => (
 								<Tag
 									key={idx}
@@ -180,14 +179,14 @@ export default async function BlogPost(props: Props) {
 								/>
 							))}
 						</ul>
-						<PageHeader title={post.title} className="p-0 m-0 border-0 bg-transparent text-3xl" />
-						<div className="flex items-center gap-6 text-sm font-medium">
-							<div className="flex items-center gap-x-2">
-								<IconCalendar width={16} height={16} />
+						<h1 className="text-2xl sm:text-3xl text-balance">{post.title}</h1>
+						<div className="flex items-center gap-4 sm:gap-6 text-xs sm:text-sm font-medium opacity-80">
+							<div className="flex items-center gap-x-1 sm:gap-x-2">
+								<IconCalendar className="w-3 h-3 sm:w-4 sm:h-4" />
 								<time>{formatDate(post.date)}</time>
 							</div>
-							<div className="flex items-center gap-x-2">
-								<IconHourglass width={16} height={16} />
+							<div className="flex items-center gap-x-1 sm:gap-x-2">
+								<IconHourglass className="w-3 h-3 sm:w-4 sm:h-4" />
 								<p>{post.readingTime}</p>
 							</div>
 						</div>
@@ -195,34 +194,34 @@ export default async function BlogPost(props: Props) {
 				</div>
 			</Section>
 
-			<article className="prose max-w-none mt-8 pb-20">
+			<article className="prose max-w-none mt-4 sm:mt-8 px-4 md:px-0 pb-20">
 				<div className="wrapper pb-10">
 					<MDXContent code={post.body} components={MDXComponents} />
 				</div>
 
 				<Callout variant="ignore">
 					<>
-						<div className="flex items-center gap-x-4">
+						<div className="flex items-center gap-x-4 mb-4">
 							<Image
 								width={64}
 								height={64}
 								src={avatar}
 								alt=""
 								draggable={false}
-								className="rounded-full not-prose border grayscale ring-1 ring-border"
+								className="w-12 h-12 sm:w-16 sm:h-16 rounded-full not-prose border grayscale ring-1 ring-border"
 							/>
 							<div className="flex flex-col">
 								<span className="text-sm font-medium text-foreground-secondary">Simon says:</span>
-								<span className="font-medium text-lg text-foreground">
+								<span className="font-medium sm:text-lg text-foreground">
 									Hey, thanks for reading! 👋
 								</span>
 							</div>
 						</div>
-						<p className="p-4">
+						<p className="mb-4 sm:px-4">
 							If you enjoyed this article, check out some of my other posts below. Have questions,
 							feedback, or just want to connect?
 						</p>
-						<p className="px-4 pb-4">
+						<p className="sm:px-4">
 							Find me on <CustomLink href={SITE_GITHUB_URL}>Github</CustomLink> or drop me a message
 							on <CustomLink href={SITE_LINKEDIN_URL}>LinkedIn</CustomLink> and let&apos;s chat.
 						</p>

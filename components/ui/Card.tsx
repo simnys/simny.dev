@@ -26,7 +26,7 @@ function Card({ image, imageMeta, href, children, className }: CardProps) {
 			target={isExternalLink ? '_blank' : ''}
 			rel={isExternalLink ? 'noopener noreferrer' : ''}
 			className={cn(
-				'flex flex-col flex-1 group ring-1 ring-border rounded-2xl',
+				'flex flex-col flex-1 group ring-1 ring-border rounded-2xl overflow-hidden',
 				'transition-colors bg-background-secondary/60 hover:bg-background-secondary/20 dark:hover:bg-background-secondary'
 			)}
 		>
@@ -45,7 +45,7 @@ function Card({ image, imageMeta, href, children, className }: CardProps) {
 						placeholder={imageMeta?.blur ? 'blur' : undefined}
 						blurDataURL={imageMeta?.blur}
 						loading="lazy"
-						className="object-cover w-full h-full"
+						className="object-cover w-full h-full object-center"
 					/>
 				)}
 				<div className="absolute inset-0 w-full h-full z-10 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
@@ -84,7 +84,7 @@ function CardFooter({ className, children }: CardFooterProps) {
 	return (
 		<div
 			className={cn(
-				'mt-auto border-t px-6 py-3 flex gap-x-2 items-center text-sm text-foreground-tertiary',
+				'mt-auto border-t px-4 py-3 flex gap-x-2 items-center text-sm text-foreground-tertiary',
 				'overflow-x-auto whitespace-nowrap no-scrollbar mask-[linear-gradient(to_right,white_90%,transparent)]',
 				className
 			)}

@@ -13,10 +13,10 @@ export default function Footer() {
 		<>
 			<footer className="border-y relative z-30">
 				<div className="w-full max-w-[1088px] mx-auto flex flex-col border-x">
-					<div className="relative grid grid-cols-2">
-						<div className="flex items-center sm:items-start justify-center sm:flex-col gap-1 p-6">
+					<div className="relative grid sm:grid-cols-2">
+						<div className="px-4 py-6 sm:p-6 border-b bg-background-secondary flex items-center gap-4 sm:items-start sm:justify-center sm:flex-col sm:gap-1 sm:border-b-0 sm:bg-background">
 							<Link href="/" className="w-fit">
-								<Logo width={30} height={30} />
+								<Logo className="w-6 h-6 sm:w-7 sm:h-7" />
 							</Link>
 							<p className="text-foreground-secondary text-sm sm:mb-2 sm:mt-4">
 								Crafted by Simon Nyström.
@@ -31,15 +31,15 @@ export default function Footer() {
 							>
 								{SITE_CONTACT}
 							</Copy>
-							<p className="absolute z-30 -bottom-10 left-1/2 -translate-x-1/2 text-xs text-foreground-tertiary">
+							<p className="text-center absolute z-30 -bottom-10 left-0 right-0 text-xs text-foreground-tertiary">
 								© 2025 Simon Nyström. All rights reserved.
 							</p>
 						</div>
 
 						<div className="border-l w-full flex">
 							<div className="flex-1 flex flex-col text-foreground-secondary border-r">
-								<div className="border-b p-4 flex items-center gap-x-2">
-									<IconGlobe className="hidden sm:block w-3.5 h-3.5 text-foreground" />
+								<div className="border-b p-4 flex items-center gap-x-1 sm:gap-x-2">
+									<IconGlobe className="w-3.5 h-3.5 text-foreground" />
 									<h5 className="text-foreground text-sm tracking-normal">Navigation</h5>
 								</div>
 								{navItems.navigationLinks
@@ -54,8 +54,8 @@ export default function Footer() {
 									))}
 							</div>
 							<div className="flex-1 flex flex-col text-foreground-secondary">
-								<div className="border-b p-4 flex items-center gap-x-2">
-									<IconAt className="hidden sm:block  w-3.5 h-3.5 text-foreground" />
+								<div className="border-b p-4 flex items-center gap-x-1 sm:gap-x-2">
+									<IconAt className="w-3.5 h-3.5 text-foreground" />
 									<h5 className="text-foreground text-sm tracking-normal">Socials</h5>
 								</div>
 

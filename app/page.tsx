@@ -58,13 +58,14 @@ export default async function Home() {
 			<Section>
 				<SectionHeader title="Latest Blog Posts" subtitle="Blog" linkHref="/blog" />
 
-				<div className="max-w-2xl mx-auto grid grid-cols-2 gap-4">
+				<div className="max-w-2xl mx-auto grid sm:grid-cols-2 gap-4 px-2">
 					{blogPosts.slice(0, 2).map((post, idx) => (
 						<Card
 							key={post.slug}
 							href={`/blog/${post.slug}`}
 							image={post.image}
 							imageMeta={post.imageMeta}
+							className="h-[220px] sm:h-[180px]"
 						>
 							<CardBody title={post.title} icon={IconDocument} className="line-clamp-1 text-base">
 								{post.summary}
