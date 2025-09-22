@@ -19,7 +19,7 @@ export default function MobileMenu({ currentPath, isOpen, setIsOpen, className }
 			initial={{ opacity: 0, height: 0 }}
 			animate={{ opacity: 1, height: 'auto' }}
 			exit={{ opacity: 0, height: 0 }}
-			transition={{ duration: 0.2 }}
+			transition={{ duration: 0.2, ease: 'easeOut' }}
 			aria-expanded={isOpen}
 			aria-label="Mobile navigation"
 			className="sm:hidden absolute top-13 left-0 right-0 border-b rounded-b-xl bg-background/90 backdrop-blur-lg shadow-xs will-change-transform overflow-hidden"

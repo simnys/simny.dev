@@ -59,7 +59,7 @@ export default function GalleryView({ content, as = 'images' }: Props) {
 									transition={{
 										duration: 0.6,
 										delay: colIndex * 0.1 + idx * 0.05, // Stagger by column and row
-										ease: [0.25, 0.25, 0, 1],
+										ease: 'easeOut',
 									}}
 									className="will-change-transform overflow-hidden"
 								>

@@ -47,7 +47,7 @@ export default function GalleryItem({
 						blurDataURL={item.blurData}
 						className="aspect-square w-full object-cover object-center rounded-xl"
 					/>
-					<div className="rounded-xl bg-linear-to-t from-foreground/80 dark:from-background/80 via-transparent to-transparent flex flex-col items-start justify-end p-4 absolute w-full top-0 bottom-0 text-background dark:text-foreground transition-colors duration-300 group-hover:bg-background/20">
+					<div className="rounded-xl bg-linear-to-t from-foreground/80 dark:from-background/80 via-transparent to-transparent flex flex-col items-start justify-end p-4 absolute w-full top-0 bottom-0 text-background dark:text-foreground transition-colors duration-300 ease-out group-hover:bg-background/20">
 						<div className="text-xs flex items-center gap-1 opacity-80">
 							<IconGallery />
 							{collectionSize}

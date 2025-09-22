@@ -18,7 +18,7 @@ export default function CardOverlay({
 				<div
 					className={cn(
 						'absolute inset-0 z-10 bg-gradient-to-tl from-brand/20 via-transparent to-transparent',
-						'opacity-0 transition-opacity duration-300 group-hover:opacity-100 user-select-none pointer-events-none',
+						'opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100 user-select-none pointer-events-none',
 						className
 					)}
 				/>
@@ -29,7 +29,7 @@ export default function CardOverlay({
 					className={cn(
 						'absolute right-4 -bottom-2 z-20 w-fit h-fit rounded-full p-2',
 						'bg-background/80 text-foreground-secondary backdrop-blur-md',
-						'opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:-translate-y-5 user-select-none pointer-events-none '
+						'opacity-0 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:-translate-y-5 user-select-none pointer-events-none '
 					)}
 				>
 					<IconArrowUpRight className="w-4 h-4" />

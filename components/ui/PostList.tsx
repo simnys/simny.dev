@@ -77,7 +77,7 @@ export default function PostList({ posts, query }: PostListProps) {
 								<motion.div
 									initial={{ opacity: 0 }}
 									animate={{ opacity: 1 }}
-									transition={{ duration: 0.15 }}
+									transition={{ duration: 0.15, ease: 'easeOut' }}
 									className="absolute top-6 right-6 text-xs text-brand tracking-normal"
 								>
 									{determineMatch(post, query)}

@@ -27,7 +27,7 @@ function BentoCardAbout() {
 					draggable={false}
 					className={cn(
 						'absolute top-4 right-2 w-48 aspect-4/5 object-cover rounded-xl shadow-sm rotate-6 grayscale',
-						'transition-all duration-300 group-hover:-translate-y-3 group-hover:rotate-3 group-hover:scale-105 group-hover:shadow-xl group-hover:grayscale-0',
+						'transition-all duration-300 ease-out group-hover:-translate-y-3 group-hover:rotate-3 group-hover:scale-105 group-hover:shadow-xl group-hover:grayscale-0',
 						'ring-1 ring-border ring-offset-4 ring-offset-background group-hover:ring-offset-8 group-hover:ring-brand/80'
 					)}
 				/>
@@ -57,7 +57,7 @@ function BentoCardGallery({ images }: { images: GalleryImage[] }) {
 				<div
 					className={cn(
 						'grid grid-cols-2 gap-2 w-fit',
-						'transition-all duration-300',
+						'transition-all duration-300 ease-out',
 						'ring-1 ring-border ring-offset-8 ring-offset-background-secondary group-hover:ring-offset-12 group-hover:ring-brand/80'
 					)}
 				>
@@ -73,7 +73,7 @@ function BentoCardGallery({ images }: { images: GalleryImage[] }) {
 							priority={true}
 							className={cn(
 								'w-42 rounded-lg aspect-square object-cover shadow-md grayscale',
-								'transition-all duration-300 group-hover:opacity-100 group-hover:hover:scale-105 group-hover:grayscale-0',
+								'transition-all duration-300 ease-out group-hover:opacity-100 group-hover:hover:scale-105 group-hover:grayscale-0',
 								i % 2 === 0 ? '-translate-y-5' : 'translate-y-5',
 								i % 2 === 0 ? 'group-hover:translate-y-5' : 'group-hover:-translate-y-5'
 							)}
@@ -114,7 +114,7 @@ function BentoCardProjects() {
 						className={cn(
 							'relative p-1.5 bg-foreground-tertiary/10 dark:bg-background-secondary border rounded-2xl shadow-inner',
 							idx !== 1 && 'scale-90',
-							'transition-all duration-300 group-hover:-translate-y-2 group-hover:border-brand/20'
+							'transition-all duration-300 ease-out group-hover:-translate-y-2 group-hover:border-brand/20'
 						)}
 					>
 						<div className="p-6 bg-background-secondary dark:bg-foreground-tertiary/5 border rounded-xl shadow-lg transition-shadow group-hover:shadow-brand/40 dark:group-hover:shadow-brand/10">
@@ -147,7 +147,7 @@ function BentoCardBlog({ latestPost }: { latestPost: Post }) {
 				<div
 					className={cn(
 						'absolute -right-20 -bottom-14 p-2 rounded-xl flex flex-wrap gap-2',
-						'transition-all duration-300 group-hover:rotate-0 group-hover:-translate-y-12 group-hover:-translate-x-12',
+						'transition-all duration-300 ease-out group-hover:rotate-0 group-hover:-translate-y-12 group-hover:-translate-x-12',
 						'ring-1 ring-border ring-offset-4 ring-offset-background-secondary group-hover:ring-brand/80'
 					)}
 				>
@@ -160,9 +160,11 @@ function BentoCardBlog({ latestPost }: { latestPost: Post }) {
 									'relative text-xl w-full font-medium whitespace-nowrap px-4 py-2 bg-foreground-secondary/5 text-foreground-tertiary/60 rounded-xl transition-colors group-hover:text-foreground-tertiary'
 								)}
 							>
-								<span className="transition-colors duration-300 group-hover:text-brand/80">#</span>
+								<span className="transition-colors duration-300 ease-out group-hover:text-brand/80">
+									#
+								</span>
 								{tag}
-								<div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/60 from-10% via-white/10 to-30% to-background opacity-0 pointer-events-none transition-opacity duration-300 group-hover:opacity-10" />
+								<div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/60 from-10% via-white/10 to-30% to-background opacity-0 pointer-events-none transition-opacity duration-300 ease-out group-hover:opacity-10" />
 							</div>
 						);
 					})}

@@ -25,11 +25,20 @@ export const Tooltip = ({ message, children, origin = 'bottom', className }: Too
 			scale: 1,
 			y: 0,
 			transformOrigin: origin === 'bottom' ? 'top' : 'bottom',
+			transition: {
+				duration: 0.15,
+				delay: 0.5,
+				ease: 'easeOut',
+			},
 		},
 		exit: {
 			opacity: 0,
 			y: origin === 'bottom' ? -5 : 5,
 			transformOrigin: origin === 'bottom' ? 'top' : 'bottom',
+			transition: {
+				duration: 0.15,
+				ease: 'easeOut',
+			},
 		},
 	};
 
@@ -54,10 +63,6 @@ export const Tooltip = ({ message, children, origin = 'bottom', className }: Too
 						initial="initial"
 						animate="animate"
 						exit="exit"
-						transition={{
-							duration: 0.15,
-							ease: 'easeInOut',
-						}}
 						className={cn(
 							`z-20 pointer-events-none absolute whitespace-nowrap ${
 								origin === 'bottom' ? '-bottom-10' : '-top-10'

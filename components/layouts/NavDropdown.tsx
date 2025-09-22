@@ -23,7 +23,7 @@ function NavDropdown({ isOpen, onClose, className }: NavDropdown) {
 			initial={{ opacity: 0, scale: 0.95 }}
 			animate={{ opacity: 1, scale: 1 }}
 			exit={{ opacity: 0, scale: 0.95 }}
-			transition={{ duration: 0.2 }}
+			transition={{ duration: 0.2, ease: 'easeOut' }}
 			aria-expanded={isOpen}
 			aria-label="Dropdown"
 			className="hidden sm:block absolute top-15 w-screen md:w-full rounded-2xl p-2 bg-background border shadow-sm will-change-transform"
@@ -118,7 +118,7 @@ function NavDropDownCard({
 				<Icon
 					className={cn(
 						'w-80 h-80 absolute -bottom-12 -right-12 -rotate-12 text-foreground-secondary/5 dark:text-black/20',
-						'transition-colors duration-300 pointer-events-none select-none'
+						'transition-colors duration-300 pointer-events-none select-none ease-out'
 					)}
 				/>
 			)}
