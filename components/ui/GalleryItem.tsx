@@ -1,5 +1,3 @@
-'use client';
-
 import { GalleryImage, StaticImage } from '@/lib/types';
 import { cn, slugify } from '@/lib/utils';
 

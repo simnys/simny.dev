@@ -77,7 +77,7 @@ async function BentoCardGallery() {
 							height={210}
 							priority={true}
 							placeholder="blur"
-							blurDataURL={img.blurDataURL}
+							blurDataURL={img.blurData}
 							draggable={false}
 							className={cn(
 								'w-36 sm:w-42 md:w-32 lg:w-42 rounded-lg aspect-4/5 object-cover shadow-md grayscale',

@@ -1,5 +1,5 @@
-import { navItems } from '@/data/navigation';
 import { IconDoodleCoffee, IconDoodleGuitar, IconDoodlePhoto, IconDoodleTech } from '@/data/icons';
+import { navItems } from '@/data/navigation';
 import avatar from '@/public/images/pixel.png';
 
 import Image from 'next/image';
