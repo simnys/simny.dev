@@ -1,6 +1,6 @@
 import { allPosts } from '@/.content-collections/generated';
 import { SITE_URL } from '@/data/constants';
-import { galleryCollections } from '@/data/data';
+import { galleryCollections } from '@/data/gallery';
 import { getAllTags } from '@/lib/blog';
 import { slugify } from '@/lib/utils';
 import type { MetadataRoute } from 'next';

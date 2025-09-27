@@ -1,5 +1,5 @@
-import { GALLERY_COLLECTIONS_TAG_PREFIX } from '@/data/constants';
-import { galleryCollections } from '@/data/data';
+import { GALLERY_COLLECTIONS_TAG_PREFIX } from '@/data/gallery';
+import { galleryCollections } from '@/data/gallery';
 import { slugify } from '@/lib/utils';
 import { revalidatePath } from 'next/cache';
 import { NextRequest, NextResponse } from 'next/server';

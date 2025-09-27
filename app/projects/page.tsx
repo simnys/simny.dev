@@ -3,7 +3,7 @@ import { Section } from '@/components/layouts/Section';
 import { Card, CardBody, CardFooter } from '@/components/ui/Card';
 import { SITE_NAME, SITE_URL } from '@/data/constants';
 
-import { projectsData } from '@/data/data';
+import { projectsData } from '@/data/projects';
 import { IconCode, IconGithub } from '@/data/icons';
 
 import { Metadata } from 'next';

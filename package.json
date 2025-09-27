@@ -25,8 +25,7 @@
 		"rehype-pretty-code": "^0.14.0",
 		"schema-dts": "^1.1.5",
 		"sharp": "^0.33.5",
-		"tailwind-merge": "^2.2.2",
-		"use-debounce": "^10.0.0"
+		"tailwind-merge": "^2.2.2"
 	},
 	"devDependencies": {
 		"@content-collections/core": "^0.7.2",

@@ -14,6 +14,7 @@ import {
 	SITE_URL,
 } from '@/data/constants';
 import { IconDoodleArrow, IconDoodleCompass, IconDoodleMountains, IconUser } from '@/data/icons';
+import { skillsList } from '@/data/projects';
 import { getLimitedImages } from '@/lib/gallery';
 import HeroImage from '@/public/images/hero.jpg';
 
@@ -25,24 +26,6 @@ import { AboutPage, WithContext } from 'schema-dts';
 export const metadata: Metadata = {
 	title: 'About',
 };
-
-const skills = [
-	'JavaScript',
-	'React',
-	'Next.js',
-	'Node.js',
-	'Express',
-	'MongoDB',
-	'SQL',
-	'HTML',
-	'CSS',
-	'TypeScript',
-	'GraphQL',
-	'Docker',
-	'AWS',
-	'Git',
-	'Tailwind CSS',
-];
 
 export default async function About() {
 	const images = await getLimitedImages(10);
@@ -121,14 +104,14 @@ export default async function About() {
 			<Section className="py-4 bg-background-secondary border-b sm:py-4">
 				<div className="lg:max-w-5xl lg:mx-auto space-y-2">
 					<HorizontalScroller
-						items={skills.slice(0, skills.length / 2)}
+						items={skillsList.slice(0, skillsList.length / 2)}
 						speed="slow"
 						separator="•"
 						className="text-lg sm:text-2xl font-[450] select-none"
 						pauseOnHover={false}
 					/>
 					<HorizontalScroller
-						items={skills.slice(skills.length / 2)}
+						items={skillsList.slice(skillsList.length / 2)}
 						speed="slow"
 						separator="•"
 						className="sm:text-lg font-[450] select-none"

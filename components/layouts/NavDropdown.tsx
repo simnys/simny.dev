@@ -3,7 +3,7 @@
 import { useFocusTrap } from '@/lib/hooks';
 import { cn } from '@/lib/utils';
 
-import { dropdownLinks } from '@/data/data';
+import { dropdownLinks } from '@/data/navigation';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ComponentType, SVGProps } from 'react';

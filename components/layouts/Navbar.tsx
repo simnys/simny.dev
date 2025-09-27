@@ -1,6 +1,6 @@
 'use client';
 
-import { navItems } from '@/data/data';
+import { navItems } from '@/data/navigation';
 import { IconAt, IconMenu, Logo } from '@/data/icons';
 import { cn } from '@/lib/utils';
 

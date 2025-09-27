@@ -10,7 +10,7 @@ interface SectionProps {
 }
 
 export const Section: React.FC<SectionProps> = ({ children, className }) => (
-	<section className={cn('w-full flex flex-col pb-20 sm:pb-30', className)}>{children}</section>
+	<section className={cn('w-full flex flex-col pb-15 sm:pb-30', className)}>{children}</section>
 );
 
 interface SectionHeaderProps {

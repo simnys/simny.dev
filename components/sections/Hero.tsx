@@ -1,4 +1,4 @@
-import { navItems } from '@/data/data';
+import { navItems } from '@/data/navigation';
 import { IconDoodleCoffee, IconDoodleGuitar, IconDoodlePhoto, IconDoodleTech } from '@/data/icons';
 import avatar from '@/public/images/pixel.png';
 
@@ -17,7 +17,6 @@ export default function Hero() {
 					priority
 					placeholder="blur"
 					draggable={false}
-					contextMenu="false"
 					className="rounded-full ring-2 ring-border ring-offset-4 ring-offset-background shadow-lg transition-all group-hover:ring-brand/80 group-hover:scale-105"
 				/>
 

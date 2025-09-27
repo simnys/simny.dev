@@ -1,4 +1,4 @@
-import { navItems } from '@/data/data';
+import { navItems } from '@/data/navigation';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 

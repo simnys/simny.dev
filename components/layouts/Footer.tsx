@@ -1,5 +1,5 @@
 import { SITE_CONTACT } from '@/data/constants';
-import { navItems } from '@/data/data';
+import { navItems } from '@/data/navigation';
 import { IconAt, IconEmail, IconGlobe, Logo } from '@/data/icons';
 import Link from 'next/link';
 

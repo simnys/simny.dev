@@ -121,6 +121,7 @@
 }
 
 html {
+	@apply bg-background;
 	min-width: 340px;
 }
 * {

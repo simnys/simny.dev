@@ -1,11 +1,15 @@
 'use server';
 
-import { GALLERY_COLLECTIONS_TAG_PREFIX, GALLERY_COVER_TAG } from '@/data/constants';
+import {
+	GALLERY_COLLECTIONS_TAG_PREFIX,
+	GALLERY_COVER_TAG,
+	galleryImagesStatic,
+} from '@/data/gallery';
 import { v2 as cloudinary } from 'cloudinary';
 import lqip from 'lqip-modern';
 import { getCldImageUrl } from 'next-cloudinary';
 import { cache } from 'react';
-import { galleryCollections } from '../data/data';
+import { galleryCollections } from '../data/gallery';
 import { GalleryCollection, GalleryImage } from './types';
 import { slugify } from './utils';
 
@@ -115,4 +119,15 @@ export const getCollections = cache(async () => {
 	} catch (error) {
 		console.error(`Error fetching collection cover images:`, error);
 	}
+});
+
+export const getStaticImages = cache(async () => {
+	const images = await Promise.all(
+		galleryImagesStatic.map(async (src, index) => ({
+			src,
+			alt: `Gallery image ${index + 1}`,
+			blurDataURL: await createBlurDataURL(src),
+		}))
+	);
+	return images;
 });

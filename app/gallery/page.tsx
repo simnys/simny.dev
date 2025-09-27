@@ -2,7 +2,7 @@ import PageHeader from '@/components/layouts/PageHeader';
 import { Section } from '@/components/layouts/Section';
 import GalleryView from '@/components/sections/GalleryView';
 import { SITE_NAME, SITE_URL } from '@/data/constants';
-import { galleryCollections } from '@/data/data';
+import { galleryCollections } from '@/data/gallery';
 import { IconGallery } from '@/data/icons';
 import { getCollections, getLimitedImages } from '@/lib/gallery';
 import { GalleryCollection } from '@/lib/types';

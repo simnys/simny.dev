@@ -1,7 +1,7 @@
 'use client';
 
 import { SITE_CONTACT } from '@/data/constants';
-import { navItems } from '@/data/data';
+import { navItems } from '@/data/navigation';
 import { IconCheck, IconCopy, IconEmail } from '@/data/icons';
 import Copy from '../ui/Copy';
 
