@@ -1,16 +1,16 @@
 'use client';
 
-import { GalleryImage } from '@/lib/types';
+import { GalleryImage, StaticImage } from '@/lib/types';
 import { cn, slugify } from '@/lib/utils';
 
 import { IconGallery } from '@/data/icons';
-import { CldImage } from 'next-cloudinary';
+import Image from 'next/image';
 import Link from 'next/link';
 import CardOverlay from './CardOverlay';
 
 type Props = {
 	isCollection: boolean;
-	item: GalleryImage;
+	item: GalleryImage | StaticImage;
 	collectionTitle: string;
 	collectionSize: number;
 	priority: boolean;
@@ -36,10 +36,10 @@ export default function GalleryItem({
 					href={`/gallery/${slugify(collectionTitle)}`}
 					className="relative group overflow-hidden"
 				>
-					<CldImage
+					<Image
 						src={item.src}
-						width={item.width}
-						height={item.height}
+						width={360}
+						height={360}
 						alt={item.alt ?? ''}
 						priority={priority}
 						loading={priority ? 'eager' : 'lazy'}
@@ -62,10 +62,10 @@ export default function GalleryItem({
 					className={cn('relative hover:cursor-zoom-in')}
 					onClick={(e) => handleImageClick(e, lightboxIndex)}
 				>
-					<CldImage
+					<Image
 						src={item.src}
-						width={item.width}
-						height={item.height}
+						width={(item as GalleryImage).width}
+						height={(item as GalleryImage).height}
 						alt={item.alt ?? ''}
 						priority={priority}
 						loading={priority ? 'eager' : 'lazy'}

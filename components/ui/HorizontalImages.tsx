@@ -1,14 +1,14 @@
 'use client';
 
-import { GalleryImage } from '@/lib/types';
+import { StaticImage } from '@/lib/types';
 import { cn } from '@/lib/utils';
 
 import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
-import { CldImage } from 'next-cloudinary';
+import Image from 'next/image';
 import { useRef } from 'react';
 
 type Props = {
-	items: Array<GalleryImage>;
+	items: Array<StaticImage>;
 	className?: string;
 };
 
@@ -29,12 +29,12 @@ export default function HorizontalImages({ items, className }: Props) {
 				className="w-screen flex justify-center gap-2 max-h-64"
 			>
 				{items.map((item, idx) => (
-					<CldImage
+					<Image
 						key={idx}
 						src={item.src}
 						alt={item.alt ?? ''}
-						width={item.width}
-						height={item.height}
+						width={210}
+						height={270}
 						placeholder="blur"
 						blurDataURL={item.blurData}
 						className="h-full w-auto border border-black rounded-xl"

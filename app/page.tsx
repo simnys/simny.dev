@@ -12,7 +12,6 @@ import { Card, CardBody, CardFooter } from '@/components/ui/Card';
 import { SITE_URL } from '@/data/constants';
 import { IconDocument } from '@/data/icons';
 import { getBlogPosts, getLatestBlogPost } from '@/lib/blog';
-import { getLimitedImages } from '@/lib/gallery';
 import { cn, formatDate } from '@/lib/utils';
 
 import { Metadata } from 'next';
@@ -24,7 +23,6 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-	const galleryImages = await getLimitedImages(4);
 	const blogPosts = getBlogPosts();
 	const latestPost = getLatestBlogPost();
 
@@ -49,7 +47,7 @@ export default async function Home() {
 			<Section>
 				<BentoGrid>
 					<BentoCardAbout />
-					<BentoCardGallery images={galleryImages} />
+					<BentoCardGallery />
 					<BentoCardProjects />
 					{latestPost && <BentoCardBlog latestPost={latestPost} />}
 				</BentoGrid>

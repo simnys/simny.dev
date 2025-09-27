@@ -1,7 +1,7 @@
 'use client';
 
 import { useScreenBreakpoints } from '@/lib/hooks';
-import { GalleryCollection, GalleryImage } from '@/lib/types';
+import { GalleryCollection, GalleryImage, StaticImage } from '@/lib/types';
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';
@@ -67,7 +67,7 @@ export default function GalleryView({ content, as = 'images' }: Props) {
 										isCollection={as === 'collections'}
 										item={
 											as === 'collections'
-												? (item as GalleryCollection).cover
+												? ((item as GalleryCollection).cover as StaticImage)
 												: (item as GalleryImage)
 										}
 										collectionTitle={as === 'collections' ? (item as GalleryCollection).title : ''}

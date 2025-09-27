@@ -15,7 +15,7 @@ import {
 } from '@/data/constants';
 import { IconDoodleArrow, IconDoodleCompass, IconDoodleMountains, IconUser } from '@/data/icons';
 import { skillsList } from '@/data/projects';
-import { getLimitedImages } from '@/lib/gallery';
+import { getStaticImages } from '@/lib/gallery';
 import HeroImage from '@/public/images/hero.jpg';
 
 import { Metadata } from 'next';
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 };
 
 export default async function About() {
-	const images = await getLimitedImages(10);
+	const images = await getStaticImages();
 
 	const jsonLd: WithContext<AboutPage> = {
 		'@type': 'AboutPage',

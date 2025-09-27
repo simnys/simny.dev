@@ -26,8 +26,7 @@ export async function generateMetadata(props: Props): Promise<Metadata | undefin
 	const collection = galleryCollections.find((item) => slugify(item.title) === params.slug);
 	if (!collection) return notFound();
 
-	const { title, description } = collection;
-	const coverImage = (await getImagesInCollection(collection.title))?.[0];
+	const { title, description, cover } = collection;
 
 	return {
 		title: `${title} Photo Gallery`,
@@ -40,7 +39,7 @@ export async function generateMetadata(props: Props): Promise<Metadata | undefin
 				{
 					url: `/api/ogGallery?title=${encodeURIComponent(title)}&subtitle=${encodeURIComponent(
 						'Photo Gallery'
-					)}&image=${encodeURIComponent(coverImage?.src || '')}`,
+					)}&image=${encodeURIComponent((cover as string) || '')}`,
 					width: 1200,
 					height: 630,
 					alt: `${title} Photo Gallery cover image`,
@@ -55,7 +54,7 @@ export async function generateMetadata(props: Props): Promise<Metadata | undefin
 				{
 					url: `/api/ogGallery?title=${encodeURIComponent(title)}&subtitle=${encodeURIComponent(
 						'Photo Gallery'
-					)}&image=${encodeURIComponent(coverImage?.src || '')}`,
+					)}&image=${encodeURIComponent((cover as string) || '')}`,
 					width: 1200,
 					height: 630,
 					alt: `${title} Photo Gallery cover image`,

@@ -13,7 +13,7 @@ export type Project = {
 export type GalleryCollection = {
 	title: string;
 	description: string;
-	cover: GalleryImage;
+	cover: StaticImage | string;
 	length: number;
 };
 export type GalleryImage = {
@@ -24,6 +24,11 @@ export type GalleryImage = {
 	height: number;
 	alt?: string;
 	tags: string[];
+};
+export type StaticImage = {
+	src: string;
+	blurData: string;
+	alt: string;
 };
 
 export type NavItem = {

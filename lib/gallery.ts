@@ -1,16 +1,12 @@
 'use server';
 
-import {
-	GALLERY_COLLECTIONS_TAG_PREFIX,
-	GALLERY_COVER_TAG,
-	galleryImagesStatic,
-} from '@/data/gallery';
+import { GALLERY_COLLECTIONS_TAG_PREFIX, galleryImagesStatic } from '@/data/gallery';
 import { v2 as cloudinary } from 'cloudinary';
 import lqip from 'lqip-modern';
 import { getCldImageUrl } from 'next-cloudinary';
 import { cache } from 'react';
 import { galleryCollections } from '../data/gallery';
-import { GalleryCollection, GalleryImage } from './types';
+import { GalleryCollection, GalleryImage, StaticImage } from './types';
 import { slugify } from './utils';
 
 async function createBlurDataURL(src: string): Promise<string> {
@@ -75,11 +71,6 @@ export const getAllImages = cache(async () => {
 	}
 });
 
-export const getLimitedImages = cache(async (limit: number) => {
-	const resources = await getAllImages();
-	return resources.slice(0, limit);
-});
-
 export const getImagesInCollection = cache(async (name: string) => {
 	const tag = `${GALLERY_COLLECTIONS_TAG_PREFIX}${name.toLowerCase()}`;
 	try {
@@ -93,26 +84,22 @@ export const getImagesInCollection = cache(async (name: string) => {
 export const getCollections = cache(async () => {
 	try {
 		const resources = await getAllImages();
-		const covers = resources.filter((img) => img.tags?.includes(GALLERY_COVER_TAG));
 
-		const collections = galleryCollections.map((collection) => {
-			const matchingCovers = covers.filter((img: any) =>
-				img.tags?.includes(`${GALLERY_COLLECTIONS_TAG_PREFIX + slugify(collection.title)}`)
-			);
-
-			if (!matchingCovers.length) {
-				console.warn(`Collection ${collection.title} is missing cover image in Cloudinary`);
-				return;
-			}
-
-			return {
-				...collection,
-				cover: matchingCovers[0],
-				length: resources.filter((img) =>
-					img.tags.includes(`${GALLERY_COLLECTIONS_TAG_PREFIX + slugify(collection.title)}`)
-				).length,
-			};
-		});
+		const collections = await Promise.all(
+			galleryCollections.map(async (collection) => {
+				return {
+					...collection,
+					cover: {
+						src: collection.cover,
+						blurData: await createBlurDataURL(collection.cover as string),
+						alt: `${collection.title} cover image`,
+					},
+					length: resources.filter((img) =>
+						img.tags.includes(`${GALLERY_COLLECTIONS_TAG_PREFIX + slugify(collection.title)}`)
+					).length,
+				};
+			})
+		);
 
 		const filteredCollections = collections.filter(Boolean);
 		return filteredCollections as GalleryCollection[];
@@ -121,12 +108,12 @@ export const getCollections = cache(async () => {
 	}
 });
 
-export const getStaticImages = cache(async () => {
+export const getStaticImages = cache(async (): Promise<StaticImage[]> => {
 	const images = await Promise.all(
 		galleryImagesStatic.map(async (src, index) => ({
 			src,
 			alt: `Gallery image ${index + 1}`,
-			blurDataURL: await createBlurDataURL(src),
+			blurData: await createBlurDataURL(src),
 		}))
 	);
 	return images;
