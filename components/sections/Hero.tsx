@@ -23,7 +23,7 @@ export default function Hero() {
 				<span className="absolute top-2 left-0 w-full text-xs px-2 py-1 rounded-lg border bg-background-secondary/50 backdrop-blur-sm opacity-0 transition-all ease-out group-hover:opacity-100 group-hover:-translate-y-3">
 					Things on my mind
 				</span>
-				<div className="absolute inset-0 flex items-center justify-center -z-10 motion-safe:will-change-transform motion-safe:animate-rotate text-foreground-tertiary/50">
+				<div className="absolute inset-0 flex items-center justify-center motion-safe:will-change-transform motion-safe:animate-rotate text-foreground-tertiary/50">
 					<span className="motion-safe:animate-rotate-reverse absolute top-0 right-0 text-4xl opacity-0 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-x-5 group-hover:-translate-y-5">
 						<IconDoodlePhoto className="w-9 h-9" />
 					</span>
@@ -45,7 +45,7 @@ export default function Hero() {
 					Currently, I&apos;m focused on building accessible, human-centered products
 				</p>
 
-				<div className="hidden sm:flex mt-10 items-center justify-center gap-4 text-sm font-medium">
+				<div className="relative z-10 hidden sm:flex mt-10 items-center justify-center gap-4 text-sm font-medium">
 					{navItems.socialLinks.map((item) => (
 						<CustomLink
 							key={item.path}

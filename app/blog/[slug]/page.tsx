@@ -163,9 +163,9 @@ export default async function BlogPost(props: Props) {
 					<span className="absolute bottom-4 md:bottom-[40.5px] right-6 md:right-[48px] z-20 h-4 w-px bg-white md:block" />
 
 					<div
-						className="h-[420px] sm:h-[520px] bg-[#7d9ff0] dark:bg-[#102e73] flex flex-col gap-4 sm:gap-2 justify-end p-8 pb-10 md:p-16 rounded-2xl md:rounded-3xl bg-no-repeat bg-cover bg-center ring-1 ring-border text-background dark:text-foreground"
+						className="h-[420px] sm:h-[520px] bg-foreground dark:bg-background flex flex-col gap-4 sm:gap-2 justify-end p-8 pb-10 md:p-16 rounded-2xl md:rounded-3xl bg-no-repeat bg-cover bg-center ring-1 ring-border text-background dark:text-foreground"
 						style={{
-							backgroundImage: `linear-gradient(to top, #2663f2 0%, transparent 90%), url(${
+							backgroundImage: `linear-gradient(to top, rgba(38,99,242, 0.5) 0%, rgba(19,49,121, 0.5) 30%, transparent 60%), url(${
 								post.image ?? ''
 							})`,
 						}}

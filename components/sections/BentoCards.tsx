@@ -43,7 +43,7 @@ function BentoCardAbout() {
 }
 
 async function BentoCardGallery() {
-	const images = await getStaticImages();
+	const images = await getStaticImages(4);
 
 	return (
 		<BentoCard

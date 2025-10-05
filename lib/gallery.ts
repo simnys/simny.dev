@@ -108,9 +108,9 @@ export const getCollections = cache(async () => {
 	}
 });
 
-export const getStaticImages = cache(async (): Promise<StaticImage[]> => {
+export const getStaticImages = cache(async (limit?: number): Promise<StaticImage[]> => {
 	const images = await Promise.all(
-		galleryImagesStatic.map(async (src, index) => ({
+		galleryImagesStatic.slice(0, limit).map(async (src, index) => ({
 			src,
 			alt: `Gallery image ${index + 1}`,
 			blurData: await createBlurDataURL(src),
