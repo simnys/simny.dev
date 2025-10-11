@@ -125,23 +125,23 @@ export default async function BlogPost(props: Props) {
 	};
 
 	return (
-		<main className="grow w-full mx-auto">
+		<>
 			<Script
 				type="application/ld+json"
 				id={`${post.slug}_jsonLd`}
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
 
-			<div className="hidden sm:block max-w-5xl mx-auto pt-8">
+			<div className="hidden sm:block">
 				<Link
 					href="/blog"
-					className="block w-fit p-2 ml-4 mb-4 rounded-full bg-foreground-secondary/5 text-foreground-secondary ring-1 ring-transparent ring-offset-background transition-all hover:bg-foreground-secondary/10 hover:text-foreground hover:ring-brand hover:ring-offset-2"
+					className="absolute md:top-6 md:left-6 w-fit p-1.5 rounded-full bg-foreground-tertiary/5 text-foreground-secondary ring-1 ring-transparent ring-offset-background transition-all hover:bg-foreground-tertiary/10 hover:text-foreground hover:ring-brand hover:ring-offset-2"
 				>
 					<IconBack className="w-5 h-5 rotate-180" />
 				</Link>
 			</div>
 
-			<Section className="max-w-5xl mx-auto pb-0 pt-2 px-2 lg:px-0 sm:pt-0 sm:pb-0 border-b sm:border-y">
+			<section className="-mx-6 px-2">
 				<div className="relative">
 					{/* LINES */}
 					<span className="absolute top-6 z-10 h-px w-full bg-zinc-500/75 mix-blend-screen md:top-12" />
@@ -163,7 +163,7 @@ export default async function BlogPost(props: Props) {
 					<span className="absolute bottom-4 md:bottom-[40.5px] right-6 md:right-[48px] z-20 h-4 w-px bg-white md:block" />
 
 					<div
-						className="h-[420px] sm:h-[520px] bg-foreground dark:bg-background flex flex-col gap-4 sm:gap-2 justify-end p-8 pb-10 md:p-16 rounded-2xl md:rounded-3xl bg-no-repeat bg-cover bg-center ring-1 ring-border text-background dark:text-foreground"
+						className="h-[420px] bg-foreground dark:bg-background flex flex-col gap-4 sm:gap-2 justify-end p-8 pb-10 md:p-16 rounded-2xl md:rounded-3xl bg-no-repeat bg-cover bg-center ring-1 ring-border text-background dark:text-foreground"
 						style={{
 							backgroundImage: `linear-gradient(to top, rgba(38,99,242, 0.5) 0%, rgba(19,49,121, 0.5) 30%, transparent 60%), url(${
 								post.image ?? ''
@@ -192,50 +192,46 @@ export default async function BlogPost(props: Props) {
 						</div>
 					</div>
 				</div>
-			</Section>
+			</section>
 
-			<article className="prose max-w-none mt-4 sm:mt-8 px-4 md:px-0 pb-20">
-				<div className="wrapper pb-10">
-					<MDXContent code={post.body} components={MDXComponents} />
-				</div>
-
-				<Callout variant="ignore">
-					<>
-						<div className="flex items-center gap-x-4 mb-4">
-							<Image
-								width={64}
-								height={64}
-								src={avatar}
-								alt=""
-								draggable={false}
-								className="w-12 h-12 sm:w-16 sm:h-16 rounded-full not-prose border grayscale ring-1 ring-border"
-							/>
-							<div className="flex flex-col">
-								<span className="text-sm font-medium text-foreground-secondary">Simon says:</span>
-								<span className="font-medium sm:text-lg text-foreground">
-									Hey, thanks for reading! 👋
-								</span>
-							</div>
-						</div>
-						<p className="mb-4 sm:px-4">
-							If you enjoyed this article, check out some of my other posts below. Have questions,
-							feedback, or just want to connect?
-						</p>
-						<p className="sm:px-4">
-							Find me on <CustomLink href={SITE_GITHUB_URL}>Github</CustomLink> or drop me a message
-							on <CustomLink href={SITE_LINKEDIN_URL}>LinkedIn</CustomLink> and let&apos;s chat.
-						</p>
-					</>
-				</Callout>
+			<article className="prose mx-auto w-full first:prose-p:m-0">
+				<MDXContent code={post.body} components={MDXComponents} />
 			</article>
+
+			<Callout variant="ignore">
+				<div className="flex items-center gap-x-4 mb-4">
+					<Image
+						width={64}
+						height={64}
+						src={avatar}
+						alt=""
+						draggable={false}
+						className="w-12 h-12 sm:w-16 sm:h-16 rounded-full not-prose border grayscale ring-1 ring-border"
+					/>
+					<div className="flex flex-col">
+						<span className="text-sm font-medium text-foreground-secondary">Simon says:</span>
+						<span className="font-medium sm:text-lg text-foreground">
+							Hey, thanks for reading! 👋
+						</span>
+					</div>
+				</div>
+				<p className="mb-4 sm:px-4">
+					If you enjoyed this article, check out some of my other posts below. Have questions,
+					feedback, or just want to connect?
+				</p>
+				<p className="sm:px-4">
+					Find me on <CustomLink href={SITE_GITHUB_URL}>Github</CustomLink> or drop me a message on{' '}
+					<CustomLink href={SITE_LINKEDIN_URL}>LinkedIn</CustomLink> and let&apos;s chat.
+				</p>
+			</Callout>
 
 			{related.length > 0 && (
 				<Section>
-					<SectionHeader title="Related Posts" subtitle="You might also like" className="mb-0" />
+					<SectionHeader title="Related Posts" subtitle="You might also like" />
 					<PostList posts={related.slice(0, 3)} />
 				</Section>
 			)}
-		</main>
+		</>
 	);
 }
 

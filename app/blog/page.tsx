@@ -41,7 +41,7 @@ export default async function Blog() {
 	};
 
 	return (
-		<main className="grow">
+		<>
 			<Script
 				type="application/ld+json"
 				id="blog_jsonLd"
@@ -54,10 +54,10 @@ export default async function Blog() {
 				subtitle={{ text: 'Articles', Icon: IconDocument }}
 			/>
 
-			<Section>
+			<section>
 				<TagSelector tags={tags} activeTag={''} />
 				<PostList posts={posts} />
-			</Section>
-		</main>
+			</section>
+		</>
 	);
 }

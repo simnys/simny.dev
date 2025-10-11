@@ -26,11 +26,11 @@ export default function Navbar({ className }: { className?: string }) {
 	};
 
 	return (
-		<header role="menubar" className={cn('navbar max-h-screen sticky top-0 z-99', className)}>
+		<header role="menubar" className={cn('navbar max-h-screen', className)}>
 			<nav
 				aria-label="Main navigation"
 				className={cn(
-					'relative h-13 flex items-center w-full px-2 mx-auto border-b lg:border bg-background'
+					'relative h-13 flex items-center w-full px-2 max-w-3xl mx-auto bg-background'
 				)}
 			>
 				<div className="min-w-15 flex items-center justify-start">

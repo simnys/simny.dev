@@ -90,28 +90,23 @@ export default async function GalleryCollection(props: Props) {
 	};
 
 	return (
-		<main className="grow">
+		<>
 			<Script
 				type="application/ld+json"
 				id={`gallery-${slugify(collection.title)}_jsonLd`}
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
 
-			<PageHeader
-				title={collection.title}
-				subtitle={{ text: 'Gallery', Icon: IconGallery }}
-				content={collection.description}
-				backlink={backLink}
-			/>
+			<PageHeader title={collection.title} content={collection.description} backlink={backLink} />
 
-			<Section className="pb-10">
+			<section>
 				<GalleryView content={images} as="images" />
-			</Section>
+			</section>
 
-			<div className="pb-10 w-full flex justify-between items-baseline text-sm font-medium select-none">
+			<div className="flex justify-between items-baseline text-sm font-medium select-none">
 				<Link
 					href={`${backLink}/${slugify(previousCollection.title)}`}
-					className="flex-1 px-4 sm:mx-4 sm:px-6 py-4 rounded-lg text-foreground/80 transition-colors hover:bg-foreground-tertiary/5 hover:text-foreground"
+					className="flex-1 px-4 sm:px-6 py-3 rounded-lg text-foreground/80 transition-colors hover:bg-foreground-tertiary/5 hover:text-foreground"
 				>
 					<span className="block text-xs text-foreground-tertiary">Prev</span>
 					{previousCollection.title}
@@ -119,7 +114,7 @@ export default async function GalleryCollection(props: Props) {
 
 				<Link
 					href={backLink}
-					className="hidden sm:block text-center flex-1 px-4 sm:mx-4 sm:px-6 py-4 rounded-lg text-foreground/80 transition-colors hover:bg-foreground-tertiary/5 hover:text-foreground"
+					className="hidden sm:block text-center flex-1 px-4 sm:px-6 py-3 rounded-lg text-foreground/80 transition-colors hover:bg-foreground-tertiary/5 hover:text-foreground"
 				>
 					<span className="block text-xs text-foreground-tertiary">Collections</span>
 					Index
@@ -127,13 +122,13 @@ export default async function GalleryCollection(props: Props) {
 
 				<Link
 					href={`${backLink}/${slugify(nextCollection.title)}`}
-					className="text-right flex-1 px-4 sm:mx-4 sm:px-6 py-4 rounded-lg text-foreground/80 transition-colors hover:bg-foreground-tertiary/5 hover:text-foreground"
+					className="text-right flex-1 px-4 sm:px-6 py-3 rounded-lg text-foreground/80 transition-colors hover:bg-foreground-tertiary/5 hover:text-foreground"
 				>
 					<span className="block text-xs text-foreground-tertiary">Next</span>
 					{nextCollection.title}
 				</Link>
 			</div>
-		</main>
+		</>
 	);
 }
 
