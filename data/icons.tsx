@@ -474,6 +474,32 @@ export function IconUser(props: React.SVGAttributes<any>) {
 		</svg>
 	);
 }
+export function IconHeart(props: React.SVGAttributes<any>) {
+	return (
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" {...props}>
+			<path
+				fill="currentColor"
+				d="M2 9.137C2 14 6.02 16.591 8.962 18.911C10 19.729 11 20.5 12 20.5s2-.77 3.038-1.59C17.981 16.592 22 14 22 9.138S16.5.825 12 5.501C7.5.825 2 4.274 2 9.137"
+			></path>
+		</svg>
+	);
+}
+export function IconLink(props: React.SVGAttributes<any>) {
+	return (
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" {...props}>
+			<g
+				fill="none"
+				stroke="currentColor"
+				strokeLinecap="round"
+				strokeLinejoin="round"
+				strokeWidth="2"
+			>
+				<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+				<path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+			</g>
+		</svg>
+	);
+}
 export function IconCode(props: React.SVGAttributes<any>) {
 	return (
 		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" {...props}>
