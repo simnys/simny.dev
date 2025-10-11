@@ -8,7 +8,7 @@ import CustomLink from '../blog/Link';
 export default function Hero() {
 	return (
 		<>
-			<div className="group relative mx-auto p-2 rounded-full bg-background ring-1 ring-offset-6 ring-offset-background ring-border shadow-inner hover:ring-offset-8 transition-all">
+			<div className="group relative mx-auto rounded-full ring-1 ring-offset-6 ring-offset-background ring-border shadow-inner hover:ring-offset-8 transition-all">
 				<Image
 					src={avatar}
 					alt="Profile Picture"
@@ -44,19 +44,6 @@ export default function Hero() {
 					I&apos;m a software engineer specializing in building exceptional digital experiences.
 					Currently, I&apos;m focused on building accessible, human-centered products
 				</p>
-
-				<div className="relative z-10 hidden sm:flex mt-10 items-center justify-center gap-4 text-sm font-medium">
-					{navItems.socialLinks.map((item) => (
-						<CustomLink
-							key={item.path}
-							href={item.path}
-							className="before:content-none flex items-center gap-2 py-2 px-4 rounded-lg backdrop-blur-lg bg-foreground-secondary/5 text-foreground-secondary ring-1 ring-transparent ring-offset-background transition-all hover:bg-foreground-secondary/10 hover:text-foreground hover:ring-brand hover:ring-offset-2"
-						>
-							{item.icon && item.path.startsWith('/') && <item.icon className="w-4 h-4" />}
-							<span>{item.name}</span>
-						</CustomLink>
-					))}
-				</div>
 			</div>
 		</>
 	);

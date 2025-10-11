@@ -53,7 +53,7 @@ export default function PostList({ posts, query }: PostListProps) {
 					<Link
 						draggable="false"
 						className={cn(
-							'relative w-full flex flex-col items-baseline gap-x-8 md:gap-x-16 sm:flex-row px-4 sm:px-6 py-6',
+							'relative w-full flex flex-col items-baseline gap-x-8 md:gap-x-16 sm:flex-row px-4 sm:px-8 py-6',
 							'',
 							'group hover:bg-background-secondary/20'
 						)}
@@ -72,7 +72,7 @@ export default function PostList({ posts, query }: PostListProps) {
 							</p>
 						</div>
 
-						<div className="hidden sm:block mt-auto p-2 rounded-full text-foreground-secondary ring-1 ring-transparent ring-offset-background transition-all group-hover:text-foreground group-hover:ring-brand group-hover:ring-offset-2">
+						<div className="hidden sm:block mt-auto p-1 rounded-full text-foreground-secondary ring-1 ring-transparent ring-offset-background transition-all group-hover:text-foreground group-hover:ring-brand group-hover:ring-offset-2">
 							<IconArrow className="justify-self-end self-end w-4 h-4" />
 						</div>
 

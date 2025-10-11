@@ -37,8 +37,8 @@ export function useScreenBreakpoints() {
 		const updateScreenBreakpoints = () => {
 			const screenWidth = window.innerWidth;
 			setIsSmall(screenWidth < 640);
-			setIsMedium(screenWidth >= 640 && screenWidth < 768);
-			setIsLarge(screenWidth >= 768);
+			setIsMedium(screenWidth >= 640 && screenWidth < 1024);
+			setIsLarge(screenWidth >= 1024);
 		};
 
 		updateScreenBreakpoints();
