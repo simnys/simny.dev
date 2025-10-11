@@ -4,41 +4,39 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
+	--font-heading: var(--font-heading), ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+		'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 	--font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
 		'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 	--font-mono: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
 		'Liberation Mono', 'Courier New', monospace;
 
-	--color-background: hsl(240 7% 97%);
-	--color-background-secondary: hsl(240 10% 95%);
+	--color-background: var(--color-zinc-50);
+	--color-background-secondary: var(--color-zinc-100);
+	--color-background-tertiary: var(--color-zinc-200);
 
-	--color-foreground: hsl(220 20% 11%);
-	--color-foreground-secondary: hsl(236 8% 40%);
-	--color-foreground-tertiary: hsl(215, 16%, 47%);
+	--color-foreground: var(--color-zinc-800);
+	--color-foreground-secondary: var(--color-zinc-600);
+	--color-foreground-tertiary: var(--color-zinc-500);
 
-	--color-brand: hsl(222 89% 55%);
-	--color-border: hsl(210 11% 85%);
+	--color-brand: var(--color-blue-600);
+	--color-border: var(--color-zinc-200);
 }
 .dark {
-	--color-background: hsl(216 16% 7%);
-	--color-background-secondary: hsl(220 12% 9%);
+	--color-background: oklch(16.8% 0 0);
+	--color-background-secondary: oklch(18.7% 0 0);
+	--color-background-tertiary: oklch(21.3% 0 0);
 
-	--color-foreground: hsl(220 15% 93%);
-	--color-foreground-secondary: hsl(222 8% 75%);
-	--color-foreground-tertiary: hsl(215 12% 65%);
+	--color-foreground: oklch(94.9% 0 0);
+	--color-foreground-secondary: oklch(83.3% 0 0);
+	--color-foreground-tertiary: oklch(77.3% 0 0);
 
-	--color-brand: hsl(222 100% 62%);
-	--color-border: hsl(222 12% 14%);
+	--color-brand: var(--color-blue-500);
+	--color-border: oklch(25.2% 0 0);
 }
 
 @theme {
 	--animate-loop: loop 100s linear infinite;
-	--animate-scroll: scroll 40s forwards linear infinite;
-	--animate-scroll-slow: scroll 100s forwards linear infinite;
-	--animate-aurora: aurora 50s forwards linear infinite;
-	--animate-slide: slide 0.3s ease-out forwards;
-	--animate-slide-slow: slide 0.6s ease-out forwards;
-	--animate-flip: flip 6s infinite steps(2, end);
 	--animate-rotate: rotate 10s linear infinite;
 	--animate-rotate-reverse: rotate 10s infinite linear reverse;
 
@@ -50,43 +48,11 @@
 			transform: translateX(-50%);
 		}
 	}
-	@keyframes scroll {
-		to {
-			transform: translate(calc(-50% - 0.5rem));
-		}
-	}
-	@keyframes slide {
-		0% {
-			opacity: 0;
-			transform: translateY(75px);
-		}
-		100% {
-			opacity: 1;
-			transform: translateY(0);
-		}
-	}
-	@keyframes aurora {
-		from {
-			background-position: 50% 50%, 50% 50%;
-		}
-		to {
-			background-position: 350% 50%, 350% 50%;
-		}
-	}
-	@keyframes flip {
-		to {
-			transform: rotate(360deg);
-		}
-	}
 	@keyframes rotate {
 		to {
 			transform: rotate(360deg);
 		}
 	}
-}
-
-@utility container {
-	@apply px-4 sm:px-6;
 }
 
 @utility no-scrollbar {
@@ -103,6 +69,12 @@
 }
 
 @layer base {
+	:root {
+		font-synthesis: none;
+		text-rendering: optimizeLegibility;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
 	*,
 	::after,
 	::before,
@@ -110,26 +82,19 @@
 	::file-selector-button {
 		border-color: var(--color-border, currentcolor);
 	}
-}
-::selection {
-	background-color: #dbe0f7;
-	color: var(--color-brand);
-}
-.dark ::selection {
-	color: #abc2f7;
-	background-color: #0e192f;
-}
+	::selection {
+		@apply bg-zinc-200;
+	}
+	.dark ::selection {
+		@apply bg-zinc-700;
+	}
 
-html {
-	@apply bg-background;
-	min-width: 340px;
-}
-* {
-	@apply box-border;
-	text-rendering: optimizeLegibility;
-}
-body {
-	@apply bg-background text-foreground font-sans font-[450] tracking-[0.02em] antialiased leading-7 overflow-x-clip;
+	html {
+		min-width: 340px;
+	}
+	body {
+		@apply bg-background text-foreground font-sans tracking-[-0.01em];
+	}
 }
 
 h1,
@@ -138,15 +103,23 @@ h3,
 h4,
 h5,
 h6 {
-	@apply font-medium tracking-tight;
+	@apply font-heading tracking-[-0.02em];
+}
+h1 {
+	@apply text-4xl sm:text-5xl;
+}
+h2 {
+	@apply text-2xl sm:text-3xl;
+}
+h3 {
+	@apply text-xl sm:text-2xl;
 }
 
 /* 	------------
 	BLOG STYLES
 	-----------	*/
 .prose {
-	@apply dark:prose-invert text-foreground-secondary prose-headings:text-foreground prose-headings:relative marker:text-foreground-secondary prose-hr:border-border;
-	@apply prose-h4:text-lg;
+	@apply dark:prose-invert text-foreground-secondary prose-headings:text-foreground prose-headings:relative prose-headings:w-fit marker:text-foreground-secondary prose-hr:border-border;
 }
 .prose strong {
 	@apply font-medium text-foreground;
@@ -160,15 +133,15 @@ h6 {
 
 /* Heading anchorlinks */
 .prose .anchor {
-	@apply absolute w-fit -left-5 px-2 no-underline transition text-foreground/30 opacity-0;
-	cursor: pointer;
+	@apply absolute w-fit -right-12 px-6 no-underline transition-[opacity_transform] duration-200 ease-out text-foreground-tertiary/50 opacity-0 cursor-pointer;
 }
 .prose .anchor:after {
+	@apply font-sans;
 	content: '#';
 }
 .prose .anchor:hover,
 .prose *:hover > .anchor {
-	@apply sm:opacity-100 transition -translate-x-3;
+	@apply sm:opacity-100;
 }
 
 /* 
@@ -234,7 +207,7 @@ code[data-line-numbers] [data-line]::before {
 
 /* Inline code */
 .prose :not(pre) > code {
-	@apply font-mono px-1.5 mx-0.5 py-0.5 rounded-md bg-background-secondary text-sm font-[450] border shadow-xs text-brand;
+	@apply font-mono px-1.5 mx-0.5 py-0.5 rounded-md bg-background-secondary font-normal text-sm border text-brand;
 }
 .prose :not(pre) > code::after,
 .prose :not(pre) > code::before {
@@ -253,41 +226,5 @@ code[data-line-numbers] [data-line]::before {
 	background-color: --alpha(var(--color-foreground-secondary) / 30%);
 	transition-property: all;
 	transition-duration: 200ms;
-}
-
-.button::after {
-	z-index: 0;
-	overflow: hidden;
-	position: absolute;
-	content: '';
-	display: block;
-	width: 100%;
-	height: 100%;
-	border-radius: 8px;
-	transition: border-color 0.2s ease 0s, background 0.3s ease 0s,
-		transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0s;
-}
-
-.button:hover::after {
-	border-radius: 10px;
-	border: 2px solid var(--color-brand);
-	transform: scale(0.92) translateZ(0);
-	transition: border-color 0.2s ease 0s, background 0.3s ease 0s,
-		transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0s;
-}
-
-.opacity-list:hover li,
-.opacity-list:hover a {
-	@apply transition-opacity;
-	opacity: 0.5;
-}
-.opacity-list li:hover,
-.opacity-list a:hover {
-	opacity: 1;
-}
-
-@media print {
-	.navbar {
-		display: none;
-	}
+	transition-timing-function: ease-out;
 }
