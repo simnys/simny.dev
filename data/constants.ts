@@ -19,3 +19,5 @@ export const SITE_CONTACT = 'simons.nystrom@gmail.com';
 export const SITE_GITHUB_URL = 'https://github.com/simstrom';
 export const SITE_INSTAGRAM_URL = 'https://www.instagram.com/simonnystrom';
 export const SITE_LINKEDIN_URL = 'https://linkedin.com/in/simon-nystrom';
+
+export const RAINDROP_COLLECTION_ID = '53848358';
