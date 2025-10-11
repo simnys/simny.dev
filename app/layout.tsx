@@ -17,15 +17,25 @@ import '@/styles/globals.css';
 
 import type { Metadata, Viewport } from 'next';
 import { Geist_Mono as FontMono } from 'next/font/google';
+import { Inter as FontSans } from 'next/font/google';
 import localFont from 'next/font/local';
 import Script from 'next/script';
 import { Person, WithContext } from 'schema-dts';
 import Providers from './providers';
+import { navItems } from '@/data/navigation';
+import { Logo } from '@/data/icons';
+import ThemeSwitcher from '@/components/ui/ThemeSwitcher';
 
-const fontSans = localFont({
-	src: '../public/fonts/GeneralSans-Variable.woff2',
+const fontHeading = localFont({
+	src: '../public/fonts/Junicode-Condensed.woff2',
 	display: 'swap',
-	weight: '300 800',
+	weight: '400',
+	variable: '--font-heading',
+});
+const fontSans = FontSans({
+	subsets: ['latin'],
+	display: 'swap',
+	weight: 'variable',
 	variable: '--font-sans',
 });
 const fontMono = FontMono({
@@ -38,8 +48,8 @@ const fontMono = FontMono({
 export const viewport: Viewport = {
 	maximumScale: 1,
 	themeColor: [
-		{ media: '(prefers-color-scheme: light)', color: 'white' },
-		{ media: '(prefers-color-scheme: dark)', color: 'black' },
+		{ media: '(prefers-color-scheme: light)', color: '#fafafa' },
+		{ media: '(prefers-color-scheme: dark)', color: '#0f0f0f' },
 	],
 };
 
@@ -122,18 +132,69 @@ export default function RootLayout({
 
 			<body
 				className={cn(
-					'min-h-screen max-w-[1088px] mx-auto flex flex-col',
+					fontHeading.variable,
 					fontSans.variable,
-					fontMono.variable
+					fontMono.variable,
+					'flex flex-col min-h-screen'
 				)}
 			>
 				<Providers>
 					<Navbar />
-					<div className="relative grid flex-1 grid-cols-1 lg:grid-cols-[32px_1fr_32px]">
-						<div className="hidden lg:block w-full border-x opacity-75 bg-[linear-gradient(-45deg,var(--color-border)_12.50%,transparent_12.50%,transparent_50%,var(--color-border)_50%,var(--color-border)_62.50%,transparent_62.50%,transparent_100%)] bg-size-[5px_5px]" />
-						<main className="">{children}</main>
-						<div className="hidden lg:block w-full border-x opacity-75 bg-[linear-gradient(-45deg,var(--color-border)_12.50%,transparent_12.50%,transparent_50%,var(--color-border)_50%,var(--color-border)_62.50%,transparent_62.50%,transparent_100%)] bg-size-[5px_5px]" />
-					</div>
+					{/* <aside className="relative row-span-2 bg-gradient-to-b from-background via-background-secondary/30 to-background-secondary/50">
+							<header className="sticky top-0 p-4 md:p-6 grid gap-6">
+								<div className="flex items-center gap-1">
+									<div className="rounded-full w-5 h-5 bg-gradient-to-tr from-pink-600 to-orange-300" />
+									<span className="font-heading text-3xl leading-none">simny</span>
+								</div>
+
+								<nav className="flex flex-col gap-6">
+									<ul>
+										{navItems.navigationLinks.map((item) => (
+											<li key={item.path} className="">
+												<a
+													href={item.path}
+													className="font-medium text-foreground-secondary hover:text-foreground"
+												>
+													{item.icon && <item.icon className="inline w-4 h-4 mr-1 -mt-0.5" />}
+													{item.name}
+												</a>
+											</li>
+										))}
+									</ul>
+									<ul>
+										{navItems.exploreLinks.map((item) => (
+											<li key={item.path} className="">
+												<a
+													href={item.path}
+													className="font-medium text-foreground-secondary hover:text-foreground"
+												>
+													{item.icon && <item.icon className="inline w-4 h-4 mr-1 -mt-0.5" />}
+													{item.name}
+												</a>
+											</li>
+										))}
+									</ul>
+									<ul>
+										{navItems.socialLinks.map((item) => (
+											<li key={item.path} className="">
+												<a
+													href={item.path}
+													className="font-medium text-foreground-secondary hover:text-foreground"
+												>
+													{item.icon && <item.icon className="inline w-4 h-4 mr-1 -mt-0.5" />}
+													{item.name}
+												</a>
+											</li>
+										))}
+									</ul>
+									<ThemeSwitcher />
+								</nav>
+							</header>
+						</aside> */}
+					<main className="max-w-3xl mx-auto w-full grow relative flex flex-col gap-8 md:gap-12 p-6">
+						{children}
+					</main>
+
 					<Footer />
 				</Providers>
 				{/* <Script

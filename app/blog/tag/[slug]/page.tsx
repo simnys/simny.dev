@@ -50,7 +50,7 @@ export default async function TagPage(props: Props) {
 	const posts = getPostsByTag(tag);
 
 	return (
-		<main className="grow">
+		<>
 			<PageHeader
 				title={tag}
 				subtitle={{ text: 'Articles', Icon: IconDocument }}
@@ -61,7 +61,7 @@ export default async function TagPage(props: Props) {
 				<TagSelector tags={tags} activeTag={tag} />
 				<PostList posts={posts} />
 			</Section>
-		</main>
+		</>
 	);
 }
 

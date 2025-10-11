@@ -74,7 +74,7 @@ export default async function Gallery() {
 	};
 
 	return (
-		<main className="grow">
+		<>
 			<Script
 				type="application/ld+json"
 				id="gallery_jsonLd"
@@ -90,6 +90,6 @@ export default async function Gallery() {
 			<Section>
 				<GalleryView as="collections" content={collections} />
 			</Section>
-		</main>
+		</>
 	);
 }

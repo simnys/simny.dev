@@ -1,3 +1,4 @@
+import CustomLink from '@/components/blog/Link';
 import { Section, SectionHeader } from '@/components/layouts/Section';
 import {
 	BentoCardAbout,
@@ -27,8 +28,8 @@ export default async function Home() {
 	const latestPost = getLatestBlogPost();
 
 	return (
-		<main className="grow">
-			<Section className="pt-40 space-y-8 text-center relative">
+		<>
+			<section className="text-center flex flex-col gap-12 items-center justify-center relative -mx-6 py-22 border-b">
 				<Hero />
 				<div
 					className={cn(
@@ -41,19 +42,28 @@ export default async function Home() {
 						maskImage: 'radial-gradient(circle at 50% 50%, white 50%, transparent 100%)',
 					}}
 				/>
-				<div className="absolute inset-0 bg-gradient-to-b from-brand/5 via-transparent to-transparent via-30% pointer-events-none" />
-			</Section>
+				{/* <div className="absolute inset-0 bg-gradient-to-b from-brand/5 via-transparent to-transparent via-30% pointer-events-none" /> */}
+			</section>
 
-			<Section>
+			<section className="prose mx-auto">
+				<h2 className="">About</h2>
+				<div className="">
+					{content.map((c, i) => (
+						<p key={i}>{c.text}</p>
+					))}
+				</div>
+			</section>
+
+			{/* <Section>
 				<BentoGrid>
 					<BentoCardAbout />
 					<BentoCardGallery />
 					<BentoCardProjects />
 					{latestPost && <BentoCardBlog latestPost={latestPost} />}
 				</BentoGrid>
-			</Section>
+			</Section> */}
 
-			<Section>
+			{/* <section>
 				<SectionHeader title="Latest Blog Posts" subtitle="Blog" linkHref="/blog" />
 
 				<div className="max-w-2xl mx-auto grid sm:grid-cols-2 gap-4 px-2">
@@ -76,7 +86,61 @@ export default async function Home() {
 						</Card>
 					))}
 				</div>
-			</Section>
-		</main>
+			</section> */}
+		</>
 	);
 }
+
+const content = [
+	{
+		heading: 'Overview',
+		text: (
+			<>
+				This site is all about being fast, accessible, and easy on the eyes. I built and designed it
+				myself, focusing on clean code, smooth layouts, and a user experience that just feels right.
+				Everything is meant to be modern, simple, and a breeze to use.
+			</>
+		),
+	},
+	{
+		heading: 'Technologies',
+		text: (
+			<>
+				Under the hood, it runs on <CustomLink href="https://nextjs.org">Next.js</CustomLink> (App
+				Router), <CustomLink href="https://react.dev">React</CustomLink>, and{' '}
+				<CustomLink href="https://typescriptlang.org">TypeScript</CustomLink>. Styling is handled
+				with <CustomLink href="https://tailwindcss.com">Tailwind CSS</CustomLink> and a few custom
+				utilities. Most content is static for speed, but there are dynamic bits powered by server
+				components and edge functions.
+			</>
+		),
+	},
+	{
+		heading: 'Design & Colors',
+		text: (
+			<>
+				The vibe I&apos;m going for is minimal, with neutral colors and blue accents to keep things
+				fresh.{' '}
+				<CustomLink href="https://www.fontshare.com/?q=General%20Sans">General Sans</CustomLink> and{' '}
+				<CustomLink href={'https://vercel.com/font'}>Geist Mono</CustomLink> handle the typography,
+				making everything readable and stylish. Layouts are flexible and responsive, with plenty of
+				space and a grid to keep things tidy.
+			</>
+		),
+	},
+	{
+		heading: 'Inspirations',
+		text: (
+			<>
+				I&apos;ve taken cues from the design systems of{' '}
+				<CustomLink href="https://tailwindcss.com">Tailwind CSS</CustomLink> and{' '}
+				<CustomLink href="https://vercel.com">Vercel</CustomLink>. Some developer portfolios that
+				also influenced my own approach are{' '}
+				<CustomLink href="https://braydoncoyer.dev">Braydon Coyer</CustomLink>,{' '}
+				<CustomLink href="https://maximeheckel.com">Maxime Heckel</CustomLink>, and{' '}
+				<CustomLink href="https://jakub.kr">Jakub Krehel</CustomLink>. Go give them a visit, they
+				have killer sites!
+			</>
+		),
+	},
+];
