@@ -10,7 +10,7 @@ interface SectionProps {
 }
 
 export const Section: React.FC<SectionProps> = ({ children, className }) => (
-	<section className={cn('w-full flex flex-col pb-15 sm:pb-30', className)}>{children}</section>
+	<section className={cn('flex flex-col', className)}>{children}</section>
 );
 
 interface SectionHeaderProps {
@@ -26,7 +26,7 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
 	linkHref,
 	className,
 }) => (
-	<div className={cn('relative text-center border-y mb-5 pb-1 px-4 text-xl', className)}>
+	<div className={cn('relative mb-6 text-xl', className)}>
 		<span className="text-sm font-medium text-brand">{subtitle}</span>
 		<h2>{title}</h2>
 

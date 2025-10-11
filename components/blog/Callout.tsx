@@ -49,10 +49,10 @@ export default function Callout({ variant = 'info', title, children }: CalloutPr
 	const styles = variantStyles[variant];
 
 	return (
-		<div className="relative w-screen -mx-4 px-2 py-8 my-5 lg:w-full lg:mx-0 lg:px-0 border-y col-span-3 overflow-x-clip">
+		<div className="relative py-8 my-5 -mx-6 px-4 lg:-mx-20 lg:px-8">
 			<blockquote
 				className={cn(
-					'not-prose relative z-10 p-4 py-6 rounded-xl border shadow-sm max-w-3xl mx-auto w-full bg-background',
+					'not-prose relative z-10 p-4 py-6 md:px-8 rounded-xl border shadow-sm max-w-3xl mx-auto w-full bg-background',
 					styles.text
 				)}
 			>

@@ -6,42 +6,25 @@ import { ComponentType, SVGProps } from 'react';
 interface PageHeaderProps {
 	title: string;
 	content?: string;
-	subtitle?: { text: string; Icon: ComponentType<SVGProps<SVGSVGElement>> };
 	backlink?: string;
 	className?: string;
 }
 
-export default function PageHeader({
-	title,
-	content,
-	subtitle,
-	backlink,
-	className,
-}: PageHeaderProps) {
+export default function PageHeader({ title, content, backlink, className }: PageHeaderProps) {
 	return (
 		<>
-			<div
-				className={cn(
-					'relative max-w-5xl mx-auto px-4 sm:px-6 pt-24 sm:pt-40 pb-6 border-b bg-background text-xl text-balance',
-					className
-				)}
-			>
-				<h1 className="mb-1">{title}</h1>
-				{content && <p className="text-base max-w-4xl text-foreground-secondary">{content}</p>}
-				{subtitle && (
-					<div className="flex items-center gap-x-1 absolute top-18 left-4 sm:top-34 sm:left-6 text-brand text-sm font-medium">
-						<subtitle.Icon />
-						<span className="">{subtitle.text}</span>
-					</div>
-				)}
+			<div className={cn('relative pt-12 bg-background text-balance', className)}>
+				<h1 className="mb-2">{title}</h1>
+				{content && <p className="text-foreground-secondary">{content}</p>}
 
 				{backlink && (
 					<Link
 						href={backlink}
+						draggable={false}
 						className={cn(
-							'absolute top-4 left-4 sm:top-20 sm:left-6 w-fit p-2 rounded-full',
-							'bg-foreground-secondary/5 text-foreground-secondary ring-1 ring-transparent ring-offset-background',
-							'transition-all hover:bg-foreground-secondary/10 hover:text-foreground hover:ring-brand hover:ring-offset-2'
+							'absolute -top-2 -left-2 w-fit p-1.5 rounded-full',
+							'bg-background-secondary text-foreground-tertiary',
+							'transition-[colors, scale] duration-200 ease-out hover:bg-background-tertiary hover:text-foreground active:scale-95'
 						)}
 					>
 						<IconBack className="w-5 h-5 rotate-180" />
