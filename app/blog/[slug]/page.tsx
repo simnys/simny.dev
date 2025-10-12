@@ -9,7 +9,7 @@ import { SITE_GITHUB_URL, SITE_LINKEDIN_URL, SITE_NAME, SITE_URL } from '@/data/
 import { IconBack, IconCalendar, IconHourglass } from '@/data/icons';
 import { getBlogPost, getBlogPosts, getRelatedPosts } from '@/lib/blog';
 import { formatDate } from '@/lib/utils';
-import avatar from '@/public/images/avatar.jpg';
+import avatar from '@/public/images/avatar-px.png';
 
 import { MDXContent } from '@content-collections/mdx/react';
 import { Metadata, ResolvingMetadata } from 'next';
@@ -175,12 +175,12 @@ export default async function BlogPost(props: Props) {
 								<Tag
 									key={idx}
 									tag={tag}
-									className="text-xs rounded-sm py-0.5 px-2 text-background dark:text-foreground bg-background/10 dark:bg-foreground/10 hover:bg-background hover:text-foreground dark:hover:bg-foreground dark:hover:text-background"
+									className="backdrop-blur-md text-background dark:text-foreground bg-background/10 dark:bg-foreground/10 hover:bg-background hover:text-foreground dark:hover:bg-foreground dark:hover:text-background"
 								/>
 							))}
 						</ul>
 						<h1 className="text-2xl sm:text-3xl text-balance">{post.title}</h1>
-						<div className="flex items-center gap-4 sm:gap-6 text-xs sm:text-sm font-medium opacity-80">
+						<div className="flex items-center gap-4 sm:gap-6 text-xs sm:text-sm opacity-80">
 							<div className="flex items-center gap-x-1 sm:gap-x-2">
 								<IconCalendar className="w-3 h-3 sm:w-4 sm:h-4" />
 								<time>{formatDate(post.date)}</time>
@@ -200,26 +200,31 @@ export default async function BlogPost(props: Props) {
 
 			<Callout variant="ignore">
 				<div className="flex items-center gap-x-4 mb-4">
-					<Image
-						width={64}
-						height={64}
-						src={avatar}
-						alt=""
-						draggable={false}
-						className="w-12 h-12 sm:w-16 sm:h-16 rounded-full not-prose border grayscale ring-1 ring-border"
-					/>
+					<div className="relative">
+						<Image
+							width={64}
+							height={64}
+							src={avatar}
+							alt=""
+							draggable={false}
+							className="size-12 sm:size-16 rounded-2xl sm:rounded-3xl not-prose"
+						/>
+						<div className="absolute -right-1 -bottom-1 size-4 p-1 bg-background rounded-full flex items-center justify-center">
+							<div className="size-full rounded-full bg-brand" />
+						</div>
+					</div>
 					<div className="flex flex-col">
-						<span className="text-sm font-medium text-foreground-secondary">Simon says:</span>
+						<span className="text-sm font-medium text-foreground-tertiary">Simon says:</span>
 						<span className="font-medium sm:text-lg text-foreground">
 							Hey, thanks for reading! 👋
 						</span>
 					</div>
 				</div>
-				<p className="mb-4 sm:px-4">
+				<p className="mb-4 sm:px-4 prose">
 					If you enjoyed this article, check out some of my other posts below. Have questions,
 					feedback, or just want to connect?
 				</p>
-				<p className="sm:px-4">
+				<p className="sm:px-4 prose">
 					Find me on <CustomLink href={SITE_GITHUB_URL}>Github</CustomLink> or drop me a message on{' '}
 					<CustomLink href={SITE_LINKEDIN_URL}>LinkedIn</CustomLink> and let&apos;s chat.
 				</p>

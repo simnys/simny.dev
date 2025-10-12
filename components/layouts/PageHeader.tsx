@@ -14,7 +14,7 @@ export default function PageHeader({ title, content, backlink, className }: Page
 	return (
 		<>
 			<div className={cn('relative pt-12 bg-background text-balance', className)}>
-				<h1 className="mb-2">{title}</h1>
+				<h1>{title}</h1>
 				{content && <p className="text-foreground-secondary">{content}</p>}
 
 				{backlink && (

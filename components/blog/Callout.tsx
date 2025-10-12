@@ -49,10 +49,10 @@ export default function Callout({ variant = 'info', title, children }: CalloutPr
 	const styles = variantStyles[variant];
 
 	return (
-		<div className="relative py-8 my-5 -mx-6 px-4 lg:-mx-20 lg:px-8">
+		<div className="relative py-10 my-4 -mx-6 px-4 lg:-mx-30 lg:px-16 border-y border-border/50">
 			<blockquote
 				className={cn(
-					'not-prose relative z-10 p-4 py-6 md:px-8 rounded-xl border shadow-sm max-w-3xl mx-auto w-full bg-background',
+					'not-prose relative z-10 p-4 py-6 md:px-8 rounded-xl border shadow-xs max-w-3xl mx-auto w-full bg-background',
 					styles.text
 				)}
 			>
@@ -71,11 +71,14 @@ export default function Callout({ variant = 'info', title, children }: CalloutPr
 
 			<div
 				className={cn(
-					'absolute inset-0 pointer-events-none bg-background-secondary/60',
-					'bg-[linear-gradient(to_right,rgba(0,0,0,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.04)_1px,transparent_1px)] bg-[size:38px_38px]',
-					'dark:bg-[linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.04)_1px,transparent_1px)]',
-					'sm:mask-[linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]'
+					'absolute inset-0 pointer-events-none',
+					'bg-[linear-gradient(to_right,rgba(0,0,0,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.05)_1px,transparent_1px)] bg-[size:24px_24px]',
+					'dark:bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)]'
 				)}
+				style={{
+					WebkitMaskImage: 'radial-gradient(circle at 50% 50%, white 50%, transparent 100%)',
+					maskImage: 'radial-gradient(circle at 50% 50%, white 50%, transparent 100%)',
+				}}
 			/>
 		</div>
 	);

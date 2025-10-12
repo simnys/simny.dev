@@ -16,8 +16,9 @@ import { cn } from '@/lib/utils';
 import '@/styles/globals.css';
 
 import type { Metadata, Viewport } from 'next';
-import { Geist_Mono as FontMono } from 'next/font/google';
+import { Geist_Mono as FontCode } from 'next/font/google';
 import { Inter as FontSans } from 'next/font/google';
+import { Instrument_Serif as FontSerif } from 'next/font/google';
 import localFont from 'next/font/local';
 import Script from 'next/script';
 import { Person, WithContext } from 'schema-dts';
@@ -26,11 +27,11 @@ import { navItems } from '@/data/navigation';
 import { Logo } from '@/data/icons';
 import ThemeSwitcher from '@/components/ui/ThemeSwitcher';
 
-const fontHeading = localFont({
-	src: '../public/fonts/Junicode-Condensed.woff2',
+const fontSerif = FontSerif({
+	subsets: ['latin'],
 	display: 'swap',
 	weight: '400',
-	variable: '--font-heading',
+	variable: '--font-serif',
 });
 const fontSans = FontSans({
 	subsets: ['latin'],
@@ -38,8 +39,14 @@ const fontSans = FontSans({
 	weight: 'variable',
 	variable: '--font-sans',
 });
-const fontMono = FontMono({
+const fontCode = FontCode({
 	subsets: ['latin'],
+	display: 'swap',
+	weight: '400',
+	variable: '--font-code',
+});
+const fontMono = localFont({
+	src: '../public/fonts/DepartureMono-Regular.woff2',
 	display: 'swap',
 	weight: '400',
 	variable: '--font-mono',
@@ -132,8 +139,9 @@ export default function RootLayout({
 
 			<body
 				className={cn(
-					fontHeading.variable,
+					fontSerif.variable,
 					fontSans.variable,
+					fontCode.variable,
 					fontMono.variable,
 					'flex flex-col min-h-screen'
 				)}
@@ -191,7 +199,7 @@ export default function RootLayout({
 								</nav>
 							</header>
 						</aside> */}
-					<main className="max-w-3xl mx-auto w-full grow relative flex flex-col gap-8 md:gap-12 p-6">
+					<main className="max-w-3xl mx-auto w-full grow relative flex flex-col gap-8 md:gap-12 p-6 pb-12 sm:pb-16">
 						{children}
 					</main>
 
