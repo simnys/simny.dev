@@ -4,10 +4,12 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-	--font-heading: var(--font-heading), ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+	--font-serif: var(--font-serif), ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
 		'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 	--font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
 		'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+	--font-code: var(--font-code), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+		'Liberation Mono', 'Courier New', monospace;
 	--font-mono: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
 		'Liberation Mono', 'Courier New', monospace;
 
@@ -29,7 +31,7 @@
 
 	--color-foreground: oklch(94.9% 0 0);
 	--color-foreground-secondary: oklch(83.3% 0 0);
-	--color-foreground-tertiary: oklch(77.3% 0 0);
+	--color-foreground-tertiary: oklch(68.3% 0 0);
 
 	--color-brand: var(--color-blue-500);
 	--color-border: oklch(25.2% 0 0);
@@ -97,22 +99,15 @@
 	}
 }
 
-h1,
+h1 {
+	@apply font-serif tracking-[-1px] text-[44px];
+}
 h2,
 h3,
 h4,
 h5,
 h6 {
-	@apply font-heading tracking-[-0.02em];
-}
-h1 {
-	@apply text-4xl sm:text-5xl;
-}
-h2 {
-	@apply text-2xl sm:text-3xl;
-}
-h3 {
-	@apply text-xl sm:text-2xl;
+	@apply font-medium tracking-tight;
 }
 
 /* 	------------
@@ -149,19 +144,18 @@ h3 {
 */
 /* Code block title tab */
 figcaption[data-rehype-pretty-code-title] {
-	@apply flex items-center border-b rounded-t-md py-2.5 px-6 mt-0 text-sm text-foreground font-medium bg-background-secondary;
+	@apply flex items-center border-b rounded-t-lg py-2.5 px-6 mt-0 text-sm text-foreground font-medium bg-background-secondary;
 }
 
 /* Code block body */
 figure[data-rehype-pretty-code-figure] {
-	@apply rounded-md border shadow-xs;
+	@apply rounded-lg border shadow-xs;
 }
 figure[data-rehype-pretty-code-figure] pre {
-	@apply font-mono overflow-x-auto py-4 px-0 text-sm leading-[26px] tracking-normal rounded-b-md rounded-t-none bg-background-secondary 
+	@apply font-code overflow-x-auto py-4 px-0 text-sm leading-[26px] tracking-normal rounded-lg bg-background-secondary 
 		[&::-webkit-scrollbar]:h-2
-		[&::-webkit-scrollbar-thumb]:rounded-none
-		[&::-webkit-scrollbar-thumb]:bg-gray-300
-		dark:[&::-webkit-scrollbar-thumb]:bg-gray-700;
+		[&::-webkit-scrollbar-thumb]:rounded-lg
+		[&::-webkit-scrollbar-thumb]:bg-foreground/10;
 
 	--code-foreground: #445175;
 	--code-token-constant: #ef3997;
@@ -207,7 +201,7 @@ code[data-line-numbers] [data-line]::before {
 
 /* Inline code */
 .prose :not(pre) > code {
-	@apply font-mono px-1.5 mx-0.5 py-0.5 rounded-md bg-background-secondary font-normal text-sm border text-brand;
+	@apply font-code px-1.5 mx-0.5 py-0.5 rounded-md bg-background-secondary font-normal text-sm border text-brand;
 }
 .prose :not(pre) > code::after,
 .prose :not(pre) > code::before {

@@ -19,7 +19,6 @@ export const metadata: Metadata = {
 export default async function Blog() {
 	const posts = getBlogPosts();
 	const tags = getAllTags();
-	const featured = posts.find((p) => p.image !== undefined && p.imageMeta !== null);
 
 	const jsonLd: WithContext<BlogLeaf> = {
 		'@type': 'Blog',
@@ -48,13 +47,9 @@ export default async function Blog() {
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
 
-			<PageHeader
-				title="Blog"
-				content="Insights, tutorials, and ideas from my journey in tech."
-				subtitle={{ text: 'Articles', Icon: IconDocument }}
-			/>
+			<PageHeader title="Blog" content="Insights, tutorials, and ideas from my journey in tech." />
 
-			<section>
+			<section className="space-y-4 sm:space-y-6">
 				<TagSelector tags={tags} activeTag={''} />
 				<PostList posts={posts} />
 			</section>

@@ -12,19 +12,6 @@ type PostListProps = {
 	query?: string;
 };
 
-const determineMatch = (post: Post, query: string): string => {
-	const { title, tags } = post;
-
-	const matchingTag = tags?.find((tag) => tag.toLowerCase().includes(query.toLowerCase()));
-	if (matchingTag) {
-		return matchingTag;
-	}
-	if (title.toLowerCase().includes(query.toLowerCase())) {
-		return 'Title';
-	}
-	return '';
-};
-
 export default function PostList({ posts, query }: PostListProps) {
 	return (
 		<motion.ul
@@ -36,7 +23,7 @@ export default function PostList({ posts, query }: PostListProps) {
 				stiffness: 300,
 				damping: 30,
 			}}
-			className="flex flex-col divide-y border-b"
+			className="flex flex-col gap-1 -mx-6 px-2 md:px-0"
 		>
 			{posts.map((post) => (
 				<motion.li
@@ -53,9 +40,9 @@ export default function PostList({ posts, query }: PostListProps) {
 					<Link
 						draggable="false"
 						className={cn(
-							'relative w-full flex flex-col items-baseline gap-x-8 md:gap-x-16 sm:flex-row px-4 sm:px-8 py-6',
+							'relative w-full flex flex-col items-baseline gap-x-8 md:gap-x-16 sm:flex-row p-4 lg:px-6 bg-background rounded-xl',
 							'',
-							'group hover:bg-background-secondary/20'
+							'group transition-colors duration-200 ease-out hover:bg-background-secondary'
 						)}
 						href={`/blog/${post.slug}`}
 					>
@@ -66,21 +53,15 @@ export default function PostList({ posts, query }: PostListProps) {
 						</div>
 
 						<div className="flex-1 sm:max-w-4/5">
-							<h3 className="text-balance grow mb-1">{post.title}</h3>
+							<h3 className="text-balance grow my-1 sm:mt-0">{post.title}</h3>
 							<p className="text-sm text-foreground-secondary text-pretty line-clamp-2 leading-normal">
 								{post.summary}
 							</p>
 						</div>
 
-						<div className="hidden sm:block mt-auto p-1 rounded-full text-foreground-secondary ring-1 ring-transparent ring-offset-background transition-all group-hover:text-foreground group-hover:ring-brand group-hover:ring-offset-2">
+						<div className="hidden sm:block mt-auto p-2 rounded-full text-foreground-tertiary transition-all group-hover:text-foreground group-hover:bg-background-tertiary">
 							<IconArrow className="justify-self-end self-end w-4 h-4" />
 						</div>
-
-						{query && (
-							<div className="absolute top-6 right-6 text-xs text-brand tracking-normal">
-								{determineMatch(post, query)}
-							</div>
-						)}
 					</Link>
 				</motion.li>
 			))}

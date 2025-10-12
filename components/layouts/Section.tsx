@@ -26,7 +26,7 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
 	linkHref,
 	className,
 }) => (
-	<div className={cn('relative mb-6 text-xl', className)}>
+	<div className={cn('relative mb-2 text-xl', className)}>
 		<span className="text-sm font-medium text-brand">{subtitle}</span>
 		<h2>{title}</h2>
 

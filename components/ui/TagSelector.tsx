@@ -8,9 +8,9 @@ interface TagSelectorProps {
 
 export function TagSelector({ tags, activeTag }: TagSelectorProps) {
 	return (
-		<div className="px-2 sm:px-6 -mx-6 border-b">
+		<div className="px-2 -mx-6 sm:mx-0 sm:px-0 border-b">
 			<nav
-				className="flex gap-x-1 font-medium text-sm tracking-normal overflow-x-auto no-scrollbar mask-[linear-gradient(to_right,white_90%,transparent)]"
+				className="flex gap-x-1 p-0.5 font-medium text-sm tracking-normal overflow-y-visible overflow-x-auto no-scrollbar mask-[linear-gradient(to_right,white_90%,transparent)]"
 				id="blog-tags"
 			>
 				<Link
@@ -18,9 +18,9 @@ export function TagSelector({ tags, activeTag }: TagSelectorProps) {
 					aria-current={!activeTag ? 'page' : undefined}
 					className={cn(
 						!activeTag
-							? 'border-brand text-brand'
-							: 'border-transparent text-foreground-tertiary transition-colors hover:border-foreground hover:text-foreground',
-						'whitespace-nowrap border-b p-2'
+							? 'text-brand after:bg-brand'
+							: 'text-foreground-tertiary transition-colors duration-200 ease-out hover:after:bg-foreground hover:text-foreground after:transition-colors after:duration-200 after:ease-out',
+						'relative whitespace-nowrap px-2 py-1 after:content-["_"] after:absolute after:z-10 after:-bottom-0.5 after:left-0 after:h-px after:w-full after:rounded-full'
 					)}
 				>
 					All
@@ -32,9 +32,9 @@ export function TagSelector({ tags, activeTag }: TagSelectorProps) {
 						aria-current={activeTag === tag ? 'page' : undefined}
 						className={cn(
 							activeTag === tag
-								? 'border-brand text-brand'
-								: 'border-transparent text-foreground-tertiary transition-colors hover:border-foreground hover:text-foreground',
-							'whitespace-nowrap border-b p-2'
+								? 'text-brand after:bg-brand'
+								: 'text-foreground-tertiary transition-colors duration-200 ease-out hover:after:bg-foreground hover:text-foreground after:transition-colors after:duration-200 after:ease-out',
+							'relative whitespace-nowrap px-2 py-1 after:content-["_"] after:absolute after:z-10 after:-bottom-0.5 after:left-0 after:h-px after:w-full after:rounded-full'
 						)}
 					>
 						{tag}

@@ -16,7 +16,7 @@ import {
 import { IconDoodleArrow, IconDoodleCompass, IconDoodleMountains, IconUser } from '@/data/icons';
 import { skillsList } from '@/data/projects';
 import { getStaticImages } from '@/lib/gallery';
-import HeroImage from '@/public/images/hero.jpg';
+import HeroImage from '@/public/images/hero-px.png';
 
 import { Metadata } from 'next';
 import Image from 'next/image';
@@ -54,7 +54,7 @@ export default async function About() {
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
 
-			<PageHeader title="About Me" subtitle={{ text: 'Bio', Icon: IconUser }} />
+			<PageHeader title="About Me" />
 
 			<Section className="pb-0 sm:pb-0 border-b">
 				<div className="grid md:grid-cols-12 md:divide-x">

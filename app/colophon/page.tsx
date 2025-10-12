@@ -17,7 +17,6 @@ export default function Colophon() {
 			<PageHeader
 				title="Colophon"
 				content="A summary of the technologies, design, workflow and decisions behind my website."
-				subtitle={{ text: 'Design', Icon: IconDesign }}
 			/>
 
 			<Section className="px-4 py-10 space-y-8 max-w-3xl mx-auto">
@@ -46,7 +45,7 @@ export default function Colophon() {
 					</CustomLink>
 				</div>
 
-				<div className="flex flex-col sm:flex-row gap-2 px-4 font-mono max-w-3xl mx-auto w-full">
+				<div className="flex flex-col sm:flex-row gap-2 px-4 font-code max-w-3xl mx-auto w-full">
 					<p className="flex-1 text-lg tracking-normal sm:tracking-wide font-medium">
 						ABCDEFGHIJKLMNOPQRSTUVWXYZ
 						<br />

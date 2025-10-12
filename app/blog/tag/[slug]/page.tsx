@@ -51,16 +51,12 @@ export default async function TagPage(props: Props) {
 
 	return (
 		<>
-			<PageHeader
-				title={tag}
-				subtitle={{ text: 'Articles', Icon: IconDocument }}
-				content="Insights, tutorials, and ideas from my journey in tech."
-			/>
+			<PageHeader title={tag} content="Insights, tutorials, and ideas from my journey in tech." />
 
-			<Section>
+			<section className="space-y-4 sm:space-y-6">
 				<TagSelector tags={tags} activeTag={tag} />
 				<PostList posts={posts} />
-			</Section>
+			</section>
 		</>
 	);
 }
