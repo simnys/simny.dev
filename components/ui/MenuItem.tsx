@@ -1,4 +1,4 @@
-import { NavItem } from '@/lib/types';
+import { NavItem } from '@/lib/types/types';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 

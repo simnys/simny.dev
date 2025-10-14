@@ -1,5 +1,5 @@
-import { IconArrowUpRight } from '@/data/icons';
 import { cn } from '@/lib/utils';
+import { Icon } from './Icon';
 
 interface CardOverlayProps {
 	withOverlay?: boolean;
@@ -28,11 +28,11 @@ export default function CardOverlay({
 				<div
 					className={cn(
 						'absolute right-4 -bottom-2 z-20 w-fit h-fit rounded-full p-2',
-						'bg-background/80 text-foreground-secondary backdrop-blur-md',
+						'bg-background text-foreground-secondary backdrop-blur-md',
 						'opacity-0 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:-translate-y-5 user-select-none pointer-events-none '
 					)}
 				>
-					<IconArrowUpRight className="w-4 h-4" />
+					<Icon name="external" className="w-4 h-4" />
 				</div>
 			)}
 		</>

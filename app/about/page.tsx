@@ -13,7 +13,6 @@ import {
 	SITE_NAME,
 	SITE_URL,
 } from '@/data/constants';
-import { IconDoodleArrow, IconDoodleCompass, IconDoodleMountains, IconUser } from '@/data/icons';
 import { skillsList } from '@/data/projects';
 import { getStaticImages } from '@/lib/gallery';
 import HeroImage from '@/public/images/hero-px.png';
@@ -67,9 +66,9 @@ export default async function About() {
 							className="rounded-2xl md:rounded-3xl ring-1 ring-border aspect-square sm:aspect-video md:aspect-auto w-full h-full object-cover object-center grayscale"
 						/>
 						<div className="absolute inset-0 z-10 rounded-3xl bg-linear-to-tr from-brand/20 to-brand/10 mix-blend-soft-light" />
-						<IconDoodleArrow className="text-brand w-24 h-24 md:w-28 md:h-28 absolute z-10 -top-6 left-6 rotate-8" />
+						{/* <IconDoodleArrow className="text-brand w-24 h-24 md:w-28 md:h-28 absolute z-10 -top-6 left-6 rotate-8" />
 						<IconDoodleCompass className="text-brand w-16 h-16 absolute z-10 -right-2 -top-4 md:-right-4 md:-top-4 -rotate-3" />
-						<IconDoodleMountains className="text-brand w-16 h-16 absolute z-10 bottom-32 -left-1 md:bottom-48 md:-left-6 rotate-12" />
+						<IconDoodleMountains className="text-brand w-16 h-16 absolute z-10 bottom-32 -left-1 md:bottom-48 md:-left-6 rotate-12" /> */}
 					</div>
 
 					<div className="col-span-12 md:col-span-8 prose max-w-none prose-p:leading-7 first:prose-p:text-foreground px-4 py-6 md:px-6 md:py-8">

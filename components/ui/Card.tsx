@@ -4,6 +4,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import CardOverlay from './CardOverlay';
+import { Icon } from './Icon';
+import { IconName } from '@/lib/types/icons';
 
 interface CardProps {
 	href: string;
@@ -59,16 +61,16 @@ function Card({ image, imageMeta, href, children, className }: CardProps) {
 
 interface CardBodyProps {
 	title: string;
-	icon?: React.ComponentType<React.SVGAttributes<SVGElement>>;
+	icon?: IconName;
 	className?: string;
 	children: React.ReactNode;
 }
-function CardBody({ title, icon: Icon, className, children }: CardBodyProps) {
+function CardBody({ title, icon, className, children }: CardBodyProps) {
 	return (
 		<>
 			<div className="px-4 py-2 flex gap-x-2 justify-between items-center">
 				<h3 className="text-base text-pretty">{title}</h3>
-				{Icon && <Icon className="w-4 h-4 text-foreground-tertiary/80" />}
+				{icon && <Icon name={icon} className="w-4 h-4 text-foreground-tertiary/80" />}
 			</div>
 
 			<p className={cn('px-4 mb-4 text-foreground-secondary', className)}>{children}</p>

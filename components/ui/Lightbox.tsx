@@ -1,10 +1,10 @@
 'use client';
 
-import { IconArrow } from '@/data/icons';
-import { GalleryImage } from '@/lib/types';
+import { GalleryImage } from '@/lib/types/types';
 import { AnimatePresence, motion } from 'framer-motion';
 import { CldImage } from 'next-cloudinary';
 import { useEffect, useRef, useState } from 'react';
+import { Icon } from './Icon';
 
 type Props = {
 	content: Array<GalleryImage>;
@@ -68,13 +68,13 @@ export default function Lightbox({ content, current, setCurrent, isVisible, onCl
 							className="hidden md:block absolute z-110 right-6 bottom-1/2 -translate-y-1/2 w-fit p-2 rounded-full bg-foreground-secondary/5 text-foreground-secondary ring-1 ring-transparent ring-offset-background transition-all hover:bg-foreground-secondary/10 hover:text-foreground hover:ring-brand hover:ring-offset-2 active:scale-95 active:ring-offset-1 cursor-pointer select-none"
 							onClick={(e) => showNext(e)}
 						>
-							<IconArrow className="w-5 h-5" />
+							<Icon name="arrow" className="w-5 h-5" />
 						</div>
 						<div
 							className="hidden md:block absolute z-110 left-6 bottom-1/2 -translate-y-1/2 w-fit p-2 rounded-full bg-foreground-secondary/5 text-foreground-secondary ring-1 ring-transparent ring-offset-background transition-all hover:bg-foreground-secondary/10 hover:text-foreground hover:ring-brand hover:ring-offset-2 active:scale-95 active:ring-offset-1 cursor-pointer select-none"
 							onClick={(e) => showPrev(e)}
 						>
-							<IconArrow className="w-5 h-5 rotate-180" />
+							<Icon name="arrow" className="w-5 h-5 rotate-180" />
 						</div>
 
 						<div

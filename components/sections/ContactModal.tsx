@@ -2,8 +2,8 @@
 
 import { SITE_CONTACT } from '@/data/constants';
 import { navItems } from '@/data/navigation';
-import { IconCheck, IconCopy, IconEmail } from '@/data/icons';
 import Copy from '../ui/Copy';
+import { Icon } from '../ui/Icon';
 
 export default function ContactModal() {
 	return (
@@ -18,19 +18,18 @@ export default function ContactModal() {
 			<div className="flex items-center w-full border-y">
 				<div className="flex flex-col grow text-foreground border-r py-3 px-6 sm:px-8 text-[15px] bg-background">
 					<div className="flex items-center gap-x-2 text-[13px] text-foreground-secondary">
-						<IconEmail width={15} height={15} />
 						Email
 					</div>
 					{SITE_CONTACT}
 				</div>
 				<Copy
 					toCopy={SITE_CONTACT}
-					successMessage={<IconCheck width={28} height={28} />}
+					successMessage={<Icon name="check" className="size-6" />}
 					hiddenClassName="left-auto bottom-auto"
 					variant="grow"
 					className="relative h-full flex items-center justify-center px-6 bg-background text-foreground transition-colors hover:text-background hover:bg-foreground"
 				>
-					<IconCopy width={20} height={20} />
+					<Icon name="copy" />
 				</Copy>
 			</div>
 			<div className="mt-auto flex items-center justify-center gap-4 py-4 text-foreground-secondary">
@@ -42,7 +41,7 @@ export default function ContactModal() {
 						rel="noopener noreferrer"
 						className="hover:text-background hover:bg-foreground rounded-xl transition-colors p-2"
 					>
-						{link.icon ? <link.icon width={20} height={20} /> : null}
+						{link.icon ? <Icon name={link.icon} /> : null}
 					</a>
 				))}
 			</div>

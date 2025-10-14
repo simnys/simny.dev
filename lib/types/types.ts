@@ -1,5 +1,6 @@
 import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 import { ComponentType, SVGProps } from 'react';
+import { IconName } from './icons';
 
 export type Project = {
 	title: string;
@@ -34,7 +35,10 @@ export type StaticImage = {
 export type NavItem = {
 	name: string;
 	path: string;
-	icon?: ComponentType<SVGProps<SVGSVGElement>>;
+	icon?: IconName;
+	description?: string;
+	colSpan?: number;
+	rowSpan?: number;
 };
 export type Navigation = {
 	navigationLinks: NavItem[];

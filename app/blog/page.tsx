@@ -1,9 +1,7 @@
 import PageHeader from '@/components/layouts/PageHeader';
-import { Section } from '@/components/layouts/Section';
 import PostList from '@/components/ui/PostList';
 import { TagSelector } from '@/components/ui/TagSelector';
 import { SITE_NAME, SITE_URL } from '@/data/constants';
-import { IconDocument } from '@/data/icons';
 
 import { getAllTags, getBlogPosts } from '@/lib/blog';
 

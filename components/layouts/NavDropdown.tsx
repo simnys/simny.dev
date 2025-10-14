@@ -6,8 +6,9 @@ import { cn } from '@/lib/utils';
 import { dropdownLinks } from '@/data/navigation';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ComponentType, SVGProps } from 'react';
 import CardOverlay from '../ui/CardOverlay';
+import { IconName } from '@/lib/types/icons';
+import { Icon } from '../ui/Icon';
 
 interface NavDropdown {
 	isOpen: boolean;
@@ -59,7 +60,7 @@ function NavDropdown({ isOpen, onClose, className }: NavDropdown) {
 interface NavDropDownCard {
 	title: string;
 	description?: string;
-	icon?: ComponentType<SVGProps<SVGSVGElement>>;
+	icon?: IconName;
 	href?: string;
 	onClose: () => void;
 	colSpan?: number;
@@ -70,7 +71,7 @@ interface NavDropDownCard {
 function NavDropDownCard({
 	title,
 	description,
-	icon: Icon,
+	icon,
 	onClose,
 	href = '',
 	colSpan = 4,
@@ -94,7 +95,7 @@ function NavDropDownCard({
 		>
 			<div className={cn('flex gap-x-2', rowSpan > 1 ? 'flex-col h-full' : 'items-center')}>
 				<div className="flex items-center gap-2">
-					{Icon && <Icon />}
+					{icon && <Icon name={icon} />}
 					<h3 className="tracking-normal z-20 relative">{title}</h3>
 				</div>
 				{description && (
@@ -114,8 +115,9 @@ function NavDropDownCard({
 					</div>
 				)}
 			</div>
-			{Icon && rowSpan > 1 && (
+			{icon && rowSpan > 1 && (
 				<Icon
+					name={icon}
 					className={cn(
 						'w-80 h-80 absolute -bottom-12 -right-12 -rotate-12 text-foreground-secondary/5 dark:text-black/20',
 						'transition-colors duration-300 pointer-events-none select-none ease-out'

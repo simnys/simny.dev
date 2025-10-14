@@ -51,15 +51,19 @@ export default function Copy({
 		<button
 			onClick={handleCopy}
 			className={cn(
-				'relative overflow-hidden flex items-center gap-x-2 text-foreground-secondary text-sm hover:text-foreground font-[450] transition-colors hover:cursor-pointer',
+				'relative overflow-hidden flex items-center gap-x-2 text-foreground-secondary text-sm hover:text-foreground transition-colors duration-200 ease-out hover:cursor-pointer',
 				className
 			)}
 		>
 			{icon}
-			<span className={cn('transition-transform', variants[variant].mainElement)}>{children}</span>
+			<span
+				className={cn('transition-transform duration-200 ease-out', variants[variant].mainElement)}
+			>
+				{children}
+			</span>
 			<span
 				className={cn(
-					'absolute bottom-0 transition-transform',
+					'absolute bottom-0 transition-transform duration-200 ease-out',
 					icon ? 'left-6' : 'left-0',
 					variants[variant].hiddenElement,
 					hiddenClassName

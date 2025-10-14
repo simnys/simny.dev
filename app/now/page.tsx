@@ -1,7 +1,7 @@
 import CustomLink from '@/components/blog/Link';
 import PageHeader from '@/components/layouts/PageHeader';
 import { Section } from '@/components/layouts/Section';
-import { Card, CardBody } from '@/components/ui/Card';
+import { Icon } from '@/components/ui/Icon';
 
 import {
 	RAINDROP_COLLECTION_ID,
@@ -13,11 +13,9 @@ import {
 	SITE_NAME,
 	SITE_URL,
 } from '@/data/constants';
-import { IconLink } from '@/data/icons';
 import { getRaindropCollection } from '@/lib/raindrop';
 
 import { Metadata } from 'next';
-import Link from 'next/link';
 import Script from 'next/script';
 import { AboutPage, WithContext } from 'schema-dts';
 
@@ -65,7 +63,7 @@ export default async function Now() {
 								</CustomLink>
 								{bookmark.note && <p className="text-foreground-secondary mb-1">{bookmark.note}</p>}
 								<span className="text-xs flex items-center gap-1 text-foreground-secondary/80">
-									<IconLink />
+									<Icon name="link" />
 									{bookmark.domain}
 								</span>
 							</div>

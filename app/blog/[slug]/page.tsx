@@ -3,10 +3,10 @@ import CustomLink from '@/components/blog/Link';
 import MDXComponents from '@/components/blog/MDXcomponents';
 import Tag from '@/components/blog/Tag';
 import { Section, SectionHeader } from '@/components/layouts/Section';
+import { Icon } from '@/components/ui/Icon';
 import PostList from '@/components/ui/PostList';
 
 import { SITE_GITHUB_URL, SITE_LINKEDIN_URL, SITE_NAME, SITE_URL } from '@/data/constants';
-import { IconBack, IconCalendar, IconHourglass } from '@/data/icons';
 import { getBlogPost, getBlogPosts, getRelatedPosts } from '@/lib/blog';
 import { formatDate } from '@/lib/utils';
 import avatar from '@/public/images/avatar-px.png';
@@ -135,9 +135,9 @@ export default async function BlogPost(props: Props) {
 			<div className="hidden sm:block">
 				<Link
 					href="/blog"
-					className="absolute md:top-6 md:left-6 w-fit p-1.5 rounded-full bg-foreground-tertiary/5 text-foreground-secondary ring-1 ring-transparent ring-offset-background transition-all hover:bg-foreground-tertiary/10 hover:text-foreground hover:ring-brand hover:ring-offset-2"
+					className="absolute md:top-6 md:left-6 w-fit p-2 rounded-full bg-foreground-tertiary/5 text-foreground-secondary ring-1 ring-transparent ring-offset-background transition-all hover:bg-foreground-tertiary/10 hover:text-foreground hover:ring-brand hover:ring-offset-2"
 				>
-					<IconBack className="w-5 h-5 rotate-180" />
+					<Icon name="back" className="w-4 h-4" />
 				</Link>
 			</div>
 
@@ -182,11 +182,11 @@ export default async function BlogPost(props: Props) {
 						<h1 className="text-2xl sm:text-3xl text-balance">{post.title}</h1>
 						<div className="flex items-center gap-4 sm:gap-6 text-xs sm:text-sm opacity-80">
 							<div className="flex items-center gap-x-1 sm:gap-x-2">
-								<IconCalendar className="w-3 h-3 sm:w-4 sm:h-4" />
+								<Icon name="calendar" className="w-3 h-3 sm:w-4 sm:h-4" />
 								<time>{formatDate(post.date)}</time>
 							</div>
 							<div className="flex items-center gap-x-1 sm:gap-x-2">
-								<IconHourglass className="w-3 h-3 sm:w-4 sm:h-4" />
+								<Icon name="hourglass" className="w-3 h-3 sm:w-4 sm:h-4" />
 								<p>{post.readingTime}</p>
 							</div>
 						</div>

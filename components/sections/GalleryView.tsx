@@ -1,7 +1,7 @@
 'use client';
 
 import { useScreenBreakpoints } from '@/lib/hooks';
-import { GalleryCollection, GalleryImage, StaticImage } from '@/lib/types';
+import { GalleryCollection, GalleryImage, StaticImage } from '@/lib/types/types';
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';

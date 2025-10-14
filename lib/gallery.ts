@@ -6,7 +6,7 @@ import lqip from 'lqip-modern';
 import { getCldImageUrl } from 'next-cloudinary';
 import { cache } from 'react';
 import { galleryCollections } from '../data/gallery';
-import { GalleryCollection, GalleryImage, StaticImage } from './types';
+import { GalleryCollection, GalleryImage, StaticImage } from './types/types';
 import { slugify } from './utils';
 
 async function createBlurDataURL(src: string): Promise<string> {

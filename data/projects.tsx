@@ -1,4 +1,4 @@
-import { Project } from '@/lib/types';
+import { Project } from '@/lib/types/types';
 
 export enum Skills {
 	HTML = 'HTML',
