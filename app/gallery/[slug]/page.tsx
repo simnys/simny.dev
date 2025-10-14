@@ -4,9 +4,8 @@ import GalleryView from '@/components/sections/GalleryView';
 
 import { SITE_NAME, SITE_URL } from '@/data/constants';
 import { galleryCollections } from '@/data/gallery';
-import { IconGallery } from '@/data/icons';
 import { getImagesInCollection } from '@/lib/gallery';
-import { GalleryImage } from '@/lib/types';
+import { GalleryImage } from '@/lib/types/types';
 import { slugify } from '@/lib/utils';
 
 import { Metadata } from 'next';

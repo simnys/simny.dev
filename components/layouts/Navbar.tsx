@@ -1,7 +1,7 @@
 'use client';
 
 import { navItems } from '@/data/navigation';
-import { IconAt, IconMenu, Logo } from '@/data/icons';
+import { IconMenu } from '@/data/icons';
 import { cn } from '@/lib/utils';
 
 import { AnimatePresence } from 'framer-motion';
@@ -42,7 +42,7 @@ export default function Navbar({ className }: { className?: string }) {
 							'transition-all hover:text-foreground hover:ring-brand hover:ring-offset-2'
 						)}
 					>
-						<Logo width={20} height={20} className="" />
+						SIMNY
 					</Link>
 				</div>
 
@@ -99,7 +99,7 @@ export default function Navbar({ className }: { className?: string }) {
 
 					<Tooltip message="Contact" className="hidden sm:flex">
 						<Modal
-							trigger={<IconAt width={18} height={18} />}
+							trigger={<span>@</span>}
 							triggerClassName={cn(
 								'w-fit p-2 my-1 rounded-lg',
 								'text-foreground-secondary ring-1 ring-transparent ring-offset-background',

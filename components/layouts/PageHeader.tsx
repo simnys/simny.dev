@@ -1,7 +1,6 @@
-import { IconBack } from '@/data/icons';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
-import { ComponentType, SVGProps } from 'react';
+import { Icon } from '../ui/Icon';
 
 interface PageHeaderProps {
 	title: string;
@@ -27,7 +26,7 @@ export default function PageHeader({ title, content, backlink, className }: Page
 							'transition-[colors, scale] duration-200 ease-out hover:bg-background-tertiary hover:text-foreground active:scale-95'
 						)}
 					>
-						<IconBack className="w-5 h-5 rotate-180" />
+						<Icon name="back" className="w-5 h-5 rotate-180" />
 					</Link>
 				)}
 			</div>

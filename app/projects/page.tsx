@@ -4,7 +4,6 @@ import { Card, CardBody, CardFooter } from '@/components/ui/Card';
 import { SITE_NAME, SITE_URL } from '@/data/constants';
 
 import { projectsData } from '@/data/projects';
-import { IconCode, IconGithub } from '@/data/icons';
 
 import { Metadata } from 'next';
 import Script from 'next/script';
@@ -45,7 +44,6 @@ export default function Projects() {
 			<PageHeader
 				title="Projects"
 				content="Some of the things I've built, tinkered with, or just enjoyed working on."
-				subtitle={{ text: 'Dev', Icon: IconCode }}
 			/>
 
 			<Section className="grid md:grid-cols-2 gap-4 px-2 pt-2">
@@ -57,7 +55,7 @@ export default function Projects() {
 						imageMeta={{ blur: '', width: 512, height: 300 }}
 						className="h-[250px]"
 					>
-						<CardBody title={project.title} icon={IconGithub}>
+						<CardBody title={project.title} icon="github">
 							{project.description}
 						</CardBody>
 						<CardFooter>

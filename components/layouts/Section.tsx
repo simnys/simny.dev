@@ -1,8 +1,8 @@
-import { IconArrow } from '@/data/icons';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 
 import React, { ReactNode } from 'react';
+import { Icon } from '../ui/Icon';
 
 interface SectionProps {
 	children: ReactNode;
@@ -35,7 +35,7 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
 				href={linkHref}
 				className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-foreground-secondary/5 text-foreground-secondary ring-1 ring-transparent ring-offset-background transition-all hover:bg-foreground-secondary/10 hover:text-foreground hover:ring-brand hover:ring-offset-2"
 			>
-				<IconArrow className="w-4 h-4" />
+				<Icon name="arrow" className="w-4 h-4" />
 			</Link>
 		)}
 	</div>

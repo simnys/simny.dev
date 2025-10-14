@@ -1,10 +1,10 @@
-import { GalleryImage, StaticImage } from '@/lib/types';
+import { GalleryImage, StaticImage } from '@/lib/types/types';
 import { cn, slugify } from '@/lib/utils';
 
-import { IconGallery } from '@/data/icons';
 import Image from 'next/image';
 import Link from 'next/link';
 import CardOverlay from './CardOverlay';
+import { Icon } from './Icon';
 
 type Props = {
 	isCollection: boolean;
@@ -47,7 +47,7 @@ export default function GalleryItem({
 					/>
 					<div className="rounded-xl bg-linear-to-t from-foreground/80 dark:from-background/80 via-transparent to-transparent flex flex-col items-start justify-end p-4 absolute w-full top-0 bottom-0 text-background dark:text-foreground transition-colors duration-300 ease-out group-hover:bg-background/20">
 						<div className="text-xs font-medium flex items-center gap-1 opacity-80">
-							<IconGallery />
+							<Icon name="gallery" />
 							{collectionSize}
 						</div>
 						<h3 className="text-xl">{collectionTitle}</h3>

@@ -1,6 +1,5 @@
 'use client';
 
-import { IconX } from '@/data/icons';
 import { useFocusTrap, useIsMounted, useScrollLock } from '@/lib/hooks';
 import { cn } from '@/lib/utils';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -79,7 +78,7 @@ const Modal = ({
 											aria-label="Close modal"
 											onClick={() => setIsOpen(false)}
 										>
-											<IconX />
+											&times;
 										</button>
 										<ModalContent className={cn('flex flex-col items-center gap-2', className)}>
 											{children}

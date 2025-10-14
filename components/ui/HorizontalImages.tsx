@@ -1,6 +1,6 @@
 'use client';
 
-import { StaticImage } from '@/lib/types';
+import { StaticImage } from '@/lib/types/types';
 import { cn } from '@/lib/utils';
 
 import { motion, useScroll, useSpring, useTransform } from 'framer-motion';

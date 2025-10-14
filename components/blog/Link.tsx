@@ -1,7 +1,7 @@
-import { IconArrowUpRight } from '@/data/icons';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import React from 'react';
+import { Icon } from '../ui/Icon';
 
 const cLinkBase =
 	'c-link relative inline-flex items-center gap-x-0.5 no-underline whitespace-nowrap text-foreground hover:text-brand transition-colors before:c-link-border hover:before:translate-y-1 hover:before:bg-transparent hover:before:transform-gpu';
@@ -36,8 +36,14 @@ export default function CustomLink(props: CustomLinkProps) {
 		>
 			{props.children}
 			<span className="overflow-hidden relative">
-				<IconArrowUpRight className="w-4 h-4 group-hover:-translate-y-5 group-hover:translate-x-5 transition-transform" />
-				<IconArrowUpRight className="absolute bottom-0 right-0  w-4 h-4 translate-y-5 -translate-x-5 group-hover:translate-y-0 group-hover:translate-x-0 transition-transform" />
+				<Icon
+					name="external"
+					className="w-4 h-4 group-hover:-translate-y-5 group-hover:translate-x-5 transition-transform"
+				/>
+				<Icon
+					name="external"
+					className="absolute bottom-0 right-0  w-4 h-4 translate-y-5 -translate-x-5 group-hover:translate-y-0 group-hover:translate-x-0 transition-transform"
+				/>
 			</span>
 		</Link>
 	);

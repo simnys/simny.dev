@@ -1,4 +1,4 @@
-import { GalleryCollection } from '@/lib/types';
+import { GalleryCollection } from '@/lib/types/types';
 
 export const GALLERY_FOLDER_PATH = 'gallery';
 export const GALLERY_COVER_TAG = 'role:cover';

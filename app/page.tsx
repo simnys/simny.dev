@@ -1,19 +1,9 @@
 import CustomLink from '@/components/blog/Link';
-import { Section, SectionHeader } from '@/components/layouts/Section';
-import {
-	BentoCardAbout,
-	BentoCardBlog,
-	BentoCardGallery,
-	BentoCardProjects,
-} from '@/components/sections/BentoCards';
 import Hero from '@/components/sections/Hero';
-import { BentoGrid } from '@/components/ui/Bento';
-import { Card, CardBody, CardFooter } from '@/components/ui/Card';
 
 import { SITE_URL } from '@/data/constants';
-import { IconDocument } from '@/data/icons';
 import { getBlogPosts, getLatestBlogPost } from '@/lib/blog';
-import { cn, formatDate } from '@/lib/utils';
+import { cn } from '@/lib/utils';
 
 import { Metadata } from 'next';
 

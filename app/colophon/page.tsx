@@ -1,7 +1,6 @@
 import CustomLink from '@/components/blog/Link';
 import PageHeader from '@/components/layouts/PageHeader';
 import { Section } from '@/components/layouts/Section';
-import { IconDesign } from '@/data/icons';
 
 import { cn } from '@/lib/utils';
 import { Metadata } from 'next';

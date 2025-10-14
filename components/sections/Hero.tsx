@@ -1,4 +1,3 @@
-import { IconDoodleCoffee, IconDoodleGuitar, IconDoodlePhoto, IconDoodleTech } from '@/data/icons';
 import { navItems } from '@/data/navigation';
 import avatar from '@/public/images/avatar-px.png';
 
@@ -23,7 +22,7 @@ export default function Hero() {
 				<span className="font-mono absolute top-2 left-0 whitespace-nowrap w-full text-xs tracking-tighter px-2 py-1 rounded-lg border bg-background-secondary/50 backdrop-blur-sm opacity-0 transition-all ease-out group-hover:opacity-100 group-hover:-translate-y-3">
 					Things on my mind
 				</span>
-				<div className="absolute inset-0 flex items-center justify-center motion-safe:will-change-transform motion-safe:animate-rotate text-foreground-tertiary/50">
+				{/* <div className="absolute inset-0 flex items-center justify-center motion-safe:will-change-transform motion-safe:animate-rotate text-foreground-tertiary/50">
 					<span className="motion-safe:animate-rotate-reverse absolute top-0 right-0 text-4xl opacity-0 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-x-5 group-hover:-translate-y-5">
 						<IconDoodlePhoto className="w-9 h-9" />
 					</span>
@@ -36,7 +35,7 @@ export default function Hero() {
 					<span className="motion-safe:animate-rotate-reverse absolute bottom-0 left-0 text-4xl opacity-0 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:-translate-x-5 group-hover:translate-y-5">
 						<IconDoodleCoffee className="w-9 h-9" />
 					</span>
-				</div>
+				</div> */}
 			</div>
 			<div className="max-w-2xl mx-auto text-balance px-4 space-y-2">
 				<h1 className="">Hey, I&apos;m Simon.</h1>

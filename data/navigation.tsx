@@ -1,20 +1,10 @@
-import { Navigation } from '../lib/types';
+import { Navigation, NavItem } from '../lib/types/types';
 import { SITE_CONTACT, SITE_GITHUB_URL, SITE_INSTAGRAM_URL, SITE_LINKEDIN_URL } from './constants';
-import {
-	IconComponent,
-	IconDesign,
-	IconDocument,
-	IconGallery,
-	IconGithub,
-	IconInstagram,
-	IconLinkedin,
-	IconRSS,
-} from './icons';
 
 //
 // NAVIGAITON
 //
-const navigationLinks = [
+const navigationLinks: NavItem[] = [
 	{
 		name: 'Home',
 		path: '/',
@@ -32,12 +22,12 @@ const navigationLinks = [
 		path: '/projects',
 	},
 ];
-const exploreLinks = [
+const exploreLinks: NavItem[] = [
 	{
 		name: 'Gallery',
 		description: 'Memorable photography collections from around the globe',
 		path: '/gallery',
-		icon: IconGallery,
+		icon: 'gallery',
 		colSpan: 7,
 		rowSpan: 4,
 	},
@@ -45,7 +35,7 @@ const exploreLinks = [
 		name: 'Components',
 		description: 'Library of interactive elements',
 		path: '',
-		icon: IconComponent,
+		icon: 'component',
 		colSpan: 5,
 		rowSpan: 2,
 	},
@@ -53,16 +43,15 @@ const exploreLinks = [
 		name: 'Colophon',
 		description: 'Dev & design process',
 		path: '/colophon',
-		icon: IconDesign,
+		icon: 'design',
 		colSpan: 5,
 		rowSpan: 1,
 	},
 ];
-const connectLinks = [
+const connectLinks: NavItem[] = [
 	{
 		name: 'Contact',
 		path: `mailto:${SITE_CONTACT}`,
-		icon: undefined,
 		colSpan: 5,
 		rowSpan: 2,
 	},
@@ -70,31 +59,31 @@ const connectLinks = [
 		name: 'Resume',
 		description: 'Summary of my experiences',
 		path: '/cv.pdf',
-		icon: IconDocument,
+		icon: 'document',
 		colSpan: 5,
 		rowSpan: 1,
 	},
 ];
-const socialLinks = [
+const socialLinks: NavItem[] = [
 	{
 		name: 'Github',
 		path: SITE_GITHUB_URL,
-		icon: IconGithub,
+		icon: 'github',
 	},
 	{
 		name: 'LinkedIn',
 		path: SITE_LINKEDIN_URL,
-		icon: IconLinkedin,
+		icon: 'linkedin',
 	},
 	{
 		name: 'Instagram',
 		path: SITE_INSTAGRAM_URL,
-		icon: IconInstagram,
+		icon: 'instagram',
 	},
 	{
 		name: 'RSS',
 		path: '/rss.xml',
-		icon: IconRSS,
+		icon: 'rss',
 	},
 ];
 

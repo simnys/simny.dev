@@ -3,9 +3,9 @@
 import { Post } from '@/.content-collections/generated';
 import { cn, formatDate } from '@/lib/utils';
 
-import { IconArrow } from '@/data/icons';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { Icon } from './Icon';
 
 type PostListProps = {
 	posts: Post[];
@@ -60,7 +60,7 @@ export default function PostList({ posts, query }: PostListProps) {
 						</div>
 
 						<div className="hidden sm:block mt-auto p-2 rounded-full text-foreground-tertiary transition-all group-hover:text-foreground group-hover:bg-background-tertiary">
-							<IconArrow className="justify-self-end self-end w-4 h-4" />
+							<Icon name="arrow" className="justify-self-end self-end w-4 h-4" />
 						</div>
 					</Link>
 				</motion.li>

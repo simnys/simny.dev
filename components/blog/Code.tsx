@@ -1,7 +1,7 @@
-import { IconCheck, IconCopy } from '@/data/icons';
 import React from 'react';
 import Copy from '../ui/Copy';
 import { Tooltip } from '../ui/Tooltip';
+import { Icon } from '../ui/Icon';
 
 interface CodeProps {
 	children: React.ReactNode;
@@ -43,11 +43,11 @@ export default function Code({ children, ...props }: CodeProps) {
 
 			<Tooltip message="Copy code" className="absolute top-3 right-4">
 				<Copy
-					successMessage={<IconCheck width={16} height={16} className="text-brand" />}
+					successMessage={<Icon name="check" className="text-brand size-4" />}
 					toCopy={codeText}
 					variant="grow"
 				>
-					<IconCopy width={16} height={16} />
+					<Icon name="copy" className="size-4" />
 				</Copy>
 			</Tooltip>
 		</figure>

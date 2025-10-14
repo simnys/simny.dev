@@ -1,5 +1,6 @@
-import { IconCheck, IconInfo, IconMessage, IconWarning } from '@/data/icons';
 import { cn } from '@/lib/utils';
+import { Icon } from '../ui/Icon';
+import { IconName } from '@/lib/types/icons';
 
 type CalloutVariants = 'info' | 'success' | 'thought' | 'warning' | 'ignore';
 interface CalloutProps {
@@ -8,11 +9,11 @@ interface CalloutProps {
 	children: React.ReactNode;
 }
 
-const variantConfig = {
-	info: IconInfo,
-	success: IconCheck,
-	thought: IconMessage,
-	warning: IconWarning,
+const variantConfig: Record<CalloutVariants, IconName | undefined> = {
+	info: 'info',
+	success: 'check',
+	thought: 'chat',
+	warning: 'warning',
 	ignore: undefined,
 };
 
@@ -45,7 +46,7 @@ const variantStyles: Record<CalloutVariants, { border: string; bg: string; text:
 };
 
 export default function Callout({ variant = 'info', title, children }: CalloutProps) {
-	const Icon = variantConfig[variant];
+	const icon = variantConfig[variant];
 	const styles = variantStyles[variant];
 
 	return (
@@ -56,10 +57,10 @@ export default function Callout({ variant = 'info', title, children }: CalloutPr
 					styles.text
 				)}
 			>
-				{variant !== 'ignore' && Icon && (
+				{variant !== 'ignore' && icon && (
 					<div className="mb-2 flex gap-x-3 items-center font-medium">
 						<div className={cn('p-2 rounded-lg', styles.bg)}>
-							<Icon width={20} height={20} className={cn('shrink-0', styles.text)} />
+							<Icon name={icon} className={cn('shrink-0', styles.text)} />
 						</div>
 						<div className="grow not-prose">
 							{title ? title : variant.charAt(0).toUpperCase() + variant.slice(1)}

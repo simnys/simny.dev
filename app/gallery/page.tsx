@@ -3,9 +3,8 @@ import { Section } from '@/components/layouts/Section';
 import GalleryView from '@/components/sections/GalleryView';
 import { SITE_NAME, SITE_URL } from '@/data/constants';
 import { galleryCollections, galleryImagesStatic } from '@/data/gallery';
-import { IconGallery } from '@/data/icons';
 import { getCollections } from '@/lib/gallery';
-import { GalleryCollection } from '@/lib/types';
+import { GalleryCollection } from '@/lib/types/types';
 import { slugify } from '@/lib/utils';
 import { Metadata } from 'next';
 import Script from 'next/script';
@@ -84,7 +83,6 @@ export default async function Gallery() {
 			<PageHeader
 				title="Photo Gallery"
 				content="Moments, places, and details I've noticed along the way."
-				subtitle={{ text: 'Collections', Icon: IconGallery }}
 			/>
 
 			<Section>
