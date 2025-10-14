@@ -6,8 +6,10 @@
 		"dev": "next dev --turbopack",
 		"build": "next build",
 		"start": "next start",
-		"lint": "next lint"
+		"lint": "next lint",
+		"icons": "node scripts/generate-icon-types.ts"
 	},
+	"type": "module",
 	"dependencies": {
 		"@content-collections/mdx": "^0.2.0",
 		"@tailwindcss/postcss": "^4.1.12",
