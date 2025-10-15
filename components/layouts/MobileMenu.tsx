@@ -1,10 +1,8 @@
 import { navItems } from '@/data/navigation';
-import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 
-import ContactModal from '../sections/ContactModal';
 import MenuItem from '../ui/MenuItem';
-import Modal from '../ui/Modal';
+import { useScrollLock } from '@/lib/hooks';
 
 interface MobileMenuProps {
 	className?: string;
@@ -14,95 +12,82 @@ interface MobileMenuProps {
 }
 
 export default function MobileMenu({ currentPath, isOpen, setIsOpen, className }: MobileMenuProps) {
+	useScrollLock(isOpen);
+
 	return (
-		<motion.div
-			initial={{ opacity: 0, height: 0 }}
-			animate={{ opacity: 1, height: 'auto' }}
-			exit={{ opacity: 0, height: 0 }}
-			transition={{ duration: 0.2, ease: 'easeOut' }}
-			aria-expanded={isOpen}
-			aria-label="Mobile navigation"
-			className="sm:hidden absolute top-13 left-0 right-0 border-b rounded-b-xl bg-background/90 backdrop-blur-lg shadow-xs will-change-transform overflow-hidden"
-		>
-			<div className="flex flex-col h-full pt-6">
-				<h5 className="text-xs tracking-normal text-foreground-secondary px-4 pb-1 mb-1 border-b">
-					Navigate
-				</h5>
-				<div className="flex flex-col mb-6">
-					{navItems.navigationLinks.map((navItem, idx) => (
-						<MenuItem
-							key={idx}
-							navItem={navItem}
-							idx={idx}
-							setIsOpen={setIsOpen}
-							isCurrentPath={`/${currentPath.split('/')[1]}` == navItem.path}
-						/>
-					))}
-				</div>
-				<h5 className="text-xs tracking-normal text-foreground-secondary px-4 pb-1 mb-1 border-b">
-					Explore
-				</h5>
-				<div className="flex flex-col mb-6">
-					{navItems.exploreLinks
-						.filter((item) => item.path)
-						.map((navItem, idx) => (
-							<MenuItem
-								key={idx}
-								navItem={navItem}
-								idx={idx}
-								setIsOpen={setIsOpen}
-								isCurrentPath={`/${currentPath.split('/')[1]}` == navItem.path}
-							/>
-						))}
-				</div>
+		<>
+			<motion.div
+				key="sidebar"
+				id="sidebar"
+				initial={{ translateX: '-100%' }}
+				animate={{ translateX: 0 }}
+				exit={{ translateX: '-100%' }}
+				transition={{ type: 'spring', stiffness: 200, damping: 24 }}
+				aria-expanded={isOpen}
+				aria-label="Mobile navigation"
+				className="sm:hidden min-w-[300px] fixed top-14 bottom-0 left-0 rounded-tr-xl border bg-background-secondary shadow-xs will-change-transform overflow-hidden overflow-y-scroll z-100"
+			>
+				<div className="flex flex-col h-full pt-6 pb-8 px-3">
+					<MenuSection
+						title="Menu"
+						items={navItems.navigationLinks}
+						onClose={() => setIsOpen(false)}
+						currentPath={currentPath}
+					/>
 
-				<h5 className="text-xs tracking-normal text-foreground-secondary px-4 pb-1 mb-1 border-b">
-					Connect
-				</h5>
-				<div className="flex flex-col mb-6">
-					{navItems.connectLinks.map((navItem, idx) =>
-						navItem.name === 'Contact' ? (
-							<Modal
-								key={idx}
-								trigger={
-									<MenuItem
-										as="div"
-										navItem={navItem}
-										idx={idx}
-										setIsOpen={setIsOpen}
-										isCurrentPath={`/${currentPath.split('/')[1]}` == navItem.path}
-									/>
-								}
-								triggerClassName="text-left"
-							>
-								<ContactModal />
-							</Modal>
-						) : (
-							<MenuItem
-								key={idx}
-								navItem={navItem}
-								idx={idx}
-								setIsOpen={setIsOpen}
-								isCurrentPath={`/${currentPath.split('/')[1]}` == navItem.path}
-							/>
-						)
-					)}
-				</div>
+					<MenuSection
+						title="Misc"
+						items={navItems.exploreLinks}
+						onClose={() => setIsOpen(false)}
+						currentPath={currentPath}
+					/>
 
-				<div className={cn('flex items-center gap-x-5 py-2 px-4 border-t w-full bg-background/20')}>
-					{navItems.socialLinks.map((navItem, idx) => (
-						<a
-							key={idx}
-							href={navItem.path}
-							target="_blank"
-							rel="noopener noreferrer"
-							className="p-2 text-foreground-secondary"
-						>
-							{navItem.icon ? <navItem.icon /> : null}
-						</a>
-					))}
+					<MenuSection
+						title="Connect"
+						items={navItems.connectLinks}
+						onClose={() => setIsOpen(false)}
+						currentPath={currentPath}
+					/>
 				</div>
-			</div>
-		</motion.div>
+			</motion.div>
+
+			<motion.div
+				key="overlay"
+				initial={{ opacity: 0 }}
+				animate={{ opacity: 100 }}
+				exit={{ opacity: 0 }}
+				transition={{ duration: 0.2 }}
+				aria-hidden={true}
+				className="sm:hidden fixed top-0 left-0 right-0 bottom-0 bg-background/80 backdrop-blur-md z-99 pointer-events-none"
+			/>
+		</>
 	);
 }
+
+const MenuSection = ({
+	title,
+	items,
+	onClose,
+	currentPath,
+}: {
+	title: string;
+	items: any[];
+	onClose: () => void;
+	currentPath: string;
+}) => {
+	return (
+		<>
+			<span className="font-mono tracking-tighter text-foreground-tertiary mb-1 px-3">{title}</span>
+			<div className="flex flex-col mb-4">
+				{items.map((navItem, idx) => (
+					<MenuItem
+						key={idx}
+						navItem={navItem}
+						onClose={onClose}
+						isCurrentPath={`/${currentPath.split('/')[1]}` == navItem.path}
+					/>
+				))}
+			</div>
+		</>
+	);
+};
