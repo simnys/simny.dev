@@ -1,8 +1,5 @@
-import { cn } from '@/lib/utils';
-import Link from 'next/link';
-
 import React, { ReactNode } from 'react';
-import { Icon } from '../ui/Icon';
+import { cn } from '@/lib/utils';
 
 interface SectionProps {
 	children: ReactNode;
@@ -16,27 +13,12 @@ export const Section: React.FC<SectionProps> = ({ children, className }) => (
 interface SectionHeaderProps {
 	title: string;
 	subtitle?: string;
-	linkHref?: string;
 	className?: string;
 }
 
-export const SectionHeader: React.FC<SectionHeaderProps> = ({
-	title,
-	subtitle,
-	linkHref,
-	className,
-}) => (
+export const SectionHeader: React.FC<SectionHeaderProps> = ({ title, subtitle, className }) => (
 	<div className={cn('relative mb-2 text-xl', className)}>
-		<span className="text-sm font-medium text-brand">{subtitle}</span>
+		<span className="font-mono tracking-tighter text-foreground-tertiary">{subtitle}</span>
 		<h2>{title}</h2>
-
-		{linkHref && (
-			<Link
-				href={linkHref}
-				className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-foreground-secondary/5 text-foreground-secondary ring-1 ring-transparent ring-offset-background transition-all hover:bg-foreground-secondary/10 hover:text-foreground hover:ring-brand hover:ring-offset-2"
-			>
-				<Icon name="arrow" className="w-4 h-4" />
-			</Link>
-		)}
 	</div>
 );

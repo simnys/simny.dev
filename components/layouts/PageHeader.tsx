@@ -21,12 +21,12 @@ export default function PageHeader({ title, content, backlink, className }: Page
 						href={backlink}
 						draggable={false}
 						className={cn(
-							'absolute -top-2 -left-2 w-fit p-1.5 rounded-full',
+							'absolute -top-2 -left-2 w-fit p-2 rounded-full',
 							'bg-background-secondary text-foreground-tertiary',
 							'transition-[colors, scale] duration-200 ease-out hover:bg-background-tertiary hover:text-foreground active:scale-95'
 						)}
 					>
-						<Icon name="back" className="w-5 h-5 rotate-180" />
+						<Icon name="back" className="-rotate-90" />
 					</Link>
 				)}
 			</div>

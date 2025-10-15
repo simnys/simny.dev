@@ -16,6 +16,7 @@
 		"cloudinary": "^2.2.0",
 		"clsx": "^2.1.0",
 		"feed": "^4.2.2",
+		"focus-trap-react": "^11.0.4",
 		"framer-motion": "^11.0.27",
 		"lqip-modern": "^2.1.0",
 		"next": "15.5.2",

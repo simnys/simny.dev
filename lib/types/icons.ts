@@ -2,26 +2,34 @@
 export const ICON_NAMES = [
   'arrow',
   'back',
+  'blog',
   'calendar',
   'chat',
   'check',
+  'code',
   'component',
   'copy',
   'design',
   'document',
+  'email',
   'external',
   'gallery',
   'github',
   'heart',
+  'home',
   'hourglass',
   'info',
   'instagram',
   'link',
   'linkedin',
+  'menuClosed',
+  'menuOpen',
   'moon',
   'rss',
   'sun',
-  'warning'
+  'user',
+  'warning',
+  'x'
 ] as const;
 
 export type IconName = typeof ICON_NAMES[number];
