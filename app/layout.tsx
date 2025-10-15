@@ -148,58 +148,8 @@ export default function RootLayout({
 			>
 				<Providers>
 					<Navbar />
-					{/* <aside className="relative row-span-2 bg-gradient-to-b from-background via-background-secondary/30 to-background-secondary/50">
-							<header className="sticky top-0 p-4 md:p-6 grid gap-6">
-								<div className="flex items-center gap-1">
-									<div className="rounded-full w-5 h-5 bg-gradient-to-tr from-pink-600 to-orange-300" />
-									<span className="font-heading text-3xl leading-none">simny</span>
-								</div>
 
-								<nav className="flex flex-col gap-6">
-									<ul>
-										{navItems.navigationLinks.map((item) => (
-											<li key={item.path} className="">
-												<a
-													href={item.path}
-													className="font-medium text-foreground-secondary hover:text-foreground"
-												>
-													{item.icon && <item.icon className="inline w-4 h-4 mr-1 -mt-0.5" />}
-													{item.name}
-												</a>
-											</li>
-										))}
-									</ul>
-									<ul>
-										{navItems.exploreLinks.map((item) => (
-											<li key={item.path} className="">
-												<a
-													href={item.path}
-													className="font-medium text-foreground-secondary hover:text-foreground"
-												>
-													{item.icon && <item.icon className="inline w-4 h-4 mr-1 -mt-0.5" />}
-													{item.name}
-												</a>
-											</li>
-										))}
-									</ul>
-									<ul>
-										{navItems.socialLinks.map((item) => (
-											<li key={item.path} className="">
-												<a
-													href={item.path}
-													className="font-medium text-foreground-secondary hover:text-foreground"
-												>
-													{item.icon && <item.icon className="inline w-4 h-4 mr-1 -mt-0.5" />}
-													{item.name}
-												</a>
-											</li>
-										))}
-									</ul>
-									<ThemeSwitcher />
-								</nav>
-							</header>
-						</aside> */}
-					<main className="max-w-3xl mx-auto w-full grow relative flex flex-col gap-8 md:gap-12 p-6 pb-12 sm:pb-16">
+					<main className="max-w-3xl mx-auto w-full grow relative flex flex-col gap-12 sm:gap-16 p-6 pb-12 sm:pb-16">
 						{children}
 					</main>
 

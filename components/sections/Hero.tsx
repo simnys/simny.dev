@@ -19,7 +19,7 @@ export default function Hero() {
 					className="rounded-full ring-2 ring-border ring-offset-4 ring-offset-background shadow-lg transition-all group-hover:ring-brand/80 group-hover:scale-105"
 				/>
 
-				<span className="font-mono absolute top-2 left-0 whitespace-nowrap w-full text-xs tracking-tighter px-2 py-1 rounded-lg border bg-background-secondary/50 backdrop-blur-sm opacity-0 transition-all ease-out group-hover:opacity-100 group-hover:-translate-y-3">
+				<span className="font-mono absolute top-2 left-0 whitespace-nowrap w-full tracking-tighter px-2 py-1 rounded-lg border bg-background-secondary/50 backdrop-blur-sm opacity-0 transition-all ease-out group-hover:opacity-100 group-hover:-translate-y-3">
 					Things on my mind
 				</span>
 				{/* <div className="absolute inset-0 flex items-center justify-center motion-safe:will-change-transform motion-safe:animate-rotate text-foreground-tertiary/50">

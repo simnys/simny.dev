@@ -13,16 +13,18 @@
 	--font-mono: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
 		'Liberation Mono', 'Courier New', monospace;
 
-	--color-background: var(--color-zinc-50);
-	--color-background-secondary: var(--color-zinc-100);
-	--color-background-tertiary: var(--color-zinc-200);
+	--text-xs: 0.8125rem; /* 13px */
 
-	--color-foreground: var(--color-zinc-800);
-	--color-foreground-secondary: var(--color-zinc-600);
-	--color-foreground-tertiary: var(--color-zinc-500);
+	--color-background: oklch(99.1% 0 0);
+	--color-background-secondary: oklch(99.5% 0 0);
+	--color-background-tertiary: oklch(95.5% 0 0);
+
+	--color-foreground: oklch(24.4% 0 0);
+	--color-foreground-secondary: oklch(38.7% 0 0);
+	--color-foreground-tertiary: oklch(50.3% 0 0);
 
 	--color-brand: var(--color-blue-600);
-	--color-border: var(--color-zinc-200);
+	--color-border: oklch(93.1% 0 0);
 }
 .dark {
 	--color-background: oklch(16.8% 0 0);
@@ -61,21 +63,18 @@
 	@apply [&::-webkit-scrollbar]:hidden;
 }
 
-@utility wrapper {
-	display: grid;
-	grid-template-columns: 1fr min(75ch, 100%) 1fr;
-
-	> * {
-		grid-column: 2;
-	}
-}
-
 @layer base {
 	:root {
 		font-synthesis: none;
 		text-rendering: optimizeLegibility;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
+	}
+	*:focus {
+		outline: none;
+	}
+	*:focus-visible {
+		@apply outline-0 rounded-sm ring ring-offset-1 ring-offset-background ring-brand;
 	}
 	*,
 	::after,
@@ -96,6 +95,10 @@
 	}
 	body {
 		@apply bg-background text-foreground font-sans tracking-[-0.01em];
+	}
+
+	.font-mono {
+		@apply text-xs;
 	}
 }
 
@@ -128,7 +131,7 @@ h6 {
 
 /* Heading anchorlinks */
 .prose .anchor {
-	@apply absolute w-fit -right-12 px-6 no-underline transition-[opacity_transform] duration-200 ease-out text-foreground-tertiary/50 opacity-0 cursor-pointer;
+	@apply hidden sm:block absolute w-fit -right-12 px-6 no-underline transition-[opacity_transform] duration-200 ease-out text-foreground-tertiary/50 opacity-0 cursor-pointer;
 }
 .prose .anchor:after {
 	@apply font-sans;
@@ -201,7 +204,7 @@ code[data-line-numbers] [data-line]::before {
 
 /* Inline code */
 .prose :not(pre) > code {
-	@apply font-code px-1.5 mx-0.5 py-0.5 rounded-md bg-background-secondary font-normal text-sm border text-brand;
+	@apply font-code py-0.5 px-1 rounded-md bg-background-secondary text-sm border text-foreground;
 }
 .prose :not(pre) > code::after,
 .prose :not(pre) > code::before {

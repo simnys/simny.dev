@@ -10,33 +10,3 @@ export function Logo(props: React.SVGAttributes<any>) {
 		</svg>
 	);
 }
-
-export function IconMenu({
-	isOpen,
-	...props
-}: { isOpen: boolean } & React.SVGAttributes<SVGElement>) {
-	return (
-		<svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor" {...props}>
-			<rect
-				className={`origin-center transition-transform ease-out ${
-					isOpen ? 'rotate-45' : '-translate-y-[3px]'
-				}`}
-				x="1"
-				y="7.5"
-				width="14"
-				height="1.25"
-				rx="0.5"
-			></rect>
-			<rect
-				className={`origin-center transition-transform ease-out ${
-					isOpen ? '-rotate-45' : 'translate-y-[3px]'
-				}`}
-				x="1"
-				y="7.5"
-				width="14"
-				height="1.25"
-				rx="0.5"
-			></rect>
-		</svg>
-	);
-}
