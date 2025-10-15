@@ -2,7 +2,7 @@ import { cn } from '@/lib/utils';
 import { Icon } from '../ui/Icon';
 import { IconName } from '@/lib/types/icons';
 
-type CalloutVariants = 'info' | 'success' | 'thought' | 'warning' | 'ignore';
+type CalloutVariants = 'info' | 'success' | 'thought' | 'warning';
 interface CalloutProps {
 	variant?: CalloutVariants;
 	title?: string;
@@ -14,7 +14,6 @@ const variantConfig: Record<CalloutVariants, IconName | undefined> = {
 	success: 'check',
 	thought: 'chat',
 	warning: 'warning',
-	ignore: undefined,
 };
 
 const variantStyles: Record<CalloutVariants, { border: string; bg: string; text: string }> = {
@@ -38,11 +37,6 @@ const variantStyles: Record<CalloutVariants, { border: string; bg: string; text:
 		bg: 'bg-[#a53f47]/10 dark:bg-[#e06c76]/10',
 		text: 'text-[#a53f47] dark:text-[#e06c76]',
 	},
-	ignore: {
-		border: 'border-border',
-		bg: 'bg-background',
-		text: 'text-foreground-secondary',
-	},
 };
 
 export default function Callout({ variant = 'info', title, children }: CalloutProps) {
@@ -50,14 +44,14 @@ export default function Callout({ variant = 'info', title, children }: CalloutPr
 	const styles = variantStyles[variant];
 
 	return (
-		<div className="relative py-10 my-4 -mx-6 px-4 lg:-mx-30 lg:px-16 border-y border-border/50">
+		<div className="relative py-10 my-4 -mx-6 px-3 lg:-mx-40 lg:px-34 xl:-mx-76 xl:px-70 border-y border-border/30">
 			<blockquote
 				className={cn(
-					'not-prose relative z-10 p-4 py-6 md:px-8 rounded-xl border shadow-xs max-w-3xl mx-auto w-full bg-background',
+					'not-prose relative z-10 p-6 rounded-xl border shadow-xs max-w-3xl mx-auto w-full bg-background-secondary',
 					styles.text
 				)}
 			>
-				{variant !== 'ignore' && icon && (
+				{icon && (
 					<div className="mb-2 flex gap-x-3 items-center font-medium">
 						<div className={cn('p-2 rounded-lg', styles.bg)}>
 							<Icon name={icon} className={cn('shrink-0', styles.text)} />
