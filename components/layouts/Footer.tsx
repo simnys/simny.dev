@@ -1,17 +1,40 @@
+import { getLatestCommit } from '@/lib/github';
+import CustomLink from '../blog/Link';
 import { Icon } from '../ui/Icon';
+import { cn } from '@/lib/utils';
 
-export default function Footer() {
+export default async function Footer() {
+	const commitInfo = await getLatestCommit();
+
 	return (
-		<footer className="h-fit mt-auto p-2 sm:py-4 sm:px-6 text-foreground-tertiary">
-			<div className="max-w-3xl w-full mx-auto py-4 px-6 flex flex-col gap-y-2 sm:flex-row sm:items-center justify justify-between bg-background-secondary rounded-xl">
-				<span className="flex items-center gap-2 text-sm">
-					<Icon name="heart" className="size-4" />
-					Thank you for visiting!
+		<footer
+			className={cn(
+				'max-w-3xl w-full mx-auto mt-auto flex flex-col justify-between gap-y-4 p-6',
+				'border-t border-dashed text-foreground-tertiary text-xs',
+				'sm:flex-row sm:items-center sm:border-t-0'
+			)}
+		>
+			<div>
+				<span>Thanks for visiting!</span>
+				<span className="flex items-center gap-1">
+					<Icon name="code" className="size-4" />
+					Last commit:{' '}
+					{commitInfo?.url ? (
+						<CustomLink
+							href={commitInfo.url}
+							className="pb-1 mt-1 text-foreground-secondary hover:text-foreground font-mono before:h-px"
+						>
+							{commitInfo.sha?.slice(0, 7)}
+						</CustomLink>
+					) : (
+						<span className="pb-1 mt-1 font-mono">N/A</span>
+					)}
 				</span>
+			</div>
 
-				<span className="text-xs">
-					© {new Date().getFullYear()} Simon Nyström. All rights reserved.
-				</span>
+			<div className="sm:text-right space-y-1">
+				<span className="block">© {new Date().getFullYear()} Simon Nyström</span>
+				<span className="block text-foreground-secondary">Built & designed in Stockholm</span>
 			</div>
 		</footer>
 	);
