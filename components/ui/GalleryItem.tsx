@@ -46,8 +46,8 @@ export default function GalleryItem({
 						className="aspect-[4/5] w-full object-cover object-center rounded-xl"
 					/>
 					<div className="rounded-xl bg-linear-to-t from-foreground/80 dark:from-background/80 via-transparent to-transparent flex flex-col items-start justify-end p-4 absolute w-full top-0 bottom-0 text-background dark:text-foreground transition-colors duration-300 ease-out group-hover:bg-background/20">
-						<div className="text-xs font-medium flex items-center gap-1 opacity-80">
-							<Icon name="gallery" />
+						<div className="text-xs font-medium flex items-center gap-1.5 opacity-80">
+							<Icon name="gallery" className="size-4" />
 							{collectionSize}
 						</div>
 						<h3 className="text-xl">{collectionTitle}</h3>
@@ -57,7 +57,7 @@ export default function GalleryItem({
 				</Link>
 			) : (
 				<div
-					className={cn('relative hover:cursor-zoom-in')}
+					className={cn('relative hover:cursor-zoom-in rounded-sm overflow-hidden')}
 					onClick={(e) => handleImageClick(e, lightboxIndex)}
 				>
 					<Image

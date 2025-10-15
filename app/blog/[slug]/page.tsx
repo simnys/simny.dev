@@ -1,14 +1,14 @@
-import Callout from '@/components/blog/Callout';
-import CustomLink from '@/components/blog/Link';
+import Divider from '@/components/blog/Divider';
 import MDXComponents from '@/components/blog/MDXcomponents';
 import Tag from '@/components/blog/Tag';
-import { Section, SectionHeader } from '@/components/layouts/Section';
+import { SectionHeader } from '@/components/layouts/Section';
 import { Icon } from '@/components/ui/Icon';
 import PostList from '@/components/ui/PostList';
 
-import { SITE_GITHUB_URL, SITE_LINKEDIN_URL, SITE_NAME, SITE_URL } from '@/data/constants';
+import { SITE_NAME, SITE_URL } from '@/data/constants';
+import { navItems } from '@/data/navigation';
 import { getBlogPost, getBlogPosts, getRelatedPosts } from '@/lib/blog';
-import { formatDate } from '@/lib/utils';
+import { cn, formatDate } from '@/lib/utils';
 import avatar from '@/public/images/avatar-px.png';
 
 import { MDXContent } from '@content-collections/mdx/react';
@@ -137,7 +137,7 @@ export default async function BlogPost(props: Props) {
 					href="/blog"
 					className="absolute md:top-6 md:left-6 w-fit p-2 rounded-full bg-foreground-tertiary/5 text-foreground-secondary ring-1 ring-transparent ring-offset-background transition-all hover:bg-foreground-tertiary/10 hover:text-foreground hover:ring-brand hover:ring-offset-2"
 				>
-					<Icon name="back" className="w-4 h-4" />
+					<Icon name="back" className="-rotate-90" />
 				</Link>
 			</div>
 
@@ -180,7 +180,7 @@ export default async function BlogPost(props: Props) {
 							))}
 						</ul>
 						<h1 className="text-2xl sm:text-3xl text-balance">{post.title}</h1>
-						<div className="flex items-center gap-4 sm:gap-6 text-xs sm:text-sm opacity-80">
+						<div className="font-mono flex items-center gap-4 sm:gap-6 opacity-80">
 							<div className="flex items-center gap-x-1 sm:gap-x-2">
 								<Icon name="calendar" className="w-3 h-3 sm:w-4 sm:h-4" />
 								<time>{formatDate(post.date)}</time>
@@ -196,45 +196,58 @@ export default async function BlogPost(props: Props) {
 
 			<article className="prose mx-auto w-full first:prose-p:m-0">
 				<MDXContent code={post.body} components={MDXComponents} />
-			</article>
 
-			<Callout variant="ignore">
-				<div className="flex items-center gap-x-4 mb-4">
-					<div className="relative">
+				<Divider />
+
+				<div className="flex items-center gap-4 flex-wrap p-4 sm:px-8 sm:py-6 bg-background-secondary rounded-xl border shadow-xs">
+					<div className="relative shrink-0">
 						<Image
 							width={64}
 							height={64}
 							src={avatar}
 							alt=""
 							draggable={false}
-							className="size-12 sm:size-16 rounded-2xl sm:rounded-3xl not-prose"
+							className="size-12 rounded-2xl not-prose"
 						/>
 						<div className="absolute -right-1 -bottom-1 size-4 p-1 bg-background rounded-full flex items-center justify-center">
 							<div className="size-full rounded-full bg-brand" />
 						</div>
 					</div>
-					<div className="flex flex-col">
-						<span className="text-sm font-medium text-foreground-tertiary">Simon says:</span>
-						<span className="font-medium sm:text-lg text-foreground">
-							Hey, thanks for reading! 👋
+
+					<div className="mr-auto">
+						<span className="block font-mono tracking-tighter text-foreground-tertiary">
+							Have any questions?
 						</span>
+						<span className="block font-medium text-foreground leading-normal">Let's connect</span>
+					</div>
+
+					<div className="flex items-center gap-x-2">
+						{navItems.socialLinks
+							.filter((link) => link.name !== 'RSS')
+							.map((link) => (
+								<a
+									key={link.name}
+									href={link.path}
+									target="_blank"
+									rel="noopener noreferrer"
+									className={cn(
+										'relative size-10 flex items-center justify-center rounded-lg text-foreground-tertiary border shadow-inner cursor-pointer',
+										'transition-all duration-200 ease-out hover:text-foreground active:scale-97'
+									)}
+									aria-label={`Find me on ${link.name}`}
+								>
+									<Icon name={link.icon!} className={link.icon === 'x' ? 'size-4' : ''} />
+								</a>
+							))}
 					</div>
 				</div>
-				<p className="mb-4 sm:px-4 prose">
-					If you enjoyed this article, check out some of my other posts below. Have questions,
-					feedback, or just want to connect?
-				</p>
-				<p className="sm:px-4 prose">
-					Find me on <CustomLink href={SITE_GITHUB_URL}>Github</CustomLink> or drop me a message on{' '}
-					<CustomLink href={SITE_LINKEDIN_URL}>LinkedIn</CustomLink> and let&apos;s chat.
-				</p>
-			</Callout>
+			</article>
 
 			{related.length > 0 && (
-				<Section>
-					<SectionHeader title="Related Posts" subtitle="You might also like" />
+				<section className="max-w-[65ch] w-full mx-auto">
+					<SectionHeader title="Related Articles" subtitle="You might also like" />
 					<PostList posts={related.slice(0, 3)} />
-				</Section>
+				</section>
 			)}
 		</>
 	);

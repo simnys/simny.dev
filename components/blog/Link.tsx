@@ -38,11 +38,11 @@ export default function CustomLink(props: CustomLinkProps) {
 			<span className="overflow-hidden relative">
 				<Icon
 					name="external"
-					className="w-4 h-4 group-hover:-translate-y-5 group-hover:translate-x-5 transition-transform"
+					className="size-4 group-hover:-translate-y-4 group-hover:translate-x-4 transition-transform duration-200 ease-out"
 				/>
 				<Icon
 					name="external"
-					className="absolute bottom-0 right-0  w-4 h-4 translate-y-5 -translate-x-5 group-hover:translate-y-0 group-hover:translate-x-0 transition-transform"
+					className="absolute bottom-0 right-0 size-4 translate-y-4 -translate-x-4 group-hover:translate-y-0 group-hover:translate-x-0 transition-transform duration-200 ease-out"
 				/>
 			</span>
 		</Link>

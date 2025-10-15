@@ -8,6 +8,7 @@ import CustomLink from './Link';
 import Preview from './Preview';
 import { Step, Steps } from './Steps';
 import Tabs from './Tabs';
+import Divider from './Divider';
 
 // Helper to set displayName on components
 function withDisplayName<T extends React.ComponentType<any>>(Comp: T, name: string): T {
@@ -20,7 +21,7 @@ const createHeading = (level: number) => {
 		let slug = slugify(children);
 		return React.createElement(
 			`h${level}`,
-			{ id: slug, className: 'scroll-mt-24' },
+			{ id: slug, className: 'scroll-mt-12' },
 			[
 				React.createElement('a', {
 					href: `#${slug}`,
@@ -45,6 +46,7 @@ const MDXComponents = {
 	a: CustomLink,
 	figure: (props: any) => Code(props),
 	Image: CustomImage,
+	Divider,
 	Preview,
 	Tabs,
 	Callout,
