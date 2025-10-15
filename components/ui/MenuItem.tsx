@@ -1,11 +1,11 @@
 import { NavItem } from '@/lib/types/types';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
+import { Icon } from './Icon';
 
 interface MenuItemProps extends React.HTMLAttributes<HTMLLIElement> {
 	navItem: NavItem;
-	idx: number;
-	setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+	onClose: () => void;
 	isCurrentPath: boolean;
 	as?: any;
 	className?: string;
@@ -13,8 +13,7 @@ interface MenuItemProps extends React.HTMLAttributes<HTMLLIElement> {
 
 const MenuItem: React.FC<MenuItemProps> = ({
 	navItem,
-	idx,
-	setIsOpen,
+	onClose,
 	isCurrentPath,
 	as: Component = Link,
 }: MenuItemProps) => {
@@ -26,12 +25,12 @@ const MenuItem: React.FC<MenuItemProps> = ({
 			target={isExternalLink ? '_blank' : ''}
 			rel={isExternalLink ? 'noopener noreferrer' : ''}
 			className={cn(
-				'text-xl tracking-normal px-4 py-2 font-medium text-foreground-secondary',
-				isCurrentPath &&
-					'text-foreground underline underline-offset-4 decoration-2 decoration-brand/80'
+				'relative  text-foreground flex gap-x-2 items-center px-3 py-1.5 rounded-lg',
+				isCurrentPath && 'text-foreground bg-background-tertiary font-medium'
 			)}
-			onClick={() => Component === Link && setIsOpen(false)}
+			onClick={() => Component === Link && onClose()}
 		>
+			{navItem.icon && <Icon name={navItem.icon} className="size-4" />}
 			{navItem.name}
 		</Component>
 	);
