@@ -218,7 +218,9 @@ export default async function BlogPost(props: Props) {
 						<span className="block font-mono tracking-tighter text-foreground-tertiary">
 							Have any questions?
 						</span>
-						<span className="block font-medium text-foreground leading-normal">Let's connect</span>
+						<span className="block font-medium text-foreground leading-normal">
+							Let&apos;s connect
+						</span>
 					</div>
 
 					<div className="flex items-center gap-x-2">
