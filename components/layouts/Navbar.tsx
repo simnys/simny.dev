@@ -69,7 +69,7 @@ export default function Navbar() {
 				</div>
 
 				{/* Desktop Navigation */}
-				<div className="relative z-100 flex w-full h-full justify-center items-center text-foreground-secondary/80 text-sm font-medium">
+				<div className="z-100 flex w-full h-full justify-center items-center text-sm font-medium">
 					{navItems.navigationLinks.map((navItem) => (
 						<Link
 							key={navItem.path}
@@ -77,7 +77,7 @@ export default function Navbar() {
 							onMouseEnter={closeDropdown}
 							className={cn(
 								'hidden sm:block text-center px-4 py-2 rounded-lg',
-								'hover:text-foreground hover:bg-background-tertiary',
+								'text-foreground-tertiary hover:text-foreground hover:bg-background-tertiary',
 								'transition-colors duration-200 ease-out',
 								isActivePath(navItem.path) && 'text-foreground'
 							)}
@@ -93,18 +93,24 @@ export default function Navbar() {
 						aria-haspopup="true"
 						className={cn(
 							'hidden sm:block text-center px-4 py-2 rounded-lg',
-							'hover:text-foreground hover:bg-background-tertiary',
+							'text-foreground-tertiary hover:text-foreground hover:bg-background-tertiary',
 							'transition-colors duration-200 ease-out',
 							isDropdownOpen && 'text-foreground bg-background-tertiary'
 						)}
 					>
-						Explore
+						More
 					</button>
-
-					<AnimatePresence>
-						{isDropdownOpen && <NavDropdown isOpen={isDropdownOpen} onClose={closeDropdown} />}
-					</AnimatePresence>
 				</div>
+
+				<AnimatePresence>
+					{isDropdownOpen && (
+						<NavDropdown
+							isOpen={isDropdownOpen}
+							onClose={closeDropdown}
+							currentPath={currentPath}
+						/>
+					)}
+				</AnimatePresence>
 
 				{/* Actions */}
 				<div className="flex items-center justify-end gap-2 z-100" onMouseEnter={closeDropdown}>

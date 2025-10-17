@@ -13,10 +13,11 @@ import { FocusTrap } from 'focus-trap-react';
 interface NavDropdownProps {
 	isOpen: boolean;
 	onClose: () => void;
+	currentPath: string;
 	className?: string;
 }
 
-function NavDropdown({ isOpen, onClose, className }: NavDropdownProps) {
+function NavDropdown({ isOpen, onClose, currentPath, className }: NavDropdownProps) {
 	const dropdownRef = useRef<HTMLDivElement>(null);
 
 	// Handle click outside and escape key
@@ -43,6 +44,8 @@ function NavDropdown({ isOpen, onClose, className }: NavDropdownProps) {
 		};
 	}, [isOpen, onClose]);
 
+	const isActivePath = (path: string) => `/${currentPath.split('/')[1]}` === path;
+
 	return (
 		<FocusTrap
 			focusTrapOptions={{
@@ -52,21 +55,21 @@ function NavDropdown({ isOpen, onClose, className }: NavDropdownProps) {
 		>
 			<motion.div
 				ref={dropdownRef}
-				initial={{ opacity: 0, scale: 0.95, y: -10 }}
-				animate={{ opacity: 1, scale: 1, y: 0 }}
-				exit={{ opacity: 0, scale: 0.95, y: -10 }}
+				initial={{ opacity: 0, scale: 0.95 }}
+				animate={{ opacity: 1, scale: 1 }}
+				exit={{ opacity: 0, scale: 0.95 }}
 				transition={{ duration: 0.15, ease: 'easeOut' }}
 				role="menu"
-				aria-label="Explore menu"
+				aria-label="More navigation options"
 				className={cn(
-					'hidden sm:block absolute top-15 w-screen md:w-full rounded-2xl p-2',
-					'bg-background border shadow-sm will-change-transform',
+					'hidden sm:block absolute top-13 left-4 right-4 rounded-xl p-2.5 z-50',
+					'bg-background border shadow-xs will-change-transform origin-top',
 					className
 				)}
 			>
 				<div
 					onMouseLeave={onClose}
-					className="w-full grid grid-cols-12 auto-rows-fr border rounded-xl shadow-xs bg-background-secondary divide-x divide-y overflow-hidden"
+					className="w-full grid grid-cols-12 auto-rows-fr gap-1 p-3 border rounded-lg shadow-xs bg-background-secondary overflow-hidden"
 				>
 					{dropdownLinks.map((item) => (
 						<NavDropDownCard
@@ -78,6 +81,7 @@ function NavDropdown({ isOpen, onClose, className }: NavDropdownProps) {
 							colSpan={item.colSpan}
 							rowSpan={item.rowSpan}
 							onClose={onClose}
+							className={isActivePath(item.path) ? 'text-foreground border-border' : undefined}
 						/>
 					))}
 				</div>
@@ -103,7 +107,7 @@ function NavDropDownCard({
 	icon,
 	onClose,
 	href = '',
-	colSpan = 4,
+	colSpan = 6,
 	rowSpan = 1,
 	className,
 }: NavDropDownCardProps) {
@@ -115,16 +119,9 @@ function NavDropDownCard({
 		}
 	};
 
-	const handleKeyDown = (event: React.KeyboardEvent) => {
-		if (event.key === 'Enter' || event.key === ' ') {
-			event.preventDefault();
-			handleClick();
-		}
-	};
-
 	const commonClassName = cn(
-		'relative text-sm font-medium text-foreground p-4 overflow-hidden',
-		'hover:bg-background-secondary transition-colors group',
+		'relative text-sm text-foreground-secondary p-3 overflow-hidden rounded-lg border border-dashed border-transparent',
+		'hover:bg-background-tertiary hover:border-border hover:text-foreground focus-visible:text-foreground transition-colors duration-200 ease-out group',
 		isClickable ? 'cursor-pointer' : 'cursor-default',
 		className
 	);
@@ -135,42 +132,30 @@ function NavDropDownCard({
 	};
 
 	const content = (
-		<>
-			<div className={cn('flex gap-x-2', rowSpan > 1 ? 'flex-col h-full' : 'items-center')}>
-				<div className="flex items-center gap-2">
-					{icon && <Icon name={icon} aria-hidden="true" />}
-					<h3 className="tracking-normal z-20 relative">{title}</h3>
-				</div>
-
-				{description && (
-					<p
-						className={cn(
-							'text-[13px] text-foreground-secondary',
-							rowSpan === 1 ? 'truncate' : 'mt-1',
-							colSpan >= 6 && rowSpan > 1 && 'w-1/2'
-						)}
-					>
-						{description}
-					</p>
-				)}
-
-				{!isClickable && (
-					<div className="absolute top-2 right-2 text-xs rounded-md px-4 py-0.5 backdrop-blur-lg border border-brand/20 text-brand/80 bg-brand/10 z-10 w-fit">
-						Upcoming
-					</div>
-				)}
+		<div className={cn('flex gap-x-2 h-full', rowSpan > 1 ? 'flex-col h-full' : 'items-center')}>
+			<div className="flex items-center gap-1.5">
+				{icon && <Icon name={icon} className="size-4" />}
+				<h3 className="tracking-normal z-20 relative">{title}</h3>
 			</div>
 
-			{icon && rowSpan > 1 && (
-				<Icon
-					name={icon}
-					className="w-80 h-80 absolute -bottom-12 -right-12 -rotate-12 text-foreground-secondary/5 dark:text-black/20 transition-colors duration-300 pointer-events-none select-none"
-					aria-hidden="true"
-				/>
+			{description && (
+				<p
+					className={cn(
+						'text-xs text-foreground-tertiary text-balance',
+						rowSpan === 1 ? 'truncate' : 'mt-1',
+						colSpan >= 6 && rowSpan > 1 && 'w-2/3'
+					)}
+				>
+					{description}
+				</p>
 			)}
 
-			<CardOverlay withIcon={isClickable} />
-		</>
+			{!isClickable && (
+				<div className="absolute top-2 right-2 text-[12px] rounded-lg px-4 py-0.5 backdrop-blur-lg border border-brand/25 text-brand bg-brand/10 z-10 w-fit">
+					In progress
+				</div>
+			)}
+		</div>
 	);
 
 	if (isClickable) {
@@ -182,13 +167,7 @@ function NavDropDownCard({
 	}
 
 	return (
-		<div
-			role="menuitem"
-			tabIndex={0}
-			onKeyDown={handleKeyDown}
-			className={commonClassName}
-			style={commonStyle}
-		>
+		<div className={commonClassName} style={commonStyle}>
 			{content}
 		</div>
 	);

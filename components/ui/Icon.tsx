@@ -6,6 +6,6 @@ type IconProps = React.SVGAttributes<SVGSVGElement> & {
 
 export const Icon = ({ name, ...props }: IconProps) => (
 	<svg width={20} height={20} aria-hidden="true" {...props}>
-		<use href={`/icons/sprite.svg?v=1.0.1#${name}`} />
+		<use href={`/icons/sprite.svg?v=1.0.8#${name}`} />
 	</svg>
 );
