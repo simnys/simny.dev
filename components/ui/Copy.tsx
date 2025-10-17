@@ -2,40 +2,17 @@
 
 import { cn } from '@/lib/utils';
 import React, { useState } from 'react';
-
-type Variant = 'slide' | 'grow';
+import { Button } from './Button';
 
 interface CopyProps {
-	icon?: React.ReactNode;
 	toCopy: string;
-	successMessage: string | React.ReactNode;
-	variant?: Variant;
+	successMessage: React.ReactNode;
 	className?: string;
-	hiddenClassName?: string;
 	children: React.ReactNode;
 }
 
-export default function Copy({
-	icon,
-	toCopy,
-	successMessage,
-	variant = 'slide',
-	className,
-	hiddenClassName,
-	children,
-}: CopyProps) {
+export default function Copy({ toCopy, successMessage, className, children }: CopyProps) {
 	const [copied, setCopied] = useState(false);
-
-	const variants = {
-		slide: {
-			mainElement: copied ? '-translate-y-5' : '',
-			hiddenElement: cn('translate-y-5', copied && 'translate-y-0'),
-		},
-		grow: {
-			mainElement: copied ? 'scale-0' : '',
-			hiddenElement: copied ? 'scale-100' : 'scale-0',
-		},
-	};
 
 	const handleCopy = async () => {
 		try {
@@ -48,29 +25,27 @@ export default function Copy({
 	};
 
 	return (
-		<button
+		<Button
+			variant="ghost"
 			onClick={handleCopy}
-			className={cn(
-				'relative overflow-hidden flex items-center gap-x-2 text-foreground-secondary text-sm hover:text-foreground transition-colors duration-200 ease-out hover:cursor-pointer',
-				className
-			)}
+			className={cn('relative overflow-hidden', className)}
 		>
-			{icon}
 			<span
-				className={cn('transition-transform duration-200 ease-out', variants[variant].mainElement)}
+				className={cn(
+					'absolute transition-transform duration-200 ease-out',
+					copied ? 'scale-0' : 'scale-100'
+				)}
 			>
 				{children}
 			</span>
 			<span
 				className={cn(
-					'absolute bottom-0 transition-transform duration-200 ease-out',
-					icon ? 'left-6' : 'left-0',
-					variants[variant].hiddenElement,
-					hiddenClassName
+					'absolute transition-transform duration-200 ease-out',
+					copied ? 'scale-100' : 'scale-0'
 				)}
 			>
 				{successMessage}
 			</span>
-		</button>
+		</Button>
 	);
 }

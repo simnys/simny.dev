@@ -2,83 +2,153 @@
 
 import { cn } from '@/lib/utils';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useCallback, useRef, useId } from 'react';
 
 interface TooltipProps {
 	message: string;
-	origin?: 'bottom' | 'top';
+	placement?: 'top' | 'bottom' | 'left' | 'right';
 	children: React.ReactNode;
 	className?: string;
+	disabled?: boolean;
+	delay?: number;
 }
 
-export const Tooltip = ({ message, children, origin = 'bottom', className }: TooltipProps) => {
-	const [show, setShow] = useState(false);
+export const Tooltip = ({
+	message,
+	children,
+	placement = 'bottom',
+	className,
+	disabled = false,
+	delay = 500,
+}: TooltipProps) => {
+	const [isVisible, setIsVisible] = useState(false);
+	const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+	const tooltipId = useId();
 
-	const variants = {
-		initial: {
-			opacity: 0,
-			y: origin === 'bottom' ? -5 : 5,
-			transformOrigin: origin === 'bottom' ? 'top' : 'bottom',
+	const showTooltip = useCallback(() => {
+		if (disabled) return;
+
+		if (timeoutRef.current) {
+			clearTimeout(timeoutRef.current);
+		}
+
+		timeoutRef.current = setTimeout(() => {
+			setIsVisible(true);
+		}, delay);
+	}, [disabled, delay]);
+
+	const hideTooltip = useCallback(() => {
+		if (timeoutRef.current) {
+			clearTimeout(timeoutRef.current);
+		}
+		setIsVisible(false);
+	}, []);
+
+	const handleKeyDown = useCallback(
+		(event: React.KeyboardEvent) => {
+			if (event.key === 'Escape') {
+				hideTooltip();
+			}
 		},
-		animate: {
+		[hideTooltip]
+	);
+
+	const cleanupTimeout = useCallback(() => {
+		if (timeoutRef.current) {
+			clearTimeout(timeoutRef.current);
+		}
+	}, []);
+
+	// Position-based styles
+	const getPositionStyles = () => {
+		const baseStyles = 'absolute z-20 pointer-events-none';
+		const positions = {
+			top: '-top-2 left-1/2 -translate-x-1/2 -translate-y-full',
+			bottom: '-bottom-2 left-1/2 -translate-x-1/2 translate-y-full',
+			left: 'top-1/2 -left-2 -translate-y-1/2 -translate-x-full',
+			right: 'top-1/2 -right-2 -translate-y-1/2 translate-x-full',
+		};
+		return `${baseStyles} ${positions[placement]}`;
+	};
+
+	const Arrow = () => {
+		const arrowStyles = {
+			top: 'top-full left-1/2 -translate-x-1/2 border-l-transparent border-r-transparent border-b-transparent border-t-border',
+			bottom:
+				'bottom-full left-1/2 -translate-x-1/2 border-l-transparent border-r-transparent border-t-transparent border-b-border',
+			left: 'left-full top-1/2 -translate-y-1/2 border-t-transparent border-b-transparent border-r-transparent border-l-border',
+			right:
+				'right-full top-1/2 -translate-y-1/2 border-t-transparent border-b-transparent border-l-transparent border-r-border',
+		};
+
+		return (
+			<div className={cn('absolute size-0 border-6', arrowStyles[placement])} aria-hidden="true" />
+		);
+	};
+
+	// Animation variants
+	const variants = {
+		hidden: {
+			opacity: 0,
+			scale: 0.95,
+			y: placement === 'top' ? 5 : placement === 'bottom' ? -5 : 0,
+			x: placement === 'left' ? 5 : placement === 'right' ? -5 : 0,
+		},
+		visible: {
 			opacity: 1,
 			scale: 1,
 			y: 0,
-			transformOrigin: origin === 'bottom' ? 'top' : 'bottom',
+			x: 0,
 			transition: {
 				duration: 0.15,
-				delay: 0.5,
 				ease: 'easeOut',
 			},
 		},
 		exit: {
 			opacity: 0,
-			y: origin === 'bottom' ? -5 : 5,
-			transformOrigin: origin === 'bottom' ? 'top' : 'bottom',
+			scale: 0.95,
+			y: placement === 'top' ? 5 : placement === 'bottom' ? -5 : 0,
+			x: placement === 'left' ? 5 : placement === 'right' ? -5 : 0,
 			transition: {
-				duration: 0.15,
+				duration: 0.1,
 				ease: 'easeOut',
 			},
 		},
 	};
 
 	return (
-		<div className={cn('relative flex flex-col items-center group', className)}>
-			<span
-				className="flex justify-center"
-				onMouseEnter={() => setShow(true)}
-				onClick={() => setShow(false)}
-				onMouseLeave={() => setShow(false)}
-				onBlur={() => setShow(false)}
+		<div
+			className={cn('relative inline-flex', className)}
+			onMouseLeave={hideTooltip}
+			onBlur={hideTooltip}
+		>
+			<div
+				className="inline-flex"
+				onMouseEnter={showTooltip}
+				onKeyDown={handleKeyDown}
+				aria-describedby={isVisible ? tooltipId : undefined}
 			>
 				{children}
-			</span>
+			</div>
 
-			<AnimatePresence>
-				{show && (
+			<AnimatePresence onExitComplete={cleanupTimeout}>
+				{isVisible && !disabled && (
 					<motion.div
+						id={tooltipId}
 						role="tooltip"
-						aria-hidden={show}
+						aria-live="polite"
 						variants={variants}
-						initial="initial"
-						animate="animate"
+						initial="hidden"
+						animate="visible"
 						exit="exit"
-						className={cn(
-							`z-20 pointer-events-none absolute whitespace-nowrap ${
-								origin === 'bottom' ? '-bottom-10' : '-top-10'
-							} flex flex-col items-center`,
-							!show ? 'hidden' : null
-						)}
+						className={getPositionStyles()}
 					>
-						{origin === 'bottom' && (
-							<div className="-mt-2 translate-y-1.5 w-3 h-3 rotate-45 bg-background-secondary border-t border-l z-20" />
-						)}
-						<span className="relative z-10 px-3 py-2 text-xs leading-none text-foreground whitespace-no-wrap bg-background-secondary shadow-sm border rounded-lg">
-							{message}
-						</span>
-						{origin === 'top' && (
-							<div className="-mt-1.5 w-3 h-3 rotate-45 bg-background-secondary border-b border-r z-20" />
-						)}
+						<div className="relative flex flex-col items-center">
+							<div className="relative px-3 py-1.5 text-xs text-foreground bg-background-secondary border rounded-lg shadow-xs whitespace-nowrap max-w-xs">
+								{message}
+								<Arrow />
+							</div>
+						</div>
 					</motion.div>
 				)}
 			</AnimatePresence>

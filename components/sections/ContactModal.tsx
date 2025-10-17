@@ -22,13 +22,7 @@ export default function ContactModal() {
 					</div>
 					{SITE_CONTACT}
 				</div>
-				<Copy
-					toCopy={SITE_CONTACT}
-					successMessage={<Icon name="check" className="size-6" />}
-					hiddenClassName="left-auto bottom-auto"
-					variant="grow"
-					className="relative h-full flex items-center justify-center px-6 bg-background text-foreground transition-colors hover:text-background hover:bg-foreground"
-				>
+				<Copy toCopy={SITE_CONTACT} successMessage={<Icon name="check" className="size-6" />}>
 					<Icon name="copy" />
 				</Copy>
 			</div>

@@ -41,11 +41,11 @@ export default function Code({ children, ...props }: CodeProps) {
 
 			{filteredChildren}
 
-			<Tooltip message="Copy code" className="absolute top-3 right-4">
+			<Tooltip message="Copy code" className="absolute top-1 right-1">
 				<Copy
 					successMessage={<Icon name="check" className="text-brand size-4" />}
 					toCopy={codeText}
-					variant="grow"
+					className="size-8 p-0"
 				>
 					<Icon name="copy" className="size-4" />
 				</Copy>
