@@ -48,7 +48,7 @@ export default async function Blog() {
 			<PageHeader title="Blog" content="Insights, tutorials, and ideas from my journey in tech." />
 
 			<section className="space-y-4 sm:space-y-6">
-				<TagSelector tags={tags} activeTag={''} />
+				{tags.length > 4 && <TagSelector tags={tags} activeTag={''} />}
 				<PostList posts={posts} />
 			</section>
 		</>

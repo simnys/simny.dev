@@ -8,8 +8,10 @@ type PostListProps = {
 };
 
 const PostMeta = ({ date, readingTime }: { date: Date; readingTime: string }) => (
-	<div className="font-mono tracking-tight w-full sm:w-fit sm:min-w-20 flex items-center gap-x-2 text-foreground-tertiary group-hover:text-foreground-secondary transition-colors duration-200 ease-out">
-		<time dateTime={date.toISOString()}>{formatDate(date, true)}</time>
+	<div className="font-mono w-full sm:w-fit sm:min-w-20 flex items-center gap-x-2 text-foreground-tertiary group-hover:text-foreground-secondary transition-colors duration-200 ease-out">
+		<time dateTime={date.toISOString()} className="uppercase">
+			{formatDate(date, true)}
+		</time>
 		<span className="sm:hidden" aria-hidden="true">
 			|
 		</span>
