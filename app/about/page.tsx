@@ -13,7 +13,7 @@ import {
 	SITE_NAME,
 	SITE_URL,
 } from '@/data/constants';
-import { skillsList } from '@/data/projects';
+import { technologies } from '@/data/projects';
 import { getStaticImages } from '@/lib/gallery';
 import HeroImage from '@/public/images/hero-px.png';
 
@@ -103,14 +103,14 @@ export default async function About() {
 			<Section className="py-4 bg-background-secondary border-b sm:py-4">
 				<div className="lg:max-w-5xl lg:mx-auto space-y-2">
 					<HorizontalScroller
-						items={skillsList.slice(0, skillsList.length / 2)}
+						items={technologies.slice(0, technologies.length / 2)}
 						speed="slow"
 						separator="•"
 						className="text-lg sm:text-2xl font-[450] select-none"
 						pauseOnHover={false}
 					/>
 					<HorizontalScroller
-						items={skillsList.slice(skillsList.length / 2)}
+						items={technologies.slice(technologies.length / 2)}
 						speed="slow"
 						separator="•"
 						className="sm:text-lg font-[450] select-none"

@@ -27,9 +27,9 @@ export default function manifest(): MetadataRoute.Manifest {
 				description: 'Read latest front-end engineering articles',
 			},
 			{
-				name: 'Projects',
-				url: '/projects',
-				description: 'View technical projects and experiments',
+				name: 'Work',
+				url: '/work',
+				description: 'View technical work projects and experiments',
 			},
 			{
 				name: 'Photo Gallery',
