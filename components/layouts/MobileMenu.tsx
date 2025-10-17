@@ -105,10 +105,7 @@ const MenuSection = ({ title, items, onClose, currentPath }: MenuSectionProps) =
 
 	return (
 		<section className="mb-4 last:mb-0">
-			<h3
-				className="font-mono tracking-tighter text-foreground-tertiary mb-1 px-3"
-				id={`${title}-heading`}
-			>
+			<h3 className="font-mono text-foreground-tertiary mb-1 px-3" id={`${title}-heading`}>
 				{title}
 			</h3>
 			<ul className="flex flex-col" role="group" aria-labelledby={`${title}-heading`}>

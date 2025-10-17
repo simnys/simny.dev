@@ -6,7 +6,7 @@ export default function Tag({ tag, className }: { tag: string; className?: strin
 		<Link
 			href={`/blog/tag/${slugify(tag.toLowerCase())}`}
 			className={cn(
-				'font-mono tracking-tight inline-flex items-center w-fit px-2 py-0.5 rounded-md text-foreground-secondary hover:text-foreground cursor-pointer transition-colors duration-200 ease-out group',
+				'font-mono inline-flex items-center w-fit px-2 py-0.5 rounded-md text-foreground-secondary hover:text-foreground cursor-pointer transition-colors duration-200 ease-out group',
 				className
 			)}
 		>
