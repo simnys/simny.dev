@@ -18,7 +18,7 @@ interface SectionHeaderProps {
 
 export const SectionHeader: React.FC<SectionHeaderProps> = ({ title, subtitle, className }) => (
 	<div className={cn('relative mb-4 text-xl', className)}>
-		<span className="font-mono tracking-tighter text-foreground-tertiary">{subtitle}</span>
+		<span className="font-mono text-foreground-tertiary">{subtitle}</span>
 		<h2>{title}</h2>
 	</div>
 );

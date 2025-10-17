@@ -15,28 +15,30 @@
 
 	--text-xs: 0.8125rem; /* 13px */
 
-	--color-background: oklch(99.1% 0 0);
-	--color-background-secondary: oklch(99.5% 0 0);
-	--color-background-tertiary: oklch(95.5% 0 0);
+	--color-background: oklch(0.991 0 0);
+	--color-background-secondary: oklch(0.995 0 0);
+	--color-background-tertiary: oklch(0.955 0 0);
+	--color-background-quaternary: oklch(0.931 0 0);
 
-	--color-foreground: oklch(24.4% 0 0);
-	--color-foreground-secondary: oklch(38.7% 0 0);
-	--color-foreground-tertiary: oklch(50.3% 0 0);
+	--color-foreground: oklch(0.244 0 0);
+	--color-foreground-secondary: oklch(0.387 0 0);
+	--color-foreground-tertiary: oklch(0.503 0 0);
 
 	--color-brand: var(--color-blue-600);
-	--color-border: oklch(93.1% 0 0);
+	--color-border: oklch(0.931 0 0);
 }
 .dark {
-	--color-background: oklch(16.8% 0 0);
-	--color-background-secondary: oklch(18.7% 0 0);
-	--color-background-tertiary: oklch(21.3% 0 0);
+	--color-background: oklch(0.168 0 0);
+	--color-background-secondary: oklch(0.187 0 0);
+	--color-background-tertiary: oklch(0.213 0 0);
+	--color-background-quaternary: oklch(0.252 0 0);
 
-	--color-foreground: oklch(94.9% 0 0);
-	--color-foreground-secondary: oklch(83.3% 0 0);
-	--color-foreground-tertiary: oklch(68.3% 0 0);
+	--color-foreground: oklch(0.949 0 0);
+	--color-foreground-secondary: oklch(0.833 0 0);
+	--color-foreground-tertiary: oklch(0.683 0 0);
 
 	--color-brand: var(--color-blue-500);
-	--color-border: oklch(25.2% 0 0);
+	--color-border: oklch(0.252 0 0);
 }
 
 @theme {
@@ -74,7 +76,7 @@
 		outline: none;
 	}
 	*:focus-visible {
-		@apply outline-0 rounded-sm ring ring-offset-1 ring-offset-background ring-brand;
+		@apply outline-0 rounded-sm ring-2 ring-inset ring-brand;
 	}
 	*,
 	::after,
@@ -98,12 +100,12 @@
 	}
 
 	.font-mono {
-		@apply text-xs;
+		@apply text-xs tracking-tighter;
 	}
 }
 
 h1 {
-	@apply font-serif tracking-[-1px] text-[44px];
+	@apply font-serif tracking-[-1px] text-[44px] leading-[1.2];
 }
 h2,
 h3,
@@ -118,12 +120,13 @@ h6 {
 	-----------	*/
 .prose {
 	@apply dark:prose-invert text-foreground-secondary prose-headings:text-foreground prose-headings:relative prose-headings:w-fit marker:text-foreground-secondary prose-hr:border-border;
+	@apply prose-h2:text-xl prose-h3:text-lg;
 }
 .prose strong {
 	@apply font-medium text-foreground;
 }
 .prose .c-link {
-	@apply font-medium;
+	@apply font-normal;
 }
 .prose figcaption .c-link {
 	@apply pb-1 text-foreground-secondary hover:text-foreground;
@@ -147,17 +150,19 @@ h6 {
 */
 /* Code block title tab */
 figcaption[data-rehype-pretty-code-title] {
-	@apply flex items-center border-b rounded-t-lg py-2.5 px-6 mt-0 text-sm text-foreground font-medium bg-background-secondary;
+	@apply flex items-center border-b rounded-t-xl py-2.5 px-6 mt-0 text-sm text-foreground font-medium bg-background-secondary;
 }
 
 /* Code block body */
 figure[data-rehype-pretty-code-figure] {
-	@apply rounded-lg border shadow-xs;
+	@apply rounded-xl border shadow-xs;
 }
 figure[data-rehype-pretty-code-figure] pre {
-	@apply font-code overflow-x-auto py-4 px-0 text-sm leading-[26px] tracking-normal rounded-lg bg-background-secondary 
+	@apply font-code overflow-x-auto py-4 px-0 text-xs leading-relaxed tracking-normal rounded-xl bg-background-secondary 
 		[&::-webkit-scrollbar]:h-2
-		[&::-webkit-scrollbar-thumb]:rounded-lg
+		[&::-webkit-scrollbar]:border-t
+		[&::-webkit-scrollbar]:border-border
+		[&::-webkit-scrollbar-thumb]:rounded-b-full
 		[&::-webkit-scrollbar-thumb]:bg-foreground/10;
 
 	--code-foreground: #445175;

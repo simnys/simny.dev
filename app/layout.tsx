@@ -53,7 +53,7 @@ const fontMono = localFont({
 });
 
 export const viewport: Viewport = {
-	maximumScale: 1,
+	maximumScale: 5,
 	themeColor: [
 		{ media: '(prefers-color-scheme: light)', color: '#fafafa' },
 		{ media: '(prefers-color-scheme: dark)', color: '#0f0f0f' },
@@ -149,7 +149,7 @@ export default function RootLayout({
 				<Providers>
 					<Navbar />
 
-					<main className="max-w-3xl mx-auto w-full grow relative flex flex-col gap-12 sm:gap-16 p-6 pb-12 sm:pb-16">
+					<main className="max-w-3xl mx-auto w-full grow relative flex flex-col gap-12 sm:gap-16 p-6 pb-16 sm:pb-20">
 						{children}
 					</main>
 

@@ -27,6 +27,7 @@ const createHeading = (level: number) => {
 					href: `#${slug}`,
 					key: `link-${slug}`,
 					className: 'anchor',
+					tabIndex: -1,
 				}),
 			],
 			children

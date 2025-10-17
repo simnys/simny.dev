@@ -33,7 +33,7 @@ export function Steps({ children }: StepsProps) {
 	return (
 		<div className="my-5 -mx-2">
 			{steps.map((step: any, i) => (
-				<div key={i} className="relative">
+				<div key={i} className="relative pb-6">
 					<Step title={step.props.title} number={i + 1}>
 						{step.props.children}
 					</Step>
