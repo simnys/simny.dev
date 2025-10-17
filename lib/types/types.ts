@@ -1,13 +1,16 @@
 import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 import { ComponentType, SVGProps } from 'react';
 import { IconName } from './icons';
+import { Technology } from '@/data/projects';
 
 export type Project = {
 	title: string;
 	description: string;
-	stack: Array<string>;
-	githubLink: string;
-	deployLink?: string;
+	date?: string;
+	icon?: IconName;
+	technologies?: Array<Technology | string>;
+	link?: string;
+	repoLink?: string;
 	image?: string | StaticImport;
 };
 

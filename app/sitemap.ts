@@ -17,7 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 		'/blog',
 		'/colophon',
 		'/gallery',
-		'/projects',
+		'/work',
 		...getAllTags().map((tag) => `/blog/tag/${slugify(tag)}`),
 		...galleryCollections.map((collection) => `/gallery/${slugify(collection.title)}`),
 	].map((route) => ({

@@ -28,17 +28,17 @@ function Card({ image, imageMeta, href, children, className }: CardProps) {
 			target={isExternalLink ? '_blank' : ''}
 			rel={isExternalLink ? 'noopener noreferrer' : ''}
 			className={cn(
-				'flex flex-col flex-1 group ring-1 ring-border rounded-2xl overflow-hidden',
-				'transition-colors bg-background-secondary/60 hover:bg-background-secondary/20 dark:hover:bg-background-secondary'
+				'flex flex-col flex-1 group rounded-xl border shadow-xs overflow-hidden',
+				'transition-colors duration-200 ease-out bg-background-secondary hover:bg-background dark:hover:bg-background-tertiary'
 			)}
 		>
 			<div
 				className={cn(
-					'relative h-[180px] m-1.5 mb-2 rounded-xl border shadow-inner overflow-hidden bg-background',
+					'relative h-[180px] m-1.5 rounded-lg border shadow-inner overflow-hidden bg-background',
 					className
 				)}
 			>
-				{image && (
+				{/* {image && (
 					<Image
 						src={image}
 						alt=""
@@ -49,9 +49,7 @@ function Card({ image, imageMeta, href, children, className }: CardProps) {
 						loading="lazy"
 						className="object-cover w-full h-full object-center"
 					/>
-				)}
-				<div className="absolute inset-0 w-full h-full z-10 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
-				<CardOverlay withIcon />
+				)} */}
 			</div>
 
 			{children}
@@ -67,14 +65,14 @@ interface CardBodyProps {
 }
 function CardBody({ title, icon, className, children }: CardBodyProps) {
 	return (
-		<>
-			<div className="px-4 py-2 flex gap-x-2 justify-between items-center">
-				<h3 className="text-base text-pretty">{title}</h3>
-				{icon && <Icon name={icon} className="w-4 h-4 text-foreground-tertiary/80" />}
+		<div className="py-2 px-3 mb-2">
+			<div className="mb-1 flex gap-x-2 justify-between items-center">
+				<h3 className="text-pretty">{title}</h3>
+				{icon && <Icon name={icon} className="text-foreground-tertiary" />}
 			</div>
 
-			<p className={cn('px-4 mb-4 text-foreground-secondary', className)}>{children}</p>
-		</>
+			<p className={cn('text-foreground-secondary', className)}>{children}</p>
+		</div>
 	);
 }
 
