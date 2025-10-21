@@ -6,6 +6,8 @@ import rehypePrettyCode from 'rehype-pretty-code';
 import { rehypeCodeOptions } from './lib/rehype/rehype';
 
 const BLOG_DIR = 'content/blog';
+const NOW_DIR = 'content/now';
+
 const BLOG_ASSETS_DIR = '/assets/blog';
 
 const posts = defineCollection({
@@ -49,6 +51,25 @@ const posts = defineCollection({
 	},
 });
 
+const nowEntries = defineCollection({
+	name: 'nowEntries',
+	directory: NOW_DIR,
+	include: '**/*.mdx',
+	schema: (z) => ({
+		date: z.string(),
+		title: z.string().optional(),
+	}),
+	transform: async (page, context) => {
+		const body = await compileMDX(context, page);
+		return {
+			...page,
+			body,
+			date: new Date(page.date),
+			slug: page._meta.path,
+		};
+	},
+});
+
 export default defineConfig({
-	collections: [posts],
+	collections: [posts, nowEntries],
 });

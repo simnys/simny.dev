@@ -39,15 +39,7 @@ const exploreLinks: NavItem[] = [
 		path: '/gallery',
 		icon: 'gallery',
 		colSpan: 6,
-		rowSpan: 2,
-	},
-	{
-		name: 'Components',
-		description: 'Library of interactive elements',
-		path: '',
-		icon: 'component',
-		colSpan: 6,
-		rowSpan: 2,
+		rowSpan: 3,
 	},
 	{
 		name: 'Now',
@@ -55,7 +47,7 @@ const exploreLinks: NavItem[] = [
 		path: '/now',
 		icon: 'calendar',
 		colSpan: 6,
-		rowSpan: 2,
+		rowSpan: 1,
 	},
 	{
 		name: 'Colophon',

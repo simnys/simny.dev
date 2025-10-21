@@ -119,8 +119,7 @@ h6 {
 	BLOG STYLES
 	-----------	*/
 .prose {
-	@apply dark:prose-invert text-foreground-secondary prose-headings:text-foreground prose-headings:relative prose-headings:w-fit marker:text-foreground-secondary prose-hr:border-border;
-	@apply prose-h2:text-xl prose-h3:text-lg;
+	@apply dark:prose-invert text-foreground-secondary prose-headings:text-foreground prose-headings:text-base prose-headings:relative prose-headings:w-fit marker:text-foreground-secondary prose-hr:border-border;
 }
 .prose strong {
 	@apply font-medium text-foreground;
