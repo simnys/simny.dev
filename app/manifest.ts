@@ -8,8 +8,8 @@ export default function manifest(): MetadataRoute.Manifest {
 		description: SITE_DESCRIPTION,
 		start_url: '/',
 		display: 'standalone',
-		background_color: '#0f1115',
-		theme_color: '#f0f0ea',
+		background_color: '#0f0f0f',
+		theme_color: '#fafafa',
 		icons: [
 			{
 				src: '/favicon.ico',
@@ -35,6 +35,11 @@ export default function manifest(): MetadataRoute.Manifest {
 				name: 'Photo Gallery',
 				url: '/gallery',
 				description: 'Browse my photography portfolio',
+			},
+			{
+				name: 'Now',
+				url: '/now',
+				description: 'View my current endeavors and activities',
 			},
 		],
 		id: '/',

@@ -1,6 +1,18 @@
 'use server';
 
+interface RaindropCollection {
+	_id: number;
+	title: string;
+	description: string;
+	count: number;
+	lastUpdate: Date;
+	slug: string;
+	parent?: { $id: number };
+	items?: Raindrop[];
+}
 interface Raindrop {
+	_id: number;
+	collectionId: number;
 	title: string;
 	domain: string;
 	link: string;
@@ -10,59 +22,91 @@ interface Raindrop {
 	tags?: string[];
 }
 
-interface RaindropApiResponse {
-	result: boolean;
-	count: number;
-	items: Raindrop[];
-}
+const mapRaindropCollections = (
+	collections: RaindropCollection[],
+	items: Raindrop[]
+): RaindropCollection[] => {
+	return collections.map((collection) => {
+		return {
+			...collection,
+			items: items.filter((item) => item.collectionId === collection._id),
+		};
+	});
+};
 
-interface RaindropApiError {
-	result: boolean;
-	error: string;
-	errorMessage: string;
-}
+const getRaindropChildCollections = async (id: number): Promise<RaindropCollection[] | null> => {
+	const accessToken = process.env.RAINDROP_ACCESS_TOKEN;
 
-/**
- * Fetches bookmarks from a Raindrop.io collection by ID
- * @param id - The collection ID to fetch
- * @returns Promise with the collection data or null if not found/error
- */
-export async function getRaindropCollection(id: string): Promise<Raindrop[] | null> {
-	try {
-		const accessToken = process.env.RAINDROP_ACCESS_TOKEN;
+	const response = await fetch('https://api.raindrop.io/rest/v1/collections/childrens', {
+		method: 'GET',
+		headers: {
+			Authorization: `Bearer ${accessToken}`,
+			'Content-Type': 'application/json',
+		},
+	});
 
-		if (!accessToken) {
-			console.error('RAINDROP_ACCESS_TOKEN environment variable is not set');
-			return null;
-		}
+	if (!response.ok) {
+		console.error(`Raindrop API error: ${response.status} - ${response.statusText}`);
+		return null;
+	}
 
-		const response = await fetch(`https://api.raindrop.io/rest/v1/raindrops/${id}`, {
+	const data = await response.json();
+
+	if (!data.result) {
+		console.error('Raindrop API returned error:', data.errorMessage);
+		return null;
+	}
+
+	const collections = data.items.filter(
+		(collection: any) => collection.parent && collection.parent.$id === id
+	);
+
+	return collections;
+};
+
+export const getRaindropsByCollection = async (
+	id: number,
+	limit?: number
+): Promise<Raindrop[] | null> => {
+	const accessToken = process.env.RAINDROP_ACCESS_TOKEN;
+
+	const response = await fetch(
+		`https://api.raindrop.io/rest/v1/raindrops/${id}?nested=true&perpage=${limit}`,
+		{
 			method: 'GET',
 			headers: {
 				Authorization: `Bearer ${accessToken}`,
 				'Content-Type': 'application/json',
 			},
-			// Add cache settings for Next.js
 			next: {
 				revalidate: 60 * 60 * 24, // Cache for 1 day
 			},
-		});
-
-		if (!response.ok) {
-			console.error(`Raindrop API error: ${response.status} - ${response.statusText}`);
-			return null;
 		}
+	);
 
-		const data: RaindropApiResponse | RaindropApiError = await response.json();
+	if (!response.ok) {
+		console.error(`Raindrop API error: ${response.status} - ${response.statusText}`);
+		return null;
+	}
 
-		console.log(data);
+	const data = await response.json();
 
-		if (!data.result) {
-			console.error('Raindrop API returned error:', (data as RaindropApiError).errorMessage);
-			return null;
-		}
+	if (!data.result) {
+		console.error('Raindrop API returned error:', data.errorMessage);
+		return null;
+	}
 
-		return (data as RaindropApiResponse).items;
+	return data.items;
+};
+
+export async function getRaindrops(id: number): Promise<RaindropCollection[] | null> {
+	try {
+		const raindrops = await getRaindropsByCollection(id);
+		const collections = await getRaindropChildCollections(id);
+
+		if (!raindrops || !collections) return null;
+
+		return mapRaindropCollections(collections, raindrops);
 	} catch (error) {
 		console.error('Error fetching Raindrop collection:', error);
 		return null;
