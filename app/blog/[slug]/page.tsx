@@ -133,7 +133,7 @@ export default async function BlogPost(props: Props) {
 			/>
 
 			<article className="prose mx-auto w-full first:prose-p:m-0">
-				<div className="min-h-[240px] flex flex-col justify-end gap-3 mb-8">
+				<div className="min-h-[200px] flex flex-col justify-end gap-3 mb-8">
 					<div className="flex items-center gap-x-1 font-mono uppercase text-foreground-tertiary">
 						<Link
 							href="/blog"

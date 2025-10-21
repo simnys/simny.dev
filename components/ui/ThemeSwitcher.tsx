@@ -12,7 +12,7 @@ export default function ThemeSwitcher({ className }: { className?: string }) {
 		<Button
 			variant="ghost"
 			size="icon"
-			aria-label={`Change to ${resolvedTheme === 'dark' ? 'light' : 'dark'} mode`}
+			aria-label="Change Theme"
 			onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
 			className={cn('relative cursor-pointer', className)}
 		>

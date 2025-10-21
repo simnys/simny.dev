@@ -36,7 +36,7 @@ export default function GalleryView({ content, as = 'images' }: Props) {
 
 	return (
 		<>
-			<div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-2 -mx-4 lg:-mx-6">
+			<div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-2">
 				{columns.map((col, colIndex: number) => {
 					return (
 						<div key={colIndex} className="flex flex-col gap-2 relative">

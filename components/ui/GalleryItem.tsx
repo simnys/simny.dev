@@ -1,10 +1,10 @@
 import { GalleryImage, StaticImage } from '@/lib/types/types';
 import { cn, slugify } from '@/lib/utils';
 
-import Image from 'next/image';
 import Link from 'next/link';
-import CardOverlay from './CardOverlay';
 import { Icon } from './Icon';
+import { CldImage } from 'next-cloudinary';
+import Image from 'next/image';
 
 type Props = {
 	isCollection: boolean;
@@ -32,7 +32,7 @@ export default function GalleryItem({
 			{isCollection ? (
 				<Link
 					href={`/gallery/${slugify(collectionTitle)}`}
-					className="relative group overflow-hidden"
+					className="relative group rounded-lg overflow-hidden block aspect-square sm:aspect-[4/5] w-full"
 				>
 					<Image
 						src={item.src}
@@ -43,27 +43,25 @@ export default function GalleryItem({
 						loading={priority ? 'eager' : 'lazy'}
 						placeholder="blur"
 						blurDataURL={item.blurData}
-						className="aspect-[4/5] w-full object-cover object-center rounded-xl"
+						className="w-full h-full object-cover group-focus-visible:p-0.5 rounded-lg"
 					/>
-					<div className="rounded-xl bg-linear-to-t from-foreground/80 dark:from-background/80 via-transparent to-transparent flex flex-col items-start justify-end p-4 absolute w-full top-0 bottom-0 text-background dark:text-foreground transition-colors duration-300 ease-out group-hover:bg-background/20">
-						<div className="text-xs font-medium flex items-center gap-1.5 opacity-80">
+					<div className="bg-linear-to-t from-foreground/80 dark:from-background/80 via-transparent to-transparent flex flex-col items-start justify-end p-4 absolute w-full top-0 bottom-0 text-background dark:text-foreground transition-colors duration-200 ease-out group-hover:bg-background/20">
+						<div className="font-mono flex items-center gap-1.5 opacity-80">
 							<Icon name="gallery" className="size-4" />
 							{collectionSize}
 						</div>
-						<h3 className="text-xl">{collectionTitle}</h3>
+						<h3 className="">{collectionTitle}</h3>
 					</div>
-
-					<CardOverlay withIcon withOverlay={false} />
 				</Link>
 			) : (
 				<div
 					className={cn('relative hover:cursor-zoom-in rounded-sm overflow-hidden')}
 					onClick={(e) => handleImageClick(e, lightboxIndex)}
 				>
-					<Image
+					<CldImage
 						src={item.src}
-						width={(item as GalleryImage).width}
-						height={(item as GalleryImage).height}
+						width={Math.floor((item as GalleryImage).width / 4)}
+						height={Math.floor((item as GalleryImage).height / 4)}
 						alt={item.alt ?? ''}
 						priority={priority}
 						loading={priority ? 'eager' : 'lazy'}

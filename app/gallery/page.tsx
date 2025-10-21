@@ -1,5 +1,4 @@
 import PageHeader from '@/components/layouts/PageHeader';
-import { Section } from '@/components/layouts/Section';
 import GalleryView from '@/components/sections/GalleryView';
 import { SITE_NAME, SITE_URL } from '@/data/constants';
 import { galleryCollections, galleryImagesStatic } from '@/data/gallery';
@@ -85,9 +84,9 @@ export default async function Gallery() {
 				content="Moments, places, and details I've noticed along the way."
 			/>
 
-			<Section>
+			<section>
 				<GalleryView as="collections" content={collections} />
-			</Section>
+			</section>
 		</>
 	);
 }

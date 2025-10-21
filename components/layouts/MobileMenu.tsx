@@ -69,7 +69,7 @@ export default function MobileMenu({ isOpen, onClose, currentPath }: MobileMenuP
 							<MenuSection
 								key={section.title}
 								title={section.title}
-								items={section.items}
+								items={section.items.filter((item) => item.path)}
 								onClose={onClose}
 								currentPath={currentPath}
 							/>

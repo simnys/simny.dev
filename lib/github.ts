@@ -5,7 +5,9 @@ export interface CommitInfo {
 	url: string;
 }
 
-// Fetch latest commit from GitHub API
+/**
+ * Fetch the latest commit from the GitHub API
+ */
 export async function getLatestCommit(): Promise<CommitInfo | null> {
 	const owner = 'simnys';
 	const repo = 'simny.dev';

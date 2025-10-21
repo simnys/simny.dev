@@ -1,6 +1,7 @@
 import PageHeader from '@/components/layouts/PageHeader';
 import { Section } from '@/components/layouts/Section';
 import GalleryView from '@/components/sections/GalleryView';
+import { Button } from '@/components/ui/Button';
 
 import { SITE_NAME, SITE_URL } from '@/data/constants';
 import { galleryCollections } from '@/data/gallery';
@@ -102,30 +103,39 @@ export default async function GalleryCollection(props: Props) {
 				<GalleryView content={images} as="images" />
 			</section>
 
-			<div className="flex justify-between items-baseline text-sm font-medium select-none">
-				<Link
-					href={`${backLink}/${slugify(previousCollection.title)}`}
-					className="flex-1 px-4 sm:px-6 py-3 rounded-lg text-foreground/80 transition-colors hover:bg-foreground-tertiary/5 hover:text-foreground"
-				>
-					<span className="block text-xs text-foreground-tertiary">Prev</span>
-					{previousCollection.title}
-				</Link>
+			<div className="-mx-4 flex justify-between items-baseline text-sm font-medium select-none">
+				<Button asChild variant="ghost" className="text-foreground-secondary">
+					<Link
+						href={`${backLink}/${slugify(previousCollection.title)}`}
+						className="flex-col flex-1 h-15 items-start"
+					>
+						<span className="block font-mono uppercase text-[12px] text-foreground-tertiary">
+							Prev
+						</span>
+						{previousCollection.title}
+					</Link>
+				</Button>
 
-				<Link
-					href={backLink}
-					className="hidden sm:block text-center flex-1 px-4 sm:px-6 py-3 rounded-lg text-foreground/80 transition-colors hover:bg-foreground-tertiary/5 hover:text-foreground"
-				>
-					<span className="block text-xs text-foreground-tertiary">Collections</span>
-					Index
-				</Link>
+				<Button asChild variant="ghost" className="text-foreground-secondary">
+					<Link href={backLink} className="hidden sm:inline-flex flex-col flex-1 h-15 text-center">
+						<span className="block font-mono uppercase text-[12px] text-foreground-tertiary">
+							Collections
+						</span>
+						Index
+					</Link>
+				</Button>
 
-				<Link
-					href={`${backLink}/${slugify(nextCollection.title)}`}
-					className="text-right flex-1 px-4 sm:px-6 py-3 rounded-lg text-foreground/80 transition-colors hover:bg-foreground-tertiary/5 hover:text-foreground"
-				>
-					<span className="block text-xs text-foreground-tertiary">Next</span>
-					{nextCollection.title}
-				</Link>
+				<Button asChild variant="ghost" className="text-foreground-secondary">
+					<Link
+						href={`${backLink}/${slugify(nextCollection.title)}`}
+						className="flex-col flex-1 h-15 items-end text-right"
+					>
+						<span className="block font-mono uppercase text-[12px] text-foreground-tertiary">
+							Next
+						</span>
+						{nextCollection.title}
+					</Link>
+				</Button>
 			</div>
 		</>
 	);
