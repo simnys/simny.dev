@@ -1,8 +1,5 @@
-import { navItems } from '@/data/navigation';
 import avatar from '@/public/images/avatar-px.png';
-
 import Image from 'next/image';
-import CustomLink from '../blog/Link';
 
 export default function Hero() {
 	return (

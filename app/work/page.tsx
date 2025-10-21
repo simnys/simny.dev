@@ -1,10 +1,6 @@
 import PageHeader from '@/components/layouts/PageHeader';
-import { Section, SectionHeader } from '@/components/layouts/Section';
-import { Card, CardBody, CardFooter } from '@/components/ui/Card';
-import CardOverlay from '@/components/ui/CardOverlay';
 import { Icon } from '@/components/ui/Icon';
 import { SITE_NAME, SITE_URL } from '@/data/constants';
-import Sr from '@/public/icons/sr.svg';
 
 import { sideProjects, professionalProjects } from '@/data/projects';
 import { cn } from '@/lib/utils';
@@ -12,9 +8,7 @@ import { cn } from '@/lib/utils';
 import { Metadata } from 'next';
 import Script from 'next/script';
 import { CollectionPage, WithContext } from 'schema-dts';
-import Image from 'next/image';
-import { Project } from '@/lib/types/types';
-import Link from 'next/link';
+import { IconName } from '@/lib/types/icons';
 
 export const metadata: Metadata = {
 	title: 'Work',
@@ -57,7 +51,10 @@ export default function Work() {
 				<h2 className="mb-4">Professional work</h2>
 				<div className="grid md:grid-cols-2 gap-6">
 					{professionalProjects.map((project) => (
-						<ProjectCard key={project.title} project={project} />
+						<SimpleCard
+							key={project.title}
+							item={{ ...project, body: project.description, subtitle: project.date }}
+						/>
 					))}
 				</div>
 			</section>
@@ -66,7 +63,10 @@ export default function Work() {
 				<h2 className="mb-4">Side projects</h2>
 				<div className="grid md:grid-cols-2 gap-6">
 					{sideProjects.map((project) => (
-						<ProjectCard key={project.title} project={project} />
+						<SimpleCard
+							key={project.title}
+							item={{ ...project, body: project.description, subtitle: project.date }}
+						/>
 					))}
 				</div>
 			</section>
@@ -74,30 +74,37 @@ export default function Work() {
 	);
 }
 
-const ProjectCard = ({ project }: { project: Project }) => {
+type CardProps = {
+	link?: string;
+	title: string;
+	body?: string;
+	subtitle?: string;
+	icon?: IconName;
+};
+
+export const SimpleCard = ({ item, className }: { item: CardProps; className?: string }) => {
 	return (
 		<a
-			href={project.link}
+			href={item.link}
 			target="_blank"
 			rel="noopener noreferrer"
 			className={cn(
 				'relative w-full h-[240px] bg-background-secondary p-4 rounded-xl border border-border shadow-xs flex flex-col',
-				'group transition-colors duration-200 ease-out hover:bg-background dark:hover:bg-background-tertiary'
+				'group transition-colors duration-200 ease-out hover:bg-background dark:hover:bg-background-tertiary',
+				className
 			)}
 		>
 			<div className="grow flex items-center justify-center mt-6">
-				<Icon name={project.icon ?? 'code'} className="size-9" />
+				<Icon name={item.icon ?? 'code'} className="size-9" />
 			</div>
 			<div className="space-y-0.5">
-				{project.date && (
-					<time className="inline-block font-mono uppercase text-foreground-tertiary text-[12px]">
-						{project.date}
-					</time>
+				{item.subtitle && (
+					<span className="inline-block font-mono uppercase text-foreground-tertiary text-[12px]">
+						{item.subtitle}
+					</span>
 				)}
-				<h3>{project.title}</h3>
-				<p className="text-sm text-foreground-tertiary line-clamp-2 leading-relaxed">
-					{project.description}
-				</p>
+				<h3>{item.title}</h3>
+				<p className="text-sm text-foreground-tertiary line-clamp-2 leading-relaxed">{item.body}</p>
 			</div>
 		</a>
 	);

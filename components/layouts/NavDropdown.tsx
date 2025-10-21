@@ -5,7 +5,6 @@ import { dropdownLinks } from '@/data/navigation';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useEffect, useRef } from 'react';
-import CardOverlay from '../ui/CardOverlay';
 import { IconName } from '@/lib/types/icons';
 import { Icon } from '../ui/Icon';
 import { FocusTrap } from 'focus-trap-react';

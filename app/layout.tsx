@@ -149,7 +149,7 @@ export default function RootLayout({
 				<Providers>
 					<Navbar />
 
-					<main className="max-w-3xl mx-auto w-full grow relative flex flex-col gap-12 sm:gap-16 p-6 pb-16 sm:pb-20">
+					<main className="max-w-3xl mx-auto w-full grow relative flex flex-col gap-12 sm:gap-16 p-6 mb-10 sm:mb-20">
 						{children}
 					</main>
 
