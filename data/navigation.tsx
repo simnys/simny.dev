@@ -8,18 +8,13 @@ import {
 } from './constants';
 
 //
-// NAVIGAITON
+// NAVIGATION
 //
 const navigationLinks: NavItem[] = [
 	{
 		name: 'Home',
 		path: '/',
 		icon: 'home',
-	},
-	{
-		name: 'About',
-		path: '/about',
-		icon: 'user',
 	},
 	{
 		name: 'Blog',

@@ -17,7 +17,7 @@ export default function NotFound() {
 				<br className="hidden sm:block" />
 				I&apos;ll get you right back on track!
 			</p>
-			<Button asChild icon={<Icon name="home" className="size-4 mr-1" />} iconPosition="left">
+			<Button asChild variant='secondary'>
 				<Link href="/">Take me home</Link>
 			</Button>
 		</main>
