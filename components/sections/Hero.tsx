@@ -4,26 +4,29 @@ import Image from 'next/image';
 export default function Hero() {
 	return (
 		<>
-			<div className="relative mx-auto rounded-full ring-1 ring-offset-6 ring-offset-background ring-border shadow-inner">
-				<Image
-					src={avatar}
-					alt="Profile Picture"
-					width={128}
-					height={128}
-					priority
-					placeholder="blur"
-					draggable={false}
-					className="rounded-full ring-2 ring-border ring-offset-4 ring-offset-background shadow-lg"
-				/>
-			</div>
+			<div className="flex items-center gap-4">
+					<div className="relative shrink-0">
+						<Image
+							width={128}
+							height={128}
+							src={avatar}
+							alt=""
+							draggable={false}
+							className="size-13 sm:size-16 rounded-2xl not-prose"
+						/>
+						<div className="absolute -right-1 -bottom-1 size-4 p-1 bg-background rounded-full flex items-center justify-center">
+							<div className="size-full rounded-full bg-brand" />
+						</div>
+					</div>
 
-			<div className="max-w-2xl mx-auto text-balance px-4 space-y-2">
-				<h1 className="">Hey, I&apos;m Simon.</h1>
-				<p className="text-foreground-secondary">
-					I&apos;m a software engineer specializing in building exceptional digital experiences.
-					Currently, I&apos;m focused on building accessible, human-centered products
-				</p>
+					<div>
+						<span className="block sm:text-lg font-medium">
+							Simon Nyström
+						</span>
+						<span className="block text-sm sm:text-base text-foreground-tertiary">Software Developer at Sopra Steria</span>
+					</div>
 			</div>
+			<p className='prose'>Hey, I'm Simon Nyström, a front-end engineer and photographer from Sweden. I got into coding out of curiosity and a love for making things work online, and it's been a wild ride ever since.</p>
 		</>
 	);
 }

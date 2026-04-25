@@ -1,4 +1,5 @@
 import PageHeader from '@/components/layouts/PageHeader';
+import { Icon } from '@/components/ui/Icon';
 import PostList from '@/components/ui/PostList';
 import { TagSelector } from '@/components/ui/TagSelector';
 import { SITE_NAME, SITE_URL } from '@/data/constants';
@@ -49,7 +50,17 @@ export default async function Blog() {
 
 			<section className="space-y-4 sm:space-y-6">
 				{tags.length > 4 && <TagSelector tags={tags} activeTag={''} />}
-				<PostList posts={posts} />
+				{posts.length > 0 ? (
+					<PostList posts={posts} />
+				) : (
+					<div className="flex flex-col gap-4 py-10 items-center justify-center">
+					<Icon name="warning" className="size-8 text-brand" />
+								<p className="text-foreground-secondary mb-4 text-center">
+									No posts found. The blog is still under construction. <br className="hidden sm:block" />
+									Please check back later!
+								</p>
+					</div>
+				)}
 			</section>
 		</>
 	);

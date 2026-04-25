@@ -1,11 +1,21 @@
 import CustomLink from '@/components/blog/Link';
 import Hero from '@/components/sections/Hero';
 
-import { SITE_URL } from '@/data/constants';
+import { SITE_CONTACT, SITE_DESCRIPTION, SITE_GITHUB_URL, SITE_INSTAGRAM_URL, SITE_LINKEDIN_URL, SITE_NAME, SITE_URL } from '@/data/constants';
+import { professionalProjects, technologies } from '@/data/projects';
 import { getBlogPosts, getLatestBlogPost } from '@/lib/blog';
 import { cn } from '@/lib/utils';
 
 import { Metadata } from 'next';
+import { SimpleCard } from './work/page';
+import { Icon } from '@/components/ui/Icon';
+import Link from 'next/link';
+import GalleryView from '@/components/sections/GalleryView';
+import { getCollections } from '@/lib/gallery';
+import { GalleryCollection } from '@/lib/types/types';
+import HorizontalScroller from '@/components/ui/HorizontalScroller';
+import { AboutPage, WithContext } from 'schema-dts';
+import Script from 'next/script';
 
 export const metadata: Metadata = {
 	alternates: {
@@ -16,10 +26,33 @@ export const metadata: Metadata = {
 export default async function Home() {
 	const blogPosts = getBlogPosts();
 	const latestPost = getLatestBlogPost();
+	const collections = (await getCollections()) as GalleryCollection[];
+
+	const jsonLd: WithContext<AboutPage> = {
+			'@type': 'AboutPage',
+			'@context': 'https://schema.org',
+			url: SITE_URL,
+			mainEntity: {
+				'@type': 'Person',
+				name: SITE_NAME,
+				description: SITE_DESCRIPTION,
+				email: SITE_CONTACT,
+				url: SITE_URL,
+				image: `${SITE_URL}/images/avatar.jpg`,
+				sameAs: [SITE_GITHUB_URL, SITE_LINKEDIN_URL, SITE_INSTAGRAM_URL],
+				jobTitle: 'Front-end Engineer & Photographer',
+			},
+		};
 
 	return (
 		<>
-			<section className="text-center flex flex-col gap-12 items-center justify-center relative -mx-6 py-22 border-b">
+			<Script
+				type="application/ld+json"
+				id="about_jsonLd"
+				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+			/>
+
+			<section className="flex flex-col gap-6 relative py-22 border-b md:px-8">
 				<Hero />
 				<div
 					className={cn(
@@ -32,17 +65,63 @@ export default async function Home() {
 						maskImage: 'radial-gradient(circle at 50% 50%, white 50%, transparent 100%)',
 					}}
 				/>
-				{/* <div className="absolute inset-0 bg-gradient-to-b from-brand/5 via-transparent to-transparent via-30% pointer-events-none" /> */}
 			</section>
 
-			<section className="prose mx-auto">
+			<section className='md:px-8'>
+				<div className='mb-4 flex justify-between items-center'>
+					<h2>Recent work</h2>
+					<Link href="/work" className="text-foreground-tertiary hover:text-foreground transition-colors p-2">
+						<Icon name="arrow" className="" />
+					</Link>
+				</div>
+				<div className="grid md:grid-cols-2 gap-6">
+					{professionalProjects.slice(0, 2).map((project) => (
+						<SimpleCard
+							key={project.title}
+							item={{ ...project, subtitle: project.date }}
+						/>
+					))}
+				</div>
+			</section>
+
+			<section className="prose sm:mx-auto">
 				<h2 className="">About</h2>
 				<div className="">
 					{content.map((c, i) => (
 						<p key={i}>{c.text}</p>
 					))}
 				</div>
+
+				<div className='mt-8'>
+					<HorizontalScroller
+						items={technologies.slice(0, technologies.length / 2)}
+						speed="slow"
+						separator="•"
+						className="not-prose select-none mb-2"
+						pauseOnHover={false}
+						/>
+					<HorizontalScroller
+						items={technologies.slice(technologies.length / 2)}
+						speed="slow"
+						separator="•"
+						className="not-prose select-none"
+						pauseOnHover={false}
+						/>
+						</div>
+								
 			</section>
+
+			{collections.length >=3 && (
+				<section className='md:px-8'>
+				<div className='mb-4 flex justify-between items-center'>
+					<h2>Photography</h2>
+					<Link href="/gallery" className="text-foreground-tertiary hover:text-foreground transition-colors p-2">
+						<Icon name="arrow" className="" />
+					</Link>
+				</div>
+				<GalleryView as="collections" content={collections.slice(0, 3)} />
+			</section>
+			)}
 		</>
 	);
 }
@@ -52,9 +131,7 @@ const content = [
 		heading: 'Overview',
 		text: (
 			<>
-				This site is all about being fast, accessible, and easy on the eyes. I built and designed it
-				myself, focusing on clean code, smooth layouts, and a user experience that just feels right.
-				Everything is meant to be modern, simple, and a breeze to use.
+				I spend most of my days working with React, Next.js, and Tailwind CSS, building sites and apps that (hopefully) make people's lives a little easier or more fun. I'm always tinkering, learning new tricks, and trying out fresh ideas—there's always something new to explore.
 			</>
 		),
 	},
@@ -62,12 +139,7 @@ const content = [
 		heading: 'Technologies',
 		text: (
 			<>
-				Under the hood, it runs on <CustomLink href="https://nextjs.org">Next.js</CustomLink> (App
-				Router), <CustomLink href="https://react.dev">React</CustomLink>, and{' '}
-				<CustomLink href="https://typescriptlang.org">TypeScript</CustomLink>. Styling is handled
-				with <CustomLink href="https://tailwindcss.com">Tailwind CSS</CustomLink> and a few custom
-				utilities. Most content is static for speed, but there are dynamic bits powered by server
-				components and edge functions.
+				When I'm not deep in code, you'll probably find me with a camera in hand. Photography lets me slow down and notice the little things—whether it's a cool landscape, city vibes, or just everyday moments. It's my way of capturing stories and memories.
 			</>
 		),
 	},
@@ -75,27 +147,7 @@ const content = [
 		heading: 'Design & Colors',
 		text: (
 			<>
-				The vibe I&apos;m going for is minimal, with neutral colors and blue accents to keep things
-				fresh.{' '}
-				<CustomLink href="https://www.fontshare.com/?q=General%20Sans">General Sans</CustomLink> and{' '}
-				<CustomLink href={'https://vercel.com/font'}>Geist Mono</CustomLink> handle the typography,
-				making everything readable and stylish. Layouts are flexible and responsive, with plenty of
-				space and a grid to keep things tidy.
-			</>
-		),
-	},
-	{
-		heading: 'Inspirations',
-		text: (
-			<>
-				I&apos;ve taken cues from the design systems of{' '}
-				<CustomLink href="https://tailwindcss.com">Tailwind CSS</CustomLink> and{' '}
-				<CustomLink href="https://vercel.com">Vercel</CustomLink>. Some developer portfolios that
-				also influenced my own approach are{' '}
-				<CustomLink href="https://braydoncoyer.dev">Braydon Coyer</CustomLink>,{' '}
-				<CustomLink href="https://maximeheckel.com">Maxime Heckel</CustomLink>, and{' '}
-				<CustomLink href="https://jakub.kr">Jakub Krehel</CustomLink>. Go give them a visit, they
-				have killer sites!
+				Outside of work and photography, I love getting outdoors, traveling, or just kicking back with a good book. If you ever want to chat about tech, photos, or favorite hiking spots, I'm always up for it!
 			</>
 		),
 	},

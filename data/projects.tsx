@@ -29,20 +29,20 @@ export type Technology = (typeof technologies)[number];
 
 export const professionalProjects = [
 	{
-		title: 'Musikhjälpen',
-		date: '2025 - Present',
-		description:
-			'A comprehensive redesign and development of the Musikhjälpen website to enhance user experience, accessibility, and performance. Implemented responsive design principles and optimized content delivery for a diverse audience.',
-		icon: 'heart',
-		link: 'https://bossan.musikhjalpen.se/',
-	},
-	{
 		title: 'Swedish Engineers',
 		date: '2023 - Present',
 		description:
 			'A platform designed to connect Swedish engineers with job opportunities, resources, and a community of professionals. Features include job listings, networking events, and industry news.',
 		icon: 'logoSI',
 		link: 'https://www.sverigesingenjorer.se',
+	},
+	{
+		title: 'Musikhjälpen',
+		date: '2025',
+		description:
+			'A comprehensive redesign and development of the Musikhjälpen website to enhance user experience, accessibility, and performance. Implemented responsive design principles and optimized content delivery for a diverse audience.',
+		icon: 'heart',
+		link: 'https://bossan.musikhjalpen.se/',
 	},
 	{
 		title: 'Sopra Steria',

@@ -13,7 +13,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
 	const routes: MetadataRoute.Sitemap = [
 		'',
-		'/about',
 		'/blog',
 		'/colophon',
 		'/gallery',
