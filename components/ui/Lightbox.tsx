@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { CldImage } from 'next-cloudinary';
 import { useEffect, useRef, useState } from 'react';
 import { Icon } from './Icon';
+import { FocusTrap } from 'focus-trap-react';
 
 type Props = {
 	content: Array<GalleryImage>;
@@ -57,32 +58,18 @@ export default function Lightbox({ content, current, setCurrent, isVisible, onCl
 	return (
 		<AnimatePresence>
 			{isVisible && (
-				<>
+				<FocusTrap>
 					<motion.div
 						className="fixed z-100 top-0 left-0 w-full h-full flex justify-center bg-background/90"
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
 						exit={{ opacity: 0 }}
+						onKeyDown={handleKeyDown}
 					>
-						<div
-							className="hidden md:block absolute z-110 right-6 bottom-1/2 -translate-y-1/2 w-fit p-2 rounded-full bg-foreground-secondary/5 text-foreground-secondary ring-1 ring-transparent ring-offset-background transition-all hover:bg-foreground-secondary/10 hover:text-foreground hover:ring-brand hover:ring-offset-2 active:scale-95 active:ring-offset-1 cursor-pointer select-none"
-							onClick={(e) => showNext(e)}
-						>
-							<Icon name="arrow" className="w-5 h-5" />
-						</div>
-						<div
-							className="hidden md:block absolute z-110 left-6 bottom-1/2 -translate-y-1/2 w-fit p-2 rounded-full bg-foreground-secondary/5 text-foreground-secondary ring-1 ring-transparent ring-offset-background transition-all hover:bg-foreground-secondary/10 hover:text-foreground hover:ring-brand hover:ring-offset-2 active:scale-95 active:ring-offset-1 cursor-pointer select-none"
-							onClick={(e) => showPrev(e)}
-						>
-							<Icon name="arrow" className="w-5 h-5 rotate-180" />
-						</div>
-
 						<div
 							ref={containerRef}
 							onClick={() => onClose()}
-							tabIndex={-1}
-							onKeyDown={handleKeyDown}
-							className="fixed z-100 top-0 left-0 w-full h-full flex items-center justify-center focus-visible:outline-none p-10 sm:p-20"
+							className="fixed z-100 top-0 left-0 w-full h-full flex items-center justify-center outline-none ring-0 p-6 sm:p-16"
 						>
 							<motion.div
 								initial={{
@@ -118,8 +105,21 @@ export default function Lightbox({ content, current, setCurrent, isVisible, onCl
 								/>
 							</motion.div>
 						</div>
+
+						<button
+							className="absolute z-110 right-6 top-10 md:top-1/2 md:-translate-y-1/2 w-fit p-2 rounded-full bg-foreground-secondary/5 text-foreground-secondary ring-1 ring-transparent ring-offset-background transition-all hover:bg-foreground-secondary/10 hover:text-foreground hover:ring-brand hover:ring-offset-2 active:scale-95 active:ring-offset-1 cursor-pointer select-none"
+							onClick={(e) => showNext(e)}
+						>
+							<Icon name="arrow" className="w-5 h-5" />
+						</button>
+						<button
+							className="absolute z-110 left-6 top-10 md:top-1/2 md:-translate-y-1/2 w-fit p-2 rounded-full bg-foreground-secondary/5 text-foreground-secondary ring-1 ring-transparent ring-offset-background transition-all hover:bg-foreground-secondary/10 hover:text-foreground hover:ring-brand hover:ring-offset-2 active:scale-95 active:ring-offset-1 cursor-pointer select-none"
+							onClick={(e) => showPrev(e)}
+						>
+							<Icon name="arrow" className="w-5 h-5 rotate-180" />
+						</button>
 					</motion.div>
-				</>
+				</FocusTrap>
 			)}
 		</AnimatePresence>
 	);
