@@ -13,7 +13,7 @@ interface PageHeaderProps {
 export default function PageHeader({ title, content, backlink, className }: PageHeaderProps) {
 	return (
 		<>
-			<div className={cn('relative mt-16 sm:mt-20 space-y-1 text-balance', className)}>
+			<div className={cn('relative mt-12 sm:mt-20 space-y-1 text-balance', className)}>
 				<h1>{title}</h1>
 				{content && <p className="text-foreground-secondary">{content}</p>}
 			</div>

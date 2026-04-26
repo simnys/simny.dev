@@ -132,8 +132,8 @@ export default async function BlogPost(props: Props) {
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
 
-			<article className="prose mx-auto w-full first:prose-p:m-0">
-				<div className="min-h-[200px] flex flex-col justify-end gap-1 mb-8">
+			<article className="prose mx-auto w-full mt-4 sm:mt-20 first:prose-p:m-0">
+				<div className="flex flex-col justify-end gap-1 mb-8">
 					<div className="flex items-center gap-x-1 mb-2 text-sm text-foreground-tertiary">
 						<Link
 							href="/writing"

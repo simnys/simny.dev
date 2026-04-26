@@ -51,7 +51,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
 	metadataBase: new URL(SITE_URL),
 	title: {
-		default: SITE_TITLE,
+		default: SITE_NAME,
 		template: `%s | ${SITE_NAME}`,
 	},
 	description: SITE_DESCRIPTION,
@@ -114,7 +114,7 @@ export default function RootLayout({
 		url: SITE_URL,
 		image: `${SITE_URL}/images/hero.jpg`,
 		sameAs: [SITE_GITHUB_URL, SITE_LINKEDIN_URL, SITE_INSTAGRAM_URL],
-		jobTitle: 'Front-end Engineer & Photographer',
+		jobTitle: 'Web Engineer & Photographer',
 	};
 
 	return (
