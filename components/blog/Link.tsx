@@ -2,14 +2,16 @@ import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import React from 'react';
 import { Icon } from '../ui/Icon';
+import { IconName } from '@/lib/types/icons';
 
 const cLinkBase =
-	'c-link relative inline-flex items-center gap-x-0.5 no-underline whitespace-nowrap text-foreground hover:text-brand transition-colors before:c-link-border hover:before:translate-y-1 hover:before:bg-transparent hover:before:transform-gpu';
+	'relative items-center gap-x-0.5 underline underline-offset-3 whitespace-nowrap text-foreground font-medium decoration-foreground-tertiary/50 hover:decoration-foreground-secondary transition-colors';
 
 interface CustomLinkProps extends React.DetailedHTMLProps<
 	React.AnchorHTMLAttributes<HTMLAnchorElement>,
 	HTMLAnchorElement
 > {
+	icon?: IconName;
 	className?: string;
 }
 
@@ -33,17 +35,22 @@ export default function CustomLink(props: CustomLinkProps) {
 			rel="noopener noreferrer"
 			className={cn(cLinkBase, 'group', props.className)}
 		>
+			{props.icon && <Icon name={props.icon} className="inline-block size-4 mr-1 ml-0.5 mb-0.5" />}
+
 			{props.children}
-			<span className="overflow-hidden relative">
-				<Icon
-					name="external"
-					className="size-4 group-hover:-translate-y-4 group-hover:translate-x-4 transition-transform duration-200 ease-out"
-				/>
-				<Icon
-					name="external"
-					className="absolute bottom-0 right-0 size-4 translate-y-4 -translate-x-4 group-hover:translate-y-0 group-hover:translate-x-0 transition-transform duration-200 ease-out"
-				/>
-			</span>
+
+			{!props.icon && (
+				<span className="inline-block overflow-hidden relative">
+					<Icon
+						name="external"
+						className="size-4 group-hover:-translate-y-4 group-hover:translate-x-4 transition-transform duration-200 ease-out"
+					/>
+					<Icon
+						name="external"
+						className="absolute bottom-0 right-0 size-4 translate-y-4 -translate-x-4 group-hover:translate-y-0 group-hover:translate-x-0 transition-transform duration-200 ease-out"
+					/>
+				</span>
+			)}
 		</Link>
 	);
 }
