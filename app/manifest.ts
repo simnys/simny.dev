@@ -22,9 +22,14 @@ export default function manifest(): MetadataRoute.Manifest {
 		prefer_related_applications: false,
 		shortcuts: [
 			{
+				name: 'About',
+				url: '/',
+				description: 'Learn more about me',
+			},
+			{
 				name: 'Writing',
 				url: '/writing',
-				description: 'Read latest front-end engineering articles',
+				description: 'Read latest web & design engineering articles',
 			},
 			{
 				name: 'Work',

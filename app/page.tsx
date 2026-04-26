@@ -50,7 +50,7 @@ export default async function Home() {
 			url: SITE_URL,
 			image: `${SITE_URL}/images/avatar.jpg`,
 			sameAs: [SITE_GITHUB_URL, SITE_LINKEDIN_URL, SITE_INSTAGRAM_URL],
-			jobTitle: 'Front-end Engineer & Photographer',
+			jobTitle: 'Web Engineer & Photographer',
 		},
 	};
 
@@ -62,7 +62,7 @@ export default async function Home() {
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
 
-			<section className="flex flex-col gap-6 relative py-22 md:px-8 border-b">
+			<section className="flex flex-col gap-6 relative py-12 sm:py-22 -mx-6 px-6 border-b">
 				<Hero />
 				<div
 					className={cn(
@@ -77,7 +77,7 @@ export default async function Home() {
 				/>
 			</section>
 
-			<section className="md:px-8 flex flex-col space-y-4">
+			<section className="flex flex-col space-y-4">
 				<h2>Recent work</h2>
 
 				<div className="grid md:grid-cols-2 gap-6">
@@ -93,7 +93,7 @@ export default async function Home() {
 				</Button>
 			</section>
 
-			<section className="prose sm:mx-auto">
+			<section className="prose max-w-3xl">
 				<h2 className="">About</h2>
 				<div className="">
 					{content.map((c, i) => (
@@ -120,7 +120,7 @@ export default async function Home() {
 			</section>
 
 			{collections.length >= 3 && (
-				<section className="md:px-8 flex flex-col space-y-4">
+				<section className="flex flex-col space-y-4">
 					<h2>Photography</h2>
 
 					<GalleryView as="collections" content={collections.slice(0, 3)} />
