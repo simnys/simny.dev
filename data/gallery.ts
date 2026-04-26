@@ -37,10 +37,3 @@ export const galleryCollections = [
 		cover: 'https://res.cloudinary.com/snystrom/image/upload/v1717196385/gallery/dad_qbgvgt.jpg',
 	},
 ] as Array<GalleryCollection>;
-
-export const galleryImagesStatic = [
-	'https://res.cloudinary.com/snystrom/image/upload/v1758113064/gallery/highlands-5_az4h0q.jpg',
-	'https://res.cloudinary.com/snystrom/image/upload/v1717196388/gallery/gatta_pubfyq.jpg',
-	'https://res.cloudinary.com/snystrom/image/upload/v1717196383/gallery/manarola_ggr38l.jpg',
-	'https://res.cloudinary.com/snystrom/image/upload/v1717196387/gallery/trecime_yzc4no.jpg',
-];

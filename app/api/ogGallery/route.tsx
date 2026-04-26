@@ -19,7 +19,7 @@ export async function GET(request: NextRequest) {
 			<div tw="w-full h-full flex items-center relative">
 				<img
 					tw="absolute top-0 left-0 w-full h-full"
-					src={`${SITE_URL}/images/og-gallery.jpg`}
+					src={`${SITE_URL}/images/og-base.jpg`}
 					alt="Overlay"
 				/>
 
@@ -27,9 +27,10 @@ export async function GET(request: NextRequest) {
 					style={{
 						objectFit: 'cover',
 						objectPosition: 'center',
-						border: '5px solid black',
+						border: '8px solid black',
 						position: 'absolute',
 						right: '72px',
+						borderRadius: '2px',
 					}}
 					width={400}
 					height={500}

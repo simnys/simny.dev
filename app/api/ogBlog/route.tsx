@@ -23,60 +23,61 @@ export async function GET(request: NextRequest) {
 		const interFont = await readFile(path.join(process.cwd(), 'public/fonts/InterDisplay.ttf'));
 
 		return new ImageResponse(
-			<div tw="w-full h-full flex relative">
-				{imageUrl ? (
-					<img
-						style={{ objectFit: 'cover', width: '100%', objectPosition: 'center' }}
-						width={1200}
-						height={630}
-						src={imageUrl}
-						alt="Article image"
-					/>
-				) : (
-					<div
-						tw="absolute w-full h-full"
-						style={{
-							backgroundColor: '#102e73',
-						}}
-					/>
-				)}
+			<div tw="w-full h-full flex items-center relative">
 				<img
 					tw="absolute top-0 left-0 w-full h-full"
-					src={`${SITE_URL}/images/og-overlay.png`}
+					src={`${SITE_URL}/images/og-base.jpg`}
 					alt="Overlay"
 				/>
 
-				<span tw="absolute left-[40.5px] top-12 h-px w-4 bg-white" />
-				<span tw="absolute left-[48px] top-[40.5px] h-4 w-px bg-white" />
+				{imageUrl && (
+					<img
+						style={{
+							objectFit: 'cover',
+							objectPosition: 'center',
+							border: '8px solid black',
+							position: 'absolute',
+							right: '72px',
+							borderRadius: '2px',
+						}}
+						width={400}
+						height={500}
+						src={imageUrl}
+						alt="Blog image"
+					/>
+				)}
 
-				<span tw="absolute right-[40.5px] top-12 h-px w-4 bg-white" />
-				<span tw="absolute right-[48px] top-[40.5px] h-4 w-px bg-white" />
+				<span tw="absolute left-[40.5px] top-12 h-px w-4 bg-black" />
+				<span tw="absolute left-[48px] top-[40.5px] h-4 w-px bg-black" />
 
-				<span tw="absolute bottom-12 left-[40.5px] h-px w-4 bg-white" />
-				<span tw="absolute bottom-[40.5px] left-[48px] h-4 w-px bg-white" />
+				<span tw="absolute right-[40.5px] top-12 h-px w-4 bg-black" />
+				<span tw="absolute right-[48px] top-[40.5px] h-4 w-px bg-black" />
 
-				<span tw="absolute bottom-12 right-[40.5px] h-px w-4 bg-white" />
-				<span tw="absolute bottom-[40.5px] right-[48px] h-4 w-px bg-white" />
+				<span tw="absolute bottom-12 left-[40.5px] h-px w-4 bg-black" />
+				<span tw="absolute bottom-[40.5px] left-[48px] h-4 w-px bg-black" />
 
-				<span tw="absolute h-px w-full bg-white/30 top-12" />
-				<span tw="absolute h-px w-full bg-white/30 bottom-12" />
-				<span tw="absolute h-full w-px bg-white/30 left-12" />
-				<span tw="absolute h-full w-px bg-white/30 right-12" />
+				<span tw="absolute bottom-12 right-[40.5px] h-px w-4 bg-black" />
+				<span tw="absolute bottom-[40.5px] right-[48px] h-4 w-px bg-black" />
 
-				<div tw="absolute left-20 bottom-16 w-full h-full flex flex-col justify-end">
+				<span tw="absolute h-px w-full bg-black/30 top-12" />
+				<span tw="absolute h-px w-full bg-black/30 bottom-12" />
+				<span tw="absolute h-full w-px bg-black/30 left-12" />
+				<span tw="absolute h-full w-px bg-black/30 right-12" />
+
+				<div tw="absolute left-20 bottom-20 w-1/2 h-full flex flex-col justify-end">
+					<h1 style={{ fontFamily: 'Inter' }} tw="w-full text-black text-7xl text-balance">
+						{title}
+					</h1>
 					<div style={{ fontFamily: 'Inter' }} tw="uppercase flex items-center">
 						{tagList.map((tag, index) => (
-							<span key={index} tw="px-6 py-2 mr-5 rounded-lg bg-white/10 text-white">
+							<span
+								key={index}
+								tw="px-6 py-2 mr-5 text-black text-sm tracking-wide bg-black/10 rounded-lg"
+							>
 								# {tag}
 							</span>
 						))}
 					</div>
-					<h1
-						style={{ fontFamily: 'Inter' }}
-						tw="w-full text-white text-6xl text-balance max-w-4xl"
-					>
-						{title}
-					</h1>
 				</div>
 			</div>,
 			{

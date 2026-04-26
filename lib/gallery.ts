@@ -1,6 +1,6 @@
 'use server';
 
-import { GALLERY_COLLECTIONS_TAG_PREFIX, galleryImagesStatic } from '@/data/gallery';
+import { GALLERY_COLLECTIONS_TAG_PREFIX } from '@/data/gallery';
 import { v2 as cloudinary } from 'cloudinary';
 import lqip from 'lqip-modern';
 import { getCldImageUrl } from 'next-cloudinary';
@@ -35,7 +35,7 @@ const mapGalleryImages = cache(async (result: Array<Object>): Promise<GalleryIma
 					height,
 					tags,
 				};
-			})
+			}),
 		);
 		return images;
 	} catch (error) {
@@ -95,10 +95,10 @@ export const getCollections = cache(async () => {
 						alt: `${collection.title} cover image`,
 					},
 					length: resources.filter((img) =>
-						img.tags.includes(`${GALLERY_COLLECTIONS_TAG_PREFIX + slugify(collection.title)}`)
+						img.tags.includes(`${GALLERY_COLLECTIONS_TAG_PREFIX + slugify(collection.title)}`),
 					).length,
 				};
-			})
+			}),
 		);
 
 		const filteredCollections = collections.filter(Boolean);
@@ -106,15 +106,4 @@ export const getCollections = cache(async () => {
 	} catch (error) {
 		console.error(`Error fetching collection cover images:`, error);
 	}
-});
-
-export const getStaticImages = cache(async (limit?: number): Promise<StaticImage[]> => {
-	const images = await Promise.all(
-		galleryImagesStatic.slice(0, limit).map(async (src, index) => ({
-			src,
-			alt: `Gallery image ${index + 1}`,
-			blurData: await createBlurDataURL(src),
-		}))
-	);
-	return images;
 });
