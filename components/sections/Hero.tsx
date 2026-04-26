@@ -1,4 +1,4 @@
-import avatar from '@/public/images/avatar-px.png';
+import avatar from '@/public/images/pixel.png';
 import Image from 'next/image';
 
 export default function Hero() {
@@ -27,9 +27,9 @@ export default function Hero() {
 				</div>
 			</div>
 			<p className="prose">
-				Hey, I'm Simon Nyström, a <em className="font-serif text-[17px]">front-end engineer</em> and
-				photographer from Sweden. I got into coding out of curiosity and a love for making things
-				work online, and it's been a wild ride ever since.
+				Hey, I'm Simon Nyström, a <em>front-end engineer</em> and photographer from Sweden. I got
+				into coding out of curiosity and a love for making things work online, and it's been a wild
+				ride ever since.
 			</p>
 		</>
 	);

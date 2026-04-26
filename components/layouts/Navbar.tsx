@@ -91,7 +91,7 @@ export default function Navbar() {
 						className={cn('relative hidden sm:flex')}
 					>
 						<Icon
-							name="menuClosed"
+							name="gridOutline"
 							className={cn(
 								'absolute transition-opacity duration-200 ease-out',
 								isDropdownOpen && 'opacity-0',
@@ -99,7 +99,7 @@ export default function Navbar() {
 							aria-hidden="true"
 						/>
 						<Icon
-							name="menuOpen"
+							name="gridFilled"
 							className={cn(
 								'absolute transition-opacity duration-200 ease-out opacity-0',
 								isDropdownOpen && 'opacity-100',

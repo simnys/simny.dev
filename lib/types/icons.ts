@@ -15,6 +15,8 @@ export const ICON_NAMES = [
   'external',
   'gallery',
   'github',
+  'gridFilled',
+  'gridOutline',
   'heart',
   'home',
   'hourglass',
