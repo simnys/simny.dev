@@ -7,19 +7,18 @@ import type { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
 	const posts: MetadataRoute.Sitemap = allPosts.map((post) => ({
-		url: `${SITE_URL}/blog/${post.slug}`,
+		url: `${SITE_URL}/writing/${post.slug}`,
 		lastModified: post.date.toISOString().split('T')[0],
 	}));
 
 	const routes: MetadataRoute.Sitemap = [
 		'',
-		'/blog',
-		'/colophon',
-		'/gallery',
+		'/writing',
+		'/photography',
 		'/work',
 		'/now',
-		...getAllTags().map((tag) => `/blog/tag/${slugify(tag)}`),
-		...galleryCollections.map((collection) => `/gallery/${slugify(collection.title)}`),
+		...getAllTags().map((tag) => `/writing/tag/${slugify(tag)}`),
+		...galleryCollections.map((collection) => `/photography/${slugify(collection.title)}`),
 	].map((route) => ({
 		url: `${SITE_URL}${route}`,
 		lastModified: new Date().toISOString().split('T')[0],

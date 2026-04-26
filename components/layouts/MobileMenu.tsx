@@ -1,4 +1,4 @@
-import { navItems } from '@/data/navigation';
+import { navigationLinks } from '@/data/navigation';
 import { motion } from 'framer-motion';
 import { useScrollLock } from '@/lib/hooks';
 import { FocusTrap } from 'focus-trap-react';
@@ -34,12 +34,7 @@ const overlayVariants = {
 
 export default function MobileMenu({ isOpen, onClose, currentPath }: MobileMenuProps) {
 	useScrollLock(isOpen);
-
-	const menuSections = [
-		{ title: 'Menu', items: navItems.navigationLinks },
-		{ title: 'Misc', items: navItems.exploreLinks },
-		{ title: 'Connect', items: navItems.connectLinks },
-	];
+	const isActivePath = (path: string) => `/${currentPath.split('/')[1]}` === path;
 
 	return (
 		<>
@@ -61,19 +56,18 @@ export default function MobileMenu({ isOpen, onClose, currentPath }: MobileMenuP
 					className={cn(
 						'sm:hidden min-w-[300px] fixed top-14 bottom-0 left-0',
 						'rounded-tr-xl border bg-background-secondary shadow-xs',
-						'will-change-transform overflow-hidden overflow-y-auto z-100'
+						'will-change-transform overflow-hidden overflow-y-auto z-100',
 					)}
 				>
 					<nav className="flex flex-col h-full py-6 px-3">
-						{menuSections.map((section) => (
-							<MenuSection
-								key={section.title}
-								title={section.title}
-								items={section.items.filter((item) => item.path)}
-								onClose={onClose}
-								currentPath={currentPath}
-							/>
-						))}
+						<span className="text-sm text-foreground-tertiary mb-4 px-3">Menu</span>
+						<ul className="flex flex-col" role="group">
+							{navigationLinks.map((item) => (
+								<li key={item.path}>
+									<MenuItem item={item} onClose={onClose} isActive={isActivePath(item.path)} />
+								</li>
+							))}
+						</ul>
 					</nav>
 				</motion.div>
 			</FocusTrap>
@@ -93,32 +87,6 @@ export default function MobileMenu({ isOpen, onClose, currentPath }: MobileMenuP
 	);
 }
 
-interface MenuSectionProps {
-	title: string;
-	items: NavItem[];
-	onClose: () => void;
-	currentPath: string;
-}
-
-const MenuSection = ({ title, items, onClose, currentPath }: MenuSectionProps) => {
-	const isActivePath = (path: string) => `/${currentPath.split('/')[1]}` === path;
-
-	return (
-		<section className="mb-4 last:mb-0">
-			<h3 className="font-mono text-foreground-tertiary mb-1 px-3" id={`${title}-heading`}>
-				{title}
-			</h3>
-			<ul className="flex flex-col" role="group" aria-labelledby={`${title}-heading`}>
-				{items.map((item) => (
-					<li key={item.path}>
-						<MenuItem item={item} onClose={onClose} isActive={isActivePath(item.path)} />
-					</li>
-				))}
-			</ul>
-		</section>
-	);
-};
-
 interface MenuItemProps {
 	item: NavItem;
 	onClose: () => void;
@@ -132,8 +100,8 @@ const MenuItem = ({ item, onClose, isActive }: MenuItemProps) => {
 			onClick={onClose}
 			onKeyDown={(e) => e.key === 'Enter' && onClose()}
 			className={cn(
-				'relative flex items-center gap-x-2 px-3 py-1.5 rounded-lg text-foreground-secondary',
-				isActive && 'text-foreground bg-background-tertiary font-medium'
+				'relative flex items-center gap-x-2 px-3 py-3 rounded-lg text-sm text-foreground-secondary',
+				isActive && 'text-foreground bg-background-tertiary font-medium',
 			)}
 			aria-current={isActive ? 'page' : undefined}
 		>

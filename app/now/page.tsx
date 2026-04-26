@@ -25,14 +25,15 @@ export default async function Now() {
 			<div>
 				<PageHeader title="Now" />
 				<p>
-					A collection of what's currently on my mind, what I'm working on, and what I'm interested
-					in. Inspired by <CustomLink href="https://sive.rs/now">Derek Sivers</CustomLink>.
+					{`A collection of what's currently on my mind, what I'm working on, and what I'm interested
+					in. Inspired by `}
+					<CustomLink href="https://sive.rs/now">Derek Sivers</CustomLink>.
 				</p>
 			</div>
 
 			{latestEntry && (
 				<article className="prose prose-p:first-of-type:mt-0 prose-h2:first-of-type:mt-0">
-					<span className="block mb-2 font-mono uppercase text-foreground-tertiary">
+					<span className="block mb-2 font-serif text-foreground-tertiary">
 						Last updated:{' '}
 						<time dateTime={latestEntry.date.toISOString()}>
 							{formatDate(latestEntry.date, true, true)}
@@ -85,7 +86,7 @@ export default async function Now() {
 						{archivedEntries.map((entry) => (
 							<section key={entry.slug} className="flex flex-col sm:flex-row gap-x-6 sm:py-4">
 								<div className="w-fit min-w-30">
-									<time className="font-mono text-foreground-tertiary uppercase">
+									<time className="font-serif text-base text-foreground-tertiary">
 										{formatDate(entry.date, true)}
 									</time>
 								</div>

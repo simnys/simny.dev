@@ -36,8 +36,8 @@ export default function Colophon() {
 					>
 						<div
 							className={cn(
-								'm-1.5 h-3/4 font-mono uppercase flex items-center justify-center rounded-lg border',
-								swatch.bgClass
+								'm-1.5 h-3/4 uppercase flex items-center justify-center rounded-lg border',
+								swatch.bgClass,
 							)}
 						>
 							<span className="hidden dark:block">{swatch.dark.name}</span>
@@ -47,8 +47,8 @@ export default function Colophon() {
 						</div>
 						<div className="px-3 pb-2 text-sm text-foreground-secondary">
 							<span className="font-medium inline-block mb-1">{swatch.label}</span>
-							<span className="hidden dark:block font-mono text-[12px]">{swatch.dark.color}</span>
-							<span className="block dark:hidden font-mono text-[12px]">{swatch.light.color}</span>
+							<span className="hidden dark:block text-[12px]">{swatch.dark.color}</span>
+							<span className="block dark:hidden text-[12px]">{swatch.light.color}</span>
 						</div>
 					</div>
 				))}

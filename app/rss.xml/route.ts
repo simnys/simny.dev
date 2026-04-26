@@ -8,9 +8,9 @@ const feed = new Feed({
 	title: SITE_TITLE,
 	description: SITE_DESCRIPTION,
 	link: SITE_URL,
-	id: `${SITE_URL}/blog`,
+	id: `${SITE_URL}/writing`,
 	feed: `${SITE_URL}/rss.xml`,
-	copyright: 'All rights reserved 2024, Simon Nyström',
+	copyright: `All rights reserved ${new Date().getFullYear()}, Simon Nyström`,
 	language: 'en',
 	image: `${SITE_URL}/images/og.webp`,
 });
@@ -22,8 +22,8 @@ export async function GET() {
 		posts.forEach((post) => {
 			feed.addItem({
 				title: post.title,
-				id: `${SITE_URL}/blog/${post.slug}`,
-				link: `${SITE_URL}/blog/${post.slug}`,
+				id: `${SITE_URL}/writing/${post.slug}`,
+				link: `${SITE_URL}/writing/${post.slug}`,
 				description: post.summary,
 				date: post.date,
 				author: [{ name: SITE_NAME }],

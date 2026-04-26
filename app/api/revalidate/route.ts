@@ -4,9 +4,11 @@ import { slugify } from '@/lib/utils';
 import { revalidatePath } from 'next/cache';
 import { NextRequest, NextResponse } from 'next/server';
 
+// This route handles revalidation requests from Cloudinary when gallery collections are updated with new images.
+
 function mapPaths(resources: any[]): string[] {
 	const paths: string[] = [];
-	paths.push('/gallery');
+	paths.push('/photography');
 
 	for (const resource of resources) {
 		const match = galleryCollections.find((c) => {
@@ -19,7 +21,7 @@ function mapPaths(resources: any[]): string[] {
 		});
 
 		if (match) {
-			paths.push(`/gallery/${slugify(match.title)}`);
+			paths.push(`/photography/${slugify(match.title)}`);
 		}
 	}
 

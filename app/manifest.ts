@@ -22,8 +22,8 @@ export default function manifest(): MetadataRoute.Manifest {
 		prefer_related_applications: false,
 		shortcuts: [
 			{
-				name: 'Blog',
-				url: '/blog',
+				name: 'Writing',
+				url: '/writing',
 				description: 'Read latest front-end engineering articles',
 			},
 			{
@@ -32,8 +32,8 @@ export default function manifest(): MetadataRoute.Manifest {
 				description: 'View technical work projects and experiments',
 			},
 			{
-				name: 'Photo Gallery',
-				url: '/gallery',
+				name: 'Photography',
+				url: '/photography',
 				description: 'Browse my photography portfolio',
 			},
 			{

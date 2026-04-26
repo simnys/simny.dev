@@ -20,9 +20,9 @@ export async function generateMetadata(props: Props): Promise<Metadata | undefin
 	const tag = getAllTags().find((t) => slugify(t) == params.slug);
 	if (!tag) return;
 
-	const title = 'Blog';
+	const title = 'Writing - ' + tag;
 	const description = `Articles and tutorials I've written about ${tag}`;
-	const url = `${SITE_URL}/blog/tag/${params.slug}`;
+	const url = `${SITE_URL}/writing/tag/${params.slug}`;
 
 	return {
 		title,

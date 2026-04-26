@@ -1,18 +1,16 @@
 'use client';
 
-import { navItems } from '@/data/navigation';
 import { cn } from '@/lib/utils';
 import { AnimatePresence } from 'framer-motion';
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useCallback, useRef, useEffect } from 'react';
 
 import ThemeSwitcher from '../ui/ThemeSwitcher';
-import { Tooltip } from '../ui/Tooltip';
 import MobileMenu from './MobileMenu';
 import { NavDropdown } from './NavDropdown';
 import { Icon } from '../ui/Icon';
 import { Button } from '../ui/Button';
+import Link from 'next/link';
 
 export default function Navbar() {
 	const [isMobileOpen, setIsMobileOpen] = useState(false);
@@ -48,8 +46,6 @@ export default function Navbar() {
 		return () => document.removeEventListener('keydown', handleKeyDown);
 	}, []);
 
-	const isActivePath = (path: string) => `/${currentPath.split('/')[1]}` === path;
-
 	return (
 		<header>
 			<nav
@@ -64,43 +60,12 @@ export default function Navbar() {
 						className="w-fit p-2 rounded-lg text-foreground-secondary hover:text-foreground transition-colors"
 						aria-label="Home"
 					>
-						SIMNY
+						simny
 					</Link>
 				</div>
 
 				{/* Desktop Navigation */}
-				<div className="z-100 flex w-full h-full justify-center items-center text-sm font-medium">
-					{navItems.navigationLinks.map((navItem) => (
-						<Link
-							key={navItem.path}
-							href={navItem.path}
-							onMouseEnter={closeDropdown}
-							className={cn(
-								'hidden sm:block text-center px-4 py-2 rounded-lg',
-								'text-foreground-tertiary hover:text-foreground hover:bg-background-tertiary',
-								'transition-colors duration-200 ease-out',
-								isActivePath(navItem.path) && 'text-foreground'
-							)}
-						>
-							{navItem.name}
-						</Link>
-					))}
-
-					<button
-						onMouseEnter={() => setIsDropdownOpen(true)}
-						onClick={handleDropdownToggle}
-						aria-expanded={isDropdownOpen}
-						aria-haspopup="true"
-						className={cn(
-							'hidden sm:block text-center px-4 py-2 rounded-lg',
-							'text-foreground-tertiary hover:text-foreground hover:bg-background-tertiary',
-							'transition-colors duration-200 ease-out',
-							isDropdownOpen && 'text-foreground bg-background-tertiary'
-						)}
-					>
-						More
-					</button>
-				</div>
+				<div className="flex w-full h-full justify-center items-center" />
 
 				<AnimatePresence>
 					{isDropdownOpen && (
@@ -114,9 +79,34 @@ export default function Navbar() {
 
 				{/* Actions */}
 				<div className="flex items-center justify-end gap-2 z-100" onMouseEnter={closeDropdown}>
-					<Tooltip message="Change theme" placement="bottom">
-						<ThemeSwitcher />
-					</Tooltip>
+					<ThemeSwitcher />
+
+					<Button
+						onClick={handleDropdownToggle}
+						aria-expanded={isDropdownOpen}
+						aria-haspopup="true"
+						variant="ghost"
+						isActive={isDropdownOpen}
+						size="icon"
+						className={cn('relative hidden sm:flex')}
+					>
+						<Icon
+							name="menuClosed"
+							className={cn(
+								'absolute transition-opacity duration-200 ease-out',
+								isDropdownOpen && 'opacity-0',
+							)}
+							aria-hidden="true"
+						/>
+						<Icon
+							name="menuOpen"
+							className={cn(
+								'absolute transition-opacity duration-200 ease-out opacity-0',
+								isDropdownOpen && 'opacity-100',
+							)}
+							aria-hidden="true"
+						/>
+					</Button>
 
 					<Button
 						onClick={toggleMobileMenu}
@@ -132,7 +122,7 @@ export default function Navbar() {
 							name="menuClosed"
 							className={cn(
 								'absolute transition-opacity duration-200 ease-out',
-								isMobileOpen && 'opacity-0'
+								isMobileOpen && 'opacity-0',
 							)}
 							aria-hidden="true"
 						/>
@@ -140,7 +130,7 @@ export default function Navbar() {
 							name="menuOpen"
 							className={cn(
 								'absolute transition-opacity duration-200 ease-out opacity-0',
-								isMobileOpen && 'opacity-100'
+								isMobileOpen && 'opacity-100',
 							)}
 							aria-hidden="true"
 						/>

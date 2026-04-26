@@ -1,13 +1,20 @@
 import CustomLink from '@/components/blog/Link';
 import Hero from '@/components/sections/Hero';
 
-import { SITE_CONTACT, SITE_DESCRIPTION, SITE_GITHUB_URL, SITE_INSTAGRAM_URL, SITE_LINKEDIN_URL, SITE_NAME, SITE_URL } from '@/data/constants';
+import {
+	SITE_CONTACT,
+	SITE_DESCRIPTION,
+	SITE_GITHUB_URL,
+	SITE_INSTAGRAM_URL,
+	SITE_LINKEDIN_URL,
+	SITE_NAME,
+	SITE_URL,
+} from '@/data/constants';
 import { professionalProjects, technologies } from '@/data/projects';
 import { getBlogPosts, getLatestBlogPost } from '@/lib/blog';
 import { cn } from '@/lib/utils';
 
 import { Metadata } from 'next';
-import { SimpleCard } from './work/page';
 import { Icon } from '@/components/ui/Icon';
 import Link from 'next/link';
 import GalleryView from '@/components/sections/GalleryView';
@@ -16,6 +23,8 @@ import { GalleryCollection } from '@/lib/types/types';
 import HorizontalScroller from '@/components/ui/HorizontalScroller';
 import { AboutPage, WithContext } from 'schema-dts';
 import Script from 'next/script';
+import { Card } from '@/components/ui/Card';
+import Divider from '@/components/blog/Divider';
 
 export const metadata: Metadata = {
 	alternates: {
@@ -29,20 +38,20 @@ export default async function Home() {
 	const collections = (await getCollections()) as GalleryCollection[];
 
 	const jsonLd: WithContext<AboutPage> = {
-			'@type': 'AboutPage',
-			'@context': 'https://schema.org',
+		'@type': 'AboutPage',
+		'@context': 'https://schema.org',
+		url: SITE_URL,
+		mainEntity: {
+			'@type': 'Person',
+			name: SITE_NAME,
+			description: SITE_DESCRIPTION,
+			email: SITE_CONTACT,
 			url: SITE_URL,
-			mainEntity: {
-				'@type': 'Person',
-				name: SITE_NAME,
-				description: SITE_DESCRIPTION,
-				email: SITE_CONTACT,
-				url: SITE_URL,
-				image: `${SITE_URL}/images/avatar.jpg`,
-				sameAs: [SITE_GITHUB_URL, SITE_LINKEDIN_URL, SITE_INSTAGRAM_URL],
-				jobTitle: 'Front-end Engineer & Photographer',
-			},
-		};
+			image: `${SITE_URL}/images/avatar.jpg`,
+			sameAs: [SITE_GITHUB_URL, SITE_LINKEDIN_URL, SITE_INSTAGRAM_URL],
+			jobTitle: 'Front-end Engineer & Photographer',
+		},
+	};
 
 	return (
 		<>
@@ -52,13 +61,13 @@ export default async function Home() {
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
 
-			<section className="flex flex-col gap-6 relative py-22 border-b md:px-8">
+			<section className="flex flex-col gap-6 relative py-22 md:px-8 border-b">
 				<Hero />
 				<div
 					className={cn(
 						'absolute inset-0 pointer-events-none m-0',
 						'bg-[linear-gradient(to_right,rgba(0,0,0,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.04)_1px,transparent_1px)] bg-[size:60px_60px]',
-						'dark:bg-[linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:60px_60px]'
+						'dark:bg-[linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:60px_60px]',
 					)}
 					style={{
 						WebkitMaskImage: 'radial-gradient(circle at 50% 50%, white 50%, transparent 100%)',
@@ -67,22 +76,25 @@ export default async function Home() {
 				/>
 			</section>
 
-			<section className='md:px-8'>
-				<div className='mb-4 flex justify-between items-center'>
+			<section className="md:px-8">
+				<div className="mb-4 flex justify-between items-center">
 					<h2>Recent work</h2>
-					<Link href="/work" className="text-foreground-tertiary hover:text-foreground transition-colors p-2">
+					<Link
+						href="/work"
+						aria-label="View more projects"
+						className="text-foreground-tertiary hover:text-foreground transition-colors p-2"
+					>
 						<Icon name="arrow" className="" />
 					</Link>
 				</div>
 				<div className="grid md:grid-cols-2 gap-6">
 					{professionalProjects.slice(0, 2).map((project) => (
-						<SimpleCard
-							key={project.title}
-							item={{ ...project, subtitle: project.date }}
-						/>
+						<Card key={project.title} item={{ ...project, subtitle: project.date }} />
 					))}
 				</div>
 			</section>
+
+			<Divider className="my-0 sm:my-0" />
 
 			<section className="prose sm:mx-auto">
 				<h2 className="">About</h2>
@@ -92,35 +104,40 @@ export default async function Home() {
 					))}
 				</div>
 
-				<div className='mt-8'>
+				<div className="mt-8">
 					<HorizontalScroller
 						items={technologies.slice(0, technologies.length / 2)}
 						speed="slow"
 						separator="•"
 						className="not-prose select-none mb-2"
 						pauseOnHover={false}
-						/>
+					/>
 					<HorizontalScroller
 						items={technologies.slice(technologies.length / 2)}
 						speed="slow"
 						separator="•"
 						className="not-prose select-none"
 						pauseOnHover={false}
-						/>
-						</div>
-								
+					/>
+				</div>
 			</section>
 
-			{collections.length >=3 && (
-				<section className='md:px-8'>
-				<div className='mb-4 flex justify-between items-center'>
-					<h2>Photography</h2>
-					<Link href="/gallery" className="text-foreground-tertiary hover:text-foreground transition-colors p-2">
-						<Icon name="arrow" className="" />
-					</Link>
-				</div>
-				<GalleryView as="collections" content={collections.slice(0, 3)} />
-			</section>
+			<Divider className="my-0 sm:my-0" />
+
+			{collections.length >= 3 && (
+				<section className="md:px-8">
+					<div className="mb-4 flex justify-between items-center">
+						<h2>Photography</h2>
+						<Link
+							href="/photography"
+							aria-label="View photography gallery"
+							className="text-foreground-tertiary hover:text-foreground transition-colors p-2"
+						>
+							<Icon name="arrow" className="" />
+						</Link>
+					</div>
+					<GalleryView as="collections" content={collections.slice(0, 3)} />
+				</section>
 			)}
 		</>
 	);
@@ -131,7 +148,7 @@ const content = [
 		heading: 'Overview',
 		text: (
 			<>
-				I spend most of my days working with React, Next.js, and Tailwind CSS, building sites and apps that (hopefully) make people's lives a little easier or more fun. I'm always tinkering, learning new tricks, and trying out fresh ideas—there's always something new to explore.
+				{`I spend most of my days working with React, Next.js, and Tailwind CSS, building sites and apps that (hopefully) make people's lives a little easier or more fun. I'm always tinkering, learning new tricks, and trying out fresh ideas—there's always something new to explore.`}
 			</>
 		),
 	},
@@ -139,7 +156,7 @@ const content = [
 		heading: 'Technologies',
 		text: (
 			<>
-				When I'm not deep in code, you'll probably find me with a camera in hand. Photography lets me slow down and notice the little things—whether it's a cool landscape, city vibes, or just everyday moments. It's my way of capturing stories and memories.
+				{`When I'm not deep in code, you'll probably find me with a camera in hand. Photography lets me slow down and notice the little things—whether it's a cool landscape, city vibes, or just everyday moments. It's my way of capturing stories and memories.`}
 			</>
 		),
 	},
@@ -147,7 +164,7 @@ const content = [
 		heading: 'Design & Colors',
 		text: (
 			<>
-				Outside of work and photography, I love getting outdoors, traveling, or just kicking back with a good book. If you ever want to chat about tech, photos, or favorite hiking spots, I'm always up for it!
+				{`Outside of work and photography, I love getting outdoors, traveling, or just kicking back with a good book. If you ever want to chat about tech, photos, or favorite hiking spots, I'm always up for it!`}
 			</>
 		),
 	},

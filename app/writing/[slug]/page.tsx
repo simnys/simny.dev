@@ -6,7 +6,7 @@ import { Icon } from '@/components/ui/Icon';
 import PostList from '@/components/ui/PostList';
 
 import { SITE_NAME, SITE_URL } from '@/data/constants';
-import { navItems } from '@/data/navigation';
+import { socialLinks } from '@/data/navigation';
 import { getBlogPost, getBlogPosts, getRelatedPosts } from '@/lib/blog';
 import { formatDate, slugify } from '@/lib/utils';
 import avatar from '@/public/images/avatar-px.png';
@@ -27,7 +27,7 @@ interface Props {
 
 export async function generateMetadata(
 	props: Props,
-	parent: ResolvingMetadata
+	parent: ResolvingMetadata,
 ): Promise<Metadata | undefined> {
 	const params = await props.params;
 	const post = getBlogPost(params.slug);
@@ -42,7 +42,7 @@ export async function generateMetadata(
 		title,
 		description: summary,
 		alternates: {
-			canonical: `/blog/${post.slug}`,
+			canonical: `/writing/${post.slug}`,
 		},
 		openGraph: {
 			title,
@@ -50,11 +50,11 @@ export async function generateMetadata(
 			type: 'article',
 			publishedTime: date.toISOString(),
 			authors: ['Simon Nyström'],
-			url: `${SITE_URL}/blog/${post.slug}`,
+			url: `${SITE_URL}/writing/${post.slug}`,
 			images: [
 				{
 					url: `/api/ogBlog?title=${encodeURIComponent(title)}&image=${encodeURIComponent(
-						image || ''
+						image || '',
 					)}&tags=${encodeURIComponent(post.tags.slice(0, 3).join(','))}`,
 					width: 1200,
 					height: 630,
@@ -71,7 +71,7 @@ export async function generateMetadata(
 			images: [
 				{
 					url: `/api/ogBlog?title=${encodeURIComponent(title)}&image=${encodeURIComponent(
-						image || ''
+						image || '',
 					)}&tags=${encodeURIComponent(post.tags.slice(0, 3).join(','))}`,
 					width: 1200,
 					height: 630,
@@ -100,13 +100,13 @@ export default async function BlogPost(props: Props) {
 		headline: post.title,
 		description: post.summary,
 		keywords: post.tags.join(', '),
-		url: `${SITE_URL}/blog/${post.slug}`,
+		url: `${SITE_URL}/writing/${post.slug}`,
 		datePublished: post.date.toISOString(),
 		dateModified: post.date.toISOString(),
 		image: `${SITE_URL}/api/ogBlog?title=${encodeURIComponent(
-			post.title
+			post.title,
 		)}&image=${encodeURIComponent(post.image || '')}&tags=${encodeURIComponent(
-			post.tags.slice(0, 3).join(',')
+			post.tags.slice(0, 3).join(','),
 		)}`,
 		author: {
 			'@type': 'Person',
@@ -133,27 +133,24 @@ export default async function BlogPost(props: Props) {
 			/>
 
 			<article className="prose mx-auto w-full first:prose-p:m-0">
-				<div className="min-h-[200px] flex flex-col justify-end gap-3 mb-8">
-					<div className="flex items-center gap-x-1 font-mono uppercase text-foreground-tertiary">
+				<div className="min-h-[200px] flex flex-col justify-end gap-1 mb-8">
+					<div className="flex items-center gap-x-1 mb-2 text-sm text-foreground-tertiary">
 						<Link
-							href="/blog"
+							href="/writing"
 							className="text-foreground-tertiary hover:text-foreground transition-colors no-underline"
 						>
-							Blog
+							Writing
 						</Link>
 						<span aria-hidden="true">/</span>
 						<Link
-							href={`/blog/tag/${slugify(post.tags[0])}`}
+							href={`/writing/tag/${slugify(post.tags[0])}`}
 							className="text-foreground-tertiary hover:text-foreground transition-colors no-underline"
 						>
 							{post.tags[0]}
 						</Link>
 					</div>
 					<h1 className="not-prose text-foreground">{post.title}</h1>
-					<time
-						dateTime={post.date.toISOString()}
-						className="font-mono uppercase text-sm text-foreground-tertiary"
-					>
+					<time dateTime={post.date.toISOString()} className="font-serif text-foreground-tertiary">
 						{formatDate(post.date, true)}
 					</time>
 				</div>
@@ -169,22 +166,22 @@ export default async function BlogPost(props: Props) {
 							src={avatar}
 							alt=""
 							draggable={false}
-							className="size-12 rounded-2xl not-prose"
+							className="size-12 rounded-full not-prose"
 						/>
-						<div className="absolute -right-1 -bottom-1 size-4 p-1 bg-background rounded-full flex items-center justify-center">
+						<div className="absolute -right-0 -bottom-1 size-4 p-1 bg-background rounded-full flex items-center justify-center">
 							<div className="size-full rounded-full bg-brand" />
 						</div>
 					</div>
 
 					<div className="mr-auto">
-						<span className="block font-mono text-foreground-tertiary">Have any questions?</span>
+						<span className="block text-sm text-foreground-tertiary">Have any questions?</span>
 						<span className="block font-medium text-foreground leading-normal">
 							Let&apos;s connect
 						</span>
 					</div>
 
 					<div className="flex items-center gap-x-2">
-						{navItems.socialLinks
+						{socialLinks
 							.filter((link) => link.name !== 'RSS')
 							.map((link) => (
 								<Button asChild variant="ghost" size="icon" key={link.name}>

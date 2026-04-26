@@ -10,7 +10,7 @@ Once upon a time, in a galaxy _not so far away_, there lived a rubber duck named
 
 ## Edited in Obsidian
 
-Tired of the **mundane life of floating** in bathtubs and paddling pools, Quirk dreamed of something more... something out of this world. One fateful day, while basking in the warmth of a sunlit bathroom, Quirk found himself suddenly lifted off his watery domain by an unexpected gust of wind. Spiraling through the air, Quirk felt a surge of excitement as he soared higher and higher, propelled by forces unknown.
+Tired of the **mundane life of floating** in bathtubs and _paddling_ pools, Quirk dreamed of something more... something out of this world. One fateful day, while basking in the warmth of a sunlit bathroom, Quirk found himself suddenly lifted off his watery domain by an unexpected gust of wind. Spiraling through the air, Quirk felt a surge of excitement as he soared higher and higher, propelled by forces unknown.
 
 ### A Galaxy of Peculiar Encounters
 
@@ -19,7 +19,7 @@ Before [external link](https://github.com) he knew it, Quirk found himself hurtl
 #### Misadventures Among the Stars
 
 <Image
-	src="/assets/blog/duck.jpeg"
+	src="duck.jpeg"
 	alt=""
 	caption={
 		<>
@@ -28,78 +28,14 @@ Before [external link](https://github.com) he knew it, Quirk found himself hurtl
 	}
 />
 
-As he drifted through the cosmos, Quirk encountered a motley crew of intergalactic beings, each more peculiar than the last.
+As he drifted through the cosmos, Quirk encountered a motley crew of _intergalactic beings_, each more peculiar than the last.
 Three asterisks for a thematic break:
 
----
+<Divider />
 
 From friendly aliens with tentacles for arms to sentient space rocks with a penchant for poetry, Quirk found himself immersed in a whirlwind of strange and wonderful encounters. Together with his newfound friends, Quirk embarked on a series of misadventures across the galaxy.
 
 ## Battles with Space Pirates and Cosmic Con Artists
-
-<Steps>
-	<Step title="Space Battles">
-		They battled space pirates
-	</Step>
-	<Step title="Cosmic Con Artists">
-		Outwitted cosmic con artists
-	</Step>
-	<Step title="Indentation Test">
-		Make sure that your [OpenAPI specification](https://swagger.io/specification/) file is valid using the Swagger Editor or Mint CLI.
-	</Step>
-	<Step title="Cheese Planet">
-		Update your `docs.json` to reference your OpenAPI specification. Add an openapi property to any navigation element to auto-populate your docs with pages for each endpoint specified in your OpenAPI document.
-		This example generates a page for each endpoint specified in `openapi.json` and organize them under the “API reference” group in your navigation.
-
-    	```json
-    	"navigation": {
-    		"groups": [
-    			{
-    			"group": "API reference",
-    			"openapi": "openapi.json"
-    			}
-    		]
-    	}
-    	```
-
-    </Step>
-
-</Steps>
-
-<Tabs labels={["example.js", "[slug].js"]}>
-```tsx showLineNumbers {1,5,8-10} title="example.js"
-import { allPosts, type Post } from 'contentlayer/generated';
-import { type GetStaticProps, type InferGetStaticPropsType } from 'next';
-
-export const getStaticPaths = () => ({
-	paths: allPosts.map((post) => ({ params: { slug: post.slug } })),
-	fallback: false,
-});
-
-export const getStaticProps: GetStaticProps<{
-	post: Post;
-}> = ({ params }) => ({
-	props: { post: allPosts.find((post) => post.slug === params?.slug) },
-});
-
-export default function SinglePostPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
-	return (
-		<div>
-			<h1>{props.post.title}</h1>
-		</div>
-	);
-}
-```
-
-```tsx title="server.ts"
-import { Client } from '@notionhq/client';
-
-const notion = new Client({
-	auth: process.env.NOTION_TOKEN,
-});
-```
-
-</Tabs>
 
 - They battled space pirates
   - Outwitted cosmic con artists

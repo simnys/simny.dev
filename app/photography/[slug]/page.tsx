@@ -29,35 +29,35 @@ export async function generateMetadata(props: Props): Promise<Metadata | undefin
 	const { title, description, cover } = collection;
 
 	return {
-		title: `${title} Photo Gallery`,
+		title: `${title} Photographs`,
 		description,
 		openGraph: {
-			title: `${title} Photo Gallery`,
+			title: `${title} Photographs`,
 			description,
-			url: `${SITE_URL}/gallery/${slugify(collection.title)}`,
+			url: `${SITE_URL}/photography/${slugify(collection.title)}`,
 			images: [
 				{
 					url: `/api/ogGallery?title=${encodeURIComponent(title)}&subtitle=${encodeURIComponent(
-						'Photo Gallery'
+						'Photography',
 					)}&image=${encodeURIComponent((cover as string) || '')}`,
 					width: 1200,
 					height: 630,
-					alt: `${title} Photo Gallery cover image`,
+					alt: `${title} Photography cover image`,
 					type: 'image/png',
 				},
 			],
 		},
 		twitter: {
-			title: `${title} Photo Gallery`,
+			title: `${title} Photographs`,
 			description,
 			images: [
 				{
 					url: `/api/ogGallery?title=${encodeURIComponent(title)}&subtitle=${encodeURIComponent(
-						'Photo Gallery'
+						'Photography',
 					)}&image=${encodeURIComponent((cover as string) || '')}`,
 					width: 1200,
 					height: 630,
-					alt: `${title} Photo Gallery cover image`,
+					alt: `${title} Photography cover image`,
 				},
 			],
 			card: 'summary_large_image',
@@ -78,14 +78,14 @@ export default async function GalleryCollection(props: Props) {
 	const previousCollection = galleryCollections[previousIndex];
 	const nextCollection = galleryCollections[nextIndex];
 
-	const backLink = '/gallery';
+	const backLink = '/photography';
 
 	const jsonLd: WithContext<ImageGallery> = {
 		'@type': 'ImageGallery',
 		'@context': 'https://schema.org',
-		name: `${SITE_NAME} Photo Gallery - ${collection.title}`,
+		name: `${SITE_NAME} Photography - ${collection.title}`,
 		description: collection.description,
-		url: `${SITE_URL}/gallery/${slugify(collection.title)}`,
+		url: `${SITE_URL}/photography/${slugify(collection.title)}`,
 		image: images.slice(0, 3).map((img) => img.src),
 	};
 
@@ -104,35 +104,29 @@ export default async function GalleryCollection(props: Props) {
 			</section>
 
 			<div className="-mx-4 flex justify-between items-baseline text-sm font-medium select-none">
-				<Button asChild variant="ghost" className="text-foreground-secondary">
+				<Button asChild variant="ghost" className="text-foreground-secondary gap-0">
 					<Link
 						href={`${backLink}/${slugify(previousCollection.title)}`}
 						className="flex-col flex-1 h-15 items-start"
 					>
-						<span className="block font-mono uppercase text-[12px] text-foreground-tertiary">
-							Prev
-						</span>
+						<span className="block font-serif text-base text-foreground-tertiary">Prev</span>
 						{previousCollection.title}
 					</Link>
 				</Button>
 
-				<Button asChild variant="ghost" className="text-foreground-secondary">
+				<Button asChild variant="ghost" className="text-foreground-secondary gap-0">
 					<Link href={backLink} className="hidden sm:inline-flex flex-col flex-1 h-15 text-center">
-						<span className="block font-mono uppercase text-[12px] text-foreground-tertiary">
-							Collections
-						</span>
+						<span className="block font-serif text-base text-foreground-tertiary">Collections</span>
 						Index
 					</Link>
 				</Button>
 
-				<Button asChild variant="ghost" className="text-foreground-secondary">
+				<Button asChild variant="ghost" className="text-foreground-secondary gap-0">
 					<Link
 						href={`${backLink}/${slugify(nextCollection.title)}`}
 						className="flex-col flex-1 h-15 items-end text-right"
 					>
-						<span className="block font-mono uppercase text-[12px] text-foreground-tertiary">
-							Next
-						</span>
+						<span className="block font-serif text-base text-foreground-tertiary">Next</span>
 						{nextCollection.title}
 					</Link>
 				</Button>

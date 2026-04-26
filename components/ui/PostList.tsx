@@ -8,8 +8,8 @@ type PostListProps = {
 };
 
 const PostMeta = ({ date, readingTime }: { date: Date; readingTime: string }) => (
-	<div className="font-mono w-full sm:w-fit sm:min-w-20 flex items-center gap-x-2 text-foreground-tertiary group-hover:text-foreground-secondary transition-colors duration-200 ease-out">
-		<time dateTime={date.toISOString()} className="uppercase">
+	<div className="font-serif text-[15px] w-full sm:w-fit sm:min-w-20 flex items-center gap-x-2 text-foreground-tertiary group-hover:text-foreground-secondary transition-colors duration-200 ease-out">
+		<time dateTime={date.toISOString()} className="">
 			{formatDate(date, true)}
 		</time>
 		<span className="sm:hidden" aria-hidden="true">
@@ -31,7 +31,7 @@ const ReadingTime = ({ readingTime }: { readingTime: string }) => {
 	const minutes = readingTime.split(' ')[0];
 
 	return (
-		<div className="hidden sm:flex items-center gap-x-1 font-mono text-foreground-tertiary group-hover:text-foreground-secondary transition-colors duration-200 ease-out leading-normal">
+		<div className="hidden sm:flex items-center gap-x-1 font-serif text-[15px] text-foreground-tertiary group-hover:text-foreground-secondary transition-colors duration-200 ease-out leading-normal">
 			<Icon name="hourglass" className="size-3.5" aria-hidden="true" />
 			<span>{minutes}min</span>
 		</div>
@@ -41,14 +41,14 @@ const ReadingTime = ({ readingTime }: { readingTime: string }) => {
 const PostItem = ({ post }: { post: Post }) => (
 	<li>
 		<Link
-			href={`/blog/${post.slug}`}
+			href={`/writing/${post.slug}`}
 			className={cn(
 				// Layout
 				'w-full flex flex-col gap-y-1 gap-x-8 px-4 py-3.5',
 				'sm:flex-row sm:items-baseline sm:gap-x-16',
 				// Styling
 				'bg-background rounded-xl',
-				'group transition-colors duration-200 ease-out hover:bg-background-tertiary'
+				'group transition-colors duration-200 ease-out hover:bg-background-tertiary',
 			)}
 			aria-label={`Read ${post.title}`}
 		>

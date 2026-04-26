@@ -16,40 +16,28 @@ import { cn } from '@/lib/utils';
 import '@/styles/globals.css';
 
 import type { Metadata, Viewport } from 'next';
-import { Geist_Mono as FontCode } from 'next/font/google';
-import { Inter as FontSans } from 'next/font/google';
-import { Instrument_Serif as FontSerif } from 'next/font/google';
 import localFont from 'next/font/local';
 import Script from 'next/script';
 import { Person, WithContext } from 'schema-dts';
 import Providers from './providers';
-import { navItems } from '@/data/navigation';
-import { Logo } from '@/data/icons';
-import ThemeSwitcher from '@/components/ui/ThemeSwitcher';
 
-const fontSerif = FontSerif({
-	subsets: ['latin'],
+const fontSerif = localFont({
+	src: '../public/fonts/Newsreader-Italic.woff2',
 	display: 'swap',
 	weight: '400',
+	style: 'italic',
 	variable: '--font-serif',
 });
-const fontSans = FontSans({
-	subsets: ['latin'],
+const fontSans = localFont({
+	src: '../public/fonts/InterVariable.woff2',
 	display: 'swap',
-	weight: 'variable',
 	variable: '--font-sans',
 });
-const fontCode = FontCode({
-	subsets: ['latin'],
+const fontCode = localFont({
+	src: '../public/fonts/GeistMono.woff2',
 	display: 'swap',
 	weight: '400',
 	variable: '--font-code',
-});
-const fontMono = localFont({
-	src: '../public/fonts/DepartureMono-Regular.woff2',
-	display: 'swap',
-	weight: '400',
-	variable: '--font-mono',
 });
 
 export const viewport: Viewport = {
@@ -142,8 +130,7 @@ export default function RootLayout({
 					fontSerif.variable,
 					fontSans.variable,
 					fontCode.variable,
-					fontMono.variable,
-					'flex flex-col min-h-screen'
+					'flex flex-col min-h-screen',
 				)}
 			>
 				<Providers>

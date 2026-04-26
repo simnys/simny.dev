@@ -9,7 +9,7 @@ import { Metadata } from 'next';
 import Script from 'next/script';
 import { CollectionPage, WithContext } from 'schema-dts';
 
-const title = 'Photo Gallery';
+const title = 'Photography';
 const description = "Moments, places, and details I've noticed along the way.";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -24,11 +24,11 @@ export async function generateMetadata(): Promise<Metadata> {
 			images: [
 				{
 					url: `/api/ogGallery?title=${encodeURIComponent(
-						'Collections'
-					)}&subtitle=${encodeURIComponent('Photo Gallery')}&image=${encodeURIComponent(ogImage)}`,
+						'Collections',
+					)}&subtitle=${encodeURIComponent('Photography')}&image=${encodeURIComponent(ogImage)}`,
 					width: 1200,
 					height: 630,
-					alt: `Photo Gallery cover image`,
+					alt: `Photography cover image`,
 					type: 'image/png',
 				},
 			],
@@ -39,11 +39,11 @@ export async function generateMetadata(): Promise<Metadata> {
 			images: [
 				{
 					url: `/api/ogGallery?title=${encodeURIComponent(
-						'Collections'
-					)}&subtitle=${encodeURIComponent('Photo Gallery')}&image=${encodeURIComponent(ogImage)}`,
+						'Collections',
+					)}&subtitle=${encodeURIComponent('Photography')}&image=${encodeURIComponent(ogImage)}`,
 					width: 1200,
 					height: 630,
-					alt: `Photo Gallery cover image`,
+					alt: `Photography cover image`,
 				},
 			],
 			card: 'summary_large_image',
@@ -51,22 +51,22 @@ export async function generateMetadata(): Promise<Metadata> {
 	};
 }
 
-export default async function Gallery() {
+export default async function Photography() {
 	const collections = (await getCollections()) as GalleryCollection[];
 
 	const jsonLd: WithContext<CollectionPage> = {
 		'@type': 'CollectionPage',
 		'@context': 'https://schema.org',
-		name: `${SITE_NAME} - Photo Gallery`,
+		name: `${SITE_NAME} - Photography`,
 		description,
-		url: `${SITE_URL}/gallery`,
+		url: `${SITE_URL}/photography`,
 		mainEntity: {
 			'@type': 'ItemList',
 			itemListElement: galleryCollections.map((collection) => ({
 				'@type': 'ImageGallery',
 				name: collection.title,
 				description: collection.description,
-				url: `${SITE_URL}/gallery/${slugify(collection.title)}`,
+				url: `${SITE_URL}/photography/${slugify(collection.title)}`,
 			})),
 		},
 	};
@@ -79,10 +79,7 @@ export default async function Gallery() {
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
 
-			<PageHeader
-				title="Photo Gallery"
-				content="Moments, places, and details I've noticed along the way."
-			/>
+			<PageHeader title="Photography" content="Under construction." />
 
 			<section>
 				<GalleryView as="collections" content={collections} />

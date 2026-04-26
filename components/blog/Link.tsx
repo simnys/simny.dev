@@ -6,11 +6,10 @@ import { Icon } from '../ui/Icon';
 const cLinkBase =
 	'c-link relative inline-flex items-center gap-x-0.5 no-underline whitespace-nowrap text-foreground hover:text-brand transition-colors before:c-link-border hover:before:translate-y-1 hover:before:bg-transparent hover:before:transform-gpu';
 
-interface CustomLinkProps
-	extends React.DetailedHTMLProps<
-		React.AnchorHTMLAttributes<HTMLAnchorElement>,
-		HTMLAnchorElement
-	> {
+interface CustomLinkProps extends React.DetailedHTMLProps<
+	React.AnchorHTMLAttributes<HTMLAnchorElement>,
+	HTMLAnchorElement
+> {
 	className?: string;
 }
 

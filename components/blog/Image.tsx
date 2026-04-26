@@ -10,18 +10,20 @@ type CustomImageProps = {
 	priority?: boolean;
 };
 
+const BLOG_IMAGE_DIR = `/assets/writing`;
+
 export default async function CustomImage({
 	src,
 	alt,
 	caption,
 	priority = false,
 }: CustomImageProps) {
-	const result = await lqip(`public${src}`);
+	const result = await lqip(`public${BLOG_IMAGE_DIR}/${src}`);
 
 	return (
 		<figure>
 			<Image
-				src={src}
+				src={`${BLOG_IMAGE_DIR}/${src}`}
 				width={result.metadata.originalWidth}
 				height={result.metadata.originalHeight}
 				alt={alt}

@@ -4,14 +4,15 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-	--font-serif: var(--font-serif), ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
-		'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-	--font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
-		'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-	--font-code: var(--font-code), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-		'Liberation Mono', 'Courier New', monospace;
-	--font-mono: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-		'Liberation Mono', 'Courier New', monospace;
+	--font-serif:
+		var(--font-serif), ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+		'Segoe UI Symbol', 'Noto Color Emoji';
+	--font-sans:
+		var(--font-sans), ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+		'Segoe UI Symbol', 'Noto Color Emoji';
+	--font-code:
+		var(--font-code), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+		'Courier New', monospace;
 
 	--text-xs: 0.8125rem; /* 13px */
 
@@ -99,13 +100,13 @@
 		@apply bg-background text-foreground font-sans tracking-[-0.01em];
 	}
 
-	.font-mono {
-		@apply text-xs tracking-tighter;
+	.font-serif {
+		@apply italic tracking-normal leading-normal text-[17px];
 	}
 }
 
 h1 {
-	@apply font-serif tracking-[-1px] text-[44px] leading-[1.2];
+	@apply font-[550] text-lg tracking-tight;
 }
 h2,
 h3,
@@ -123,6 +124,9 @@ h6 {
 }
 .prose strong {
 	@apply font-medium text-foreground;
+}
+em {
+	@apply font-serif italic tracking-normal leading-normal text-[17px] text-foreground;
 }
 .prose .c-link {
 	@apply font-normal;
@@ -208,7 +212,7 @@ code[data-line-numbers] [data-line]::before {
 
 /* Inline code */
 .prose :not(pre) > code {
-	@apply font-code py-0.5 px-1 rounded-md bg-background-secondary text-sm border text-foreground;
+	@apply font-code py-0.5 px-1 rounded-md bg-background-tertiary text-[13px] border text-foreground;
 }
 .prose :not(pre) > code::after,
 .prose :not(pre) > code::before {
