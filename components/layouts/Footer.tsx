@@ -11,7 +11,7 @@ export default async function Footer() {
 			className={cn(
 				'max-w-3xl w-full mx-auto mt-auto flex flex-col justify-between gap-y-4 p-6',
 				'border-t border-dashed text-foreground-tertiary text-xs',
-				'sm:flex-row sm:items-center sm:border-t-0'
+				'sm:flex-row sm:items-center sm:border-t-0',
 			)}
 		>
 			<div>
@@ -22,12 +22,12 @@ export default async function Footer() {
 					{commitInfo?.url ? (
 						<CustomLink
 							href={commitInfo.url}
-							className="pb-1 mt-1 text-foreground-secondary hover:text-foreground font-mono before:h-px"
+							className="pb-1 mt-1 font-code text-foreground-secondary hover:text-foreground before:h-px"
 						>
 							{commitInfo.sha?.slice(0, 7)}
 						</CustomLink>
 					) : (
-						<span className="pb-1 mt-1 font-mono">N/A</span>
+						<span className="pb-1 mt-1 font-code">N/A</span>
 					)}
 				</span>
 			</div>

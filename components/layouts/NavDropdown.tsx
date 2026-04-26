@@ -1,7 +1,7 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import { dropdownLinks } from '@/data/navigation';
+import { navigationLinks } from '@/data/navigation';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useEffect, useRef } from 'react';
@@ -49,7 +49,6 @@ function NavDropdown({ isOpen, onClose, currentPath, className }: NavDropdownPro
 		<FocusTrap
 			focusTrapOptions={{
 				initialFocus: false,
-				clickOutsideDeactivates: true,
 			}}
 		>
 			<motion.div
@@ -61,26 +60,30 @@ function NavDropdown({ isOpen, onClose, currentPath, className }: NavDropdownPro
 				role="menu"
 				aria-label="More navigation options"
 				className={cn(
-					'hidden sm:block absolute top-13 left-4 right-4 rounded-xl p-2.5 z-50',
+					'hidden sm:block absolute top-13 left-2 right-2 rounded-xl p-2.5 z-50',
 					'bg-background border shadow-xs will-change-transform origin-top',
-					className
+					className,
 				)}
 			>
 				<div
 					onMouseLeave={onClose}
-					className="w-full grid grid-cols-12 auto-rows-fr gap-1 p-3 border rounded-lg shadow-xs bg-background-secondary overflow-hidden"
+					className="w-full grid grid-cols-2 grid-rows-6 grid-flow-col gap-1 p-3 border rounded-lg shadow-xs bg-background-secondary overflow-hidden"
 				>
-					{dropdownLinks.map((item) => (
+					{navigationLinks.map((item) => (
 						<NavDropDownCard
 							key={item.name}
 							title={item.name}
 							description={item.description}
 							href={item.path}
 							icon={item.icon}
-							colSpan={item.colSpan}
+							colSpan={1}
 							rowSpan={item.rowSpan}
 							onClose={onClose}
-							className={isActivePath(item.path) ? 'text-foreground border-border' : undefined}
+							className={
+								isActivePath(item.path)
+									? 'text-foreground border-border bg-background-secondary'
+									: undefined
+							}
 						/>
 					))}
 				</div>
@@ -122,7 +125,7 @@ function NavDropDownCard({
 		'relative text-sm text-foreground-secondary p-3 overflow-hidden rounded-lg border border-dashed border-transparent',
 		'hover:bg-background-tertiary hover:border-border hover:text-foreground focus-visible:text-foreground transition-colors duration-200 ease-out group',
 		isClickable ? 'cursor-pointer' : 'cursor-default',
-		className
+		className,
 	);
 
 	const commonStyle = {
@@ -142,7 +145,7 @@ function NavDropDownCard({
 					className={cn(
 						'text-xs text-foreground-tertiary text-balance',
 						rowSpan === 1 ? 'truncate' : 'mt-1',
-						colSpan >= 6 && rowSpan > 1 && 'w-2/3'
+						colSpan >= 6 && rowSpan > 1 && 'w-2/3',
 					)}
 				>
 					{description}

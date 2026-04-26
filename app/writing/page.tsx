@@ -11,20 +11,20 @@ import Script from 'next/script';
 import { Blog as BlogLeaf, WithContext } from 'schema-dts';
 
 export const metadata: Metadata = {
-	title: 'Blog',
+	title: 'Writing',
 	description: 'Insights, tutorials, and ideas from my journey in tech.',
 };
 
-export default async function Blog() {
+export default async function Writing() {
 	const posts = getBlogPosts();
 	const tags = getAllTags();
 
 	const jsonLd: WithContext<BlogLeaf> = {
 		'@type': 'Blog',
 		'@context': 'https://schema.org',
-		name: `${SITE_NAME} Blog`,
+		name: `${SITE_NAME} - Writing`,
 		description: metadata.description || '',
-		url: `${SITE_URL}/blog`,
+		url: `${SITE_URL}/writing`,
 		publisher: {
 			'@type': 'Person',
 			name: SITE_NAME,
@@ -34,7 +34,7 @@ export default async function Blog() {
 			'@type': 'BlogPosting',
 			headline: post.title,
 			description: post.summary,
-			url: `${SITE_URL}/blog/${post.slug}`,
+			url: `${SITE_URL}/writing/${post.slug}`,
 		})),
 	};
 
@@ -46,7 +46,10 @@ export default async function Blog() {
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
 
-			<PageHeader title="Blog" content="Insights, tutorials, and ideas from my journey in tech." />
+			<PageHeader
+				title="Writing"
+				content="Insights, tutorials, and ideas from my journey in tech."
+			/>
 
 			<section className="space-y-4 sm:space-y-6">
 				{tags.length > 4 && <TagSelector tags={tags} activeTag={''} />}
@@ -54,11 +57,12 @@ export default async function Blog() {
 					<PostList posts={posts} />
 				) : (
 					<div className="flex flex-col gap-4 py-10 items-center justify-center">
-					<Icon name="warning" className="size-8 text-brand" />
-								<p className="text-foreground-secondary mb-4 text-center">
-									No posts found. The blog is still under construction. <br className="hidden sm:block" />
-									Please check back later!
-								</p>
+						<Icon name="warning" className="size-8 text-brand" />
+						<p className="text-foreground-secondary mb-4 text-center">
+							No posts found. The writing section is still under construction.{' '}
+							<br className="hidden sm:block" />
+							Please check back later!
+						</p>
 					</div>
 				)}
 			</section>

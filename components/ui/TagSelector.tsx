@@ -14,13 +14,13 @@ export function TagSelector({ tags, activeTag }: TagSelectorProps) {
 				id="blog-tags"
 			>
 				<Link
-					href="/blog"
+					href="/writing"
 					aria-current={!activeTag ? 'page' : undefined}
 					className={cn(
 						!activeTag
 							? 'text-brand after:bg-brand'
 							: 'text-foreground-tertiary transition-colors duration-200 ease-out hover:after:bg-foreground hover:text-foreground after:transition-colors after:duration-200 after:ease-out',
-						'relative whitespace-nowrap px-2 py-1 after:content-["_"] after:absolute after:z-10 after:-bottom-0.5 after:left-0 after:h-px after:w-full after:rounded-full'
+						'relative whitespace-nowrap px-2 py-1 after:content-["_"] after:absolute after:z-10 after:-bottom-0.5 after:left-0 after:h-px after:w-full after:rounded-full',
 					)}
 				>
 					All
@@ -28,13 +28,13 @@ export function TagSelector({ tags, activeTag }: TagSelectorProps) {
 				{tags.map((tag) => (
 					<Link
 						key={tag}
-						href={`/blog/tag/${slugify(tag)}`}
+						href={`/writing/tag/${slugify(tag)}`}
 						aria-current={activeTag === tag ? 'page' : undefined}
 						className={cn(
 							activeTag === tag
 								? 'text-brand after:bg-brand'
 								: 'text-foreground-tertiary transition-colors duration-200 ease-out hover:after:bg-foreground hover:text-foreground after:transition-colors after:duration-200 after:ease-out',
-							'relative whitespace-nowrap px-2 py-1 after:content-["_"] after:absolute after:z-10 after:-bottom-0.5 after:left-0 after:h-px after:w-full after:rounded-full'
+							'relative whitespace-nowrap px-2 py-1 after:content-["_"] after:absolute after:z-10 after:-bottom-0.5 after:left-0 after:h-px after:w-full after:rounded-full',
 						)}
 					>
 						{tag}

@@ -5,9 +5,6 @@ import Callout from './Callout';
 import Code from './Code';
 import CustomImage from './Image';
 import CustomLink from './Link';
-import Preview from './Preview';
-import { Step, Steps } from './Steps';
-import Tabs from './Tabs';
 import Divider from './Divider';
 
 // Helper to set displayName on components
@@ -48,10 +45,6 @@ const MDXComponents = {
 	figure: (props: any) => Code(props),
 	Image: CustomImage,
 	Divider,
-	Preview,
-	Tabs,
 	Callout,
-	Steps,
-	Step,
 };
 export default MDXComponents;

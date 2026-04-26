@@ -40,12 +40,5 @@ export type NavItem = {
 	path: string;
 	icon?: IconName;
 	description?: string;
-	colSpan?: number;
 	rowSpan?: number;
-};
-export type Navigation = {
-	navigationLinks: NavItem[];
-	exploreLinks: NavItem[];
-	connectLinks: NavItem[];
-	socialLinks: NavItem[];
 };

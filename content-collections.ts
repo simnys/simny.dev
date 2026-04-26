@@ -5,10 +5,10 @@ import readingTime from 'reading-time';
 import rehypePrettyCode from 'rehype-pretty-code';
 import { rehypeCodeOptions } from './lib/rehype/rehype';
 
-const BLOG_DIR = 'content/blog';
+const BLOG_DIR = 'content/writing';
 const NOW_DIR = 'content/now';
 
-const BLOG_ASSETS_DIR = '/assets/blog';
+const BLOG_ASSETS_DIR = '/assets/writing';
 
 const posts = defineCollection({
 	name: 'posts',
@@ -25,7 +25,7 @@ const posts = defineCollection({
 		const body = await context.cache(page.content, async () =>
 			compileMDX(context, page, {
 				rehypePlugins: [[rehypePrettyCode, rehypeCodeOptions]],
-			})
+			}),
 		);
 
 		const imageMeta = await context.cache(page._meta.path, async () => {

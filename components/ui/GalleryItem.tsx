@@ -31,7 +31,7 @@ export default function GalleryItem({
 		<>
 			{isCollection ? (
 				<Link
-					href={`/gallery/${slugify(collectionTitle)}`}
+					href={`/photography/${slugify(collectionTitle)}`}
 					className="relative group rounded-lg overflow-hidden block aspect-square sm:aspect-[4/5] w-full"
 				>
 					<Image
@@ -46,7 +46,7 @@ export default function GalleryItem({
 						className="w-full h-full object-cover group-focus-visible:p-0.5 rounded-lg"
 					/>
 					<div className="bg-linear-to-t from-foreground/80 dark:from-background/80 via-transparent to-transparent flex flex-col items-start justify-end p-4 absolute w-full top-0 bottom-0 text-background dark:text-foreground transition-colors duration-200 ease-out group-hover:bg-background/20">
-						<div className="font-mono flex items-center gap-1.5 opacity-80">
+						<div className="text-sm flex items-center gap-1.5 opacity-80">
 							<Icon name="gallery" className="size-4" />
 							{collectionSize}
 						</div>
