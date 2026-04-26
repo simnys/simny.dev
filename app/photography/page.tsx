@@ -1,7 +1,7 @@
 import PageHeader from '@/components/layouts/PageHeader';
 import GalleryView from '@/components/sections/GalleryView';
 import { SITE_NAME, SITE_URL } from '@/data/constants';
-import { galleryCollections, galleryImagesStatic } from '@/data/gallery';
+import { galleryCollections } from '@/data/gallery';
 import { getCollections } from '@/lib/gallery';
 import { GalleryCollection } from '@/lib/types/types';
 import { slugify } from '@/lib/utils';
@@ -13,7 +13,7 @@ const title = 'Photography';
 const description = "Moments, places, and details I've noticed along the way.";
 
 export async function generateMetadata(): Promise<Metadata> {
-	const ogImage = galleryImagesStatic[0];
+	const ogImage = galleryCollections[0]?.cover as string;
 
 	return {
 		title,
@@ -24,8 +24,8 @@ export async function generateMetadata(): Promise<Metadata> {
 			images: [
 				{
 					url: `/api/ogGallery?title=${encodeURIComponent(
-						'Collections',
-					)}&subtitle=${encodeURIComponent('Photography')}&image=${encodeURIComponent(ogImage)}`,
+						'Photography',
+					)}&subtitle=${encodeURIComponent('Collections')}&image=${encodeURIComponent(ogImage)}`,
 					width: 1200,
 					height: 630,
 					alt: `Photography cover image`,
