@@ -25,6 +25,7 @@ import { AboutPage, WithContext } from 'schema-dts';
 import Script from 'next/script';
 import { Card } from '@/components/ui/Card';
 import Divider from '@/components/blog/Divider';
+import { Button } from '@/components/ui/Button';
 
 export const metadata: Metadata = {
 	alternates: {
@@ -76,25 +77,21 @@ export default async function Home() {
 				/>
 			</section>
 
-			<section className="md:px-8">
-				<div className="mb-4 flex justify-between items-center">
-					<h2>Recent work</h2>
-					<Link
-						href="/work"
-						aria-label="View more projects"
-						className="text-foreground-tertiary hover:text-foreground transition-colors p-2"
-					>
-						<Icon name="arrow" className="" />
-					</Link>
-				</div>
+			<section className="md:px-8 flex flex-col space-y-4">
+				<h2>Recent work</h2>
+
 				<div className="grid md:grid-cols-2 gap-6">
 					{professionalProjects.slice(0, 2).map((project) => (
 						<Card key={project.title} item={{ ...project, subtitle: project.date }} />
 					))}
 				</div>
-			</section>
 
-			<Divider className="my-0 sm:my-0" />
+				<Button asChild variant="ghost" className="text-sm ml-auto">
+					<Link href="/work" aria-label="View more work projects">
+						View more
+					</Link>
+				</Button>
+			</section>
 
 			<section className="prose sm:mx-auto">
 				<h2 className="">About</h2>
@@ -122,21 +119,17 @@ export default async function Home() {
 				</div>
 			</section>
 
-			<Divider className="my-0 sm:my-0" />
-
 			{collections.length >= 3 && (
-				<section className="md:px-8">
-					<div className="mb-4 flex justify-between items-center">
-						<h2>Photography</h2>
-						<Link
-							href="/photography"
-							aria-label="View photography gallery"
-							className="text-foreground-tertiary hover:text-foreground transition-colors p-2"
-						>
-							<Icon name="arrow" className="" />
-						</Link>
-					</div>
+				<section className="md:px-8 flex flex-col space-y-4">
+					<h2>Photography</h2>
+
 					<GalleryView as="collections" content={collections.slice(0, 3)} />
+
+					<Button asChild variant="ghost" className="text-sm ml-auto">
+						<Link href="/photography" aria-label="View more photography">
+							View gallery
+						</Link>
+					</Button>
 				</section>
 			)}
 		</>

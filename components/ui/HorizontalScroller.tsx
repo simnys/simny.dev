@@ -48,7 +48,7 @@ export default function HorizontalScroller({
 			ref={containerRef}
 			className={cn(
 				'scroller relative overflow-hidden mask-[linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]',
-				className
+				className,
 			)}
 		>
 			<ul
@@ -56,13 +56,13 @@ export default function HorizontalScroller({
 				className={cn(
 					'flex w-max gap-2 items-center',
 					start && (speed == 'normal' ? 'animate-loop' : 'animate-loop'),
-					pauseOnHover && 'hover:[animation-play-state:paused]'
+					pauseOnHover && 'hover:[animation-play-state:paused]',
 				)}
 			>
 				{items.map((item: any, idx: number) => (
 					<Fragment key={idx}>
 						<li>{item}</li>
-						{separator && <span className="text-brand">{separator}</span>}
+						{separator && <span className="text-foreground-tertiary">{separator}</span>}
 					</Fragment>
 				))}
 			</ul>
