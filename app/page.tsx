@@ -87,13 +87,13 @@ export default async function Home() {
 
 				<Button asChild variant="ghost" className="text-sm ml-auto mt-3">
 					<Link href="/work" aria-label="View more work projects">
-						See more
+						More projects
 					</Link>
 				</Button>
 			</section>
 
 			<section className="prose max-w-3xl">
-				<h2 className="">About</h2>
+				<h2 className="not-prose text-foreground">About</h2>
 				<div className="">
 					{about.map((c, i) => (
 						<p key={i}>{c.text}</p>
@@ -125,8 +125,8 @@ export default async function Home() {
 
 					{blogPosts.length > 3 && (
 						<Button asChild variant="ghost" className="text-sm ml-auto mt-3">
-							<Link href="/writing" aria-label="View more writing">
-								See more
+							<Link href="/writing" aria-label="View more articles">
+								Read more
 							</Link>
 						</Button>
 					)}

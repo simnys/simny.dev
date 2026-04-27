@@ -17,25 +17,26 @@ import { cn } from '@/lib/utils';
 import '@/styles/globals.css';
 
 import type { Metadata, Viewport } from 'next';
+import { Inter, Newsreader, Geist_Mono } from 'next/font/google';
 import localFont from 'next/font/local';
 import Script from 'next/script';
 import { Person, WithContext } from 'schema-dts';
 import Providers from './providers';
 
-const fontSerif = localFont({
-	src: '../public/fonts/Newsreader-Italic.woff2',
+const fontSans = Inter({
+	subsets: ['latin'],
+	display: 'swap',
+	variable: '--font-sans',
+});
+const fontSerif = Newsreader({
+	subsets: ['latin'],
 	display: 'swap',
 	weight: '400',
 	style: 'italic',
 	variable: '--font-serif',
 });
-const fontSans = localFont({
-	src: '../public/fonts/InterVariable.woff2',
-	display: 'swap',
-	variable: '--font-sans',
-});
-const fontCode = localFont({
-	src: '../public/fonts/GeistMono.woff2',
+const fontCode = Geist_Mono({
+	subsets: ['latin'],
 	display: 'swap',
 	weight: '400',
 	variable: '--font-code',
