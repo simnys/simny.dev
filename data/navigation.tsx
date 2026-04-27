@@ -6,10 +6,10 @@ import { SITE_CONTACT, SITE_GITHUB_URL, SITE_LINKEDIN_URL } from './constants';
 //
 export const navigationLinks: NavItem[] = [
 	{
-		name: 'About',
+		name: 'Home',
 		description: 'Who I am and what I do',
 		path: '/',
-		icon: 'user',
+		icon: 'home',
 		rowSpan: 2,
 	},
 	{

@@ -60,7 +60,7 @@ function NavDropdown({ isOpen, onClose, currentPath, className }: NavDropdownPro
 				role="menu"
 				aria-label="More navigation options"
 				className={cn(
-					'hidden sm:block absolute top-13 left-2 right-2 rounded-xl p-2.5 z-50',
+					'hidden sm:block absolute top-13 left-4 right-4 rounded-xl p-2.5 z-50',
 					'bg-background border shadow-xs will-change-transform origin-top',
 					className,
 				)}

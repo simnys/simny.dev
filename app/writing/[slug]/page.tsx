@@ -9,7 +9,7 @@ import { SITE_NAME, SITE_URL } from '@/data/constants';
 import { socialLinks } from '@/data/navigation';
 import { getBlogPost, getBlogPosts, getRelatedPosts } from '@/lib/blog';
 import { formatDate, slugify } from '@/lib/utils';
-import avatar from '@/public/images/avatar-px.png';
+import avatar from '@/public/images/pixel.png';
 
 import { MDXContent } from '@content-collections/mdx/react';
 import { Metadata, ResolvingMetadata } from 'next';
@@ -116,10 +116,6 @@ export default async function BlogPost(props: Props) {
 		publisher: {
 			'@type': 'Organization',
 			name: SITE_NAME,
-			logo: {
-				'@type': 'ImageObject',
-				url: `${SITE_URL}/favicon.ico`,
-			},
 		},
 		isAccessibleForFree: true,
 	};
@@ -133,7 +129,7 @@ export default async function BlogPost(props: Props) {
 			/>
 
 			<article className="prose mx-auto w-full mt-4 sm:mt-20 first:prose-p:m-0">
-				<div className="flex flex-col justify-end gap-1 mb-8">
+				<div className="flex flex-col justify-end gap-2 mb-8">
 					<div className="flex items-center gap-x-1 mb-2 text-sm text-foreground-tertiary">
 						<Link
 							href="/writing"
@@ -169,7 +165,7 @@ export default async function BlogPost(props: Props) {
 							className="size-12 rounded-full not-prose"
 						/>
 						<div className="absolute -right-0 -bottom-1 size-4 p-1 bg-background rounded-full flex items-center justify-center">
-							<div className="size-full rounded-full bg-brand" />
+							<div className="size-full rounded-full bg-gradient-to-tl from-brand to-pink-100" />
 						</div>
 					</div>
 
