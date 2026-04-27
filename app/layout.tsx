@@ -2,6 +2,7 @@ import Footer from '@/components/layouts/Footer';
 import Navbar from '@/components/layouts/Navbar';
 
 import {
+	isProduction,
 	SITE_CONTACT,
 	SITE_DESCRIPTION,
 	SITE_GITHUB_URL,
@@ -141,10 +142,12 @@ export default function RootLayout({
 
 					<Footer />
 				</Providers>
-				{/* <Script
-					src="https://analytics.eu.umami.is/script.js"
-					data-website-id="0ab801df-b78b-462a-80b5-4630493addc6"
-				/> */}
+				{isProduction && (
+					<Script
+						src="https://analytics.eu.umami.is/script.js"
+						data-website-id="0ab801df-b78b-462a-80b5-4630493addc6"
+					/>
+				)}
 			</body>
 		</html>
 	);

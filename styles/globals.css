@@ -44,8 +44,6 @@
 
 @theme {
 	--animate-loop: loop 100s linear infinite;
-	--animate-rotate: rotate 10s linear infinite;
-	--animate-rotate-reverse: rotate 10s infinite linear reverse;
 
 	@keyframes loop {
 		0% {
@@ -53,11 +51,6 @@
 		}
 		100% {
 			transform: translateX(-50%);
-		}
-	}
-	@keyframes rotate {
-		to {
-			transform: rotate(360deg);
 		}
 	}
 }
@@ -127,12 +120,6 @@ h6 {
 }
 em {
 	@apply font-serif italic tracking-normal leading-normal text-[17px] text-foreground;
-}
-.prose .c-link {
-	@apply font-normal;
-}
-.prose figcaption .c-link {
-	@apply pb-1 text-foreground-secondary hover:text-foreground;
 }
 
 /* Heading anchorlinks */
@@ -217,19 +204,4 @@ code[data-line-numbers] [data-line]::before {
 .prose :not(pre) > code::after,
 .prose :not(pre) > code::before {
 	@apply hidden;
-}
-
-/* 	------------
-	COMPONENTS
-	-----------	*/
-@utility c-link-border {
-	content: '';
-	position: absolute;
-	bottom: 0.2em;
-	height: 1.5px;
-	width: 100%;
-	background-color: --alpha(var(--color-foreground-secondary) / 30%);
-	transition-property: all;
-	transition-duration: 200ms;
-	transition-timing-function: ease-out;
 }
