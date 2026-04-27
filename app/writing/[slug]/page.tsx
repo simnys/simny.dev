@@ -1,5 +1,6 @@
 import Divider from '@/components/blog/Divider';
 import MDXComponents from '@/components/blog/MDXcomponents';
+import PageHeader from '@/components/layouts/PageHeader';
 import { SectionHeader } from '@/components/layouts/Section';
 import { Button } from '@/components/ui/Button';
 import { Icon } from '@/components/ui/Icon';
@@ -55,7 +56,7 @@ export async function generateMetadata(
 				{
 					url: `/api/ogBlog?title=${encodeURIComponent(title)}&image=${encodeURIComponent(
 						image || '',
-					)}&tags=${encodeURIComponent(post.tags.slice(0, 3).join(','))}`,
+					)}`,
 					width: 1200,
 					height: 630,
 					alt: title,
@@ -72,7 +73,7 @@ export async function generateMetadata(
 				{
 					url: `/api/ogBlog?title=${encodeURIComponent(title)}&image=${encodeURIComponent(
 						image || '',
-					)}&tags=${encodeURIComponent(post.tags.slice(0, 3).join(','))}`,
+					)}`,
 					width: 1200,
 					height: 630,
 					alt: title,
@@ -99,15 +100,13 @@ export default async function BlogPost(props: Props) {
 		},
 		headline: post.title,
 		description: post.summary,
-		keywords: post.tags.join(', '),
+		keywords: post.tags?.join(', '),
 		url: `${SITE_URL}/writing/${post.slug}`,
 		datePublished: post.date.toISOString(),
 		dateModified: post.date.toISOString(),
 		image: `${SITE_URL}/api/ogBlog?title=${encodeURIComponent(
 			post.title,
-		)}&image=${encodeURIComponent(post.image || '')}&tags=${encodeURIComponent(
-			post.tags.slice(0, 3).join(','),
-		)}`,
+		)}&image=${encodeURIComponent(post.image || '')}`,
 		author: {
 			'@type': 'Person',
 			name: SITE_NAME,
@@ -128,28 +127,19 @@ export default async function BlogPost(props: Props) {
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
 
-			<article className="prose mx-auto w-full mt-4 sm:mt-20 first:prose-p:m-0">
-				<div className="flex flex-col justify-end gap-2 mb-8">
-					<div className="flex items-center gap-x-1 mb-2 text-sm text-foreground-tertiary">
-						<Link
-							href="/writing"
-							className="text-foreground-tertiary hover:text-foreground transition-colors no-underline"
-						>
-							Writing
-						</Link>
-						<span aria-hidden="true">/</span>
-						<Link
-							href={`/writing/tag/${slugify(post.tags[0])}`}
-							className="text-foreground-tertiary hover:text-foreground transition-colors no-underline"
-						>
-							{post.tags[0]}
-						</Link>
-					</div>
-					<h1 className="not-prose text-foreground">{post.title}</h1>
-					<time dateTime={post.date.toISOString()} className="font-serif text-foreground-tertiary">
-						{formatDate(post.date, true)}
-					</time>
-				</div>
+			<article className="prose mx-auto w-full first:prose-p:m-0">
+				<PageHeader
+					title={post.title}
+					backlink="/writing"
+					className="not-prose text-foreground"
+					backlinkClassName="md:left-13"
+				/>
+				<time
+					dateTime={post.date.toISOString()}
+					className="block mt-1 mb-8 font-serif text-foreground-secondary text-base"
+				>
+					{formatDate(post.date, true)}
+				</time>
 
 				<MDXContent code={post.body} components={MDXComponents} />
 				<Divider />

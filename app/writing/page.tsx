@@ -1,10 +1,9 @@
 import PageHeader from '@/components/layouts/PageHeader';
 import { Icon } from '@/components/ui/Icon';
 import PostList from '@/components/ui/PostList';
-import { TagSelector } from '@/components/ui/TagSelector';
 import { SITE_NAME, SITE_URL } from '@/data/constants';
 
-import { getAllTags, getBlogPosts } from '@/lib/blog';
+import { getBlogPosts } from '@/lib/blog';
 
 import { Metadata } from 'next';
 import Script from 'next/script';
@@ -17,7 +16,6 @@ export const metadata: Metadata = {
 
 export default async function Writing() {
 	const posts = getBlogPosts();
-	const tags = getAllTags();
 
 	const jsonLd: WithContext<BlogLeaf> = {
 		'@type': 'Blog',
@@ -52,7 +50,6 @@ export default async function Writing() {
 			/>
 
 			<section className="space-y-4 sm:space-y-6">
-				{tags.length > 4 && <TagSelector tags={tags} activeTag={''} />}
 				{posts.length > 0 ? (
 					<PostList posts={posts} />
 				) : (
