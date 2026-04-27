@@ -14,6 +14,8 @@ export default function Hero() {
 						alt=""
 						draggable={false}
 						className="size-13 rounded-full not-prose"
+						priority
+						fetchPriority="high"
 					/>
 				</div>
 

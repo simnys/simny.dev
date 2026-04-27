@@ -3,7 +3,7 @@
 import { cn } from '@/lib/utils';
 import { AnimatePresence } from 'framer-motion';
 import { usePathname } from 'next/navigation';
-import { useState, useCallback, useRef, useEffect } from 'react';
+import { useState, useCallback, useRef } from 'react';
 
 import ThemeSwitcher from '../ui/ThemeSwitcher';
 import MobileMenu from './MobileMenu';
@@ -32,18 +32,6 @@ export default function Navbar() {
 	}, []);
 	const closeDropdown = useCallback(() => {
 		setIsDropdownOpen(false);
-	}, []);
-
-	// Close menus on esc
-	useEffect(() => {
-		const handleKeyDown = (event: KeyboardEvent) => {
-			if (event.key === 'Escape') {
-				closeMobileMenu();
-				closeDropdown();
-			}
-		};
-		document.addEventListener('keydown', handleKeyDown);
-		return () => document.removeEventListener('keydown', handleKeyDown);
 	}, []);
 
 	return (

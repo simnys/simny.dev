@@ -40,6 +40,7 @@ export default function GalleryItem({
 						height={360}
 						alt={item.alt ?? ''}
 						priority={priority}
+						fetchPriority={priority ? 'high' : 'auto'}
 						loading={priority ? 'eager' : 'lazy'}
 						placeholder="blur"
 						blurDataURL={item.blurData}
@@ -64,6 +65,7 @@ export default function GalleryItem({
 						height={Math.floor((item as GalleryImage).height / 4)}
 						alt={item.alt ?? ''}
 						priority={priority}
+						fetchPriority={priority ? 'high' : 'auto'}
 						loading={priority ? 'eager' : 'lazy'}
 						placeholder="blur"
 						blurDataURL={item.blurData}

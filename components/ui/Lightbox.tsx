@@ -3,7 +3,7 @@
 import { GalleryImage } from '@/lib/types/types';
 import { AnimatePresence, motion } from 'framer-motion';
 import { CldImage } from 'next-cloudinary';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Icon } from './Icon';
 import { FocusTrap } from 'focus-trap-react';
 
@@ -19,18 +19,6 @@ export default function Lightbox({ content, current, setCurrent, isVisible, onCl
 	const containerRef = useRef<HTMLDivElement>(null);
 	const [isLoading, setIsLoading] = useState(true);
 
-	const handleKeyDown = (e: any) => {
-		if (e.key === 'Escape') onClose();
-		if (e.key === 'ArrowLeft') showPrev(e);
-		if (e.key === 'ArrowRight') showNext(e);
-	};
-
-	const handleScroll = () => {
-		setTimeout(() => {
-			onClose();
-		}, 300);
-	};
-
 	const showNext = (e: any) => {
 		e.stopPropagation();
 		setCurrent((prevIndex) => (prevIndex + 1) % content.length);
@@ -40,7 +28,19 @@ export default function Lightbox({ content, current, setCurrent, isVisible, onCl
 		setCurrent((prevIndex) => (prevIndex - 1 + content.length) % content.length);
 	};
 
+	const handleKeyDown = useCallback((e: any) => {
+		if (e.key === 'Escape') onClose();
+		if (e.key === 'ArrowLeft') showPrev(e);
+		if (e.key === 'ArrowRight') showNext(e);
+	}, []);
+
 	useEffect(() => {
+		const handleScroll = () => {
+			setTimeout(() => {
+				onClose();
+			}, 300);
+		};
+
 		const container = containerRef.current;
 		if (isVisible) {
 			window.addEventListener('scroll', handleScroll);
@@ -53,7 +53,7 @@ export default function Lightbox({ content, current, setCurrent, isVisible, onCl
 			window.removeEventListener('scroll', handleScroll);
 			container?.removeEventListener('keydown', handleKeyDown);
 		};
-	}, [handleKeyDown, handleScroll, isVisible]);
+	}, [handleKeyDown, isVisible, onClose]);
 
 	return (
 		<AnimatePresence>
