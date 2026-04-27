@@ -32,7 +32,7 @@ export const professionalProjects = [
 		title: 'Swedish Engineers',
 		date: '2023 - Present',
 		description:
-			'A platform designed to connect Swedish engineers with job opportunities, resources, and a community of professionals. Features include job listings, networking events, and industry news.',
+			'Tech lead. Continuously implementing new features, and ensuring a seamless user experience for 200k members.',
 		icon: 'logoSI',
 		link: 'https://www.sverigesingenjorer.se',
 	},
@@ -40,7 +40,7 @@ export const professionalProjects = [
 		title: 'Musikhjälpen',
 		date: '2025',
 		description:
-			'A comprehensive redesign and development of the Musikhjälpen website to enhance user experience, accessibility, and performance. Implemented responsive design principles and optimized content delivery for a diverse audience.',
+			'Lead Frontend Developer. A comprehensive redesign to enhance user experience, accessibility, and performance.',
 		icon: 'heart',
 		link: 'https://bossan.musikhjalpen.se/',
 	},
@@ -48,7 +48,7 @@ export const professionalProjects = [
 		title: 'Sopra Steria',
 		date: '2023 - Present',
 		description:
-			'A suite of internal tools built for Sopra Steria employees to streamline various workflows and improve productivity. Developed using modern web technologies and integrated with existing systems to ensure seamless operation.',
+			'Web engineer. Working on a variety of projects for clients. Focus on building scalable and maintainable web applications.',
 		icon: 'logoSopra',
 		link: 'https://www.soprasteria.se',
 	},
@@ -56,7 +56,7 @@ export const professionalProjects = [
 		title: 'We Know IT',
 		date: '2022 - 2023',
 		description:
-			'An internal dashboard application for WeKnowIT employees to manage projects, track progress, and collaborate effectively. Built with a focus on usability and integration with existing company tools.',
+			'Frontend Developer. Built a chat platform with real-time messaging and video conferencing features.',
 		icon: 'code',
 		link: 'https://www.weknowit.se/',
 	},
@@ -66,15 +66,14 @@ export const sideProjects = [
 	{
 		title: 'Diffly',
 		date: 'In Development',
-		description: 'A visual regression testing tool.',
+		description: 'Visual regression testing tool.',
 		icon: 'logoDiffly',
 		link: `${SITE_GITHUB_URL}`,
 		technologies: ['React', 'Node.js', 'Express.js', 'PostgreSQL', 'Chakra UI', 'Sequelize ORM'],
 	},
 	{
 		title: 'Loop Agile',
-		description:
-			'Web-based communications platform acting as a forum for signed in users. Built for the purpose to learn full-stack React development and design patterns. Used an ORM on the middle layer and a component library on front-end.',
+		description: 'Internal intranet social platform.',
 		image: '/assets/projects/loop-agile.png',
 		icon: 'github',
 		link: `${SITE_GITHUB_URL}/loop-agile`,
@@ -82,8 +81,7 @@ export const sideProjects = [
 	},
 	{
 		title: 'Campspotter',
-		description:
-			'Collection of user-created campgrounds where others can find and review them. Built for the purpose to learn how to use dynamic templating and integrating a database to the front-end while utilizing APIs and third party packages.',
+		description: 'C2C platform for reviewing campsites.',
 		image: '/assets/projects/camp-spotter.png',
 		icon: 'github',
 		link: `${SITE_GITHUB_URL}/camp-spotter`,
@@ -91,8 +89,7 @@ export const sideProjects = [
 	},
 	{
 		title: 'simny.dev',
-		description:
-			'My Personal portfolio website that you are currently visiting. Created my own design system for a unique look. Built with dynamic content management to add projects and posts using headless CMS.',
+		description: 'My personal website.',
 		image: '/assets/projects/snystrom.png',
 		icon: 'user',
 		link: `${SITE_GITHUB_URL}/simny.dev`,
@@ -100,8 +97,7 @@ export const sideProjects = [
 	},
 	{
 		title: 'Supertrivia',
-		description:
-			'One of my first projects with vanilla js. Randomized quiz based on the Open Trivia DB API. Built to learn the basics of the capabilities with js and how to manage the DOM.',
+		description: 'Simple quiz app. First JS project.',
 		image: '/assets/projects/supertrivia.png',
 		icon: 'link',
 		link: 'https://supertrivia.netlify.app/',
@@ -109,8 +105,7 @@ export const sideProjects = [
 	},
 	{
 		title: 'Arcturus',
-		description:
-			'Arcade styled 2D space shooter game with unlimited levels and infinitely increasing difficulty. Has different enemy types and various power ups. Handles game saves locally to file. Built to solidify knowledge about object-oriented programming and learn to implement GUI for Java Apps.',
+		description: 'Arcade styled 2D space shooter game.',
 		image: '/assets/projects/arcturus.png',
 		icon: 'github',
 		link: `${SITE_GITHUB_URL}/arcturus`,
