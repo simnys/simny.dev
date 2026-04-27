@@ -175,7 +175,7 @@ export default async function BlogPost(props: Props) {
 										href={link.path}
 										target="_blank"
 										rel="noopener noreferrer"
-										className="border shadow-inner cursor-pointer bg-background"
+										className="border border-border"
 										aria-label={`Find me on ${link.name}`}
 									>
 										<Icon name={link.icon!} className={link.icon === 'x' ? 'size-4' : ''} />
@@ -188,7 +188,7 @@ export default async function BlogPost(props: Props) {
 
 			{related.length > 0 && (
 				<section className="max-w-[65ch] w-full mx-auto">
-					<SectionHeader title="Related Articles" subtitle="You might also like" />
+					<SectionHeader title="More" />
 					<PostList posts={related.slice(0, 3)} />
 				</section>
 			)}

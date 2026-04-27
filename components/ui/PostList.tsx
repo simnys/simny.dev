@@ -7,32 +7,33 @@ type PostListProps = {
 	posts: Post[];
 };
 
-const PostMeta = ({ date, readingTime }: { date: Date; readingTime: string }) => (
-	<div className="font-serif text-[15px] w-full sm:w-fit sm:min-w-20 flex items-center gap-x-2 text-foreground-tertiary group-hover:text-foreground-secondary transition-colors duration-200 ease-out">
-		<time dateTime={date.toISOString()} className="">
-			{formatDate(date, true)}
-		</time>
-		<span className="sm:hidden" aria-hidden="true">
-			|
-		</span>
-		<span className="sm:hidden">{readingTime}</span>
+const PostTypeCard = () => (
+	<div className="w-12 h-15 flex flex-col shrink-0 justify-center gap-y-1 p-1.5 py-1 rounded-md bg-background-secondary border border-border shadow-xs">
+		<div className="h-0.75 bg-foreground/10 dark:bg-foreground/30 rounded w-2/3 mb-1"></div>
+		<div className="h-0.75 bg-background-tertiary dark:bg-foreground/20 rounded w-full"></div>
+		<div className="h-0.75 bg-background-tertiary dark:bg-foreground/20 rounded w-4/5 mb-1"></div>
+		<div className="h-0.75 bg-background-tertiary dark:bg-foreground/20 rounded w-2/3"></div>
+		<div className="h-0.75 bg-background-tertiary dark:bg-foreground/20 rounded w-1/3"></div>
+	</div>
+);
+
+const PostMeta = ({ date }: { date: Date }) => (
+	<div className="font-serif text-[15px] text-foreground-tertiary group-hover:text-foreground-secondary transition-colors duration-200 ease-out">
+		<time dateTime={date.toISOString()}>{formatDate(date, true)}</time>
 	</div>
 );
 
 const PostTitle = ({ title }: { title: string }) => (
-	<div className="flex-1 sm:max-w-[80%]">
-		<h3 className="text-balance leading-normal line-clamp-2 sm:text-foreground-secondary group-hover:text-foreground transition-colors duration-200 ease-out">
-			{title}
-		</h3>
-	</div>
+	<h3 className="text-balance line-clamp-2 sm:text-foreground-secondary group-hover:text-foreground transition-colors duration-200 ease-out leading-tight">
+		{title}
+	</h3>
 );
 
 const ReadingTime = ({ readingTime }: { readingTime: string }) => {
 	const minutes = readingTime.split(' ')[0];
 
 	return (
-		<div className="hidden sm:flex items-center gap-x-1 font-serif text-[15px] text-foreground-tertiary group-hover:text-foreground-secondary transition-colors duration-200 ease-out leading-normal">
-			<Icon name="hourglass" className="size-3.5" aria-hidden="true" />
+		<div className="hidden sm:block text-xs font-[450] text-foreground-tertiary group-hover:text-foreground-secondary transition-colors duration-200 ease-out leading-normal">
 			<span>{minutes}min</span>
 		</div>
 	);
@@ -44,16 +45,18 @@ const PostItem = ({ post }: { post: Post }) => (
 			href={`/writing/${post.slug}`}
 			className={cn(
 				// Layout
-				'w-full flex flex-col gap-y-1 gap-x-8 px-4 py-3.5',
-				'sm:flex-row sm:items-baseline sm:gap-x-16',
+				'w-full flex items-center gap-x-4 px-2.5 py-2',
 				// Styling
 				'bg-background rounded-xl',
 				'group transition-colors duration-200 ease-out hover:bg-background-tertiary',
 			)}
 			aria-label={`Read ${post.title}`}
 		>
-			<PostMeta date={post.date} readingTime={post.readingTime} />
-			<PostTitle title={post.title} />
+			<PostTypeCard />
+			<div className="grow space-y-1">
+				<PostTitle title={post.title} />
+				<PostMeta date={post.date} />
+			</div>
 			<ReadingTime readingTime={post.readingTime} />
 		</Link>
 	</li>
@@ -65,7 +68,7 @@ export default function PostList({ posts }: PostListProps) {
 	}
 
 	return (
-		<ul className="flex flex-col -mx-4" role="list">
+		<ul className="flex flex-col -mx-4 sm:-mx-2" role="list">
 			{posts.map((post) => (
 				<PostItem key={post.slug} post={post} />
 			))}

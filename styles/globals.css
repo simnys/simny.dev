@@ -109,6 +109,9 @@ h5,
 h6 {
 	@apply font-medium tracking-tight;
 }
+img {
+	@apply select-none;
+}
 
 /* 	------------
 	BLOG STYLES
@@ -121,6 +124,9 @@ h6 {
 }
 em {
 	@apply font-serif italic tracking-normal leading-normal text-[17px] text-foreground;
+}
+.prose blockquote:not(.not-prose) {
+	@apply font-[450] py-2;
 }
 
 /* Heading anchorlinks */
