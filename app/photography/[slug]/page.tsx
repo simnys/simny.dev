@@ -116,7 +116,7 @@ export default async function GalleryCollection(props: Props) {
 
 				<Button asChild variant="ghost" className="text-foreground-secondary gap-0">
 					<Link href={backLink} className="hidden sm:inline-flex flex-col flex-1 h-15 text-center">
-						<span className="block font-serif text-base text-foreground-tertiary">Collections</span>
+						<span className="block font-serif text-base text-foreground-tertiary">Photography</span>
 						Index
 					</Link>
 				</Button>

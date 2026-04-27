@@ -1,16 +1,21 @@
 import { cn } from '@/lib/utils';
-import Link from 'next/link';
-import { Icon } from '../ui/Icon';
-import { Button } from '../ui/Button';
+import CustomLink from '../blog/Link';
 
 interface PageHeaderProps {
 	title: string;
 	content?: string;
 	backlink?: string;
 	className?: string;
+	backlinkClassName?: string;
 }
 
-export default function PageHeader({ title, content, backlink, className }: PageHeaderProps) {
+export default function PageHeader({
+	title,
+	content,
+	backlink,
+	className,
+	backlinkClassName,
+}: PageHeaderProps) {
 	return (
 		<>
 			<div className={cn('relative mt-12 sm:mt-20 space-y-1 text-balance', className)}>
@@ -18,11 +23,17 @@ export default function PageHeader({ title, content, backlink, className }: Page
 				{content && <p className="text-foreground-secondary">{content}</p>}
 			</div>
 			{backlink && (
-				<Button asChild size="icon" variant="secondary">
-					<Link href={backlink} draggable={false} className="absolute inset-6 rounded-full">
-						<Icon name="back" className="-rotate-90" />
-					</Link>
-				</Button>
+				<CustomLink
+					href={backlink}
+					icon="external"
+					flipIcon
+					className={cn(
+						'absolute left-5 top-6 sm:top-12 text-[15px] text-foreground-tertiary hover:text-foreground no-underline',
+						backlinkClassName,
+					)}
+				>
+					{backlink.split('/')[1].charAt(0).toUpperCase() + backlink.split('/')[1].slice(1)}
+				</CustomLink>
 			)}
 		</>
 	);
