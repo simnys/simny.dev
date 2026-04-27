@@ -20,8 +20,10 @@ export default function Hero() {
 				</div>
 
 				<div>
-					<span className="block font-medium">Simon Nyström</span>
-					<span className="block text-sm sm:text-base text-foreground-tertiary">Web Engineer</span>
+					<span className="block font-[550]">Simon Nyström</span>
+					<span className="block text-sm sm:text-base font-[450] text-foreground-tertiary">
+						Web Engineer
+					</span>
 				</div>
 			</div>
 			<p className="prose">
