@@ -77,8 +77,8 @@ export default async function Home() {
 				/>
 			</section>
 
-			<section className="flex flex-col space-y-4">
-				<h2>Recent work</h2>
+			<section className="flex flex-col">
+				<h2 className="mb-6">Recent work</h2>
 
 				<div className="grid md:grid-cols-2 gap-6">
 					{professionalProjects.slice(0, 2).map((project) => (
@@ -86,7 +86,7 @@ export default async function Home() {
 					))}
 				</div>
 
-				<Button asChild variant="ghost" className="text-sm ml-auto">
+				<Button asChild variant="ghost" className="text-sm ml-auto mt-3">
 					<Link href="/work" aria-label="View more work projects">
 						View more
 					</Link>
@@ -96,7 +96,7 @@ export default async function Home() {
 			<section className="prose max-w-3xl">
 				<h2 className="">About</h2>
 				<div className="">
-					{content.map((c, i) => (
+					{about.map((c, i) => (
 						<p key={i}>{c.text}</p>
 					))}
 				</div>
@@ -120,23 +120,33 @@ export default async function Home() {
 			</section>
 
 			{collections.length >= 3 && (
-				<section className="flex flex-col space-y-4">
-					<h2>Photography</h2>
+				<section className="flex flex-col">
+					<h2 className="mb-6">Photography</h2>
 
 					<GalleryView as="collections" content={collections.slice(0, 3)} />
 
-					<Button asChild variant="ghost" className="text-sm ml-auto">
+					<Button asChild variant="ghost" className="text-sm ml-auto mt-3">
 						<Link href="/photography" aria-label="View more photography">
 							View gallery
 						</Link>
 					</Button>
 				</section>
 			)}
+
+			<section className="space-y-6">
+				<h2>Colophon</h2>
+				{colophon.map((c) => (
+					<div key={c.heading} className="sm:grid grid-cols-12 gap-2">
+						<h3 className="text-sm col-span-3 mb-1 mt-1 text-foreground-tertiary">{c.heading}</h3>
+						<p className="col-span-9 prose">{c.text}</p>
+					</div>
+				))}
+			</section>
 		</>
 	);
 }
 
-const content = [
+const about = [
 	{
 		heading: 'Overview',
 		text: (
@@ -158,6 +168,31 @@ const content = [
 		text: (
 			<>
 				{`Outside of work and photography, I love getting outdoors, traveling, or just kicking back with a good book. If you ever want to chat about tech, photos, or favorite hiking spots, I'm always up for it!`}
+			</>
+		),
+	},
+];
+
+const colophon = [
+	{
+		heading: 'Overview',
+		text: (
+			<>
+				This site is built for speed, clarity, and ease of use. I designed and developed it myself
+				with a focus on clean code, simple layouts, and a smooth user experience.
+			</>
+		),
+	},
+	{
+		heading: 'Technologies',
+		text: (
+			<>
+				It runs on <CustomLink href="https://nextjs.org">Next.js</CustomLink> (App Router),{' '}
+				<CustomLink href="https://react.dev">React</CustomLink>, and{' '}
+				<CustomLink href="https://typescriptlang.org">TypeScript</CustomLink>, styled with{' '}
+				<CustomLink href="https://tailwindcss.com">Tailwind</CustomLink> and a few custom utilities.
+				Most content is static for performance, with some dynamic parts powered by server components
+				and edge functions.
 			</>
 		),
 	},

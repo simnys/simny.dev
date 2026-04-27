@@ -87,7 +87,6 @@ export const metadata: Metadata = {
 	},
 	manifest: '/manifest.webmanifest',
 	referrer: 'origin',
-	icons: '/favicon.ico',
 	alternates: {
 		types: {
 			'application/rss+xml': [

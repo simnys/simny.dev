@@ -51,17 +51,15 @@ export default function Navbar() {
 			<nav
 				ref={navRef}
 				aria-label="Main navigation"
-				className="relative h-13 flex items-center w-full px-2 max-w-3xl mx-auto bg-background"
+				className="relative h-13 flex items-center w-full px-2 sm:px-6 max-w-3xl mx-auto bg-background"
 			>
 				{/* Logo */}
-				<div className="min-w-15 flex items-center justify-start z-100">
+				<div className="flex items-center justify-start z-100">
 					<Link
 						href="/"
-						className="w-fit p-2 rounded-lg text-foreground-secondary hover:text-foreground transition-colors"
+						className="size-7 rounded-full bg-gradient-to-tl from-brand to-pink-100 shadow-inner"
 						aria-label="Home"
-					>
-						simny
-					</Link>
+					></Link>
 				</div>
 
 				{/* Desktop Navigation */}

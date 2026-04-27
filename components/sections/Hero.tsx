@@ -15,9 +15,6 @@ export default function Hero() {
 						draggable={false}
 						className="size-13 rounded-full not-prose"
 					/>
-					<div className="absolute right-0 -bottom-1 size-4 p-1 bg-background rounded-full flex items-center justify-center">
-						<div className="size-full rounded-full bg-brand" />
-					</div>
 				</div>
 
 				<div>
@@ -30,9 +27,9 @@ export default function Hero() {
 				<CustomLink href="https://soprasteria.com" icon="logoSopra">
 					Sopra Steria
 				</CustomLink>
-				, crafting interfaces and web experiences that feel considered in both form and behavior. I
-				care about the details, from how it looks and responds to how it is designed and
-				architected.
+				, crafting interfaces and web experiences that feel intentional in both form and behavior. I
+				care about the details, from how it looks and responds to how it is{' '}
+				<em>designed and architected</em>.
 			</p>
 			<p className="prose">
 				I share occasional <CustomLink href="/now">updates</CustomLink> on random things and
