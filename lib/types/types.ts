@@ -1,5 +1,4 @@
 import { StaticImport } from 'next/dist/shared/lib/get-img-props';
-import { ComponentType, SVGProps } from 'react';
 import { IconName } from './icons';
 import { Technology } from '@/data/projects';
 

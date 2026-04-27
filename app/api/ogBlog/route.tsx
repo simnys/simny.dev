@@ -9,13 +9,7 @@ export async function GET(request: NextRequest) {
 		const { searchParams } = new URL(request.url);
 
 		const title = searchParams.get('title') || 'Blog Post';
-		const tags = searchParams.get('tags') || '';
 		const imagePath = searchParams.get('image') || '';
-
-		const tagList = tags
-			.split(',')
-			.map((tag) => tag.trim())
-			.filter((tag) => tag.length > 0);
 
 		const imageUrl = imagePath && `${SITE_URL}${imagePath}`;
 
@@ -68,16 +62,6 @@ export async function GET(request: NextRequest) {
 					<h1 style={{ fontFamily: 'Inter' }} tw="w-full text-black text-7xl text-balance">
 						{title}
 					</h1>
-					<div style={{ fontFamily: 'Inter' }} tw="uppercase flex items-center">
-						{tagList.map((tag, index) => (
-							<span
-								key={index}
-								tw="px-6 py-2 mr-5 text-black text-sm tracking-wide bg-black/10 rounded-lg"
-							>
-								# {tag}
-							</span>
-						))}
-					</div>
 				</div>
 			</div>,
 			{

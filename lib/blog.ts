@@ -6,6 +6,10 @@ export const getBlogPosts = cache(() => {
 	return posts;
 });
 
+export const getBlogPost = (slug: string) => {
+	return allPosts.find((post) => post.slug === slug);
+};
+
 export const getLatestBlogPost = () => {
 	const posts = getBlogPosts();
 
@@ -29,16 +33,13 @@ export const getRelatedPosts = (post: Post) => {
 	return related.slice(0, 3);
 };
 
+// TAGS
 export const getPostsByTag = (tag: string) => {
 	const posts = getBlogPosts();
 	const postsByTag = posts.filter((p) =>
-		p.tags?.some((t: string) => tag.toLowerCase() === t.toLowerCase())
+		p.tags?.some((t: string) => tag.toLowerCase() === t.toLowerCase()),
 	);
 	return postsByTag;
-};
-
-export const getBlogPost = (slug: string) => {
-	return allPosts.find((post) => post.slug === slug);
 };
 
 export const getAllTags = () => {

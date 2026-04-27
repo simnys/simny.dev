@@ -19,7 +19,7 @@ const posts = defineCollection({
 		summary: z.string(),
 		date: z.string(),
 		image: z.string().optional(),
-		tags: z.array(z.string()),
+		tags: z.array(z.string()).optional(),
 	}),
 	transform: async (page, context) => {
 		const body = await context.cache(page.content, async () =>
