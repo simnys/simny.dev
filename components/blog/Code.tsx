@@ -1,6 +1,5 @@
 import React from 'react';
 import Copy from '../ui/Copy';
-import { Tooltip } from '../ui/Tooltip';
 import { Icon } from '../ui/Icon';
 
 interface CodeProps {
@@ -22,14 +21,14 @@ export default function Code({ children, ...props }: CodeProps) {
 	const figcaption = findOrRemoveChildByType<React.ReactElement<any>>(
 		childrenArray,
 		'figcaption',
-		'find'
+		'find',
 	);
 
 	// Filter out existing title to replace with common one
 	const filteredChildren = findOrRemoveChildByType<React.ReactElement<any>>(
 		childrenArray,
 		'figcaption',
-		'extract'
+		'extract',
 	);
 
 	// Codeblocks styled in globals.css
@@ -41,15 +40,13 @@ export default function Code({ children, ...props }: CodeProps) {
 
 			{filteredChildren}
 
-			<Tooltip message="Copy code" className="absolute top-1 right-1">
-				<Copy
-					successMessage={<Icon name="check" className="text-brand size-4" />}
-					toCopy={codeText}
-					className="size-8 p-0"
-				>
-					<Icon name="copy" className="size-4" />
-				</Copy>
-			</Tooltip>
+			<Copy
+				successMessage={<Icon name="check" className="text-brand size-4" />}
+				toCopy={codeText}
+				className="absolute top-1 right-1 size-8 p-0"
+			>
+				<Icon name="copy" className="size-4" />
+			</Copy>
 		</figure>
 	);
 }
@@ -58,7 +55,7 @@ export default function Code({ children, ...props }: CodeProps) {
 const findOrRemoveChildByType = <T,>(
 	children: React.ReactNode[],
 	type: string,
-	mode: 'find' | 'extract'
+	mode: 'find' | 'extract',
 ): T | undefined => {
 	if (mode == 'find') {
 		return children.find((child) => React.isValidElement(child) && child.type === type) as
