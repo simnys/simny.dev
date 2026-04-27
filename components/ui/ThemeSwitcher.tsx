@@ -1,7 +1,7 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import { useTheme } from 'next-themes';
+import { useTheme } from '@teispace/next-themes';
 import { Icon } from './Icon';
 import { Button } from './Button';
 

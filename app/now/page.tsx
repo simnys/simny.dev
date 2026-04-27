@@ -40,42 +40,44 @@ export default async function Now() {
 						</time>
 					</span>
 
-					<MDXContent code={latestEntry.body} />
+					<MDXContent code={latestEntry.content} />
 				</article>
 			)}
 
-			<section>
-				<h2 className="text-lg mb-1">Recent favorites</h2>
-				<p className="mb-6 text-foreground-secondary">
-					A mixed goodie bag of recent bookmarks. It could be anything, really.
-				</p>
-				<div className="grid sm:grid-cols-2 gap-3">
-					{bookmarks?.map((bookmark) => (
-						<Button
-							key={bookmark._id}
-							asChild
-							variant="secondary"
-							className="items-start h-auto py-3 whitespace-normal"
-						>
-							<a
-								href={bookmark.link}
-								target="_blank"
-								rel="noopener noreferrer"
-								className="flex flex-col overflow-hidden"
+			{bookmarks && bookmarks.length > 0 && (
+				<section>
+					<h2 className="text-lg mb-1">Recent favorites</h2>
+					<p className="mb-6 text-foreground-secondary">
+						A mixed goodie bag of recent bookmarks. It could be anything, really.
+					</p>
+					<div className="grid sm:grid-cols-2 gap-3">
+						{bookmarks?.map((bookmark) => (
+							<Button
+								key={bookmark._id}
+								asChild
+								variant="secondary"
+								className="items-start h-auto py-3 whitespace-normal"
 							>
-								<div className="max-w-full text-xs flex items-center gap-1 text-foreground-tertiary">
-									<Icon name="link" className="size-4" />
-									<span className="truncate">{bookmark.domain}</span>
-								</div>
-								<p className="text-foreground text-sm">{bookmark.title}</p>
-								{bookmark.note && (
-									<p className="text-sm text-foreground-tertiary">{bookmark.note}</p>
-								)}
-							</a>
-						</Button>
-					))}
-				</div>
-			</section>
+								<a
+									href={bookmark.link}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="flex flex-col overflow-hidden"
+								>
+									<div className="max-w-full text-xs flex items-center gap-1 text-foreground-tertiary">
+										<Icon name="link" className="size-4" />
+										<span className="truncate">{bookmark.domain}</span>
+									</div>
+									<p className="text-foreground text-sm">{bookmark.title}</p>
+									{bookmark.note && (
+										<p className="text-sm text-foreground-tertiary">{bookmark.note}</p>
+									)}
+								</a>
+							</Button>
+						))}
+					</div>
+				</section>
+			)}
 
 			<Divider className="m-0 sm:m-0" />
 
@@ -92,7 +94,7 @@ export default async function Now() {
 								</div>
 								<div>
 									{entry.title && <h3 className="mt-1">{entry.title}</h3>}
-									<MDXContent code={entry.body} />
+									<MDXContent code={entry.content} />
 								</div>
 							</section>
 						))}
