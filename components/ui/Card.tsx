@@ -30,7 +30,9 @@ export const Card = ({ item, className }: { item: CardProps; className?: string 
 					<span className="inline-block text-sm text-foreground-tertiary">{item.subtitle}</span>
 				)}
 				<h3>{item.title}</h3>
-				<p className="text-sm text-foreground-tertiary line-clamp-2 leading-relaxed">{item.body}</p>
+				<p className="mt-1 text-sm text-foreground-tertiary line-clamp-3 leading-relaxed">
+					{item.body}
+				</p>
 			</div>
 		</a>
 	);

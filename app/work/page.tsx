@@ -1,26 +1,26 @@
 import PageHeader from '@/components/layouts/PageHeader';
-import { Icon } from '@/components/ui/Icon';
 import { SITE_NAME, SITE_URL } from '@/data/constants';
 
 import { sideProjects, professionalProjects } from '@/data/projects';
-import { cn } from '@/lib/utils';
 
 import { Metadata } from 'next';
 import Script from 'next/script';
 import { CollectionPage, WithContext } from 'schema-dts';
-import { IconName } from '@/lib/types/icons';
 import { Card } from '@/components/ui/Card';
 
+const title = 'Work';
+const description = "Things I've worked on, built or tinkered with.";
+
 export const metadata: Metadata = {
-	title: 'Work',
-	description: "Some of the things I've built, tinkered with, or just enjoyed working on.",
+	title: title,
+	description: description,
 };
 
 export default function Work() {
 	const jsonLd: WithContext<CollectionPage> = {
 		'@type': 'CollectionPage',
 		'@context': 'https://schema.org',
-		name: `${SITE_NAME} Work`,
+		name: `${SITE_NAME} - ${title}`,
 		description: metadata.description || '',
 		url: `${SITE_URL}/work`,
 		mainEntity: {
@@ -43,10 +43,7 @@ export default function Work() {
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
 
-			<PageHeader
-				title="Work"
-				content="Some of the things I've built, tinkered with, or just enjoyed working on."
-			/>
+			<PageHeader title={title} content={description} />
 
 			<section>
 				<h2 className="mb-4">Professional work</h2>

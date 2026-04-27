@@ -68,7 +68,7 @@ export default function PostList({ posts }: PostListProps) {
 	}
 
 	return (
-		<ul className="flex flex-col -mx-4 sm:-mx-2" role="list">
+		<ul className="flex flex-col -mx-2" role="list">
 			{posts.map((post) => (
 				<PostItem key={post.slug} post={post} />
 			))}

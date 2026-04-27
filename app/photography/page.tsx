@@ -10,7 +10,7 @@ import Script from 'next/script';
 import { CollectionPage, WithContext } from 'schema-dts';
 
 const title = 'Photography';
-const description = "Moments, places, and details I've noticed along the way.";
+const description = "Collections of photos I've taken. Work in progress.";
 
 export async function generateMetadata(): Promise<Metadata> {
 	const ogImage = galleryCollections[0]?.cover as string;
@@ -24,11 +24,11 @@ export async function generateMetadata(): Promise<Metadata> {
 			images: [
 				{
 					url: `/api/ogGallery?title=${encodeURIComponent(
-						'Photography',
+						title,
 					)}&subtitle=${encodeURIComponent('Collections')}&image=${encodeURIComponent(ogImage)}`,
 					width: 1200,
 					height: 630,
-					alt: `Photography cover image`,
+					alt: `${title} cover image`,
 					type: 'image/png',
 				},
 			],
@@ -39,11 +39,11 @@ export async function generateMetadata(): Promise<Metadata> {
 			images: [
 				{
 					url: `/api/ogGallery?title=${encodeURIComponent(
-						'Collections',
-					)}&subtitle=${encodeURIComponent('Photography')}&image=${encodeURIComponent(ogImage)}`,
+						title,
+					)}&subtitle=${encodeURIComponent('Collections')}&image=${encodeURIComponent(ogImage)}`,
 					width: 1200,
 					height: 630,
-					alt: `Photography cover image`,
+					alt: `${title} cover image`,
 				},
 			],
 			card: 'summary_large_image',
@@ -57,7 +57,7 @@ export default async function Photography() {
 	const jsonLd: WithContext<CollectionPage> = {
 		'@type': 'CollectionPage',
 		'@context': 'https://schema.org',
-		name: `${SITE_NAME} - Photography`,
+		name: `${SITE_NAME} - ${title}`,
 		description,
 		url: `${SITE_URL}/photography`,
 		mainEntity: {
@@ -79,7 +79,7 @@ export default async function Photography() {
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
 
-			<PageHeader title="Photography" content="Under construction." />
+			<PageHeader title={title} content={description} />
 
 			<section>
 				<GalleryView as="collections" content={collections} />

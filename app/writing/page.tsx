@@ -9,9 +9,12 @@ import { Metadata } from 'next';
 import Script from 'next/script';
 import { Blog as BlogLeaf, WithContext } from 'schema-dts';
 
+const title = 'Writing';
+const description = 'Thoughts, experiments and ideas.';
+
 export const metadata: Metadata = {
-	title: 'Writing',
-	description: 'Insights, tutorials, and ideas from my journey in tech.',
+	title: title,
+	description: description,
 };
 
 export default async function Writing() {
@@ -20,7 +23,7 @@ export default async function Writing() {
 	const jsonLd: WithContext<BlogLeaf> = {
 		'@type': 'Blog',
 		'@context': 'https://schema.org',
-		name: `${SITE_NAME} - Writing`,
+		name: `${SITE_NAME} - ${title}`,
 		description: metadata.description || '',
 		url: `${SITE_URL}/writing`,
 		publisher: {
@@ -44,10 +47,7 @@ export default async function Writing() {
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
 
-			<PageHeader
-				title="Writing"
-				content="Insights, tutorials, and ideas from my journey in tech."
-			/>
+			<PageHeader title={title} content={description} />
 
 			<section className="space-y-4 sm:space-y-6">
 				{posts.length > 0 ? (
