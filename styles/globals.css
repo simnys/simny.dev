@@ -88,6 +88,7 @@
 
 	html {
 		min-width: 340px;
+		scroll-behavior: smooth;
 	}
 	body {
 		@apply bg-background text-foreground font-sans tracking-[-0.01em];
@@ -113,7 +114,7 @@ h6 {
 	BLOG STYLES
 	-----------	*/
 .prose {
-	@apply dark:prose-invert text-foreground-secondary prose-headings:text-foreground prose-headings:text-base prose-headings:relative prose-headings:w-fit marker:text-foreground-secondary prose-hr:border-border;
+	@apply dark:prose-invert text-foreground-secondary prose-headings:text-foreground prose-headings:text-base prose-headings:relative prose-headings:w-fit prose-headings:font-[550] marker:text-foreground-secondary prose-hr:border-border;
 }
 .prose strong {
 	@apply font-medium text-foreground;
@@ -124,15 +125,14 @@ em {
 
 /* Heading anchorlinks */
 .prose .anchor {
-	@apply hidden sm:block absolute w-fit -right-12 px-6 no-underline transition-[opacity_transform] duration-200 ease-out text-foreground-tertiary/50 opacity-0 cursor-pointer;
+	@apply w-fit scroll-mt-6 sm:scroll-mt-12 relative;
 }
-.prose .anchor:after {
-	@apply font-sans;
+.prose .anchor:before {
+	@apply font-sans absolute -left-6 -bottom-1 text-xl text-foreground-tertiary/60 opacity-0 transition-[opacity_transform] duration-200 ease-out;
 	content: '#';
 }
-.prose .anchor:hover,
-.prose *:hover > .anchor {
-	@apply sm:opacity-100;
+.prose *:hover > .anchor:before {
+	@apply sm:opacity-100 -translate-y-0.5;
 }
 
 /* 

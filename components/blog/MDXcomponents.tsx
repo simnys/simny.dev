@@ -16,18 +16,17 @@ function withDisplayName<T extends React.ComponentType<any>>(Comp: T, name: stri
 const createHeading = (level: number) => {
 	const HeadingComponent = ({ children }: any) => {
 		let slug = slugify(children);
-		return React.createElement(
-			`h${level}`,
-			{ id: slug, className: 'scroll-mt-12' },
-			[
-				React.createElement('a', {
-					href: `#${slug}`,
-					key: `link-${slug}`,
-					className: 'anchor',
-					tabIndex: -1,
-				}),
-			],
-			children
+
+		return (
+			<a
+				href={`#${slug}`}
+				key={`link-${slug}`}
+				className="no-underline inline-block"
+				draggable={false}
+				tabIndex={-1}
+			>
+				{React.createElement(`h${level}`, { key: slug, id: slug, className: 'anchor' }, children)}
+			</a>
 		);
 	};
 	HeadingComponent.displayName = `Heading${level}`;
