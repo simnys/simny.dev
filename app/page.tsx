@@ -15,7 +15,6 @@ import { getBlogPosts, getLatestBlogPost } from '@/lib/blog';
 import { cn } from '@/lib/utils';
 
 import { Metadata } from 'next';
-import { Icon } from '@/components/ui/Icon';
 import Link from 'next/link';
 import GalleryView from '@/components/sections/GalleryView';
 import { getCollections } from '@/lib/gallery';
@@ -24,8 +23,8 @@ import HorizontalScroller from '@/components/ui/HorizontalScroller';
 import { AboutPage, WithContext } from 'schema-dts';
 import Script from 'next/script';
 import { Card } from '@/components/ui/Card';
-import Divider from '@/components/blog/Divider';
 import { Button } from '@/components/ui/Button';
+import PostList from '@/components/ui/PostList';
 
 export const metadata: Metadata = {
 	alternates: {
@@ -88,7 +87,7 @@ export default async function Home() {
 
 				<Button asChild variant="ghost" className="text-sm ml-auto mt-3">
 					<Link href="/work" aria-label="View more work projects">
-						View more
+						See more
 					</Link>
 				</Button>
 			</section>
@@ -119,6 +118,21 @@ export default async function Home() {
 				</div>
 			</section>
 
+			{blogPosts.length > 0 && (
+				<section className="flex flex-col">
+					<h2 className="mb-6">Writing</h2>
+					<PostList posts={blogPosts.slice(0, 3)} />
+
+					{blogPosts.length > 3 && (
+						<Button asChild variant="ghost" className="text-sm ml-auto mt-3">
+							<Link href="/writing" aria-label="View more writing">
+								See more
+							</Link>
+						</Button>
+					)}
+				</section>
+			)}
+
 			{collections.length >= 3 && (
 				<section className="flex flex-col">
 					<h2 className="mb-6">Photography</h2>
@@ -127,7 +141,7 @@ export default async function Home() {
 
 					<Button asChild variant="ghost" className="text-sm ml-auto mt-3">
 						<Link href="/photography" aria-label="View more photography">
-							View gallery
+							Visit gallery
 						</Link>
 					</Button>
 				</section>

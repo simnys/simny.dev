@@ -52,7 +52,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
 	metadataBase: new URL(SITE_URL),
 	title: {
-		default: SITE_NAME,
+		default: SITE_TITLE,
 		template: `%s | ${SITE_NAME}`,
 	},
 	description: SITE_DESCRIPTION,
@@ -144,6 +144,7 @@ export default function RootLayout({
 				</Providers>
 				{isProduction && (
 					<Script
+						defer
 						src="https://analytics.eu.umami.is/script.js"
 						data-website-id="0ab801df-b78b-462a-80b5-4630493addc6"
 					/>

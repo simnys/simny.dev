@@ -41,5 +41,5 @@ export const useScrollLock = (lock: boolean, onlySmall: boolean = false) => {
 				document.body.style.overflow = 'unset';
 			}
 		};
-	}, [lock, isMedium, isLarge]);
+	}, [lock, isMedium, isLarge, onlySmall]);
 };
