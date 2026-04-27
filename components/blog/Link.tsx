@@ -12,6 +12,7 @@ interface CustomLinkProps extends React.DetailedHTMLProps<
 	HTMLAnchorElement
 > {
 	icon?: IconName;
+	flipIcon?: boolean;
 	className?: string;
 }
 
@@ -21,6 +22,12 @@ export default function CustomLink(props: CustomLinkProps) {
 	if (href.startsWith('/')) {
 		return (
 			<Link href={href} className={cn(cLinkBase, props.className)}>
+				{props.icon && (
+					<Icon
+						name={props.icon}
+						className={cn('inline-block size-4 mr-1 ml-0.5 mb-0.5', props.flipIcon && '-rotate-90')}
+					/>
+				)}
 				{props.children}
 			</Link>
 		);
