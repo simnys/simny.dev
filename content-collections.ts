@@ -1,4 +1,5 @@
 import { defineCollection, defineConfig } from '@content-collections/core';
+import { z } from 'zod';
 import { compileMDX } from '@content-collections/mdx';
 import lqip from 'lqip-modern';
 import readingTime from 'reading-time';
@@ -14,7 +15,8 @@ const posts = defineCollection({
 	name: 'posts',
 	directory: BLOG_DIR,
 	include: '**/*.mdx',
-	schema: (z) => ({
+	schema: z.object({
+		content: z.string(),
 		title: z.string(),
 		summary: z.string(),
 		date: z.string(),
@@ -22,11 +24,9 @@ const posts = defineCollection({
 		tags: z.array(z.string()).optional(),
 	}),
 	transform: async (page, context) => {
-		const body = await context.cache(page.content, async () =>
-			compileMDX(context, page, {
-				rehypePlugins: [[rehypePrettyCode, rehypeCodeOptions]],
-			}),
-		);
+		const content = await compileMDX(context, page, {
+			rehypePlugins: [[rehypePrettyCode, rehypeCodeOptions]],
+		});
 
 		const imageMeta = await context.cache(page._meta.path, async () => {
 			if (!page.image) return null;
@@ -41,7 +41,7 @@ const posts = defineCollection({
 
 		return {
 			...page,
-			body,
+			content,
 			date: new Date(page.date),
 			slug: page._meta.path,
 			readingTime: readingTime(page.content).text,
@@ -55,15 +55,16 @@ const nowEntries = defineCollection({
 	name: 'nowEntries',
 	directory: NOW_DIR,
 	include: '**/*.mdx',
-	schema: (z) => ({
+	schema: z.object({
+		content: z.string(),
 		date: z.string(),
 		title: z.string().optional(),
 	}),
 	transform: async (page, context) => {
-		const body = await compileMDX(context, page);
+		const content = await compileMDX(context, page);
 		return {
 			...page,
-			body,
+			content,
 			date: new Date(page.date),
 			slug: page._meta.path,
 		};
@@ -71,5 +72,5 @@ const nowEntries = defineCollection({
 });
 
 export default defineConfig({
-	collections: [posts, nowEntries],
+	content: [posts, nowEntries],
 });

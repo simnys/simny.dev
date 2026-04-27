@@ -9,13 +9,12 @@ import PostList from '@/components/ui/PostList';
 import { SITE_NAME, SITE_URL } from '@/data/constants';
 import { socialLinks } from '@/data/navigation';
 import { getBlogPost, getBlogPosts, getRelatedPosts } from '@/lib/blog';
-import { formatDate, slugify } from '@/lib/utils';
+import { formatDate } from '@/lib/utils';
 import avatar from '@/public/images/pixel.png';
 
 import { MDXContent } from '@content-collections/mdx/react';
 import { Metadata, ResolvingMetadata } from 'next';
 import Image from 'next/image';
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Script from 'next/script';
 import { BlogPosting, WithContext } from 'schema-dts';
@@ -141,7 +140,7 @@ export default async function BlogPost(props: Props) {
 					{formatDate(post.date, true)}
 				</time>
 
-				<MDXContent code={post.body} components={MDXComponents} />
+				<MDXContent code={post.content} components={MDXComponents} />
 				<Divider />
 
 				<div className="flex items-center gap-4 flex-wrap p-4 sm:px-8 sm:py-6 bg-background-secondary rounded-xl border shadow-xs">
