@@ -3,7 +3,7 @@ export const isProduction = process.env.NODE_ENV === 'production';
 export const SITE_URL = isProduction ? 'https://simny.dev' : 'http://localhost:3000';
 
 export const SITE_NAME = 'Simon Nyström';
-export const SITE_TITLE = 'Simon Nyström | Web Engineer';
+export const SITE_TITLE = 'Simon Nyström';
 export const SITE_DESCRIPTION =
 	'Web engineer with a passion for UI/UX design and adventure photography. Welcome to my digital home.';
 export const SITE_KEYWORDS = [

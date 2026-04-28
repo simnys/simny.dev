@@ -32,7 +32,7 @@ export default function GalleryItem({
 			{isCollection ? (
 				<Link
 					href={`/photography/${slugify(collectionTitle)}`}
-					className="relative group rounded-lg overflow-hidden block aspect-square sm:aspect-[4/5] w-full"
+					className="relative group rounded-lg overflow-hidden block aspect-video sm:aspect-square lg:aspect-4/5 w-full"
 				>
 					<Image
 						src={item.src}
