@@ -19,6 +19,11 @@ export type GalleryCollection = {
 	cover: StaticImage | string;
 	length: number;
 };
+
+export type GalleryCollectionSeed = Omit<GalleryCollection, 'cover' | 'length'> & {
+	cover: string;
+};
+
 export type GalleryImage = {
 	id: string;
 	src: string;

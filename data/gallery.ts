@@ -1,4 +1,4 @@
-import { GalleryCollection } from '@/lib/types/types';
+import { GalleryCollectionSeed } from '@/lib/types/types';
 
 export const GALLERY_FOLDER_PATH = 'gallery';
 export const GALLERY_COVER_TAG = 'role:cover';
@@ -35,4 +35,4 @@ export const galleryCollections = [
 			'A collection of adventurous moments captured during various trips and outdoor activities.',
 		cover: 'https://res.cloudinary.com/snystrom/image/upload/v1717196385/gallery/dad_qbgvgt.jpg',
 	},
-] as Array<GalleryCollection>;
+] satisfies GalleryCollectionSeed[];

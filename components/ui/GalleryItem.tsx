@@ -13,7 +13,7 @@ type Props = {
 	collectionSize: number;
 	priority: boolean;
 	lightboxIndex: number;
-	handleImageClick: (e: any, lightboxIndex: number) => void;
+	handleImageClick: (lightboxIndex: number) => void;
 };
 
 export default function GalleryItem({
@@ -55,9 +55,14 @@ export default function GalleryItem({
 					</div>
 				</Link>
 			) : (
-				<div
-					className={cn('relative hover:cursor-zoom-in rounded-sm overflow-hidden')}
-					onClick={(e) => handleImageClick(e, lightboxIndex)}
+				<button
+					type="button"
+					className={cn(
+						'relative block w-full hover:cursor-zoom-in rounded-sm overflow-hidden',
+						'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2',
+					)}
+					onClick={() => handleImageClick(lightboxIndex)}
+					aria-label={`Open image ${lightboxIndex + 1} in lightbox`}
 				>
 					<CldImage
 						src={item.src}
@@ -71,7 +76,7 @@ export default function GalleryItem({
 						blurDataURL={item.blurData}
 						className="w-full h-full object-cover object-center"
 					/>
-				</div>
+				</button>
 			)}
 		</>
 	);
