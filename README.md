@@ -1,56 +1,50 @@
 # simny.dev
 
-My personal website/portfolio/blog. Built with dynamic content management through Contentful headless CMS to add projects and blog posts. Using Firebase to enable engagement on published content, such as views and likes.<br>
+Personal site built with the Next.js App Router. The codebase combines typed MDX content, a small curated data layer, and Cloudinary-backed photography collections.
 
-## Stack
+## Architecture
 
-- **Framework:** Next.js
-- **Styling:** Tailwind CSS
-- **CMS:** Contentful
-- **Database:** Firebase
+- **Framework:** Next.js 16 + React 19
+- **Styling:** Tailwind CSS 4
+- **Content:** `content-collections` + MDX
+- **Media:** Cloudinary + `next-cloudinary`
+- **SEO:** Metadata API, JSON-LD, RSS, sitemap, robots
 - **Deployment:** Vercel
 
-## Running Locally
+## Content model
+
+- `content/writing/*.mdx` → long-form writing posts
+- `content/now/*.mdx` → now page entries
+- `data/*.ts(x)` → curated navigation, project, and gallery metadata
+
+## Local development
 
 1. Install dependencies with `npm install`
-2. Create a `.env.local` file similar to `.env.example`
-3. Start project with `npm run dev`
+2. Create `.env.local`
+3. Start the app with `npm run dev`
 
-### Getting API Keys
+### Environment variables
 
-<details>
-<summary>Contentful</summary>
-<br>
-1. Setup a Contentful account. <br>
-2. Create content models. <br>
+The project can run with a minimal environment, but these variables unlock production behaviour:
 
-> This repository uses the following content models:
->
-> 1. blog
-> 2. featuredProject
-> 3. project
-> 4. galleryDestinations (for photography)
+- `NEXT_PUBLIC_SITE_URL` – canonical site origin override
+- `REVALIDATION_SECRET` – protects the gallery revalidation webhook
+- Cloudinary credentials required by the Cloudinary SDK
 
-3. Copy your Space ID and Content Delivery API access token <br>
-4. Save your API keys to your `.env.local` <br>
-</details>
+## Important routes
 
-<details>
-<summary>Firebase</summary>
-  <br>
-1. Setup a new Firebase project <br>
-2. Copy the API keys. <br>
-3. Go to Build and create a Firestore Database <br>
-4. Add a collection named <code>articles</code> <br>
-5. Save your API keys to your <code>.env.local</code><br>
-</details>
- 
-## Sitemap Overview
-`pages/index.js` : Homepage <br>
-`pages/about.js` : About page <br>
-`pages/gallery.js` : Photography Gallery page <br>
-`pages/projects.js` : All projects <br>
-`pages/blog.js` : All blog posts <br>
-`pages/blog/[slug].js` : Individual blog post <br>
-`pages/api/views` : API to fetch blog post interactions from Firebase <br>
-`pages/api/likes` : API to write blog post likes to Firebase <br>
+- `app/page.tsx` – homepage
+- `app/writing/page.tsx` – article index
+- `app/writing/[slug]/page.tsx` – article detail
+- `app/work/page.tsx` – work index
+- `app/photography/page.tsx` – photography index
+- `app/photography/[slug]/page.tsx` – gallery collection detail
+- `app/rss.xml/route.ts` – RSS feed
+- `app/sitemap.ts` – sitemap
+- `app/api/revalidate/route.ts` – Cloudinary-triggered gallery revalidation
+
+## Notes
+
+- MDX compilation and derived metadata live in [content-collections.ts](content-collections.ts).
+- Cloudinary gallery reads are cached and can be invalidated through the revalidation route.
+- Static site metadata is centralized in [data/constants.ts](data/constants.ts).
