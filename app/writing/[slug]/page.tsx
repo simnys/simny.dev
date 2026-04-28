@@ -95,7 +95,7 @@ export default async function BlogPost(props: Props) {
 		'@context': 'https://schema.org',
 		mainEntityOfPage: {
 			'@type': 'WebPage',
-			'@id': `${SITE_URL}`,
+			'@id': `${SITE_URL}/writing/${post.slug}`,
 		},
 		headline: post.title,
 		description: post.summary,
@@ -112,8 +112,9 @@ export default async function BlogPost(props: Props) {
 			url: SITE_URL,
 		},
 		publisher: {
-			'@type': 'Organization',
+			'@type': 'Person',
 			name: SITE_NAME,
+			url: SITE_URL,
 		},
 		isAccessibleForFree: true,
 	};
@@ -149,8 +150,8 @@ export default async function BlogPost(props: Props) {
 							draggable={false}
 							className="size-12 rounded-full not-prose"
 						/>
-						<div className="absolute -right-0 -bottom-1 size-4 p-1 bg-background rounded-full flex items-center justify-center">
-							<div className="size-full rounded-full bg-gradient-to-tl from-brand to-pink-100" />
+						<div className="absolute -right-1 -bottom-1 size-4 p-1 bg-background rounded-full flex items-center justify-center">
+							<div className="size-full rounded-full bg-linear-to-tl from-brand to-pink-100" />
 						</div>
 					</div>
 

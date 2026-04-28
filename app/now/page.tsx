@@ -2,6 +2,7 @@ import Divider from '@/components/blog/Divider';
 import CustomLink from '@/components/blog/Link';
 import PageHeader from '@/components/layouts/PageHeader';
 
+import { SITE_URL } from '@/data/constants';
 import { getArchivedNowEntries, getLatestNowEntry } from '@/lib/now';
 import { formatDate } from '@/lib/utils';
 import { MDXContent } from '@content-collections/mdx/react';
@@ -13,6 +14,19 @@ const description = "What's currently on my mind, what I'm working on, and what 
 export const metadata: Metadata = {
 	title: title,
 	description: description,
+	alternates: {
+		canonical: '/now',
+	},
+	openGraph: {
+		title,
+		description,
+		url: `${SITE_URL}/now`,
+	},
+	twitter: {
+		title,
+		description,
+		card: 'summary_large_image',
+	},
 };
 
 export default async function Now() {
