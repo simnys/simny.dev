@@ -1,45 +1,31 @@
-import { useEffect, useState } from 'react';
-
-export function useScreenBreakpoints() {
-	const [isSmall, setIsSmall] = useState<boolean>(false);
-	const [isMedium, setIsMedium] = useState<boolean>(false);
-	const [isLarge, setIsLarge] = useState<boolean>(false);
-
-	useEffect(() => {
-		const updateScreenBreakpoints = () => {
-			const screenWidth = window.innerWidth;
-			setIsSmall(screenWidth < 640);
-			setIsMedium(screenWidth >= 640 && screenWidth < 1024);
-			setIsLarge(screenWidth >= 1024);
-		};
-
-		updateScreenBreakpoints();
-		window.addEventListener('resize', updateScreenBreakpoints);
-
-		return () => {
-			window.removeEventListener('resize', updateScreenBreakpoints);
-		};
-	}, []);
-
-	return { isSmall, isMedium, isLarge };
-}
+import { useEffect } from 'react';
 
 export const useScrollLock = (lock: boolean, onlySmall: boolean = false) => {
-	const { isMedium, isLarge } = useScreenBreakpoints();
-
 	useEffect(() => {
-		if (lock) {
-			document.body.style.overflow = 'hidden';
+		if (!lock) {
+			return;
 		}
 
-		// Release lock if window width is resized past breakpoints
-		if (onlySmall && (isMedium || isLarge)) {
-			document.body.style.overflow = 'unset';
-		}
-		return () => {
-			if (lock) {
-				document.body.style.overflow = 'unset';
-			}
+		const body = document.body;
+		const previousOverflow = body.style.overflow;
+		const mediaQuery = onlySmall ? window.matchMedia('(max-width: 639px)') : null;
+
+		const syncScrollLock = () => {
+			body.style.overflow = mediaQuery && !mediaQuery.matches ? previousOverflow : 'hidden';
 		};
-	}, [lock, isMedium, isLarge, onlySmall]);
+
+		syncScrollLock();
+
+		if (mediaQuery) {
+			mediaQuery.addEventListener('change', syncScrollLock);
+		}
+
+		return () => {
+			if (mediaQuery) {
+				mediaQuery.removeEventListener('change', syncScrollLock);
+			}
+
+			body.style.overflow = previousOverflow;
+		};
+	}, [lock, onlySmall]);
 };
