@@ -11,7 +11,7 @@ export const Icon = ({ name, ...props }: IconProps) => (
 		height={20}
 		aria-hidden="true"
 		{...props}
-		className={cn('shrink-0', props.className)}
+		className={cn('shrink-0 fill-current', props.className)}
 	>
 		<use href={`/icons/sprite.svg?v=1.0.8#${name}`} />
 	</svg>

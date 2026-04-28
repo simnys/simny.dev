@@ -19,7 +19,6 @@ import Link from 'next/link';
 import GalleryView from '@/components/sections/GalleryView';
 import { getCollections } from '@/lib/gallery';
 import { GalleryCollection } from '@/lib/types/types';
-import HorizontalScroller from '@/components/ui/HorizontalScroller';
 import { AboutPage, WithContext } from 'schema-dts';
 import Script from 'next/script';
 import { Card } from '@/components/ui/Card';
@@ -76,7 +75,7 @@ export default async function Home() {
 				/>
 			</section>
 
-			<section className="flex flex-col">
+			<section className="flex flex-col max-w-[65ch] w-full mx-auto">
 				<h2 className="mb-6">Recent work</h2>
 
 				<div className="grid md:grid-cols-2 gap-6">
@@ -92,34 +91,28 @@ export default async function Home() {
 				</Button>
 			</section>
 
-			<section className="prose max-w-3xl">
-				<h2 className="not-prose text-foreground">About</h2>
-				<div className="">
-					{about.map((c, i) => (
-						<p key={i}>{c.text}</p>
-					))}
-				</div>
-
-				<div className="mt-8">
-					<HorizontalScroller
-						items={technologies.slice(0, technologies.length / 2)}
-						speed="slow"
-						separator="•"
-						className="not-prose select-none mb-2"
-						pauseOnHover={false}
-					/>
-					<HorizontalScroller
-						items={technologies.slice(technologies.length / 2)}
-						speed="slow"
-						separator="•"
-						className="not-prose select-none"
-						pauseOnHover={false}
-					/>
+			<section className="max-w-[65ch] w-full mx-auto">
+				<h2 className="text-foreground mb-6">About</h2>
+				<div className="prose">
+					<p>
+						I've had the privilege of working on a wide range of projects, from sleek tools to
+						enterprise solutions. I thrive on solving the constant riddle of turning scattered ideas
+						into a human reality.
+					</p>
+					<p>
+						This site exists without constraints or requirements. It's a space to explore ideas,
+						experiment freely, and build simply for the love of it.{' '}
+						<em>It's my digital playground</em>.
+					</p>
+					<p>
+						Away from the screen, I'm usually chasing good coffee, mountain air, and the perfect
+						light, with indie rock turned up to eleven. Invite me on a roadtrip and we'll get along.
+					</p>
 				</div>
 			</section>
 
 			{blogPosts.length > 0 && (
-				<section className="flex flex-col">
+				<section className="flex flex-col my-4 max-w-[65ch] w-full mx-auto">
 					<h2 className="mb-6">Writing</h2>
 					<PostList posts={blogPosts.slice(0, 3)} />
 
@@ -134,7 +127,7 @@ export default async function Home() {
 			)}
 
 			{collections.length >= 3 && (
-				<section className="flex flex-col">
+				<section className="flex flex-col max-w-[65ch] w-full mx-auto">
 					<h2 className="mb-6">Photography</h2>
 
 					<GalleryView as="collections" content={collections.slice(0, 3)} />
@@ -146,68 +139,6 @@ export default async function Home() {
 					</Button>
 				</section>
 			)}
-
-			<section className="space-y-6">
-				<h2>Colophon</h2>
-				{colophon.map((c) => (
-					<div key={c.heading} className="sm:grid grid-cols-12 gap-2">
-						<h3 className="text-sm col-span-3 mb-1 mt-1 text-foreground-tertiary">{c.heading}</h3>
-						<p className="col-span-9 prose">{c.text}</p>
-					</div>
-				))}
-			</section>
 		</>
 	);
 }
-
-const about = [
-	{
-		heading: 'Overview',
-		text: (
-			<>
-				{`I spend most of my days working with React, Next.js, and Tailwind CSS, building sites and apps that (hopefully) make people's lives a little easier or more fun. I'm always tinkering, learning new tricks, and trying out fresh ideas—there's always something new to explore.`}
-			</>
-		),
-	},
-	{
-		heading: 'Technologies',
-		text: (
-			<>
-				{`When I'm not deep in code, you'll probably find me with a camera in hand. Photography lets me slow down and notice the little things—whether it's a cool landscape, city vibes, or just everyday moments. It's my way of capturing stories and memories.`}
-			</>
-		),
-	},
-	{
-		heading: 'Design & Colors',
-		text: (
-			<>
-				{`Outside of work and photography, I love getting outdoors, traveling, or just kicking back with a good book. If you ever want to chat about tech, photos, or favorite hiking spots, I'm always up for it!`}
-			</>
-		),
-	},
-];
-
-const colophon = [
-	{
-		heading: 'Overview',
-		text: (
-			<>
-				This site is built for speed, clarity, and ease of use. I designed and developed it myself
-				with a focus on clean code, simple layouts, and a smooth user experience.
-			</>
-		),
-	},
-	{
-		heading: 'Technologies',
-		text: (
-			<>
-				It runs on <CustomLink href="https://nextjs.org">Next.js</CustomLink> (App Router),{' '}
-				<CustomLink href="https://react.dev">React</CustomLink>, and{' '}
-				<CustomLink href="https://typescriptlang.org">TypeScript</CustomLink>, styled with{' '}
-				<CustomLink href="https://tailwindcss.com">Tailwind</CustomLink> and a few custom utilities.
-				Most content is static for performance, with some dynamic parts powered by server components
-				and edge functions.
-			</>
-		),
-	},
-];
