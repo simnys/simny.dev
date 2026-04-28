@@ -15,6 +15,7 @@
 		'Courier New', monospace;
 
 	--text-xs: 0.8125rem; /* 13px */
+	--breakpoint-xs: 480px;
 
 	--color-background: oklch(0.991 0 0);
 	--color-background-secondary: oklch(0.995 0 0);

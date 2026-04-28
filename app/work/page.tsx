@@ -46,7 +46,7 @@ export default function Work() {
 
 			<section>
 				<h2 className="mb-4">Professional work</h2>
-				<div className="grid md:grid-cols-2 gap-6">
+				<div className="grid md:grid-cols-2 gap-4 sm:gap-6">
 					{professionalProjects.map((project) => (
 						<Card
 							key={project.title}

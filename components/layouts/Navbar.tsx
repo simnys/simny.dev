@@ -39,13 +39,13 @@ export default function Navbar() {
 			<nav
 				ref={navRef}
 				aria-label="Main navigation"
-				className="relative h-13 flex items-center w-full px-2 sm:px-6 max-w-3xl mx-auto bg-background"
+				className="relative h-13 flex items-center w-full px-6 max-w-3xl mx-auto bg-background"
 			>
 				{/* Logo */}
 				<div className="flex items-center justify-start z-100">
 					<Link
 						href="/"
-						className="size-7 rounded-full bg-gradient-to-tl from-brand to-pink-100 shadow-inner"
+						className="size-7 rounded-full bg-linear-to-tl from-brand to-pink-100 shadow-inner"
 						aria-label="Home"
 					></Link>
 				</div>
@@ -64,7 +64,10 @@ export default function Navbar() {
 				</AnimatePresence>
 
 				{/* Actions */}
-				<div className="flex items-center justify-end gap-2 z-100" onMouseEnter={closeDropdown}>
+				<div
+					className="translate-x-3 flex items-center justify-end gap-2 z-100"
+					onMouseEnter={closeDropdown}
+				>
 					<ThemeSwitcher />
 
 					<Button

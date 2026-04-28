@@ -21,9 +21,7 @@ export default function Hero() {
 
 				<h1>
 					<span className="block text-base">Simon Nyström</span>
-					<span className="block text-sm sm:text-base font-[450] text-foreground-tertiary">
-						Web Engineer
-					</span>
+					<span className="block text-base font-[450] text-foreground-tertiary">Web Engineer</span>
 				</h1>
 			</div>
 			<p className="prose">

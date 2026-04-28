@@ -73,7 +73,7 @@ export default async function Home() {
 			<section className="flex flex-col max-w-[65ch] w-full mx-auto">
 				<h2 className="mb-6">Recent work</h2>
 
-				<div className="grid md:grid-cols-2 gap-6">
+				<div className="grid md:grid-cols-2 gap-4 sm:gap-6">
 					{professionalProjects.slice(0, 2).map((project) => (
 						<Card key={project.title} item={{ ...project, subtitle: project.date }} />
 					))}
@@ -134,34 +134,6 @@ export default async function Home() {
 					</Button>
 				</section>
 			)}
-
-			<section className="space-y-6 max-w-[65ch] w-full mx-auto">
-				<h2>Colophon</h2>
-
-				<div className="sm:grid grid-cols-12 gap-2">
-					<h3 className="text-sm col-span-3 mb-1 mt-1 text-foreground-tertiary">Overview</h3>
-					<p className="col-span-9 prose">
-						This site is built for speed, clarity, and ease of use. I designed and developed it
-						myself with a focus on clean code, simple layouts, and a smooth user experience.
-					</p>
-				</div>
-
-				<div className="sm:grid grid-cols-12 gap-2">
-					<h3 className="text-sm col-span-3 mb-1 mt-1 text-foreground-tertiary">Technologies</h3>
-					<p className="col-span-9 prose">
-						It runs on <CustomLink href="https://nextjs.org">Next.js</CustomLink> (App Router),{' '}
-						<CustomLink href="https://react.dev">React</CustomLink>, and{' '}
-						<CustomLink href="https://typescriptlang.org">TypeScript</CustomLink>, styled with{' '}
-						<CustomLink href="https://tailwindcss.com">Tailwind</CustomLink> and a few custom
-						utilities. Most content is static for performance, with some dynamic parts powered by
-						server components and edge functions. Readily available on{' '}
-						<CustomLink href={`${SITE_GITHUB_URL}/simny.dev`} icon="github">
-							GitHub
-						</CustomLink>
-						, if you're curious.
-					</p>
-				</div>
-			</section>
 		</>
 	);
 }
