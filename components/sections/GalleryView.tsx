@@ -4,7 +4,7 @@ import { useScreenBreakpoints } from '@/lib/hooks';
 import { GalleryCollection, GalleryImage, StaticImage } from '@/lib/types/types';
 
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 import GalleryItem from '../ui/GalleryItem';
 import Lightbox from '../ui/Lightbox';
@@ -19,18 +19,20 @@ export default function GalleryView({ content, as = 'images' }: Props) {
 	const [showLightbox, setShowLightbox] = useState<boolean>(false);
 	const [lightboxIndex, setLightboxIndex] = useState<number>(0);
 
-	const columns: (GalleryImage | GalleryCollection)[][] = [[], [], []];
-	content?.forEach((item, index) => {
-		columns[index % (isSmall ? 1 : isMedium ? 2 : 3)].push(item);
-	});
+	const columnCount = isSmall ? 1 : isMedium ? 2 : 3;
+	const columns = useMemo(() => {
+		const nextColumns: Array<Array<{ item: GalleryImage | GalleryCollection; index: number }>> =
+			Array.from({ length: columnCount }, () => []);
 
-	const calculateLightboxIndex = (colIndex: number, n: number) => {
-		const start = isSmall ? 1 : isMedium ? 2 : 3;
-		return colIndex + start * n;
-	};
+		content.forEach((item, index) => {
+			nextColumns[index % columnCount].push({ item, index });
+		});
 
-	const handleImageClick = (e: any, lightboxIndex: number) => {
-		setLightboxIndex(lightboxIndex);
+		return nextColumns;
+	}, [columnCount, content]);
+
+	const handleImageClick = (index: number) => {
+		setLightboxIndex(index);
 		setShowLightbox(true);
 	};
 
@@ -40,16 +42,16 @@ export default function GalleryView({ content, as = 'images' }: Props) {
 				{columns.map((col, colIndex: number) => {
 					return (
 						<div key={colIndex} className="flex flex-col gap-2 relative">
-							{col.map((item, idx) => (
+							{col.map(({ item, index }, idx) => (
 								<motion.div
-									key={idx}
+									key={`${colIndex}-${index}`}
 									initial={
 										idx < 2
 											? false
 											: {
 													opacity: 0,
 													y: 50,
-											  }
+												}
 									}
 									whileInView={{
 										opacity: 1,
@@ -73,7 +75,7 @@ export default function GalleryView({ content, as = 'images' }: Props) {
 										collectionTitle={as === 'collections' ? (item as GalleryCollection).title : ''}
 										collectionSize={as === 'collections' ? (item as GalleryCollection).length : 0}
 										priority={idx <= 2 ? true : false}
-										lightboxIndex={calculateLightboxIndex(colIndex, idx)}
+										lightboxIndex={index}
 										handleImageClick={handleImageClick}
 									/>
 								</motion.div>
