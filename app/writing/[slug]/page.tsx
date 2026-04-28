@@ -2,6 +2,7 @@ import Divider from '@/components/blog/Divider';
 import MDXComponents from '@/components/blog/MDXcomponents';
 import PageHeader from '@/components/layouts/PageHeader';
 import { SectionHeader } from '@/components/layouts/Section';
+import StructuredData from '@/components/seo/StructuredData';
 import { Button } from '@/components/ui/Button';
 import { Icon } from '@/components/ui/Icon';
 import PostList from '@/components/ui/PostList';
@@ -16,7 +17,6 @@ import { MDXContent } from '@content-collections/mdx/react';
 import { Metadata, ResolvingMetadata } from 'next';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import Script from 'next/script';
 import { BlogPosting, WithContext } from 'schema-dts';
 
 interface Props {
@@ -120,11 +120,7 @@ export default async function BlogPost(props: Props) {
 
 	return (
 		<>
-			<Script
-				type="application/ld+json"
-				id={`${post.slug}_jsonLd`}
-				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-			/>
+			<StructuredData id={`${post.slug}_jsonLd`} data={jsonLd} />
 
 			<article className="prose mx-auto w-full first:prose-p:m-0">
 				<PageHeader

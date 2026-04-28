@@ -1,18 +1,16 @@
 import PageHeader from '@/components/layouts/PageHeader';
-import { Section } from '@/components/layouts/Section';
 import GalleryView from '@/components/sections/GalleryView';
+import StructuredData from '@/components/seo/StructuredData';
 import { Button } from '@/components/ui/Button';
 
 import { SITE_NAME, SITE_URL } from '@/data/constants';
 import { galleryCollections } from '@/data/gallery';
 import { getImagesInCollection } from '@/lib/gallery';
-import { GalleryImage } from '@/lib/types/types';
 import { slugify } from '@/lib/utils';
 
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import Script from 'next/script';
 import { ImageGallery, WithContext } from 'schema-dts';
 
 interface Props {
@@ -71,7 +69,7 @@ export default async function GalleryCollection(props: Props) {
 	if (index === -1) return notFound();
 
 	const collection = galleryCollections[index];
-	const images = (await getImagesInCollection(params.slug)) as GalleryImage[];
+	const images = await getImagesInCollection(params.slug);
 
 	const previousIndex = (index - 1 + galleryCollections.length) % galleryCollections.length;
 	const nextIndex = (index + 1) % galleryCollections.length;
@@ -91,11 +89,7 @@ export default async function GalleryCollection(props: Props) {
 
 	return (
 		<>
-			<Script
-				type="application/ld+json"
-				id={`gallery-${slugify(collection.title)}_jsonLd`}
-				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-			/>
+			<StructuredData id={`gallery-${slugify(collection.title)}_jsonLd`} data={jsonLd} />
 
 			<PageHeader title={collection.title} content={collection.description} backlink={backLink} />
 

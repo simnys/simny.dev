@@ -1,5 +1,6 @@
-import CustomLink from '@/components/blog/Link';
 import Hero from '@/components/sections/Hero';
+import GalleryView from '@/components/sections/GalleryView';
+import StructuredData from '@/components/seo/StructuredData';
 
 import {
 	SITE_CONTACT,
@@ -10,17 +11,14 @@ import {
 	SITE_NAME,
 	SITE_URL,
 } from '@/data/constants';
-import { professionalProjects, technologies } from '@/data/projects';
-import { getBlogPosts, getLatestBlogPost } from '@/lib/blog';
+import { professionalProjects } from '@/data/projects';
+import { getBlogPosts } from '@/lib/blog';
 import { cn } from '@/lib/utils';
 
 import { Metadata } from 'next';
 import Link from 'next/link';
-import GalleryView from '@/components/sections/GalleryView';
 import { getCollections } from '@/lib/gallery';
-import { GalleryCollection } from '@/lib/types/types';
 import { AboutPage, WithContext } from 'schema-dts';
-import Script from 'next/script';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import PostList from '@/components/ui/PostList';
@@ -33,8 +31,7 @@ export const metadata: Metadata = {
 
 export default async function Home() {
 	const blogPosts = getBlogPosts();
-	const latestPost = getLatestBlogPost();
-	const collections = (await getCollections()) as GalleryCollection[];
+	const collections = await getCollections();
 
 	const jsonLd: WithContext<AboutPage> = {
 		'@type': 'AboutPage',
@@ -54,21 +51,18 @@ export default async function Home() {
 
 	return (
 		<>
-			<Script
-				type="application/ld+json"
-				id="about_jsonLd"
-				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-			/>
+			<StructuredData id="about_jsonLd" data={jsonLd} />
 
 			<section className="flex flex-col gap-6 relative py-12 sm:py-22 -mx-6 px-6 border-b">
 				<Hero />
 				<div
 					className={cn(
 						'absolute inset-0 pointer-events-none m-0',
-						'bg-[linear-gradient(to_right,rgba(0,0,0,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.04)_1px,transparent_1px)] bg-[size:60px_60px]',
-						'dark:bg-[linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:60px_60px]',
+						'bg-[linear-gradient(to_right,rgba(0,0,0,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.04)_1px,transparent_1px)]',
+						'dark:bg-[linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.04)_1px,transparent_1px)]',
 					)}
 					style={{
+						backgroundSize: '60px 60px',
 						WebkitMaskImage: 'radial-gradient(circle at 50% 50%, white 50%, transparent 100%)',
 						maskImage: 'radial-gradient(circle at 50% 50%, white 50%, transparent 100%)',
 					}}
