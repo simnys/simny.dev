@@ -40,7 +40,7 @@ export default function GalleryView({ content, as }: Props) {
 								initial={{ opacity: 0, y: 20 }}
 								whileInView={{ opacity: 1, y: 0 }}
 								viewport={{ once: true, amount: 0.15 }}
-								transition={{ duration: 0.4, delay: index * 0.04, ease: 'easeOut' }}
+								transition={{ duration: 0.4, delay: Math.min(index * 0.06, 0.24), ease: 'easeOut' }}
 							>
 								<GalleryItem variant="collection" item={item} priority={index < 3} />
 							</motion.div>
@@ -56,7 +56,7 @@ export default function GalleryView({ content, as }: Props) {
 								initial={{ opacity: 0, y: 20 }}
 								whileInView={{ opacity: 1, y: 0 }}
 								viewport={{ once: true, amount: 0.15 }}
-								transition={{ duration: 0.4, delay: index * 0.04, ease: 'easeOut' }}
+								transition={{ duration: 0.4, delay: Math.min(index * 0.04, 0.2), ease: 'easeOut' }}
 								className="mb-2 break-inside-avoid"
 							>
 								<GalleryItem

@@ -54,7 +54,7 @@ export default function MobileMenu({ isOpen, onClose, currentPath }: MobileMenuP
 					animate="visible"
 					exit="exit"
 					className={cn(
-						'sm:hidden min-w-[300px] fixed top-14 bottom-0 left-0',
+						'sm:hidden min-w-75 fixed top-14 bottom-0 left-0',
 						'rounded-tr-xl border bg-background-secondary shadow-xs',
 						'will-change-transform overflow-hidden overflow-y-auto z-100',
 					)}
@@ -105,7 +105,7 @@ const MenuItem = ({ item, onClose, isActive }: MenuItemProps) => {
 			)}
 			aria-current={isActive ? 'page' : undefined}
 		>
-			{item.icon && <Icon name={item.icon} className="size-4 flex-shrink-0" aria-hidden="true" />}
+			{item.icon && <Icon name={item.icon} className="size-4 shrink-0" aria-hidden="true" />}
 			<span className="truncate">{item.name}</span>
 		</Link>
 	);

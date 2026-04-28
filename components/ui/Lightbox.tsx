@@ -70,25 +70,16 @@ export default function Lightbox({ content, current, setCurrent, isVisible, onCl
 	}, [content, current, currentImage, isVisible]);
 
 	useEffect(() => {
-		const handleScroll = () => {
-			setTimeout(() => {
-				onClose();
-			}, 300);
-		};
-
 		const container = containerRef.current;
 		if (isVisible) {
-			window.addEventListener('scroll', handleScroll);
 			window.addEventListener('keydown', handleKeyDown);
-
 			container?.focus();
 		}
 
 		return () => {
-			window.removeEventListener('scroll', handleScroll);
 			window.removeEventListener('keydown', handleKeyDown);
 		};
-	}, [handleKeyDown, isVisible, onClose]);
+	}, [handleKeyDown, isVisible]);
 
 	if (!content.length) {
 		return null;
