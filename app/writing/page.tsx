@@ -52,7 +52,7 @@ export default async function Writing() {
 					<div className="flex flex-col gap-4 py-10 items-center justify-center">
 						<Icon name="warning" className="size-8 text-brand" />
 						<p className="text-foreground-secondary mb-4 text-center">
-							No posts found. The writing section is still under construction.{' '}
+							No posts found.
 							<br className="hidden sm:block" />
 							Please check back later!
 						</p>

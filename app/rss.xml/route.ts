@@ -4,21 +4,21 @@ import { SITE_DESCRIPTION, SITE_NAME, SITE_TITLE, SITE_URL } from '@/data/consta
 import { getBlogPosts } from '@/lib/blog';
 import { Feed } from 'feed';
 
-const feed = new Feed({
-	title: SITE_TITLE,
-	description: SITE_DESCRIPTION,
-	link: SITE_URL,
-	id: `${SITE_URL}/writing`,
-	feed: `${SITE_URL}/rss.xml`,
-	copyright: `All rights reserved ${new Date().getFullYear()}, Simon Nyström`,
-	language: 'en',
-	image: `${SITE_URL}/images/og.webp`,
-});
-
-const posts = getBlogPosts();
-
 export async function GET() {
 	try {
+		const feed = new Feed({
+			title: SITE_TITLE,
+			description: SITE_DESCRIPTION,
+			link: SITE_URL,
+			id: `${SITE_URL}/writing`,
+			feed: `${SITE_URL}/rss.xml`,
+			copyright: `All rights reserved ${new Date().getFullYear()}, Simon Nyström`,
+			language: 'en',
+			image: `${SITE_URL}/images/og.webp`,
+		});
+
+		const posts = getBlogPosts();
+
 		posts.forEach((post) => {
 			feed.addItem({
 				title: post.title,

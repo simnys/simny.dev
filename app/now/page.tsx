@@ -8,9 +8,11 @@ import { MDXContent } from '@content-collections/mdx/react';
 import { Metadata } from 'next';
 
 const title = 'Now';
+const description = "What's currently on my mind, what I'm working on, and what I'm into.";
 
 export const metadata: Metadata = {
 	title: title,
+	description: description,
 };
 
 export default async function Now() {
