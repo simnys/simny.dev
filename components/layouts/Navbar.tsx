@@ -81,7 +81,7 @@ export default function Navbar() {
 						className={cn('relative hidden sm:flex')}
 					>
 						<Icon
-							name="gridOutline"
+							name="grid"
 							className={cn(
 								'absolute transition-opacity duration-200 ease-out',
 								isDropdownOpen && 'opacity-0',
@@ -89,7 +89,7 @@ export default function Navbar() {
 							aria-hidden="true"
 						/>
 						<Icon
-							name="gridFilled"
+							name="gridSolid"
 							className={cn(
 								'absolute transition-opacity duration-200 ease-out opacity-0',
 								isDropdownOpen && 'opacity-100',
@@ -109,7 +109,7 @@ export default function Navbar() {
 						className="relative sm:hidden"
 					>
 						<Icon
-							name="menuClosed"
+							name="sidebar"
 							className={cn(
 								'absolute transition-opacity duration-200 ease-out',
 								isMobileOpen && 'opacity-0',
@@ -117,7 +117,7 @@ export default function Navbar() {
 							aria-hidden="true"
 						/>
 						<Icon
-							name="menuOpen"
+							name="sidebarSolid"
 							className={cn(
 								'absolute transition-opacity duration-200 ease-out opacity-0',
 								isMobileOpen && 'opacity-100',

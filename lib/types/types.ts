@@ -42,7 +42,8 @@ export type StaticImage = {
 export type NavItem = {
 	name: string;
 	path: string;
-	icon?: IconName;
 	description?: string;
+	icon?: IconName;
+	iconActive?: IconName;
 	rowSpan?: number;
 };

@@ -106,14 +106,14 @@ export default async function GalleryCollection(props: Props) {
 						href={`${backLink}/${slugify(previousCollection.title)}`}
 						className="flex-col flex-1 h-15 items-start"
 					>
-						<span className="block font-serif text-base text-foreground-tertiary">Prev</span>
+						<span className="block font-[450] text-foreground-tertiary">Prev</span>
 						{previousCollection.title}
 					</Link>
 				</Button>
 
 				<Button asChild variant="ghost" className="text-foreground-secondary gap-0">
 					<Link href={backLink} className="hidden sm:inline-flex flex-col flex-1 h-15 text-center">
-						<span className="block font-serif text-base text-foreground-tertiary">Photography</span>
+						<span className="block font-[450] text-foreground-tertiary">Photography</span>
 						Index
 					</Link>
 				</Button>
@@ -123,7 +123,7 @@ export default async function GalleryCollection(props: Props) {
 						href={`${backLink}/${slugify(nextCollection.title)}`}
 						className="flex-col flex-1 h-15 items-end text-right"
 					>
-						<span className="block font-serif text-base text-foreground-tertiary">Next</span>
+						<span className="block font-[450] text-foreground-tertiary">Next</span>
 						{nextCollection.title}
 					</Link>
 				</Button>

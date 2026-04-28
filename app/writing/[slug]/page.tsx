@@ -174,7 +174,7 @@ export default async function BlogPost(props: Props) {
 										className="border border-border"
 										aria-label={`Find me on ${link.name}`}
 									>
-										<Icon name={link.icon!} className={link.icon === 'x' ? 'size-4' : ''} />
+										<Icon name={link.icon!} />
 									</a>
 								</Button>
 							))}

@@ -10,13 +10,15 @@ export const navigationLinks: NavItem[] = [
 		description: 'Who I am and what I do',
 		path: '/',
 		icon: 'home',
+		iconActive: 'homeSolid',
 		rowSpan: 2,
 	},
 	{
 		name: 'Writing',
 		description: 'Thoughts, experiments & tutorials',
 		path: '/writing',
-		icon: 'blog',
+		icon: 'book',
+		iconActive: 'bookSolid',
 		rowSpan: 2,
 	},
 	{
@@ -24,6 +26,7 @@ export const navigationLinks: NavItem[] = [
 		description: 'Professional and personal projects',
 		path: '/work',
 		icon: 'code',
+		iconActive: 'codeSolid',
 		rowSpan: 2,
 	},
 	{
@@ -31,6 +34,7 @@ export const navigationLinks: NavItem[] = [
 		description: 'Collections of my favorite images',
 		path: '/photography',
 		icon: 'gallery',
+		iconActive: 'gallerySolid',
 		rowSpan: 3,
 	},
 	{
@@ -38,6 +42,7 @@ export const navigationLinks: NavItem[] = [
 		description: 'Current endeavors',
 		path: '/now',
 		icon: 'calendar',
+		iconActive: 'calendarSolid',
 		rowSpan: 3,
 	},
 ];

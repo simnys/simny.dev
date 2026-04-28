@@ -75,7 +75,7 @@ function NavDropdown({ isOpen, onClose, currentPath, className }: NavDropdownPro
 							title={item.name}
 							description={item.description}
 							href={item.path}
-							icon={item.icon}
+							icon={isActivePath(item.path) ? item.iconActive : item.icon}
 							colSpan={1}
 							rowSpan={item.rowSpan}
 							onClose={onClose}

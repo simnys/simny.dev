@@ -56,7 +56,7 @@ export default async function Writing() {
 						<Icon name="warning" className="size-8 text-brand" />
 						<p className="text-foreground-secondary mb-4 text-center">
 							No posts found.
-							<br className="hidden sm:block" />
+							<br />
 							Please check back later!
 						</p>
 					</div>
