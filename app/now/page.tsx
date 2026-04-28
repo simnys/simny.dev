@@ -1,8 +1,8 @@
 import Divider from '@/components/blog/Divider';
 import CustomLink from '@/components/blog/Link';
+import MDXComponents from '@/components/blog/MDXcomponents';
 import PageHeader from '@/components/layouts/PageHeader';
 
-import { SITE_URL } from '@/data/constants';
 import { buildPageMetadata } from '@/lib/metadata';
 import { getArchivedNowEntries, getLatestNowEntry } from '@/lib/now';
 import { formatDate } from '@/lib/utils';
@@ -35,9 +35,9 @@ export default async function Now() {
 			<div>
 				<PageHeader title={title} />
 				<p className="mt-1 text-foreground-secondary">
-					{`A collection of what's currently on my mind, what I'm working on, and what I'm interested
-					in. Inspired by `}
-					<CustomLink href="https://sive.rs/now">Derek Sivers</CustomLink>.
+					This is a living journal of what I'm currently up to, interested in, or thinking about.
+					<br className="hidden sm:block" /> Inspired by{' '}
+					<CustomLink href="https://nownownow.com/about">Derek Sivers</CustomLink>.
 				</p>
 			</div>
 
@@ -50,7 +50,7 @@ export default async function Now() {
 						</time>
 					</span>
 
-					<MDXContent code={latestEntry.content} />
+					<MDXContent code={latestEntry.content} components={MDXComponents} />
 				</article>
 			)}
 
@@ -69,7 +69,7 @@ export default async function Now() {
 								</div>
 								<div>
 									{entry.title && <h3 className="mt-1">{entry.title}</h3>}
-									<MDXContent code={entry.content} />
+									<MDXContent code={entry.content} components={MDXComponents} />
 								</div>
 							</section>
 						))}

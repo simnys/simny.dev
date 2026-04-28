@@ -15,9 +15,9 @@ export const Card = ({ item, className }: { item: CardProps; className?: string 
 		<a
 			href={item.link}
 			target="_blank"
-			rel="noopener noreferrer"
+			rel="noopener"
 			className={cn(
-				'relative w-full h-[240px] bg-background-secondary p-4 rounded-xl border border-border shadow-xs flex flex-col',
+				'relative w-full h-60 bg-background-secondary p-4 rounded-xl border border-border shadow-xs flex flex-col',
 				'group transition-colors duration-200 ease-out hover:bg-background dark:hover:bg-background-tertiary',
 				className,
 			)}

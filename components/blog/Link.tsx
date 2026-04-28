@@ -39,7 +39,7 @@ export default function CustomLink(props: CustomLinkProps) {
 		<Link
 			href={href}
 			target="_blank"
-			rel="noopener noreferrer"
+			rel="noopener"
 			className={cn(cLinkBase, 'group', props.className)}
 		>
 			{props.icon && <Icon name={props.icon} className="inline-block size-4 mr-1 ml-0.5 mb-0.5" />}

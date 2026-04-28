@@ -43,6 +43,7 @@ const MDXComponents = {
 	a: CustomLink,
 	figure: (props: any) => Code(props),
 	Image: CustomImage,
+	Link: CustomLink,
 	Divider,
 	Callout,
 };

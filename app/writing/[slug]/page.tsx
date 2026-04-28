@@ -170,7 +170,7 @@ export default async function BlogPost(props: Props) {
 									<a
 										href={link.path}
 										target="_blank"
-										rel="noopener noreferrer"
+										rel="noopener"
 										className="border border-border"
 										aria-label={`Find me on ${link.name}`}
 									>
