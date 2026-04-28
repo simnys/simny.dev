@@ -22,6 +22,7 @@ import { AboutPage, WithContext } from 'schema-dts';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import PostList from '@/components/ui/PostList';
+import CustomLink from '@/components/blog/Link';
 
 export const metadata: Metadata = {
 	alternates: {
@@ -45,7 +46,7 @@ export default async function Home() {
 			url: SITE_URL,
 			image: `${SITE_URL}/images/pixel.png`,
 			sameAs: [SITE_GITHUB_URL, SITE_LINKEDIN_URL, SITE_INSTAGRAM_URL],
-			jobTitle: 'Web Engineer & Photographer',
+			jobTitle: 'Web Engineer',
 		},
 	};
 
@@ -80,7 +81,7 @@ export default async function Home() {
 
 				<Button asChild variant="ghost" className="text-sm ml-auto mt-3">
 					<Link href="/work" aria-label="View more work projects">
-						More projects
+						More work
 					</Link>
 				</Button>
 			</section>
@@ -133,6 +134,34 @@ export default async function Home() {
 					</Button>
 				</section>
 			)}
+
+			<section className="space-y-6 max-w-[65ch] w-full mx-auto">
+				<h2>Colophon</h2>
+
+				<div className="sm:grid grid-cols-12 gap-2">
+					<h3 className="text-sm col-span-3 mb-1 mt-1 text-foreground-tertiary">Overview</h3>
+					<p className="col-span-9 prose">
+						This site is built for speed, clarity, and ease of use. I designed and developed it
+						myself with a focus on clean code, simple layouts, and a smooth user experience.
+					</p>
+				</div>
+
+				<div className="sm:grid grid-cols-12 gap-2">
+					<h3 className="text-sm col-span-3 mb-1 mt-1 text-foreground-tertiary">Technologies</h3>
+					<p className="col-span-9 prose">
+						It runs on <CustomLink href="https://nextjs.org">Next.js</CustomLink> (App Router),{' '}
+						<CustomLink href="https://react.dev">React</CustomLink>, and{' '}
+						<CustomLink href="https://typescriptlang.org">TypeScript</CustomLink>, styled with{' '}
+						<CustomLink href="https://tailwindcss.com">Tailwind</CustomLink> and a few custom
+						utilities. Most content is static for performance, with some dynamic parts powered by
+						server components and edge functions. Readily available on{' '}
+						<CustomLink href={`${SITE_GITHUB_URL}/simny.dev`} icon="github">
+							GitHub
+						</CustomLink>
+						, if you're curious.
+					</p>
+				</div>
+			</section>
 		</>
 	);
 }

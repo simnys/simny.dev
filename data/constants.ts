@@ -10,13 +10,13 @@ function normalizeSiteUrl(value?: string) {
 export const SITE_URL =
 	normalizeSiteUrl(process.env.NEXT_PUBLIC_SITE_URL) ??
 	(isProduction
-		? normalizeSiteUrl(process.env.VERCEL_PROJECT_PRODUCTION_URL) ?? DEFAULT_SITE_URL
-		: normalizeSiteUrl(process.env.VERCEL_URL) ?? 'http://localhost:3000');
+		? (normalizeSiteUrl(process.env.VERCEL_PROJECT_PRODUCTION_URL) ?? DEFAULT_SITE_URL)
+		: (normalizeSiteUrl(process.env.VERCEL_URL) ?? 'http://localhost:3000'));
 
 export const SITE_NAME = 'Simon Nyström';
-export const SITE_TITLE = 'Simon Nyström';
+export const SITE_TITLE = 'Simon Nyström | Web Engineer';
 export const SITE_DESCRIPTION =
-	'Web engineer with a passion for UI/UX design and adventure photography. Welcome to my digital home.';
+	"I'm Simon Nyström, Web engineer with a passion for crafting and architecting intentional interfaces and web experiences. Hobbyist photographer with focus on adventure and lifestyle. Welcome to my digital home.";
 export const SITE_KEYWORDS = [
 	'simny',
 	'simnys',
@@ -24,6 +24,11 @@ export const SITE_KEYWORDS = [
 	'web engineer',
 	'web developer',
 	'ui design',
+	'frontend development',
+	'interface design',
+	'user experience',
+	'photography',
+	'lifestyle photography',
 	'adventure photography',
 ];
 
