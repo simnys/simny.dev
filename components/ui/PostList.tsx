@@ -18,7 +18,7 @@ const PostTypeCard = () => (
 );
 
 const PostMeta = ({ date }: { date: Date }) => (
-	<div className="font-serif text-[15px] text-foreground-tertiary group-hover:text-foreground-secondary transition-colors duration-200 ease-out">
+	<div className="font-serif text-sm text-foreground-tertiary group-hover:text-foreground-secondary transition-colors duration-200 ease-out">
 		<time dateTime={date.toISOString()}>{formatDate(date, true)}</time>
 	</div>
 );

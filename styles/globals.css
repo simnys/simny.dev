@@ -96,7 +96,7 @@
 	}
 
 	.font-serif {
-		@apply italic tracking-normal leading-normal text-[17px];
+		@apply italic tracking-normal leading-normal;
 	}
 }
 
@@ -124,7 +124,7 @@ img {
 	@apply font-medium text-foreground;
 }
 em {
-	@apply font-serif italic tracking-normal leading-normal text-[17px] text-foreground;
+	@apply font-serif italic tracking-normal leading-normal text-foreground;
 }
 .prose blockquote:not(.not-prose) {
 	@apply font-[450] py-2;

@@ -34,7 +34,9 @@ export default async function CustomImage({
 				draggable={false}
 			/>
 			{caption && (
-				<figcaption className={cn('text-sm text-foreground-secondary')}>{caption}</figcaption>
+				<figcaption className={cn('text-xs text-center text-foreground-tertiary')}>
+					{caption}
+				</figcaption>
 			)}
 		</figure>
 	);

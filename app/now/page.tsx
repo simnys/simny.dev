@@ -43,8 +43,7 @@ export default async function Now() {
 
 			{latestEntry && (
 				<article className="mx-auto prose prose-p:first-of-type:mt-0 prose-h2:first-of-type:mt-0">
-					<span className="block mb-2 font-serif text-foreground-tertiary">
-						Last updated:{' '}
+					<span className="block mb-2 font-serif text-foreground-secondary text-sm">
 						<time dateTime={latestEntry.date.toISOString()}>
 							{formatDate(latestEntry.date, true)}
 						</time>
@@ -63,7 +62,10 @@ export default async function Now() {
 						{archivedEntries.map((entry) => (
 							<section key={entry.slug} className="flex flex-col sm:flex-row gap-x-6 sm:py-4">
 								<div className="w-fit min-w-30">
-									<time className="font-serif text-base text-foreground-tertiary">
+									<time
+										className="font-serif text-sm text-foreground-secondary"
+										dateTime={entry.date.toISOString()}
+									>
 										{formatDate(entry.date, true)}
 									</time>
 								</div>

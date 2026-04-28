@@ -123,7 +123,7 @@ export default async function BlogPost(props: Props) {
 		<>
 			<StructuredData id={`${post.slug}_jsonLd`} data={jsonLd} />
 
-			<article className="prose mx-auto w-full first:prose-p:m-0">
+			<article className="prose mx-auto w-full first:prose-p:mt-0">
 				<PageHeader
 					title={post.title}
 					backlink="/writing"
@@ -132,7 +132,7 @@ export default async function BlogPost(props: Props) {
 				/>
 				<time
 					dateTime={post.date.toISOString()}
-					className="block mt-1 mb-8 font-serif text-foreground-secondary text-base"
+					className="block mt-1 mb-8 font-serif text-foreground-secondary text-sm"
 				>
 					{formatDate(post.date, true)}
 				</time>
