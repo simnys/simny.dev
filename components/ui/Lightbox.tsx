@@ -19,11 +19,15 @@ type Props = {
 export default function Lightbox({ content, current, setCurrent, isVisible, onClose }: Props) {
 	const containerRef = useRef<HTMLDivElement>(null);
 	const [isLoading, setIsLoading] = useState(true);
+	const [direction, setDirection] = useState<1 | -1>(1);
 	useScrollLock(isVisible);
+
+	const currentImage = content[current];
 
 	const showNext = useCallback(
 		(event?: { stopPropagation?: () => void }) => {
 			event?.stopPropagation?.();
+			setDirection(1);
 			setIsLoading(true);
 			setCurrent((prevIndex) => (prevIndex + 1) % content.length);
 		},
@@ -33,6 +37,7 @@ export default function Lightbox({ content, current, setCurrent, isVisible, onCl
 	const showPrev = useCallback(
 		(event?: { stopPropagation?: () => void }) => {
 			event?.stopPropagation?.();
+			setDirection(-1);
 			setIsLoading(true);
 			setCurrent((prevIndex) => (prevIndex - 1 + content.length) % content.length);
 		},
@@ -47,6 +52,22 @@ export default function Lightbox({ content, current, setCurrent, isVisible, onCl
 		},
 		[onClose, showNext, showPrev],
 	);
+
+	useEffect(() => {
+		if (!isVisible || !currentImage) {
+			return;
+		}
+
+		const adjacentIndexes = [
+			(current + 1) % content.length,
+			(current - 1 + content.length) % content.length,
+		];
+
+		adjacentIndexes.forEach((index) => {
+			const image = new window.Image();
+			image.src = content[index].src;
+		});
+	}, [content, current, currentImage, isVisible]);
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -89,43 +110,47 @@ export default function Lightbox({ content, current, setCurrent, isVisible, onCl
 						<div
 							ref={containerRef}
 							onClick={() => onClose()}
+							tabIndex={-1}
 							className="fixed z-100 top-0 left-0 w-full h-full flex items-center justify-center outline-none ring-0 p-6 sm:p-16"
 						>
-							<motion.div
-								initial={{
-									y: '100%',
-									opacity: 0,
-								}}
-								animate={{ y: 0, opacity: 1 }}
-								exit={{
-									y: '100%',
-									opacity: 0,
-								}}
-								transition={{ type: 'spring', stiffness: 200, damping: 30 }}
-								drag={'x'}
-								dragConstraints={{ left: 0, right: 0 }}
-								onDragEnd={(event, info) => {
-									if (info.offset.x < -100) {
-										showNext(event);
-									} else if (info.offset.x > 100) {
-										showPrev(event);
-									}
-								}}
-								className="w-full h-full relative"
-							>
-								<CldImage
-									key={content[current].id}
-									src={content[current].src}
-									alt={content[current].alt ?? ''}
-									width={content[current].width}
-									height={content[current].height}
-									loading="eager"
-									draggable={false}
-									className="h-full w-full object-contain transition-opacity duration-200 ease-out"
-									style={{ opacity: isLoading ? 0 : 1 }}
-									onLoad={() => setIsLoading(false)}
-								/>
-							</motion.div>
+							<AnimatePresence initial={false} mode="wait">
+								<motion.div
+									key={currentImage.id}
+									onClick={(event) => event.stopPropagation()}
+									initial={{ x: direction > 0 ? 64 : -64, opacity: 0 }}
+									animate={{ x: 0, opacity: 1 }}
+									exit={{ x: direction > 0 ? -64 : 64, opacity: 0 }}
+									transition={{ duration: 0.22, ease: 'easeOut' }}
+									drag="x"
+									dragConstraints={{ left: 0, right: 0 }}
+									onDragEnd={(event, info) => {
+										if (info.offset.x < -100) {
+											showNext(event);
+										} else if (info.offset.x > 100) {
+											showPrev(event);
+										}
+									}}
+									className="relative flex h-full w-full items-center justify-center"
+								>
+									<CldImage
+										src={currentImage.src}
+										alt={currentImage.alt ?? ''}
+										width={currentImage.width}
+										height={currentImage.height}
+										loading="eager"
+										draggable={false}
+										className="h-full w-full object-contain transition-opacity duration-200 ease-out"
+										style={{ opacity: isLoading ? 0 : 1 }}
+										onLoad={() => setIsLoading(false)}
+									/>
+								</motion.div>
+							</AnimatePresence>
+
+							<div className="pointer-events-none absolute inset-x-0 bottom-6 flex justify-center">
+								<div className="rounded-full bg-background/80 px-3 py-1 text-sm text-foreground-secondary shadow-xs backdrop-blur-sm">
+									{current + 1} / {content.length}
+								</div>
+							</div>
 						</div>
 
 						<button
