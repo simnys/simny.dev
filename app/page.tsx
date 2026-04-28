@@ -25,7 +25,7 @@ import PostList from '@/components/ui/PostList';
 
 export const metadata: Metadata = {
 	alternates: {
-		canonical: SITE_URL,
+		canonical: '/',
 	},
 };
 
@@ -43,7 +43,7 @@ export default async function Home() {
 			description: SITE_DESCRIPTION,
 			email: SITE_CONTACT,
 			url: SITE_URL,
-			image: `${SITE_URL}/images/avatar.jpg`,
+			image: `${SITE_URL}/images/pixel.png`,
 			sameAs: [SITE_GITHUB_URL, SITE_LINKEDIN_URL, SITE_INSTAGRAM_URL],
 			jobTitle: 'Web Engineer & Photographer',
 		},

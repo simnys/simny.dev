@@ -29,6 +29,9 @@ export async function generateMetadata(props: Props): Promise<Metadata | undefin
 	return {
 		title: `${title} Photographs`,
 		description,
+		alternates: {
+			canonical: `/photography/${slugify(collection.title)}`,
+		},
 		openGraph: {
 			title: `${title} Photographs`,
 			description,

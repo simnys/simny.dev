@@ -15,6 +15,19 @@ const description = 'Thoughts, experiments and ideas.';
 export const metadata: Metadata = {
 	title: title,
 	description: description,
+	alternates: {
+		canonical: '/writing',
+	},
+	openGraph: {
+		title,
+		description,
+		url: `${SITE_URL}/writing`,
+	},
+	twitter: {
+		title,
+		description,
+		card: 'summary_large_image',
+	},
 };
 
 export default async function Writing() {
