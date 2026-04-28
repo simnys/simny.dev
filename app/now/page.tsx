@@ -3,21 +3,28 @@ import CustomLink from '@/components/blog/Link';
 import PageHeader from '@/components/layouts/PageHeader';
 
 import { SITE_URL } from '@/data/constants';
+import { buildPageMetadata } from '@/lib/metadata';
 import { getArchivedNowEntries, getLatestNowEntry } from '@/lib/now';
 import { formatDate } from '@/lib/utils';
 import { MDXContent } from '@content-collections/mdx/react';
-import { Metadata } from 'next';
+import { Metadata, ResolvingMetadata } from 'next';
 
 const title = 'Now';
 const description = "What's currently on my mind, what I'm working on, and what I'm into.";
 
-export const metadata: Metadata = {
-	title: title,
-	description: description,
-	alternates: {
-		canonical: '/now',
-	},
-};
+export async function generateMetadata(
+	_parent: unknown,
+	parent: ResolvingMetadata,
+): Promise<Metadata> {
+	return buildPageMetadata(
+		{
+			title,
+			description,
+			canonical: '/now',
+		},
+		parent,
+	);
+}
 
 export default async function Now() {
 	const latestEntry = getLatestNowEntry();

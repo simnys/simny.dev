@@ -3,28 +3,35 @@ import StructuredData from '@/components/seo/StructuredData';
 import { SITE_NAME, SITE_URL } from '@/data/constants';
 
 import { sideProjects, professionalProjects } from '@/data/projects';
+import { buildPageMetadata } from '@/lib/metadata';
 
-import { Metadata } from 'next';
+import { Metadata, ResolvingMetadata } from 'next';
 import { CollectionPage, WithContext } from 'schema-dts';
 import { Card } from '@/components/ui/Card';
 
 const title = 'Work';
 const description = "Things I've worked on, built or tinkered with.";
 
-export const metadata: Metadata = {
-	title: title,
-	description: description,
-	alternates: {
-		canonical: '/work',
-	},
-};
+export async function generateMetadata(
+	_parent: unknown,
+	parent: ResolvingMetadata,
+): Promise<Metadata> {
+	return buildPageMetadata(
+		{
+			title,
+			description,
+			canonical: '/work',
+		},
+		parent,
+	);
+}
 
 export default function Work() {
 	const jsonLd: WithContext<CollectionPage> = {
 		'@type': 'CollectionPage',
 		'@context': 'https://schema.org',
 		name: `${SITE_NAME} - ${title}`,
-		description: metadata.description || '',
+		description,
 		url: `${SITE_URL}/work`,
 		mainEntity: {
 			'@type': 'ItemList',

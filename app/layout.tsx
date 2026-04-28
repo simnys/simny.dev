@@ -5,7 +5,6 @@ import Navbar from '@/components/layouts/Navbar';
 import StructuredData from '@/components/seo/StructuredData';
 
 import {
-	isProduction,
 	SITE_CONTACT,
 	SITE_DESCRIPTION,
 	SITE_GITHUB_URL,
@@ -21,7 +20,6 @@ import '@/styles/globals.css';
 
 import type { Metadata, Viewport } from 'next';
 import { Inter, Newsreader, Geist_Mono } from 'next/font/google';
-import Script from 'next/script';
 import { Person, WithContext } from 'schema-dts';
 import Providers from './providers';
 

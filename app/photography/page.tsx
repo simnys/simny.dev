@@ -4,27 +4,27 @@ import StructuredData from '@/components/seo/StructuredData';
 import { SITE_NAME, SITE_URL } from '@/data/constants';
 import { galleryCollections } from '@/data/gallery';
 import { getCollections } from '@/lib/gallery';
+import { buildPageMetadata } from '@/lib/metadata';
 import { slugify } from '@/lib/utils';
-import { Metadata } from 'next';
+import { Metadata, ResolvingMetadata } from 'next';
 import { CollectionPage, WithContext } from 'schema-dts';
 
 const title = 'Photography';
 const description = "Collections of photos I've taken. Work in progress.";
 
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata(
+	_parent: unknown,
+	parent: ResolvingMetadata,
+): Promise<Metadata> {
 	const ogImage = galleryCollections[0]?.cover as string;
 
-	return {
-		title,
-		description,
-		alternates: {
-			canonical: '/photography',
-		},
-		openGraph: {
+	return buildPageMetadata(
+		{
 			title,
 			description,
-			images: [
-				{
+			canonical: '/photography',
+			openGraph: {
+				images: {
 					url: `/api/ogGallery?title=${encodeURIComponent(
 						title,
 					)}&subtitle=${encodeURIComponent('Collections')}&image=${encodeURIComponent(ogImage)}`,
@@ -33,13 +33,9 @@ export async function generateMetadata(): Promise<Metadata> {
 					alt: `${title} cover image`,
 					type: 'image/png',
 				},
-			],
-		},
-		twitter: {
-			title,
-			description,
-			images: [
-				{
+			},
+			twitter: {
+				images: {
 					url: `/api/ogGallery?title=${encodeURIComponent(
 						title,
 					)}&subtitle=${encodeURIComponent('Collections')}&image=${encodeURIComponent(ogImage)}`,
@@ -47,10 +43,10 @@ export async function generateMetadata(): Promise<Metadata> {
 					height: 630,
 					alt: `${title} cover image`,
 				},
-			],
-			card: 'summary_large_image',
+			},
 		},
-	};
+		parent,
+	);
 }
 
 export default async function Photography() {

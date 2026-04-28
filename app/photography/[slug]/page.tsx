@@ -27,38 +27,38 @@ export async function generateMetadata(props: Props): Promise<Metadata | undefin
 	const { title, description, cover } = collection;
 
 	return {
-		title: `${title} Photographs`,
+		title: `${title} Photo Gallery`,
 		description,
 		alternates: {
 			canonical: `/photography/${slugify(collection.title)}`,
 		},
 		openGraph: {
-			title: `${title} Photographs`,
+			title: `${title} Photo Gallery`,
 			description,
 			url: `${SITE_URL}/photography/${slugify(collection.title)}`,
 			images: [
 				{
 					url: `/api/ogGallery?title=${encodeURIComponent(title)}&subtitle=${encodeURIComponent(
-						'Photography',
+						'Photo Gallery',
 					)}&image=${encodeURIComponent((cover as string) || '')}`,
 					width: 1200,
 					height: 630,
-					alt: `${title} Photography cover image`,
+					alt: `${title} Photo Gallery cover image`,
 					type: 'image/png',
 				},
 			],
 		},
 		twitter: {
-			title: `${title} Photographs`,
+			title: `${title} Photo Gallery`,
 			description,
 			images: [
 				{
 					url: `/api/ogGallery?title=${encodeURIComponent(title)}&subtitle=${encodeURIComponent(
-						'Photography',
+						'Photo Gallery',
 					)}&image=${encodeURIComponent((cover as string) || '')}`,
 					width: 1200,
 					height: 630,
-					alt: `${title} Photography cover image`,
+					alt: `${title} Photo Gallery cover image`,
 				},
 			],
 			card: 'summary_large_image',

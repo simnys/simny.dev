@@ -5,20 +5,27 @@ import PostList from '@/components/ui/PostList';
 import { SITE_NAME, SITE_URL } from '@/data/constants';
 
 import { getBlogPosts } from '@/lib/blog';
+import { buildPageMetadata } from '@/lib/metadata';
 
-import { Metadata } from 'next';
+import { Metadata, ResolvingMetadata } from 'next';
 import { Blog as BlogLeaf, WithContext } from 'schema-dts';
 
 const title = 'Writing';
 const description = 'Thoughts, experiments and ideas.';
 
-export const metadata: Metadata = {
-	title: title,
-	description: description,
-	alternates: {
-		canonical: '/writing',
-	},
-};
+export async function generateMetadata(
+	_parent: unknown,
+	parent: ResolvingMetadata,
+): Promise<Metadata> {
+	return buildPageMetadata(
+		{
+			title,
+			description,
+			canonical: '/writing',
+		},
+		parent,
+	);
+}
 
 export default async function Writing() {
 	const posts = getBlogPosts();
@@ -27,7 +34,7 @@ export default async function Writing() {
 		'@type': 'Blog',
 		'@context': 'https://schema.org',
 		name: `${SITE_NAME} - ${title}`,
-		description: metadata.description || '',
+		description,
 		url: `${SITE_URL}/writing`,
 		publisher: {
 			'@type': 'Person',
