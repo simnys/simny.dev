@@ -1,3 +1,5 @@
+import { Analytics } from '@vercel/analytics/next';
+
 import Footer from '@/components/layouts/Footer';
 import Navbar from '@/components/layouts/Navbar';
 import StructuredData from '@/components/seo/StructuredData';
@@ -145,6 +147,8 @@ export default function RootLayout({
 
 					<Footer />
 				</Providers>
+
+				<Analytics />
 			</body>
 		</html>
 	);
