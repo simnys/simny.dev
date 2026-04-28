@@ -1,4 +1,5 @@
 import PageHeader from '@/components/layouts/PageHeader';
+import StructuredData from '@/components/seo/StructuredData';
 import { Icon } from '@/components/ui/Icon';
 import PostList from '@/components/ui/PostList';
 import { SITE_NAME, SITE_URL } from '@/data/constants';
@@ -6,7 +7,6 @@ import { SITE_NAME, SITE_URL } from '@/data/constants';
 import { getBlogPosts } from '@/lib/blog';
 
 import { Metadata } from 'next';
-import Script from 'next/script';
 import { Blog as BlogLeaf, WithContext } from 'schema-dts';
 
 const title = 'Writing';
@@ -41,11 +41,7 @@ export default async function Writing() {
 
 	return (
 		<>
-			<Script
-				type="application/ld+json"
-				id="blog_jsonLd"
-				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-			/>
+			<StructuredData id="blog_jsonLd" data={jsonLd} />
 
 			<PageHeader title={title} content={description} />
 

@@ -1,10 +1,10 @@
 import PageHeader from '@/components/layouts/PageHeader';
+import StructuredData from '@/components/seo/StructuredData';
 import { SITE_NAME, SITE_URL } from '@/data/constants';
 
 import { sideProjects, professionalProjects } from '@/data/projects';
 
 import { Metadata } from 'next';
-import Script from 'next/script';
 import { CollectionPage, WithContext } from 'schema-dts';
 import { Card } from '@/components/ui/Card';
 
@@ -37,11 +37,7 @@ export default function Work() {
 
 	return (
 		<>
-			<Script
-				type="application/ld+json"
-				id="work_jsonLd"
-				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-			/>
+			<StructuredData id="work_jsonLd" data={jsonLd} />
 
 			<PageHeader title={title} content={description} />
 

@@ -1,12 +1,11 @@
 import PageHeader from '@/components/layouts/PageHeader';
 import GalleryView from '@/components/sections/GalleryView';
+import StructuredData from '@/components/seo/StructuredData';
 import { SITE_NAME, SITE_URL } from '@/data/constants';
 import { galleryCollections } from '@/data/gallery';
 import { getCollections } from '@/lib/gallery';
-import { GalleryCollection } from '@/lib/types/types';
 import { slugify } from '@/lib/utils';
 import { Metadata } from 'next';
-import Script from 'next/script';
 import { CollectionPage, WithContext } from 'schema-dts';
 
 const title = 'Photography';
@@ -52,7 +51,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Photography() {
-	const collections = (await getCollections()) as GalleryCollection[];
+	const collections = await getCollections();
 
 	const jsonLd: WithContext<CollectionPage> = {
 		'@type': 'CollectionPage',
@@ -73,11 +72,7 @@ export default async function Photography() {
 
 	return (
 		<>
-			<Script
-				type="application/ld+json"
-				id="gallery_jsonLd"
-				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-			/>
+			<StructuredData id="gallery_jsonLd" data={jsonLd} />
 
 			<PageHeader title={title} content={description} />
 

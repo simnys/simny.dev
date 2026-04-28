@@ -1,6 +1,17 @@
 export const isProduction = process.env.NODE_ENV === 'production';
 
-export const SITE_URL = isProduction ? 'https://simny.dev' : 'http://localhost:3000';
+const DEFAULT_SITE_URL = 'https://simny.dev';
+
+function normalizeSiteUrl(value?: string) {
+	if (!value) return null;
+	return value.startsWith('http') ? value : `https://${value}`;
+}
+
+export const SITE_URL =
+	normalizeSiteUrl(process.env.NEXT_PUBLIC_SITE_URL) ??
+	(isProduction
+		? normalizeSiteUrl(process.env.VERCEL_PROJECT_PRODUCTION_URL) ?? DEFAULT_SITE_URL
+		: normalizeSiteUrl(process.env.VERCEL_URL) ?? 'http://localhost:3000');
 
 export const SITE_NAME = 'Simon Nyström';
 export const SITE_TITLE = 'Simon Nyström';

@@ -1,5 +1,6 @@
 import Footer from '@/components/layouts/Footer';
 import Navbar from '@/components/layouts/Navbar';
+import StructuredData from '@/components/seo/StructuredData';
 
 import {
 	isProduction,
@@ -18,7 +19,6 @@ import '@/styles/globals.css';
 
 import type { Metadata, Viewport } from 'next';
 import { Inter, Newsreader, Geist_Mono } from 'next/font/google';
-import localFont from 'next/font/local';
 import Script from 'next/script';
 import { Person, WithContext } from 'schema-dts';
 import Providers from './providers';
@@ -120,11 +120,7 @@ export default function RootLayout({
 
 	return (
 		<html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning>
-			<Script
-				type="application/ld+json"
-				id="global_jsonLd"
-				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-			/>
+			<StructuredData id="global_jsonLd" data={jsonLd} />
 
 			<body
 				className={cn(
