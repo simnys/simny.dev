@@ -3,7 +3,6 @@ import Navbar from '@/components/layouts/Navbar';
 import StructuredData from '@/components/seo/StructuredData';
 
 import {
-	isProduction,
 	SITE_CONTACT,
 	SITE_DESCRIPTION,
 	SITE_GITHUB_URL,
@@ -69,7 +68,7 @@ export const metadata: Metadata = {
 			url: `${SITE_URL}/images/og.jpg`,
 			width: 1200,
 			height: 630,
-			alt: `${SITE_NAME} — Web Engineer & Photographer`,
+			alt: `${SITE_NAME} — Web Engineer`,
 		},
 		locale: 'en_US',
 		alternateLocale: 'en_SE',
@@ -82,7 +81,7 @@ export const metadata: Metadata = {
 			url: `${SITE_URL}/images/og.jpg`,
 			width: 1200,
 			height: 630,
-			alt: `${SITE_NAME} — Web Engineer & Photographer`,
+			alt: `${SITE_NAME} — Web Engineer`,
 		},
 	},
 	robots: {
@@ -121,7 +120,7 @@ export default function RootLayout({
 		url: SITE_URL,
 		image: `${SITE_URL}/images/pixel.png`,
 		sameAs: [SITE_GITHUB_URL, SITE_LINKEDIN_URL, SITE_INSTAGRAM_URL],
-		jobTitle: 'Web Engineer & Photographer',
+		jobTitle: 'Web Engineer',
 	};
 
 	return (
@@ -145,13 +144,6 @@ export default function RootLayout({
 
 					<Footer />
 				</Providers>
-				{isProduction && (
-					<Script
-						defer
-						src="https://analytics.eu.umami.is/script.js"
-						data-website-id="0ab801df-b78b-462a-80b5-4630493addc6"
-					/>
-				)}
 			</body>
 		</html>
 	);

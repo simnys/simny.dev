@@ -17,16 +17,6 @@ export const metadata: Metadata = {
 	alternates: {
 		canonical: '/work',
 	},
-	openGraph: {
-		title,
-		description,
-		url: `${SITE_URL}/work`,
-	},
-	twitter: {
-		title,
-		description,
-		card: 'summary_large_image',
-	},
 };
 
 export default function Work() {

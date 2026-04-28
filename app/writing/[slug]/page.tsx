@@ -146,7 +146,7 @@ export default async function BlogPost(props: Props) {
 							width={64}
 							height={64}
 							src={avatar}
-							alt=""
+							alt="simon nyström avatar"
 							draggable={false}
 							className="size-12 rounded-full not-prose"
 						/>

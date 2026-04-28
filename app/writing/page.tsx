@@ -18,16 +18,6 @@ export const metadata: Metadata = {
 	alternates: {
 		canonical: '/writing',
 	},
-	openGraph: {
-		title,
-		description,
-		url: `${SITE_URL}/writing`,
-	},
-	twitter: {
-		title,
-		description,
-		card: 'summary_large_image',
-	},
 };
 
 export default async function Writing() {

@@ -71,6 +71,7 @@ export default function Navbar() {
 						onClick={handleDropdownToggle}
 						aria-expanded={isDropdownOpen}
 						aria-haspopup="true"
+						aria-label={isDropdownOpen ? 'Close menu' : 'Open menu'}
 						variant="ghost"
 						isActive={isDropdownOpen}
 						size="icon"

@@ -11,7 +11,7 @@ export default function Hero() {
 						width={64}
 						height={64}
 						src={avatar}
-						alt=""
+						alt="simon nyström avatar"
 						draggable={false}
 						className="size-13 rounded-full not-prose"
 						priority
@@ -19,12 +19,12 @@ export default function Hero() {
 					/>
 				</div>
 
-				<div>
-					<span className="block font-[550]">Simon Nyström</span>
+				<h1>
+					<span className="block text-base">Simon Nyström</span>
 					<span className="block text-sm sm:text-base font-[450] text-foreground-tertiary">
 						Web Engineer
 					</span>
-				</div>
+				</h1>
 			</div>
 			<p className="prose">
 				I&apos;m a Web engineer at{' '}
