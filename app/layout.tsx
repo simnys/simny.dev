@@ -47,7 +47,7 @@ const fontCode = Geist_Mono({
 export const viewport: Viewport = {
 	maximumScale: 5,
 	themeColor: [
-		{ media: '(prefers-color-scheme: light)', color: '#fafafa' },
+		{ media: '(prefers-color-scheme: light)', color: '#fcfcfc' },
 		{ media: '(prefers-color-scheme: dark)', color: '#0f0f0f' },
 	],
 };
