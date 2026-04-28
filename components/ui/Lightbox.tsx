@@ -7,6 +7,8 @@ import { CldImage } from 'next-cloudinary';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Icon } from './Icon';
 import { FocusTrap } from 'focus-trap-react';
+import { Button } from './Button';
+import { cn } from '@/lib/utils';
 
 type Props = {
 	content: Array<GalleryImage>;
@@ -94,15 +96,12 @@ export default function Lightbox({ content, current, setCurrent, isVisible, onCl
 						aria-modal="true"
 						aria-label="Image lightbox"
 						className="fixed z-100 top-0 left-0 w-full h-full flex justify-center bg-background/90"
-						initial={{ opacity: 0 }}
-						animate={{ opacity: 1 }}
-						exit={{ opacity: 0 }}
 					>
 						<div
 							ref={containerRef}
 							onClick={() => onClose()}
 							tabIndex={-1}
-							className="fixed z-100 top-0 left-0 w-full h-full flex items-center justify-center outline-none ring-0 p-6 sm:p-16"
+							className="fixed z-100 top-0 left-0 w-full h-full flex items-center justify-center outline-none ring-0 p-6 xs:p-16"
 						>
 							<AnimatePresence initial={false} mode="wait">
 								<motion.div
@@ -128,6 +127,8 @@ export default function Lightbox({ content, current, setCurrent, isVisible, onCl
 										alt={currentImage.alt ?? ''}
 										width={currentImage.width}
 										height={currentImage.height}
+										blurDataURL={currentImage.blurData}
+										placeholder="blur"
 										loading="eager"
 										draggable={false}
 										className="h-full w-full object-contain transition-opacity duration-200 ease-out"
@@ -137,29 +138,64 @@ export default function Lightbox({ content, current, setCurrent, isVisible, onCl
 								</motion.div>
 							</AnimatePresence>
 
-							<div className="pointer-events-none absolute inset-x-0 bottom-6 flex justify-center">
-								<div className="rounded-full bg-background/80 px-3 py-1 text-sm text-foreground-secondary shadow-xs backdrop-blur-sm">
+							<div
+								className={cn(
+									'absolute inset-x-0 bottom-6 flex items-center justify-between px-6',
+									'xs:justify-center xs:gap-20 sm:px-16',
+								)}
+							>
+								<Button
+									variant="ghost"
+									size="icon"
+									type="button"
+									aria-label="Previous image"
+									className={cn(
+										'rounded-full',
+										'sm:fixed sm:left-6 md:left-12 sm:top-1/2 sm:-translate-y-1/2',
+									)}
+									onClick={(e) => showPrev(e)}
+								>
+									<Icon name="arrow" className="w-5 h-5 rotate-180" />
+								</Button>
+
+								<div className="rounded-full bg-background/80 px-4 py-1 text-sm text-foreground-secondary shadow-xs backdrop-blur-sm">
 									{current + 1} / {content.length}
 								</div>
+
+								<Button
+									variant="ghost"
+									size="icon"
+									type="button"
+									aria-label="Next image"
+									className={cn(
+										'rounded-full',
+										'sm:fixed sm:right-6 md:right-12 sm:top-1/2 sm:-translate-y-1/2',
+									)}
+									onClick={(e) => showNext(e)}
+								>
+									<Icon name="arrow" className="w-5 h-5" />
+								</Button>
 							</div>
 						</div>
 
-						<button
+						<Button
 							type="button"
-							aria-label="Next image"
-							className="absolute z-110 right-6 top-10 md:top-1/2 md:-translate-y-1/2 w-fit p-2 rounded-full bg-foreground-secondary/5 text-foreground-secondary ring-1 ring-transparent ring-offset-background transition-all hover:bg-foreground-secondary/10 hover:text-foreground hover:ring-brand hover:ring-offset-2 active:scale-95 active:ring-offset-1 cursor-pointer select-none"
-							onClick={(e) => showNext(e)}
+							variant="ghost"
+							size="icon"
+							aria-label="Close lightbox"
+							className="rounded-full absolute z-110 right-6 sm:right-10 top-15 sm:top-10"
+							onClick={onClose}
 						>
-							<Icon name="arrow" className="w-5 h-5" />
-						</button>
-						<button
-							type="button"
-							aria-label="Previous image"
-							className="absolute z-110 left-6 top-10 md:top-1/2 md:-translate-y-1/2 w-fit p-2 rounded-full bg-foreground-secondary/5 text-foreground-secondary ring-1 ring-transparent ring-offset-background transition-all hover:bg-foreground-secondary/10 hover:text-foreground hover:ring-brand hover:ring-offset-2 active:scale-95 active:ring-offset-1 cursor-pointer select-none"
-							onClick={(e) => showPrev(e)}
-						>
-							<Icon name="arrow" className="w-5 h-5 rotate-180" />
-						</button>
+							<svg
+								aria-hidden="true"
+								className="w-5 h-5 shrink-0 fill-none stroke-current"
+								viewBox="0 0 24 24"
+								strokeWidth={1.5}
+								strokeLinecap="round"
+							>
+								<path d="M18 6 6 18M6 6l12 12" />
+							</svg>
+						</Button>
 					</motion.div>
 				</FocusTrap>
 			)}
