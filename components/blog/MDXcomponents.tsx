@@ -7,6 +7,7 @@ import CustomImage from './Image';
 import CustomLink from './Link';
 import Divider from './Divider';
 import Quote from './Quote';
+import CustomVideo from './Video';
 
 // Helper to set displayName on components
 function withDisplayName<T extends React.ComponentType<any>>(Comp: T, name: string): T {
@@ -44,6 +45,7 @@ const MDXComponents = {
 	a: CustomLink,
 	figure: (props: any) => Code(props),
 	Image: CustomImage,
+	Video: CustomVideo,
 	Link: CustomLink,
 	Quote,
 	blockquote: Quote,
