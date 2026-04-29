@@ -47,3 +47,6 @@ export type NavItem = {
 	iconActive?: IconName;
 	rowSpan?: number;
 };
+
+export const POST_TYPES = ['article', 'component', 'skill'] as const;
+export type PostType = (typeof POST_TYPES)[number] | undefined;

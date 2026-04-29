@@ -5,6 +5,7 @@ import lqip from 'lqip-modern';
 import readingTime from 'reading-time';
 import rehypePrettyCode from 'rehype-pretty-code';
 import { rehypeCodeOptions } from './lib/rehype/rehype';
+import { POST_TYPES } from './lib/types/types';
 
 const BLOG_DIR = 'content/writing';
 const NOW_DIR = 'content/now';
@@ -21,6 +22,7 @@ const posts = defineCollection({
 		summary: z.string(),
 		date: z.string(),
 		image: z.string().optional(),
+		type: z.enum(POST_TYPES).optional(),
 		tags: z.array(z.string()).optional(),
 		draft: z.boolean().optional(),
 	}),
