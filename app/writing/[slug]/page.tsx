@@ -37,8 +37,7 @@ export async function generateMetadata(
 		return;
 	}
 
-	const { title, summary, date, image } = post;
-	const previousImages = (await parent)?.openGraph?.images || [];
+	const { title, summary, date } = post;
 
 	return {
 		title,
@@ -56,14 +55,13 @@ export async function generateMetadata(
 			images: [
 				{
 					url: `/api/ogBlog?title=${encodeURIComponent(title)}&image=${encodeURIComponent(
-						image || '',
+						avatar.src,
 					)}`,
 					width: 1200,
 					height: 630,
 					alt: title,
 					type: 'image/png',
 				},
-				...previousImages,
 			],
 		},
 		twitter: {
@@ -73,13 +71,12 @@ export async function generateMetadata(
 			images: [
 				{
 					url: `/api/ogBlog?title=${encodeURIComponent(title)}&image=${encodeURIComponent(
-						image || '',
+						avatar.src,
 					)}`,
 					width: 1200,
 					height: 630,
 					alt: title,
 				},
-				...previousImages,
 			],
 		},
 	};
@@ -107,7 +104,7 @@ export default async function BlogPost(props: Props) {
 		dateModified: post.date.toISOString(),
 		image: `${SITE_URL}/api/ogBlog?title=${encodeURIComponent(
 			post.title,
-		)}&image=${encodeURIComponent(post.image || '')}`,
+		)}&image=${encodeURIComponent(avatar.src)}`,
 		author: {
 			'@type': 'Person',
 			name: SITE_NAME,
