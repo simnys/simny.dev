@@ -1,9 +1,11 @@
 import Divider from '@/components/blog/Divider';
+import CustomLink from '@/components/blog/Link';
 import MDXComponents from '@/components/blog/MDXcomponents';
 import PageHeader from '@/components/layouts/PageHeader';
 import { SectionHeader } from '@/components/layouts/Section';
 import StructuredData from '@/components/seo/StructuredData';
 import { Button } from '@/components/ui/Button';
+import Copy from '@/components/ui/Copy';
 import { Icon } from '@/components/ui/Icon';
 import PostList from '@/components/ui/PostList';
 
@@ -128,7 +130,7 @@ export default async function BlogPost(props: Props) {
 					title={post.title}
 					backlink="/writing"
 					className="not-prose text-foreground"
-					backlinkClassName="md:left-13"
+					backlinkClassName="md:left-12"
 				/>
 				<time
 					dateTime={post.date.toISOString()}
@@ -136,6 +138,21 @@ export default async function BlogPost(props: Props) {
 				>
 					{formatDate(post.date, true)}
 				</time>
+
+				<Button
+					asChild
+					variant="secondary"
+					size="icon"
+					className="absolute right-3 top-4 sm:top-10"
+				>
+					<Copy
+						aria-label="Back to writing overview"
+						toCopy={`${SITE_URL}/writing/${post.slug}`}
+						successMessage={<Icon name="check" />}
+					>
+						<Icon name="link" />
+					</Copy>
+				</Button>
 
 				<MDXContent code={post.content} components={MDXComponents} />
 				<Divider />
@@ -163,29 +180,36 @@ export default async function BlogPost(props: Props) {
 					</div>
 
 					<div className="flex items-center gap-x-2">
-						{socialLinks
-							.filter((link) => link.name !== 'RSS')
-							.map((link) => (
-								<Button asChild variant="ghost" size="icon" key={link.name}>
-									<a
-										href={link.path}
-										target="_blank"
-										rel="noopener"
-										className="border border-border"
-										aria-label={`Find me on ${link.name}`}
-									>
-										<Icon name={link.icon!} />
-									</a>
-								</Button>
-							))}
+						{socialLinks.map((link) => (
+							<Button asChild variant="ghost" size="icon" key={link.name}>
+								<a
+									href={link.path}
+									target="_blank"
+									rel="noopener"
+									className="border border-border"
+									aria-label={`Find me on ${link.name}`}
+								>
+									<Icon name={link.icon!} />
+								</a>
+							</Button>
+						))}
 					</div>
 				</div>
 			</article>
 
 			{related.length > 0 && (
-				<section className="max-w-[65ch] w-full mx-auto">
+				<section className="max-w-[65ch] w-full mx-auto flex flex-col">
 					<SectionHeader title="More" />
 					<PostList posts={related.slice(0, 3)} />
+					{related.length > 3 && (
+						<CustomLink
+							href="/writing"
+							className="text-sm ml-auto mt-4 text-foreground-tertiary hover:text-foreground decoration-dotted"
+							aria-label="View all articles"
+						>
+							View all
+						</CustomLink>
+					)}
 				</section>
 			)}
 		</>

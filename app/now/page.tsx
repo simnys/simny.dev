@@ -42,7 +42,7 @@ export default async function Now() {
 			</div>
 
 			{latestEntry && (
-				<article className="mx-auto prose prose-p:first-of-type:mt-0 prose-h2:first-of-type:mt-0">
+				<article className="mx-auto prose prose-p:mt-0 prose-ul:mt-0">
 					<span className="block mb-2 font-serif text-foreground-secondary text-sm">
 						<time dateTime={latestEntry.date.toISOString()}>
 							{formatDate(latestEntry.date, true)}

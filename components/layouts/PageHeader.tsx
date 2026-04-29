@@ -28,7 +28,7 @@ export default function PageHeader({
 					icon="external"
 					flipIcon
 					className={cn(
-						'absolute left-5 top-6 sm:top-12 text-[15px] text-foreground-tertiary hover:text-foreground no-underline',
+						'absolute left-4 top-6 sm:top-12 p-1 text-[15px] text-foreground-tertiary hover:text-foreground decoration-dotted',
 						backlinkClassName,
 					)}
 				>

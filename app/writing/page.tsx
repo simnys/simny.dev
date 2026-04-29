@@ -1,3 +1,4 @@
+import CustomLink from '@/components/blog/Link';
 import PageHeader from '@/components/layouts/PageHeader';
 import StructuredData from '@/components/seo/StructuredData';
 import { Icon } from '@/components/ui/Icon';
@@ -54,6 +55,17 @@ export default async function Writing() {
 			<StructuredData id="blog_jsonLd" data={jsonLd} />
 
 			<PageHeader title={title} content={description} />
+
+			{posts.length >= 3 && (
+				<CustomLink
+					href="/rss.xml"
+					aria-label="Subscribe to RSS feed"
+					className="absolute right-6 p-1 top-25.5 sm:top-33 decoration-dotted text-sm text-foreground-tertiary hover:text-foreground"
+					icon="rss"
+				>
+					Feed
+				</CustomLink>
+			)}
 
 			<section className="space-y-4 sm:space-y-6">
 				{posts.length > 0 ? (

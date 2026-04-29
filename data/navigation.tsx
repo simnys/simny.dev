@@ -58,14 +58,14 @@ export const socialLinks: NavItem[] = [
 		icon: 'linkedin',
 	},
 	{
-		name: 'RSS',
-		path: '/rss.xml',
-		icon: 'rss',
-	},
-	{
 		name: 'Email',
 		path: `mailto:${SITE_CONTACT}`,
 		icon: 'email',
+	},
+	{
+		name: 'RSS',
+		path: '/rss.xml',
+		icon: 'rss',
 	},
 ];
 

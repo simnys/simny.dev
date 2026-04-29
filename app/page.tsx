@@ -79,11 +79,13 @@ export default async function Home() {
 					))}
 				</div>
 
-				<Button asChild variant="ghost" className="text-sm ml-auto mt-3">
-					<Link href="/work" aria-label="View more work projects">
-						More work
-					</Link>
-				</Button>
+				<CustomLink
+					href="/work"
+					className="text-sm ml-auto mt-4 text-foreground-tertiary hover:text-foreground decoration-dotted"
+					aria-label="View more work projects"
+				>
+					More work
+				</CustomLink>
 			</section>
 
 			<section className="max-w-[65ch] w-full mx-auto">
@@ -112,11 +114,13 @@ export default async function Home() {
 					<PostList posts={blogPosts.slice(0, 3)} />
 
 					{blogPosts.length > 3 && (
-						<Button asChild variant="ghost" className="text-sm ml-auto mt-3">
-							<Link href="/writing" aria-label="View more articles">
-								Read more
-							</Link>
-						</Button>
+						<CustomLink
+							href="/writing"
+							className="text-sm ml-auto mt-4 text-foreground-tertiary hover:text-foreground decoration-dotted"
+							aria-label="View more articles"
+						>
+							Read more
+						</CustomLink>
 					)}
 				</section>
 			)}
@@ -127,11 +131,13 @@ export default async function Home() {
 
 					<GalleryView as="collections" content={collections.slice(0, 3)} />
 
-					<Button asChild variant="ghost" className="text-sm ml-auto mt-3">
-						<Link href="/photography" aria-label="View more photography">
-							Visit gallery
-						</Link>
-					</Button>
+					<CustomLink
+						href="/photography"
+						className="text-sm ml-auto mt-4 text-foreground-tertiary hover:text-foreground decoration-dotted"
+						aria-label="View more photography"
+					>
+						Visit gallery
+					</CustomLink>
 				</section>
 			)}
 		</>
