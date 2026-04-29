@@ -38,3 +38,5 @@ next-env.d.ts
 
 # agents
 .agents
+.github
+.claude
