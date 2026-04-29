@@ -5,6 +5,10 @@ import Link from 'next/link';
 
 export const metadata: Metadata = {
 	title: 'Page not found',
+	robots: {
+		index: false,
+		follow: false,
+	},
 };
 
 export default function NotFound() {
@@ -17,7 +21,7 @@ export default function NotFound() {
 				<br className="hidden sm:block" />
 				I&apos;ll get you right back on track!
 			</p>
-			<Button asChild variant='secondary'>
+			<Button asChild variant="secondary">
 				<Link href="/">Take me home</Link>
 			</Button>
 		</main>

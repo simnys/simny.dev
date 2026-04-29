@@ -14,7 +14,7 @@ export async function GET() {
 			feed: `${SITE_URL}/rss.xml`,
 			copyright: `All rights reserved ${new Date().getFullYear()}, Simon Nyström`,
 			language: 'en',
-			image: `${SITE_URL}/images/og.webp`,
+			image: `${SITE_URL}/images/og.jpg`,
 		});
 
 		const posts = getBlogPosts();

@@ -1,10 +1,11 @@
-import { allPosts } from 'content-collections';
 import { SITE_URL } from '@/data/constants';
 import { galleryCollections } from '@/data/gallery';
 import { slugify } from '@/lib/utils';
 import type { MetadataRoute } from 'next';
+import { getBlogPosts } from '@/lib/blog';
 
 export default function sitemap(): MetadataRoute.Sitemap {
+	const allPosts = getBlogPosts();
 	const posts: MetadataRoute.Sitemap = allPosts.map((post) => ({
 		url: `${SITE_URL}/writing/${post.slug}`,
 		lastModified: post.date.toISOString().split('T')[0],
@@ -34,5 +35,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
 		priority,
 	}));
 
-	return [...routes, ...collectionRoutes, ...posts];
+	return [...routes, ...posts, ...collectionRoutes];
 }

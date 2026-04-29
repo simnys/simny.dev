@@ -18,7 +18,7 @@ export const SITE_URL =
 export const SITE_NAME = 'Simon Nyström';
 export const SITE_TITLE = 'Simon Nyström | Web Engineer';
 export const SITE_DESCRIPTION =
-	"I'm Simon Nyström, a Web Engineer with a passion for crafting intentional interfaces and web experiences. Hobbyist photographer with focus on adventure and lifestyle.";
+	'Web Engineer crafting intentional interfaces and digital experiences. Hobbyist photographer with a focus on adventure and lifestyle.';
 export const SITE_KEYWORDS = [
 	'simny',
 	'simnys',
