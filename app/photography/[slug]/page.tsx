@@ -1,5 +1,5 @@
 import PageHeader from '@/components/layouts/PageHeader';
-import GalleryView from '@/components/sections/GalleryView';
+import ImageGallery from '@/components/sections/ImageGallery';
 import StructuredData from '@/components/seo/StructuredData';
 import { Button } from '@/components/ui/Button';
 
@@ -11,7 +11,7 @@ import { slugify } from '@/lib/utils';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ImageGallery, WithContext } from 'schema-dts';
+import { ImageGallery as ImageGallerySchema, WithContext } from 'schema-dts';
 
 interface Props {
 	params: Promise<{
@@ -81,7 +81,7 @@ export default async function GalleryCollection(props: Props) {
 
 	const backLink = '/photography';
 
-	const jsonLd: WithContext<ImageGallery> = {
+	const jsonLd: WithContext<ImageGallerySchema> = {
 		'@type': 'ImageGallery',
 		'@context': 'https://schema.org',
 		name: `${SITE_NAME} Photography - ${collection.title}`,
@@ -97,7 +97,7 @@ export default async function GalleryCollection(props: Props) {
 			<PageHeader title={collection.title} content={collection.description} backlink={backLink} />
 
 			<section>
-				<GalleryView content={images} as="images" />
+				<ImageGallery content={images} />
 			</section>
 
 			<div className="-mx-4 flex justify-between items-baseline text-sm font-medium select-none">

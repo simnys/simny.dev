@@ -1,5 +1,5 @@
 import PageHeader from '@/components/layouts/PageHeader';
-import GalleryView from '@/components/sections/GalleryView';
+import CollectionGallery from '@/components/sections/CollectionGallery';
 import StructuredData from '@/components/seo/StructuredData';
 import { SITE_NAME, SITE_URL } from '@/data/constants';
 import { galleryCollections } from '@/data/gallery';
@@ -76,7 +76,7 @@ export default async function Photography() {
 			<PageHeader title={title} content={description} />
 
 			<section>
-				<GalleryView as="collections" content={collections} />
+				<CollectionGallery content={collections} />
 			</section>
 		</>
 	);

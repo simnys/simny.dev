@@ -1,6 +1,6 @@
 'use client';
 
-import { GalleryImage } from '@/lib/types/types';
+import { GalleryImageType } from '@/lib/types/types';
 import { useScrollLock } from '@/lib/hooks';
 import { AnimatePresence, motion } from 'framer-motion';
 import { CldImage } from 'next-cloudinary';
@@ -11,7 +11,7 @@ import { Button } from './Button';
 import { cn } from '@/lib/utils';
 
 type Props = {
-	content: Array<GalleryImage>;
+	content: Array<GalleryImageType>;
 	current: number;
 	setCurrent: React.Dispatch<React.SetStateAction<number>>;
 	isVisible: boolean;
@@ -96,6 +96,10 @@ export default function Lightbox({ content, current, setCurrent, isVisible, onCl
 						aria-modal="true"
 						aria-label="Image lightbox"
 						className="fixed z-100 top-0 left-0 w-full h-full flex justify-center bg-background/90"
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						exit={{ opacity: 0 }}
+						transition={{ duration: 0.2, ease: 'easeOut' }}
 					>
 						<div
 							ref={containerRef}
@@ -125,14 +129,11 @@ export default function Lightbox({ content, current, setCurrent, isVisible, onCl
 									<CldImage
 										src={currentImage.src}
 										alt={currentImage.alt ?? ''}
-										width={currentImage.width}
-										height={currentImage.height}
-										blurDataURL={currentImage.blurData}
-										placeholder="blur"
+										fill
 										loading="eager"
 										draggable={false}
-										className="h-full w-full object-contain transition-opacity duration-200 ease-out"
-										style={{ opacity: isLoading ? 0 : 1 }}
+										className="object-contain transition-opacity duration-200 ease-out"
+										style={{ opacity: isLoading ? 0 : 1, transitionDelay: '150ms' }}
 										onLoad={() => setIsLoading(false)}
 									/>
 								</motion.div>

@@ -13,18 +13,18 @@ export type Project = {
 	image?: string | StaticImport;
 };
 
-export type GalleryCollection = {
+export type GalleryCollectionType = {
 	title: string;
 	description: string;
 	cover: StaticImage | string;
 	length: number;
 };
 
-export type GalleryCollectionSeed = Omit<GalleryCollection, 'cover' | 'length'> & {
+export type GalleryCollectionSeed = Omit<GalleryCollectionType, 'cover' | 'length'> & {
 	cover: string;
 };
 
-export type GalleryImage = {
+export type GalleryImageType = {
 	id: string;
 	src: string;
 	blurData: string;

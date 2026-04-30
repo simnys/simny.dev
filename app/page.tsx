@@ -1,5 +1,5 @@
 import Hero from '@/components/sections/Hero';
-import GalleryView from '@/components/sections/GalleryView';
+import CollectionGallery from '@/components/sections/CollectionGallery';
 import StructuredData from '@/components/seo/StructuredData';
 
 import {
@@ -16,11 +16,9 @@ import { getBlogPosts } from '@/lib/blog';
 import { cn } from '@/lib/utils';
 
 import { Metadata } from 'next';
-import Link from 'next/link';
 import { getCollections } from '@/lib/gallery';
 import { AboutPage, WithContext } from 'schema-dts';
 import { Card } from '@/components/ui/Card';
-import { Button } from '@/components/ui/Button';
 import PostList from '@/components/ui/PostList';
 import CustomLink from '@/components/blog/Link';
 
@@ -129,7 +127,7 @@ export default async function Home() {
 				<section className="flex flex-col max-w-[65ch] w-full mx-auto">
 					<h2 className="mb-6">Photography</h2>
 
-					<GalleryView as="collections" content={collections.slice(0, 3)} />
+					<CollectionGallery content={collections.slice(0, 3)} lazy />
 
 					<CustomLink
 						href="/photography"

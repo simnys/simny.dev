@@ -8,14 +8,15 @@ export default function Hero() {
 			<div className="flex items-center gap-4">
 				<div className="relative shrink-0">
 					<Image
+						src={avatar}
 						width={64}
 						height={64}
-						src={avatar}
 						alt="simon nyström avatar"
-						draggable={false}
-						className="size-13 rounded-full not-prose"
+						placeholder="blur"
 						priority
 						fetchPriority="high"
+						draggable={false}
+						className="size-13 rounded-full not-prose"
 					/>
 				</div>
 
