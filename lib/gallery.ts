@@ -2,11 +2,11 @@ import 'server-only';
 
 import { GALLERY_COLLECTIONS_TAG_PREFIX } from '@/data/gallery';
 import { v2 as cloudinary } from 'cloudinary';
-import lqip from 'lqip-modern';
+import { getPlaiceholder } from 'plaiceholder';
 import { getCldImageUrl } from 'next-cloudinary';
 import { unstable_cache } from 'next/cache';
 import { galleryCollections } from '../data/gallery';
-import { GalleryCollection, GalleryImage, StaticImage } from './types/types';
+import { GalleryCollectionType, GalleryImageType, StaticImage } from './types/types';
 import { slugify } from './utils';
 
 export const GALLERY_CACHE_TAG = 'gallery';
@@ -27,15 +27,17 @@ type CloudinaryResource = {
 async function createBlurDataURL(src: string): Promise<string> {
 	const imageUrl = getCldImageUrl({
 		src,
-		width: 100,
+		width: 20,
+		quality: 1,
+		format: 'avif',
 	});
 	const response = await fetch(imageUrl);
 	const buffer = Buffer.from(await response.arrayBuffer());
-	const result = await lqip(buffer);
-	return result.metadata.dataURIBase64;
+	const { base64 } = await getPlaiceholder(buffer);
+	return base64;
 }
 
-async function mapGalleryImages(resources: CloudinaryResource[]): Promise<GalleryImage[]> {
+async function mapGalleryImages(resources: CloudinaryResource[]): Promise<GalleryImageType[]> {
 	return Promise.all(
 		resources.map(async ({ width, height, public_id, secure_url, tags = [], context }) => ({
 			id: public_id,
@@ -70,16 +72,17 @@ async function fetchGalleryResources(): Promise<CloudinaryResource[]> {
 }
 
 export const getAllImages = unstable_cache(
-	async (): Promise<GalleryImage[]> => {
+	async (): Promise<GalleryImageType[]> => {
 		const resources = await fetchGalleryResources();
-		return mapGalleryImages(resources);
+		const images = await mapGalleryImages(resources);
+		return images;
 	},
 	['gallery-images'],
 	{ tags: [GALLERY_CACHE_TAG] },
 );
 
 export const getImagesInCollection = unstable_cache(
-	async (name: string): Promise<GalleryImage[]> => {
+	async (name: string): Promise<GalleryImageType[]> => {
 		const tag = `${GALLERY_COLLECTIONS_TAG_PREFIX}${name.toLowerCase()}`;
 
 		try {
@@ -95,7 +98,7 @@ export const getImagesInCollection = unstable_cache(
 );
 
 export const getCollections = unstable_cache(
-	async (): Promise<GalleryCollection[]> => {
+	async (): Promise<GalleryCollectionType[]> => {
 		try {
 			const resources = await getAllImages();
 

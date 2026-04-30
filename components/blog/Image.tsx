@@ -1,5 +1,6 @@
 import { cn } from '@/lib/utils';
-import lqip from 'lqip-modern';
+import { getPlaiceholder } from 'plaiceholder';
+import { readFile } from 'fs/promises';
 import Image from 'next/image';
 import React from 'react';
 
@@ -18,20 +19,22 @@ export default async function CustomImage({
 	caption,
 	priority = false,
 }: CustomImageProps) {
-	const result = await lqip(`public${BLOG_IMAGE_DIR}/${src}`);
+	const buffer = await readFile(`public${BLOG_IMAGE_DIR}/${src}`);
+	const { base64, metadata } = await getPlaiceholder(buffer);
 
 	return (
 		<figure>
 			<Image
 				src={`${BLOG_IMAGE_DIR}/${src}`}
-				width={result.metadata.originalWidth}
-				height={result.metadata.originalHeight}
+				width={metadata.width}
+				height={metadata.height}
 				alt={alt}
-				className="w-full h-auto rounded-xl border shadow-xs"
 				priority={priority}
+				fetchPriority={priority ? 'high' : 'auto'}
 				placeholder="blur"
-				blurDataURL={result.metadata.dataURIBase64}
+				blurDataURL={base64}
 				draggable={false}
+				className="w-full h-auto rounded-xl border shadow-xs"
 			/>
 			{caption && (
 				<figcaption className={cn('text-xs text-center text-foreground-tertiary')}>

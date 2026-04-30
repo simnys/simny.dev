@@ -1,7 +1,8 @@
 import { defineCollection, defineConfig } from '@content-collections/core';
 import { z } from 'zod';
 import { compileMDX } from '@content-collections/mdx';
-import lqip from 'lqip-modern';
+import { getPlaiceholder } from 'plaiceholder';
+import { readFile } from 'fs/promises';
 import readingTime from 'reading-time';
 import rehypePrettyCode from 'rehype-pretty-code';
 import { rehypeCodeOptions } from './lib/rehype/rehype';
@@ -27,18 +28,27 @@ const posts = defineCollection({
 		draft: z.boolean().optional(),
 	}),
 	transform: async (page, context) => {
+		if (page.draft) {
+			return {
+				...page,
+				date: new Date(page.date),
+				slug: page._meta.path,
+			};
+		}
+
 		const content = await compileMDX(context, page, {
 			rehypePlugins: [[rehypePrettyCode, rehypeCodeOptions]],
 		});
 
 		const imageMeta = await context.cache(page._meta.path, async () => {
 			if (!page.image) return null;
-			const result = await lqip(`./public/${BLOG_ASSETS_DIR}/${page.image}`);
+			const buffer = await readFile(`./public/${BLOG_ASSETS_DIR}/${page.image}`);
+			const { base64, metadata } = await getPlaiceholder(buffer);
 
 			return {
-				blur: result.metadata.dataURIBase64,
-				width: result.metadata.originalWidth,
-				height: result.metadata.originalHeight,
+				blur: base64,
+				width: metadata.width,
+				height: metadata.height,
 			};
 		});
 

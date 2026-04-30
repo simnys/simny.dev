@@ -1,6 +1,6 @@
 {
 	"name": "simny.dev",
-	"version": "2.0",
+	"version": "2.1",
 	"private": true,
 	"scripts": {
 		"dev": "next dev --turbopack",
@@ -11,6 +11,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@plaiceholder/next": "^3.0.0",
 		"@tailwindcss/postcss": "^4.2.4",
 		"@teispace/next-themes": "^0.2.1",
 		"@vercel/analytics": "^2.0.1",
@@ -19,9 +20,9 @@
 		"feed": "^4.2.2",
 		"focus-trap-react": "^11.0.6",
 		"framer-motion": "^11.18.2",
-		"lqip-modern": "^2.2.1",
 		"next": "16.2.4",
 		"next-cloudinary": "^6.17.5",
+		"plaiceholder": "^3.0.0",
 		"react": "19.2.5",
 		"react-dom": "19.2.5",
 		"reading-time": "^1.5.0",
@@ -35,7 +36,6 @@
 		"@content-collections/mdx": "^0.2.2",
 		"@content-collections/next": "^0.2.11",
 		"@tailwindcss/typography": "^0.5.19",
-		"@types/lqip-modern": "^1.1.7",
 		"@types/node": "^24.12.2",
 		"@types/react": "19.2.14",
 		"@types/react-dom": "19.2.3",
