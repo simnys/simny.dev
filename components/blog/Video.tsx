@@ -5,6 +5,7 @@ import React, { useRef, useState } from 'react';
 
 type CustomVideoProps = {
 	src: string;
+	height?: number;
 	caption?: React.ReactNode | string;
 	poster?: string;
 	title?: string;
@@ -29,7 +30,16 @@ function getVideoType(src: string) {
 	}
 }
 
-export default function CustomVideo({ src, caption, poster, title, className }: CustomVideoProps) {
+export default function CustomVideo({
+	src,
+	height,
+	caption,
+	poster,
+	title,
+	className,
+}: CustomVideoProps) {
+	if (!src) return;
+
 	const videoRef = useRef<HTMLVideoElement>(null);
 	const [isPlaying, setIsPlaying] = useState(true);
 
@@ -55,6 +65,8 @@ export default function CustomVideo({ src, caption, poster, title, className }: 
 		<figure>
 			<div className="relative overflow-hidden w-full rounded-xl border shadow-xs bg-background-secondary">
 				<video
+					width={655}
+					height={height}
 					ref={videoRef}
 					className={cn('not-prose w-full h-auto object-cover', className)}
 					poster={posterSrc}

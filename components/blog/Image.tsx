@@ -19,6 +19,8 @@ export default async function CustomImage({
 	caption,
 	priority = false,
 }: CustomImageProps) {
+	if (!src) return;
+
 	const buffer = await readFile(`public${BLOG_IMAGE_DIR}/${src}`);
 	const { base64, metadata } = await getPlaiceholder(buffer);
 

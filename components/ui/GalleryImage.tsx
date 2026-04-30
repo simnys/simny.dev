@@ -16,7 +16,7 @@ export default function GalleryImage({ item, priority, lightboxIndex, onClick }:
 		<button
 			type="button"
 			className={cn(
-				'relative block w-full hover:cursor-zoom-in rounded-sm overflow-hidden',
+				'relative block w-full hover:cursor-zoom-in rounded-sm overflow-hidden bg-background-tertiary',
 				'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2',
 			)}
 			onClick={() => onClick(lightboxIndex)}

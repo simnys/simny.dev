@@ -28,7 +28,7 @@ async function createBlurDataURL(src: string): Promise<string> {
 	const imageUrl = getCldImageUrl({
 		src,
 		width: 20,
-		quality: 1,
+		quality: '30',
 		format: 'avif',
 	});
 	const response = await fetch(imageUrl);

@@ -5,6 +5,7 @@ import { getPlaiceholder } from 'plaiceholder';
 import { readFile } from 'fs/promises';
 import readingTime from 'reading-time';
 import rehypePrettyCode from 'rehype-pretty-code';
+import remarkGfm from 'remark-gfm';
 import { rehypeCodeOptions } from './lib/rehype/rehype';
 import { POST_TYPES } from './lib/types/types';
 
@@ -38,6 +39,7 @@ const posts = defineCollection({
 
 		const content = await compileMDX(context, page, {
 			rehypePlugins: [[rehypePrettyCode, rehypeCodeOptions]],
+			remarkPlugins: [remarkGfm],
 		});
 
 		const imageMeta = await context.cache(page._meta.path, async () => {
@@ -74,7 +76,9 @@ const nowEntries = defineCollection({
 		title: z.string().optional(),
 	}),
 	transform: async (page, context) => {
-		const content = await compileMDX(context, page);
+		const content = await compileMDX(context, page, {
+			remarkPlugins: [remarkGfm],
+		});
 		return {
 			...page,
 			content,
