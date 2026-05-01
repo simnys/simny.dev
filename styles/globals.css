@@ -188,7 +188,7 @@ figure[data-rehype-pretty-code-figure] pre {
 
 /* Code block lines */
 figure[data-rehype-pretty-code-figure] pre [data-line] {
-	@apply border-l-2 border-transparent px-4;
+	@apply border-l-2 border-transparent px-6;
 }
 figure[data-rehype-pretty-code-figure] pre [data-highlighted-line] {
 	@apply bg-brand/5 border-brand/80;

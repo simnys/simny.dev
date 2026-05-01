@@ -5,7 +5,7 @@ import { Icon } from '../ui/Icon';
 import { IconName } from '@/lib/types/icons';
 
 const cLinkBase =
-	'relative items-center gap-x-0.5 underline underline-offset-3 whitespace-nowrap text-foreground font-medium decoration-foreground-tertiary/50 hover:decoration-foreground-secondary transition-colors';
+	'relative items-center gap-x-0.5 underline underline-offset-3 text-foreground font-medium decoration-foreground-tertiary/50 hover:decoration-foreground-secondary transition-colors';
 
 interface CustomLinkProps extends React.DetailedHTMLProps<
 	React.AnchorHTMLAttributes<HTMLAnchorElement>,
