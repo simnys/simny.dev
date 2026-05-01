@@ -28,7 +28,7 @@ export default function Quote({
 				{...props}
 			>
 				<span
-					className="text-3xl md:text-4xl text-foreground/80 absolute -left-4"
+					className="text-3xl md:text-4xl text-foreground/80 absolute -left-3"
 					aria-hidden="true"
 				>
 					“
@@ -36,10 +36,7 @@ export default function Quote({
 
 				{children}
 
-				<span
-					className="text-3xl md:text-4xl text-foreground/80 absolute translate-x-1"
-					aria-hidden="true"
-				>
+				<span className="text-3xl md:text-4xl text-foreground/80 absolute" aria-hidden="true">
 					”
 				</span>
 			</blockquote>
