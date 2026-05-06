@@ -1,6 +1,6 @@
 import Divider from '@/components/blog/Divider';
 import CustomLink from '@/components/blog/Link';
-import MDXComponents from '@/components/blog/MDXcomponents';
+import { getMDXComponents } from '@/components/blog/MDXcomponents';
 import PageHeader from '@/components/layouts/PageHeader';
 
 import { buildPageMetadata } from '@/lib/metadata';
@@ -49,7 +49,10 @@ export default async function Now() {
 						</time>
 					</span>
 
-					<MDXContent code={latestEntry.content} components={MDXComponents} />
+					<MDXContent
+						code={latestEntry.content}
+						components={getMDXComponents(`assets/now/${latestEntry.slug}`)}
+					/>
 				</article>
 			)}
 
@@ -71,7 +74,10 @@ export default async function Now() {
 								</div>
 								<div>
 									{entry.title && <h3 className="mt-1">{entry.title}</h3>}
-									<MDXContent code={entry.content} components={MDXComponents} />
+									<MDXContent
+										code={entry.content}
+										components={getMDXComponents(`assets/now/${entry.slug}`)}
+									/>
 								</div>
 							</section>
 						))}

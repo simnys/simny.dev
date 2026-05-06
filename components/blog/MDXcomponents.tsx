@@ -51,10 +51,10 @@ const baseComponents = {
 	Callout,
 };
 
-export function getMDXComponents(slug: string) {
+export function getMDXComponents(assetPath: string) {
 	return {
 		...baseComponents,
-		Image: (props: any) => <CustomImage {...props} slug={slug} />,
-		Video: (props: any) => <CustomVideo {...props} slug={slug} />,
+		Image: (props: any) => <CustomImage {...props} assetPath={assetPath} />,
+		Video: (props: any) => <CustomVideo {...props} assetPath={assetPath} />,
 	};
 }

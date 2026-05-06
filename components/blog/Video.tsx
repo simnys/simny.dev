@@ -10,10 +10,8 @@ type CustomVideoProps = {
 	poster?: string;
 	title?: string;
 	className?: string;
-	slug: string;
+	assetPath: string;
 };
-
-const BLOG_VIDEO_DIR = '/assets/writing';
 
 function getVideoType(src: string) {
 	const extension = src.split('.').pop()?.toLowerCase();
@@ -38,15 +36,15 @@ export default function CustomVideo({
 	poster,
 	title,
 	className,
-	slug,
+	assetPath,
 }: CustomVideoProps) {
 	if (!src) return;
 
 	const videoRef = useRef<HTMLVideoElement>(null);
 	const [isPlaying, setIsPlaying] = useState(true);
 
-	const videoSrc = `${BLOG_VIDEO_DIR}/${slug}/${src}`;
-	const posterSrc = poster ? `${BLOG_VIDEO_DIR}/${slug}/${poster}` : undefined;
+	const videoSrc = `/${assetPath}/${src}`;
+	const posterSrc = poster ? `/${assetPath}/${poster}` : undefined;
 	const videoType = getVideoType(src);
 
 	const togglePlayback = async () => {

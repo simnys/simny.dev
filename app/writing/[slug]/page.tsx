@@ -151,7 +151,10 @@ export default async function BlogPost(props: Props) {
 					</Copy>
 				</Button>
 
-				<MDXContent code={post.content} components={getMDXComponents(post.slug)} />
+				<MDXContent
+					code={post.content}
+					components={getMDXComponents(`assets/writing/${post.slug}`)}
+				/>
 
 				<div className="mt-12 sm:mt-16 flex items-center gap-4 flex-wrap p-4 sm:px-8 sm:py-6 bg-background-secondary rounded-xl border shadow-xs">
 					<div className="relative shrink-0">
