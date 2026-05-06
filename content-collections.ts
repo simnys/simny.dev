@@ -42,9 +42,11 @@ const posts = defineCollection({
 			remarkPlugins: [remarkGfm],
 		});
 
+		const slug = page._meta.path;
+
 		const imageMeta = await context.cache(page._meta.path, async () => {
 			if (!page.image) return null;
-			const buffer = await readFile(`./public/${BLOG_ASSETS_DIR}/${page.image}`);
+			const buffer = await readFile(`./public/${BLOG_ASSETS_DIR}/${slug}/${page.image}`);
 			const { base64, metadata } = await getPlaiceholder(buffer);
 
 			return {
@@ -58,9 +60,9 @@ const posts = defineCollection({
 			...page,
 			content,
 			date: new Date(page.date),
-			slug: page._meta.path,
+			slug,
 			readingTime: readingTime(page.content).text,
-			image: page.image ? `${BLOG_ASSETS_DIR}/${page.image}` : undefined,
+			image: page.image ? `${BLOG_ASSETS_DIR}/${slug}/${page.image}` : undefined,
 			imageMeta,
 		};
 	},

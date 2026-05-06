@@ -9,6 +9,7 @@ type CustomImageProps = {
 	alt: string;
 	caption?: React.ReactNode | string;
 	priority?: boolean;
+	slug: string;
 };
 
 const BLOG_IMAGE_DIR = `/assets/writing`;
@@ -18,16 +19,17 @@ export default async function CustomImage({
 	alt,
 	caption,
 	priority = false,
+	slug,
 }: CustomImageProps) {
 	if (!src) return;
 
-	const buffer = await readFile(`public${BLOG_IMAGE_DIR}/${src}`);
+	const buffer = await readFile(`public${BLOG_IMAGE_DIR}/${slug}/${src}`);
 	const { base64, metadata } = await getPlaiceholder(buffer);
 
 	return (
 		<figure>
 			<Image
-				src={`${BLOG_IMAGE_DIR}/${src}`}
+				src={`${BLOG_IMAGE_DIR}/${slug}/${src}`}
 				width={metadata.width}
 				height={metadata.height}
 				alt={alt}

@@ -35,7 +35,7 @@ const createHeading = (level: number) => {
 	return HeadingComponent;
 };
 
-const MDXComponents = {
+const baseComponents = {
 	h1: createHeading(1),
 	h2: createHeading(2),
 	h3: createHeading(3),
@@ -44,12 +44,17 @@ const MDXComponents = {
 	h6: createHeading(6),
 	a: CustomLink,
 	figure: (props: any) => Code(props),
-	Image: CustomImage,
-	Video: CustomVideo,
 	Link: CustomLink,
 	Quote,
 	blockquote: Quote,
 	Divider,
 	Callout,
 };
-export default MDXComponents;
+
+export function getMDXComponents(slug: string) {
+	return {
+		...baseComponents,
+		Image: (props: any) => <CustomImage {...props} slug={slug} />,
+		Video: (props: any) => <CustomVideo {...props} slug={slug} />,
+	};
+}

@@ -1,6 +1,6 @@
 import Divider from '@/components/blog/Divider';
 import CustomLink from '@/components/blog/Link';
-import MDXComponents from '@/components/blog/MDXcomponents';
+import { getMDXComponents } from '@/components/blog/MDXcomponents';
 import PageHeader from '@/components/layouts/PageHeader';
 import { SectionHeader } from '@/components/layouts/Section';
 import StructuredData from '@/components/seo/StructuredData';
@@ -151,10 +151,9 @@ export default async function BlogPost(props: Props) {
 					</Copy>
 				</Button>
 
-				<MDXContent code={post.content} components={MDXComponents} />
-				<Divider />
+				<MDXContent code={post.content} components={getMDXComponents(post.slug)} />
 
-				<div className="flex items-center gap-4 flex-wrap p-4 sm:px-8 sm:py-6 bg-background-secondary rounded-xl border shadow-xs">
+				<div className="mt-12 sm:mt-16 flex items-center gap-4 flex-wrap p-4 sm:px-8 sm:py-6 bg-background-secondary rounded-xl border shadow-xs">
 					<div className="relative shrink-0">
 						<Image
 							width={64}
