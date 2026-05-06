@@ -27,10 +27,8 @@ export default function PageHeader({
 					href={backlink}
 					icon="external"
 					flipIcon
-					className={cn(
-						'absolute left-4 top-6 sm:top-12 p-1 text-[15px] text-foreground-tertiary hover:text-foreground decoration-dotted',
-						backlinkClassName,
-					)}
+					variant="secondary"
+					className={cn('absolute left-4 top-6 sm:top-12 p-1 text-[15px]', backlinkClassName)}
 				>
 					{backlink.split('/')[1].charAt(0).toUpperCase() + backlink.split('/')[1].slice(1)}
 				</CustomLink>

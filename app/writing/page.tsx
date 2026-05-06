@@ -60,7 +60,8 @@ export default async function Writing() {
 				<CustomLink
 					href="/rss.xml"
 					aria-label="Subscribe to RSS feed"
-					className="absolute right-6 p-1 top-25.5 sm:top-33 decoration-dotted text-sm text-foreground-tertiary hover:text-foreground"
+					variant="secondary"
+					className="absolute right-6 p-1 top-25.5 sm:top-33"
 					icon="rss"
 				>
 					Feed

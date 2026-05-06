@@ -200,7 +200,8 @@ export default async function BlogPost(props: Props) {
 					{related.length > 3 && (
 						<CustomLink
 							href="/writing"
-							className="text-sm ml-auto mt-4 text-foreground-tertiary hover:text-foreground decoration-dotted"
+							variant="secondary"
+							className="ml-auto mt-4"
 							aria-label="View all articles"
 						>
 							View all

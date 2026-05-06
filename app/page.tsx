@@ -79,7 +79,8 @@ export default async function Home() {
 
 				<CustomLink
 					href="/work"
-					className="text-sm ml-auto mt-4 text-foreground-tertiary hover:text-foreground decoration-dotted"
+					variant="secondary"
+					className="ml-auto mt-4"
 					aria-label="View more work projects"
 				>
 					More work
@@ -114,7 +115,8 @@ export default async function Home() {
 					{blogPosts.length > 3 && (
 						<CustomLink
 							href="/writing"
-							className="text-sm ml-auto mt-4 text-foreground-tertiary hover:text-foreground decoration-dotted"
+							variant="secondary"
+							className="ml-auto mt-4"
 							aria-label="View more articles"
 						>
 							Read more
@@ -131,7 +133,8 @@ export default async function Home() {
 
 					<CustomLink
 						href="/photography"
-						className="text-sm ml-auto mt-4 text-foreground-tertiary hover:text-foreground decoration-dotted"
+						variant="secondary"
+						className="ml-auto mt-4"
 						aria-label="View more photography"
 					>
 						Visit gallery

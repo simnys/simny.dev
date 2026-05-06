@@ -4,8 +4,9 @@ import React from 'react';
 import { Icon } from '../ui/Icon';
 import { IconName } from '@/lib/types/icons';
 
-const cLinkBase =
-	'relative items-center gap-x-0.5 underline underline-offset-3 text-foreground font-medium decoration-foreground-tertiary/50 hover:decoration-foreground-secondary transition-colors';
+const baseClass =
+	'relative whitespace-nowrap underline underline-offset-3 text-foreground font-medium decoration-foreground-tertiary/50 hover:decoration-foreground-secondary transition-colors';
+const secondaryVariant = 'text-sm text-foreground-tertiary hover:text-foreground decoration-dotted';
 
 interface CustomLinkProps extends React.DetailedHTMLProps<
 	React.AnchorHTMLAttributes<HTMLAnchorElement>,
@@ -14,6 +15,7 @@ interface CustomLinkProps extends React.DetailedHTMLProps<
 	icon?: IconName;
 	flipIcon?: boolean;
 	className?: string;
+	variant?: 'primary' | 'secondary';
 }
 
 export default function CustomLink(props: CustomLinkProps) {
@@ -21,7 +23,14 @@ export default function CustomLink(props: CustomLinkProps) {
 
 	if (href.startsWith('/')) {
 		return (
-			<Link href={href} className={cn(cLinkBase, props.className)}>
+			<Link
+				href={href}
+				className={cn(
+					baseClass,
+					props.variant === 'secondary' && secondaryVariant,
+					props.className,
+				)}
+			>
 				{props.icon && (
 					<Icon
 						name={props.icon}
@@ -40,7 +49,12 @@ export default function CustomLink(props: CustomLinkProps) {
 			href={href}
 			target="_blank"
 			rel="noopener"
-			className={cn(cLinkBase, 'group', props.className)}
+			className={cn(
+				baseClass,
+				props.variant === 'secondary' && secondaryVariant,
+				'group',
+				props.className,
+			)}
 		>
 			{props.icon && <Icon name={props.icon} className="inline-block size-4 mr-1 ml-0.5 mb-0.5" />}
 
