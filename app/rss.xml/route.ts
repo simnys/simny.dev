@@ -16,11 +16,7 @@ export async function GET() {
 			language: 'en',
 			image: `${SITE_URL}/images/pixel.png`,
 			favicon: `${SITE_URL}/images/pixel.png`,
-			author: {
-				name: SITE_NAME,
-				email: SITE_CONTACT,
-				link: SITE_URL,
-			},
+			ttl: 60,
 		});
 
 		const posts = getBlogPosts();
@@ -32,13 +28,19 @@ export async function GET() {
 				link: `${SITE_URL}/writing/${post.slug}`,
 				description: post.summary,
 				date: post.date,
+				author: [
+					{
+						name: SITE_NAME,
+						email: SITE_CONTACT,
+					},
+				],
 			});
 		});
 
 		return new Response(feed.rss2(), {
 			status: 200,
 			headers: {
-				'Content-type': 'text/xml; charset=utf-8',
+				'Content-type': 'application/rss+xml; charset=utf-8',
 			},
 		});
 	} catch (error) {

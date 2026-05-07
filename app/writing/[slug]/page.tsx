@@ -152,46 +152,46 @@ export default async function BlogPost(props: Props) {
 					code={post.content}
 					components={getMDXComponents(`assets/writing/${post.slug}`)}
 				/>
+			</article>
 
-				<div className="mt-12 sm:mt-16 flex items-center gap-4 flex-wrap p-4 sm:px-8 sm:py-6 bg-background-secondary rounded-xl border shadow-xs">
-					<div className="relative shrink-0">
-						<Image
-							width={64}
-							height={64}
-							src={avatar}
-							alt="simon nyström avatar"
-							draggable={false}
-							className="size-12 rounded-full not-prose"
-						/>
-						<div className="absolute -right-1 -bottom-1 size-4 p-1 bg-background rounded-full flex items-center justify-center">
-							<div className="size-full rounded-full bg-linear-to-tl from-brand to-pink-100" />
-						</div>
-					</div>
-
-					<div className="mr-auto">
-						<span className="block text-sm text-foreground-tertiary">Have any questions?</span>
-						<span className="block font-medium text-foreground leading-normal">
-							Let&apos;s connect
-						</span>
-					</div>
-
-					<div className="flex items-center gap-x-2">
-						{socialLinks.map((link) => (
-							<Button asChild variant="ghost" size="icon" key={link.name}>
-								<a
-									href={link.path}
-									target="_blank"
-									rel="noopener"
-									className="border border-border"
-									aria-label={`Find me on ${link.name}`}
-								>
-									<Icon name={link.icon!} />
-								</a>
-							</Button>
-						))}
+			<div className="flex items-center gap-4 flex-wrap p-4 sm:px-8 sm:py-6 bg-background-secondary rounded-xl border shadow-xs">
+				<div className="relative shrink-0">
+					<Image
+						width={64}
+						height={64}
+						src={avatar}
+						alt="simon nyström avatar"
+						draggable={false}
+						className="size-12 rounded-full not-prose"
+					/>
+					<div className="absolute -right-1 -bottom-1 size-4 p-1 bg-background rounded-full flex items-center justify-center">
+						<div className="size-full rounded-full bg-linear-to-tl from-brand to-pink-100" />
 					</div>
 				</div>
-			</article>
+
+				<div className="mr-auto">
+					<span className="block text-sm text-foreground-tertiary">Have any questions?</span>
+					<span className="block font-medium text-foreground leading-normal">
+						Let&apos;s connect
+					</span>
+				</div>
+
+				<div className="flex items-center gap-x-2">
+					{socialLinks.map((link) => (
+						<Button asChild variant="ghost" size="icon" key={link.name}>
+							<a
+								href={link.path}
+								target="_blank"
+								rel="noopener"
+								className="border border-border"
+								aria-label={`Find me on ${link.name}`}
+							>
+								<Icon name={link.icon!} />
+							</a>
+						</Button>
+					))}
+				</div>
+			</div>
 
 			{related.length > 0 && (
 				<section className="max-w-[65ch] w-full mx-auto flex flex-col">
