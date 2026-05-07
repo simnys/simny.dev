@@ -122,7 +122,7 @@ export default async function BlogPost(props: Props) {
 		<>
 			<StructuredData id={`${post.slug}_jsonLd`} data={jsonLd} />
 
-			<article className="prose mx-auto w-full prose-p:mt-0 prose-ul:mt-0 prose-headings:mt-4 prose-headings:mb-2">
+			<article className="prose mx-auto w-full prose-p:mt-0 prose-ul:mt-0 prose-headings:mb-2">
 				<PageHeader
 					title={post.title}
 					backlink="/writing"
