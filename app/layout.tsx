@@ -100,7 +100,7 @@ export const metadata: Metadata = {
 			'application/rss+xml': [
 				{
 					title: 'Blog RSS Feed',
-					url: `${SITE_URL}/rss.xml`,
+					url: `${SITE_URL}/rss`,
 				},
 			],
 		},

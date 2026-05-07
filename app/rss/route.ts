@@ -11,11 +11,10 @@ export async function GET() {
 			description: SITE_DESCRIPTION,
 			link: SITE_URL,
 			id: `${SITE_URL}/writing`,
-			feed: `${SITE_URL}/rss.xml`,
+			feed: `${SITE_URL}/rss`,
 			copyright: `All rights reserved ${new Date().getFullYear()}, Simon Nyström`,
 			language: 'en',
-			image: `${SITE_URL}/images/pixel.png`,
-			favicon: `${SITE_URL}/images/pixel.png`,
+			image: `${SITE_URL}/images/og.jpg`,
 			ttl: 60,
 		});
 

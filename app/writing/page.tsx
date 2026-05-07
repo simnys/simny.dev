@@ -58,7 +58,7 @@ export default async function Writing() {
 
 			{posts.length >= 3 && (
 				<CustomLink
-					href="/rss.xml"
+					href="/rss"
 					aria-label="Subscribe to RSS feed"
 					variant="secondary"
 					className="absolute right-6 p-1 top-25.5 sm:top-33"

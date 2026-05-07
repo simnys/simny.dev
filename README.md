@@ -39,7 +39,7 @@ The project can run with a minimal environment, but these variables unlock produ
 - `app/work/page.tsx` – work index
 - `app/photography/page.tsx` – photography index
 - `app/photography/[slug]/page.tsx` – gallery collection detail
-- `app/rss.xml/route.ts` – RSS feed
+- `app/rss/route.ts` – RSS feed
 - `app/sitemap.ts` – sitemap
 - `app/api/revalidate/route.ts` – Cloudinary-triggered gallery revalidation
 
