@@ -44,11 +44,11 @@ export default function Callout({ variant = 'info', title, children }: CalloutPr
 	const styles = variantStyles[variant];
 
 	return (
-		<div className="relative py-10 my-4 -mx-6 px-3 lg:-mx-40 lg:px-34 xl:-mx-76 xl:px-70 border-y border-border/30">
+		<div className="relative py-10 my-8 -mx-6 px-3 lg:-mx-40 lg:px-34 xl:-mx-76 xl:px-70 border-y border-border/30">
 			<blockquote
 				className={cn(
 					'not-prose relative z-10 p-6 rounded-xl border shadow-xs max-w-3xl mx-auto w-full bg-background-secondary',
-					styles.text
+					styles.text,
 				)}
 			>
 				{icon && (
@@ -68,7 +68,7 @@ export default function Callout({ variant = 'info', title, children }: CalloutPr
 				className={cn(
 					'absolute inset-0 pointer-events-none',
 					'bg-[linear-gradient(to_right,rgba(0,0,0,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.05)_1px,transparent_1px)] bg-[size:24px_24px]',
-					'dark:bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)]'
+					'dark:bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)]',
 				)}
 				style={{
 					WebkitMaskImage: 'radial-gradient(circle at 50% 50%, white 50%, transparent 100%)',

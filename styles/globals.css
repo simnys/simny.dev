@@ -101,14 +101,14 @@
 }
 
 h1 {
-	@apply font-[550] text-lg tracking-tight;
+	@apply font-[550] leading-normal tracking-tight;
 }
 h2,
 h3,
 h4,
 h5,
 h6 {
-	@apply font-medium tracking-tight;
+	@apply font-medium leading-normal tracking-tight;
 }
 img {
 	@apply select-none;

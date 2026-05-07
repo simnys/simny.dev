@@ -122,17 +122,14 @@ export default async function BlogPost(props: Props) {
 		<>
 			<StructuredData id={`${post.slug}_jsonLd`} data={jsonLd} />
 
-			<article className="prose mx-auto w-full first:prose-p:mt-0">
+			<article className="prose mx-auto w-full prose-p:mt-0 prose-ul:mt-0 prose-headings:mt-4 prose-headings:mb-2">
 				<PageHeader
 					title={post.title}
 					backlink="/writing"
 					className="not-prose text-foreground"
 					backlinkClassName="md:left-12"
 				/>
-				<time
-					dateTime={post.date.toISOString()}
-					className="block mt-1 mb-8 font-serif text-foreground-secondary text-sm"
-				>
+				<time dateTime={post.date.toISOString()} className="block mb-12 text-foreground-secondary">
 					{formatDate(post.date, true)}
 				</time>
 
@@ -140,7 +137,7 @@ export default async function BlogPost(props: Props) {
 					asChild
 					variant="secondary"
 					size="icon"
-					className="absolute right-3 top-4 sm:top-10"
+					className="hidden sm:flex absolute right-3 top-7"
 				>
 					<Copy
 						aria-label="Back to writing overview"

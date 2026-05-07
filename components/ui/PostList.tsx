@@ -76,7 +76,7 @@ const PostItem = ({ post }: { post: Post }) => (
 				</h3>
 				<time
 					dateTime={post.date.toISOString()}
-					className="block font-serif text-sm text-foreground-tertiary group-hover:text-foreground-secondary transition-colors duration-200 ease-out"
+					className="block text-sm text-foreground-tertiary group-hover:text-foreground-secondary transition-colors duration-200 ease-out"
 				>
 					{formatDate(post.date, true)}
 				</time>
@@ -95,7 +95,7 @@ export default function PostList({ posts }: { posts: Post[] }) {
 	}
 
 	return (
-		<ul role="list" className="flex flex-col -mx-2">
+		<ul role="list" className="flex flex-col gap-y-2 sm:gap-y-0 -mx-2">
 			{posts.map((post) => (
 				<PostItem key={post.slug} post={post} />
 			))}
