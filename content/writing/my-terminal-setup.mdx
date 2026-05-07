@@ -1,14 +1,12 @@
 ---
-title: 'A Minimal and Aesthetic Terminal Setup for macOS'
+title: 'A Minimal macOS Terminal Setup'
 date: '2026-04-29'
-summary: 'A practical guide to building a fast, good-looking terminal environment on macOS using Ghostty, Fish shell, and Starship, without spending a weekend tweaking dotfiles.'
+summary: 'A fast and minimal macOS terminal setup using Ghostty, Fish shell, and Starship, with sensible defaults and minimal configuration.'
 ---
 
-When I look at most terminal setups, they fall into one of two groups: the untouched macOS default, or the completely over-engineered one with a framework, 40 plugins, and a `.zshrc` so long nobody remembers what half of it does.
+My terminal setup gradually turned into a pile of plugins, themes, and config files that I barely understood or knew where to find them. It worked fine and was pleasant to use, but somehow it felt heavier than it needed to.
 
-I wanted something in between. Quick to set up, good to look at, and simple enough that I understand every line of config.
-
-This is what I landed on.
+At some point I ditched the goal of endless customization and looked for something **fast, clean, and maintainable**. I eventually found Ghostty, Fish, and Starship which I felt ticked all the boxes.
 
 <Image
 	src="terminal.avif"
@@ -17,36 +15,28 @@ This is what I landed on.
 	priority
 />
 
-## The Stack
+## Why I landed on this stack
 
-- **[Ghostty](https://ghostty.org)** - the terminal emulator
-- **[Fish](https://fishshell.com)** - the shell
-- **[Starship](https://starship.rs)** - the prompt
+Most terminal setups still revolve around [iTerm2](https://iterm2.com) with `zsh` and [oh-my-zsh](https://ohmyz.sh), or [Alacritty](https://alacritty.org) with [tmux](https://github.com/tmux/tmux). Both are solid and mature options with extensive community support and I've used variations of both in the past. The reason I landed on Ghostty, Fish, and Starship is simple; all three are **good without configuration**, and they stay good as you add configuration.
 
-Each one does its job and stays out of the way. No plugin manager, no framework to maintain.
+[Fish](https://fishshell.com) ships with syntax highlighting, autosuggestions, and smart tab completion built in. It ships with the features I used to install plugins for.
 
-## Ghostty
+[Starship](https://starship.rs) is a minimal cross-shell prompt written in Rust. It works consistently and is fast enough that I never notice it, even in large repositories.
 
-iTerm2 is fine. Alacritty is fine. But Ghostty is the first terminal that actually feels like a Mac app.
+[Ghostty](https://ghostty.org) is a GPU-accelerated terminal emulator with a native feel which already handles tabs and splits, so I don't need tmux unless I specifically want it.
 
-Tab bars, keyboard shortcuts, and window behaviour, it all works the way you'd expect. GPU acceleration is on by default. Config is a plain text file with key-value pairs, nothing more.
+All three tools can get far more complex than what I'm showing here. But the defaults are good enough that you don't have to.
 
-### The Font
+## Getting Ghostty installed
 
-I'm using [JetBrains Mono](https://www.jetbrains.com/lp/mono/), which you can install via Homebrew:
-
-```bash
-brew install --cask font-jetbrains-mono
+```sh
+brew install --cask ghostty
 ```
 
-Monaspace, Geist Mono, and Fira Code are all solid alternatives. JetBrains Mono wins for me because it's free, ligatures work in Ghostty out of the box, and the x-height is generous enough to read comfortably at size 12. No wrong choice here though.
+Open it and press `⌘ + ,` to bring up the config. It uses a simple `key = value` format. Here's mine:
 
-### Config
-
-```ini
-# ~/.config/ghostty/config
-
-font-family = "JetBrains Mono"
+```txt
+font-family = "CommitMono"
 font-size = 12
 theme = ayu-mirage
 
@@ -55,81 +45,84 @@ cursor-style = bar
 cursor-style-blink = false
 cursor-click-to-move = true
 
-background-opacity = 0.95
 background-blur = true
-
-window-height = 25
-window-width = 65
+background-opacity = 0.95
 
 macos-titlebar-style = tabs
 macos-icon = blueprint
 ```
 
-A few lines worth explaining:
+None of that is required since the defaults are already usable, feel free to experiment. A few things worth calling out here:
 
-**`shell-integration-features = no-cursor`** tells Ghostty to leave cursor rendering to the shell. Pair it with `cursor-style = bar` and `cursor-style-blink = false` and you get a clean, static bar cursor that doesn't fight with anything.
+- `background-blur = true` gives the terminal a subtle frosted-glass effect that works nicely with slight opacity.
+- `macos-titlebar-style = tabs` merges the title bar into the tab bar and saves a bit of vertical space, it also makes the window cleaner.
+- `cursor-click-to-move` lets you click anywhere in the terminal to reposition the cursor, which I immediately missed whenever I used a terminal without it.
 
-**`background-opacity = 0.95` + `background-blur = true`** gives the window a subtle frosted-glass effect. The content behind shows through just enough to feel grounded without being distracting.
+You can find the full list of options at [ghostty.org/docs/config](https://ghostty.org/docs/config).
 
-**`macos-titlebar-style = tabs`** merges the title bar and tab bar into one row, saving vertical space and looking much cleaner than the default stacked layout.
-
-**`macos-icon = blueprint`** swaps the Dock icon for Ghostty's technical blueprint variant. Small detail, but noticeable.
-
-The `ayu-mirage` theme is a warm, muted dark palette. Less high-contrast than Dracula or One Dark, which I find easier on the eyes during long sessions.
-
-<Callout variant="info" title="First-time Ghostty install?">
-	Ghostty can be downloaded from [ghostty.org/download](https://ghostty.org/download). Drop your
-	config file at `~/.config/ghostty/config` and it will be picked up on the next launch.
+<Callout variant="info" title="Tip">
+	`ghostty +list-themes` previews every built-in theme before you commit to one. Ghostty also ships
+	with built-in glyph support, so prompt icons and git symbols render correctly without installing a
+	[Nerd Font](https://www.nerdfonts.com).
 </Callout>
 
-## Fish
+## Switching to Fish
 
-Bash is the safe default. Zsh got popular through Oh My Zsh. Fish gets skipped because it uses its own syntax that doesn't match most shell scripts you'll find online.
-
-That matters if you're writing scripts to share or run in different environments. For actual day-to-day use in the terminal, it's irrelevant.
-
-Fish caught my attention because it works without any configuration. Syntax highlighting as you type, history-based autosuggestions, tab completions for git, npm, and brew. All built in, without any plugins.
-
-```bash
+```sh
 brew install fish
+```
+
+Add it to the list of allowed shells, then set it as your default:
+
+```sh
 echo /opt/homebrew/bin/fish | sudo tee -a /etc/shells
 chsh -s /opt/homebrew/bin/fish
 ```
 
-That's it. There is no step four.
+If you're on an Intel Mac, replace `/opt/homebrew/bin/fish` with `/usr/local/bin/fish`.
 
-My `config.fish` is very short. The only things in it are the Starship init line and a login check that drops me into my working directory:
+Open a new terminal window and you should be in Fish. The first thing you'll probably notice is autosuggestions as you type. It will suggest the last command you ran and you can hit the right arrow to accept it.
+
+My entire interactive `~/.config/fish/config.fish` currently looks like this:
 
 ```fish
-# ~/.config/fish/config.fish
-
 if status is-login
     cd Developer
 end
-
-starship init fish | source
 ```
 
-Saves one `cd` every time I open a new terminal window, which adds up.
+It's simply a shortcut for new terminal windows to open directly into my projects folder.
 
-<Callout variant="warning" title="Apple Silicon path">
-	If you're on an M-series Mac, Fish installs to `/opt/homebrew/bin/fish`. On Intel Macs it's
-	`/usr/local/bin/fish`. Double-check before running `chsh`.
-</Callout>
+## Setting up Starship
 
-## Starship
-
-The default Fish prompt is perfectly fine, but Starship adds more context such as directory, git branch, git status, and language versions. It hides everything that isn't relevant.
-
-```bash
+```sh
 brew install starship
 ```
 
-The `starship init fish | source` line in `config.fish` above handles the shell integration. The defaults are good enough to ship. My `starship.toml` only trims a couple of modules:
+Add the initializer to your Fish config:
+
+```sh
+echo 'starship init fish | source' >> ~/.config/fish/config.fish
+```
+
+Reload your shell and you will have a prompt showing:
+
+- **current directory**
+- **git branch and status**
+- **relevant language runtime versions**
+- **command duration** for slower tasks
+
+The **command duration** feature sounds minor until you start waiting on builds or test runs several times a day, it's _really_ handy.
+
+If you want a different look, run `starship preset --list` to see available presets. All of them should work cleanly in Ghostty without additional setup. Then you can pull and apply them with this command:
+
+```sh
+starship preset pastel-powerline -o ~/.config/starship.toml
+```
+
+My `~/.config/starship.toml` changes are minimal:
 
 ```toml
-# ~/.config/starship.toml
-
 [package]
 disabled = true
 
@@ -138,39 +131,14 @@ truncation_length = 3
 truncate_to_repo = true
 ```
 
-## Putting It All Together
-
-Here's the full install sequence from scratch:
-
-```bash
-# 1. Install Ghostty: download from https://ghostty.org/download
-
-# 2. Install Fish and set it as default
-brew install fish
-echo /opt/homebrew/bin/fish | sudo tee -a /etc/shells
-chsh -s /opt/homebrew/bin/fish
-
-# 3. Install Starship
-brew install starship
-
-# 4. Install JetBrains Mono
-brew install --cask font-jetbrains-mono
-
-# 5. Create config directories
-mkdir -p ~/.config/ghostty
-mkdir -p ~/.config/fish
-```
-
-Drop the config files in place, restart Ghostty, and you're done. The whole thing takes about ten minutes.
+Disabling the `package` module removes the version number that appears in Node and Rust projects and the `directory` module's truncation keeps long paths readable without showing the entire thing. That's genuinely all I've changed but the [Starship docs](https://starship.rs/config/) are well-organized if you want to customize things further.
 
 <Divider />
 
-## What's Missing
+## A terminal I stopped thinking about
 
-The one rough edge with this stack is environment variables. Fish uses `set -x VAR value` rather than `export VAR=value`, which can cause friction when following guides written for zsh.
+The entire setup is three `brew install` commands and a handful of config lines. The shell starts quick and the prompt stays informative without becoming noisy while tab completion works everywhere, without plugins.
 
-If you work across multiple Node or Python versions, check out [mise](https://mise.jdx.dev). It handles `.tool-versions` files and has first-class Fish support.
+If you feel the need for more customisation there's still a lot to explore. Fish, for example, has a full function system and `abbr` support for expanding abbreviations as you type. I can recommend matchai's [dotfiles](https://github.com/matchai/dotfiles/blob/b6c6a701d0af8d145a8370288c00bb9f0648b5c2/.config/fish/alias.fish) if you're curious about that. Otherwise the docs are a good place to start.
 
-<Quote>A well-configured terminal is the one you stop thinking about.</Quote>
-
-If you're running a different font or colour scheme you love, I'd be curious to hear about it. Terminal aesthetics are a personal thing, and I fully reserve the right to change everything in six months.
+But none of that is required on day one. What I wanted was a terminal I could _stop thinking about_, and I think I've found it.
