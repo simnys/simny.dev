@@ -1,20 +1,26 @@
 export const dynamic = 'force-static';
 
-import { SITE_DESCRIPTION, SITE_NAME, SITE_TITLE, SITE_URL } from '@/data/constants';
+import { SITE_CONTACT, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from '@/data/constants';
 import { getBlogPosts } from '@/lib/blog';
 import { Feed } from 'feed';
 
 export async function GET() {
 	try {
 		const feed = new Feed({
-			title: SITE_TITLE,
+			title: SITE_NAME,
 			description: SITE_DESCRIPTION,
 			link: SITE_URL,
 			id: `${SITE_URL}/writing`,
 			feed: `${SITE_URL}/rss.xml`,
 			copyright: `All rights reserved ${new Date().getFullYear()}, Simon Nyström`,
 			language: 'en',
-			image: `${SITE_URL}/images/og.jpg`,
+			image: `${SITE_URL}/images/pixel.png`,
+			favicon: `${SITE_URL}/images/pixel.png`,
+			author: {
+				name: SITE_NAME,
+				email: SITE_CONTACT,
+				link: SITE_URL,
+			},
 		});
 
 		const posts = getBlogPosts();
@@ -26,7 +32,6 @@ export async function GET() {
 				link: `${SITE_URL}/writing/${post.slug}`,
 				description: post.summary,
 				date: post.date,
-				author: [{ name: SITE_NAME }],
 			});
 		});
 
