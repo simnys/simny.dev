@@ -13,8 +13,6 @@ import { mdxToHtml } from './lib/rehype/rehype';
 const BLOG_DIR = 'content/writing';
 const NOW_DIR = 'content/now';
 
-const BLOG_ASSETS_DIR = '/assets/writing';
-
 const posts = defineCollection({
 	name: 'posts',
 	directory: BLOG_DIR,

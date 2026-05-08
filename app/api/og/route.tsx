@@ -8,11 +8,15 @@ export async function GET(request: NextRequest) {
 	try {
 		const { searchParams } = new URL(request.url);
 
-		const title = searchParams.get('title') || 'Photography';
-		const subtitle = searchParams.get('subtitle') || 'Photo Gallery';
-		const imageUrl = searchParams.get('image') || '';
+		const title = searchParams.get('title') || 'Simon Nyström';
+		const subtitle = searchParams.get('subtitle');
+		const imageParam = searchParams.get('image');
+		const imageUrl = imageParam
+			? imageParam.startsWith('http')
+				? imageParam
+				: `${SITE_URL}${imageParam}`
+			: null;
 
-		// Load local fonts
 		const interFont = await readFile(path.join(process.cwd(), 'public/fonts/InterDisplay.ttf'));
 
 		return new ImageResponse(
@@ -20,36 +24,34 @@ export async function GET(request: NextRequest) {
 				<img
 					tw="absolute top-0 left-0 w-full h-full"
 					src={`${SITE_URL}/images/og-base.jpg`}
-					alt="Overlay"
+					alt="Background"
 				/>
 
-				<img
-					style={{
-						objectFit: 'cover',
-						objectPosition: 'center',
-						border: '8px solid black',
-						position: 'absolute',
-						right: '72px',
-						borderRadius: '2px',
-					}}
-					width={400}
-					height={500}
-					src={imageUrl}
-					alt="Gallery image"
-				/>
+				{imageUrl && (
+					<img
+						style={{
+							objectFit: 'cover',
+							objectPosition: 'center',
+							border: '8px solid black',
+							borderRadius: '2px',
+							position: 'absolute',
+							right: '72px',
+						}}
+						width={400}
+						height={500}
+						src={imageUrl}
+						alt=""
+					/>
+				)}
 
 				<span tw="absolute left-[40.5px] top-12 h-px w-4 bg-black" />
 				<span tw="absolute left-[48px] top-[40.5px] h-4 w-px bg-black" />
-
 				<span tw="absolute right-[40.5px] top-12 h-px w-4 bg-black" />
 				<span tw="absolute right-[48px] top-[40.5px] h-4 w-px bg-black" />
-
 				<span tw="absolute bottom-12 left-[40.5px] h-px w-4 bg-black" />
 				<span tw="absolute bottom-[40.5px] left-[48px] h-4 w-px bg-black" />
-
 				<span tw="absolute bottom-12 right-[40.5px] h-px w-4 bg-black" />
 				<span tw="absolute bottom-[40.5px] right-[48px] h-4 w-px bg-black" />
-
 				<span tw="absolute h-px w-full bg-black/30 top-12" />
 				<span tw="absolute h-px w-full bg-black/30 bottom-12" />
 				<span tw="absolute h-full w-px bg-black/30 left-12" />
@@ -59,19 +61,15 @@ export async function GET(request: NextRequest) {
 					<h1 style={{ fontFamily: 'Inter' }} tw="w-full text-black text-7xl text-balance">
 						{title}
 					</h1>
-					<div style={{ color: '#6a7282', fontSize: 32, fontFamily: 'Inter' }}>{subtitle}</div>
+					{subtitle && (
+						<div style={{ color: '#6a7282', fontSize: 32, fontFamily: 'Inter' }}>{subtitle}</div>
+					)}
 				</div>
 			</div>,
 			{
 				width: 1200,
 				height: 630,
-				fonts: [
-					{
-						name: 'Inter',
-						data: interFont,
-						style: 'normal',
-					},
-				],
+				fonts: [{ name: 'Inter', data: interFont, style: 'normal' }],
 			},
 		);
 	} catch (error) {

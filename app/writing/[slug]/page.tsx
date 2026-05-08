@@ -54,9 +54,7 @@ export async function generateMetadata(
 			url: `${SITE_URL}/writing/${post.slug}`,
 			images: [
 				{
-					url: `/api/ogBlog?title=${encodeURIComponent(title)}&image=${encodeURIComponent(
-						avatar.src,
-					)}`,
+				url: `/api/og?title=${encodeURIComponent(title)}&image=${encodeURIComponent(avatar.src)}`,
 					width: 1200,
 					height: 630,
 					alt: title,
@@ -70,9 +68,7 @@ export async function generateMetadata(
 			card: 'summary_large_image',
 			images: [
 				{
-					url: `/api/ogBlog?title=${encodeURIComponent(title)}&image=${encodeURIComponent(
-						avatar.src,
-					)}`,
+					url: `/api/og?title=${encodeURIComponent(title)}&image=${encodeURIComponent(avatar.src)}`,
 					width: 1200,
 					height: 630,
 					alt: title,
@@ -102,7 +98,7 @@ export default async function BlogPost(props: Props) {
 		url: `${SITE_URL}/writing/${post.slug}`,
 		datePublished: post.date.toISOString(),
 		dateModified: post.date.toISOString(),
-		image: `${SITE_URL}/api/ogBlog?title=${encodeURIComponent(
+		image: `${SITE_URL}/api/og?title=${encodeURIComponent(
 			post.title,
 		)}&image=${encodeURIComponent(avatar.src)}`,
 		author: {

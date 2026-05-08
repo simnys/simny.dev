@@ -38,9 +38,7 @@ export async function generateMetadata(props: Props): Promise<Metadata | undefin
 			url: `${SITE_URL}/photography/${slugify(collection.title)}`,
 			images: [
 				{
-					url: `/api/ogGallery?title=${encodeURIComponent(title)}&subtitle=${encodeURIComponent(
-						'Photo Gallery',
-					)}&image=${encodeURIComponent((cover as string) || '')}`,
+				url: `/api/og?title=${encodeURIComponent(title)}&subtitle=${encodeURIComponent('Photo Gallery')}&image=${encodeURIComponent((cover as string) || '')}`,
 					width: 1200,
 					height: 630,
 					alt: `${title} Photo Gallery cover image`,
@@ -53,9 +51,7 @@ export async function generateMetadata(props: Props): Promise<Metadata | undefin
 			description,
 			images: [
 				{
-					url: `/api/ogGallery?title=${encodeURIComponent(title)}&subtitle=${encodeURIComponent(
-						'Photo Gallery',
-					)}&image=${encodeURIComponent((cover as string) || '')}`,
+					url: `/api/og?title=${encodeURIComponent(title)}&subtitle=${encodeURIComponent('Photo Gallery')}&image=${encodeURIComponent((cover as string) || '')}`,
 					width: 1200,
 					height: 630,
 					alt: `${title} Photo Gallery cover image`,

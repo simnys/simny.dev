@@ -25,9 +25,7 @@ export async function generateMetadata(
 			canonical: '/photography',
 			openGraph: {
 				images: {
-					url: `/api/ogGallery?title=${encodeURIComponent(
-						title,
-					)}&subtitle=${encodeURIComponent('Collections')}&image=${encodeURIComponent(ogImage)}`,
+				url: `/api/og?title=${encodeURIComponent(title)}&subtitle=${encodeURIComponent('Collections')}&image=${encodeURIComponent(ogImage)}`,
 					width: 1200,
 					height: 630,
 					alt: `${title} cover image`,
@@ -36,9 +34,7 @@ export async function generateMetadata(
 			},
 			twitter: {
 				images: {
-					url: `/api/ogGallery?title=${encodeURIComponent(
-						title,
-					)}&subtitle=${encodeURIComponent('Collections')}&image=${encodeURIComponent(ogImage)}`,
+					url: `/api/og?title=${encodeURIComponent(title)}&subtitle=${encodeURIComponent('Collections')}&image=${encodeURIComponent(ogImage)}`,
 					width: 1200,
 					height: 630,
 					alt: `${title} cover image`,
