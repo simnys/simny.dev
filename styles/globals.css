@@ -212,3 +212,17 @@ code[data-line-numbers] [data-line]::before {
 .prose :not(pre) > code::before {
 	@apply hidden;
 }
+
+/* Footnotes */
+sup {
+	@apply ml-0.5;
+}
+sup a {
+	@apply scroll-mt-6 sm:scroll-mt-12;
+}
+.footnotes {
+	@apply border-t border-border mt-12 sm:mt-16;
+}
+.footnotes ol {
+	@apply m-0 text-sm;
+}
