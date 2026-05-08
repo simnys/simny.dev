@@ -8,6 +8,7 @@ import rehypePrettyCode from 'rehype-pretty-code';
 import remarkGfm from 'remark-gfm';
 import { rehypeCodeOptions } from './lib/rehype/rehype';
 import { POST_TYPES } from './lib/types/types';
+import { mdxToHtml } from './lib/rehype/rehype';
 
 const BLOG_DIR = 'content/writing';
 const NOW_DIR = 'content/now';
@@ -23,20 +24,10 @@ const posts = defineCollection({
 		title: z.string(),
 		summary: z.string(),
 		date: z.string(),
-		image: z.string().optional(),
 		type: z.enum(POST_TYPES).optional(),
 		tags: z.array(z.string()).optional(),
-		draft: z.boolean().optional(),
 	}),
 	transform: async (page, context) => {
-		if (page.draft) {
-			return {
-				...page,
-				date: new Date(page.date),
-				slug: page._meta.path,
-			};
-		}
-
 		const content = await compileMDX(context, page, {
 			rehypePlugins: [[rehypePrettyCode, rehypeCodeOptions]],
 			remarkPlugins: [remarkGfm],
@@ -44,17 +35,7 @@ const posts = defineCollection({
 
 		const slug = page._meta.path;
 
-		const imageMeta = await context.cache(page._meta.path, async () => {
-			if (!page.image) return null;
-			const buffer = await readFile(`./public/${BLOG_ASSETS_DIR}/${slug}/${page.image}`);
-			const { base64, metadata } = await getPlaiceholder(buffer);
-
-			return {
-				blur: base64,
-				width: metadata.width,
-				height: metadata.height,
-			};
-		});
+		const html = await mdxToHtml(page.content, slug);
 
 		return {
 			...page,
@@ -62,8 +43,7 @@ const posts = defineCollection({
 			date: new Date(page.date),
 			slug,
 			readingTime: readingTime(page.content).text,
-			image: page.image ? `${BLOG_ASSETS_DIR}/${slug}/${page.image}` : undefined,
-			imageMeta,
+			html,
 		};
 	},
 });

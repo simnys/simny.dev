@@ -1,6 +1,4 @@
-export const dynamic = 'force-static';
-
-import { SITE_CONTACT, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from '@/data/constants';
+import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from '@/data/constants';
 import { getBlogPosts } from '@/lib/blog';
 import { Feed } from 'feed';
 
@@ -14,7 +12,7 @@ export async function GET() {
 			feed: `${SITE_URL}/rss`,
 			copyright: `All rights reserved ${new Date().getFullYear()}, Simon Nyström`,
 			language: 'en',
-			image: `${SITE_URL}/images/og.jpg`,
+			image: `${SITE_URL}/images/pixel.png`,
 			ttl: 60,
 		});
 
@@ -27,12 +25,7 @@ export async function GET() {
 				link: `${SITE_URL}/writing/${post.slug}`,
 				description: post.summary,
 				date: post.date,
-				author: [
-					{
-						name: SITE_NAME,
-						email: SITE_CONTACT,
-					},
-				],
+				content: post.html,
 			});
 		});
 

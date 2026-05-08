@@ -2,14 +2,12 @@ import { allPosts, Post } from 'content-collections';
 import { cache } from 'react';
 
 export const getBlogPosts = cache(() => {
-	const posts = allPosts
-		.filter((post) => !post.draft)
-		.toSorted((a, b) => b.date.getTime() - a.date.getTime());
+	const posts = allPosts.toSorted((a, b) => b.date.getTime() - a.date.getTime());
 	return posts;
 });
 
 export const getBlogPost = (slug: string) => {
-	return allPosts.find((post) => post.slug === slug && !post.draft);
+	return allPosts.find((post) => post.slug === slug);
 };
 
 export const getLatestBlogPost = () => {
